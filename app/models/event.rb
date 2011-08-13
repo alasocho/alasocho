@@ -62,7 +62,7 @@ class Event < ActiveRecord::Base
   end
 
   def public_attendance_for(user)
-    public? ? attendances.new(:user_id => user, :state => "invited") : nil
+    public? ? attendances.new(:user_id => user.id, :state => "invited") : nil
   end
 
   def slots_available?
