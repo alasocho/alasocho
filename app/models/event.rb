@@ -40,8 +40,8 @@ class Event < ActiveRecord::Base
 
   def cancel!
     state_machine.trigger(:cancel)
-    ## TODO: notify users
     save!(:validate => false)
+    interested_invitations.each(&:send_event_cancelled_email)
   end
 
   def state_machine

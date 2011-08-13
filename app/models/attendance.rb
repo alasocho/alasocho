@@ -67,6 +67,10 @@ class Attendance < ActiveRecord::Base
     NotifyInvite.enqueue(id)
   end
 
+  def send_event_cancelled_email
+    NotifyEventCancelled.enqueue(id)
+  end
+
   def attach_to_user
     user = User.where(:email => email).first
     return unless user.present?
