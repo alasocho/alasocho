@@ -16,11 +16,14 @@ es:
         title: "Crea un nuevo evento"
         submit: "Crear evento"
         message:
-          saved: "Evento guardado"
+          success: "Evento guardado"
           error: "No pudimos guardar el evento. Por favor, verifica la información."
       invite:
         title: "Invitaciones"
         after_attendee_quota: "personas pueden asistir"
         explanation: "Puede invitar a más de 10 personas! Si más personas confirman quedarán en una lista de espera."
         submit: "Publicar evento"
+        message:
+          success: "Evento publicado"
+          error: "No pudimos publicar el evento"
 
