@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user
 
   def new
-    @event = current_user.hosted_events.new
+    @event = current_user.hosted_events.new(:city => GeoLocator.city_from_ip(request.remote_addr))
   end
 
   def create
