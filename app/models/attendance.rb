@@ -25,7 +25,6 @@ class Attendance < ActiveRecord::Base
   end
 
   def confirm!
-    debugger
     state_machine.trigger(:confirm)
     self.confirmed_at = Time.current
     save!(:validate => false)
