@@ -13,6 +13,9 @@ class AttendancesController < ApplicationController
   end
 
   def destroy
+    @attendance.decline!
+    flash[:notice] = t("attendance.message.decline", :event_name => @event.name)
+    redirect_to @event
   end
 
 private
