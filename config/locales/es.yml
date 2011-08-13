@@ -41,6 +41,9 @@ es:
         location: "Paraguay 2211"
         city: "Montevideo, Uruguay"
 
+  shared:
+    are_you_sure: "¿Estás seguro?"
+
   event:
     available_seats: "lugares disponibles"
     invitees: "invitados"
@@ -74,6 +77,11 @@ es:
         message:
           success: "Evento publicado"
           error: "No pudimos publicar el evento"
+        cancel: "Cancela este Evento"
+      edit:
+        cancel_event: "Cancela este Evento"
+      cancel:
+        message_cancelled: "El evento %{event_name} ha sido cancelado."
 
   attendance:
     message:

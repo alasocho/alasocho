@@ -1,27 +1,9 @@
 %h2= t("event.form.invite.title")
 = form_for @event, class: :invite_more_people do |f|
 
-  .form_field
-    = f.check_box :public
-    = f.label :public, t("event.public")
+  = render :partial => :settings, :locals => {:f => f}
 
-  .form_field
-    = f.check_box :allow_invites
-    = f.label :allow_invites, t("event.allow_invites")
-
-  .form_field.attendee_quota_field
-    = f.label :attendee_quota, t("event.attendee_quota")
-    = f.text_field :attendee_quota, :type => :number, :size => 3, :class => "attendee_quota"
-    = t("event.form.invite.after_attendee_quota")
-
-  .form_field
-    = t("event.form.invite.no_limit")
-    %input{type: :checkbox, id: :no_limit}
-
-  .form_field
-    = f.label :invitee_list, t("event.invitee_list")
-    = f.hidden_field :invitee_list, id: :invitee_list
-    #invitee_list
+  = render :partial => :invitee_list, :locals => {:f => f}
 
   .explanation
     = t("event.form.invite.explanation")

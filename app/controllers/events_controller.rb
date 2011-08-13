@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   before_filter :load_event, :only => [:show]
 
   def new
-    @event = current_user.hosted_events.new #FIXME Needs current_user, right?
+    @event = current_user.hosted_events.new
   end
 
   def create
@@ -17,6 +17,10 @@ class EventsController < ApplicationController
       flash.now[:alert] = t("event.form.create.message.error")
       render :action => :new
     end
+  end
+
+  def edit
+    load_own_event
   end
 
   def invite
@@ -44,6 +48,13 @@ class EventsController < ApplicationController
   def show
     @attendance = @event.attendance_for(current_user)
     @comments = @event.comments
+  end
+
+  def destroy
+    load_own_event
+    @event.cancel!
+    flash[:notice] = t("event.message.cancelled", :event_name => @event.name)
+    redirect_to root_path
   end
 
 private

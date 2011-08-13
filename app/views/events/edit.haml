@@ -1,27 +1,13 @@
 %h2= t("event.form.edit.title")
 
 = form_for @event do |f|
-  .form_field
-    = f.check_box :public
-    = f.label :public, t("event.public")
+  -# FIXME Needs error messages
+  #left_column
+    = render :partial => "form", :locals => {:f => f}
 
-  .form_field
-    = f.check_box :allow_invites
-    = f.label :allow_invites, t("event.allow_invites")
+    = render :partial => "settings", :locals => {:f => f}
 
-  .form_field.attendee_quota_field
-    = f.label :attendee_quota, t("event.attendee_quota")
-    = f.text_field :attendee_quota, :type => :number, :size => 3, :class => "attendee_quota"
-    = t("event.form.invite.after_attendee_quota")
-
-  .form_field
-    = t("event.form.invite.no_limit")
-    %input{type: :checkbox, id: :no_limit}
-
-  = render :partial => "form", :locals => {:f => f}
-
-- content_for :javascript do
-  :javascript
-    $(document).ready(function(){
-      new A8.Views.Events.SettingsView($("#invite_more_people"));
-    });
+  #right_column
+    #actions
+      = link_to t('event.form.edit.cancel_event'), event_path(@event), :method => :delete, :confirm => t('shared.are_you_sure')
+    = render :partial => "invitee_list", :locals => {:f => f}

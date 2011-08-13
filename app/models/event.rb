@@ -61,6 +61,17 @@ class Event < ActiveRecord::Base
     attendances.where(:user_id => user).first || public_attendance_for(user)
   end
 
+  def publish!
+    state_machine.trigger(:publish)
+    save!(:validate => false)
+  end
+
+  def cancel!
+    state_machine.trigger(:cancel)
+    ## TODO: notify users
+    save!(:validate => false)
+  end
+
   def public_attendance_for(user)
     public? ? attendances.new(:user_id => user.id, :state => "invited") : nil
   end
