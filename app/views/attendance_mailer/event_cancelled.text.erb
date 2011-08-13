@@ -1,0 +1,5 @@
+<%= t("email.generic.greeting") %>
+
+<%= t("email.attendance.event_cancelled.text", :event_name => @attendance.event.name, :user_name => @attendance.event.host.name) %>
+
+<%= event_url(@attendance.event) %>

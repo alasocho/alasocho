@@ -129,6 +129,9 @@ es:
     tentative:
       subject: "¡Hay un lugar disponible en %{event_name}!"
       text: "Alguien canceló su confirmación para %{event_name}, por lo que hay un lugar disponible si aún lo quieres. Sólo tienes que visitar el evento para confirmar. Si no lo quieres, por favor visita el evento e indícalo para que así podamos darle el lugar al siguiente lo antes posible."
+    event_cancelled:
+      subject: "El evento %{event_name} ha sido cancelado"
+      text: "%{user_name} ha cancelado el evento %{event_name}. Si lo deseas, aún puedes comentar en él."
 
   comment:
     form:

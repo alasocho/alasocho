@@ -18,4 +18,13 @@ class AttendanceMailer < ActionMailer::Base
       :from    => "arturito@alasocho.com"
     )
   end
+
+  def event_cancelled_notification(attendance)
+    @attendance = attendance
+    mail(
+      :subject => t("email.event_cancelled.subject", :event_name => attendance.event.name),
+      :to      => attendance.user.try(:email) || attendance.email,
+      :from    => "arturito@alasocho.com"
+    )
+  end
 end
