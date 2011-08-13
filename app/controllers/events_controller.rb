@@ -23,6 +23,7 @@ class EventsController < ApplicationController
   def update
     @event.update_attributes(params[:event])
     if @event.save
+      @event.publish!
       flash[:notice] = t("event.form.invite.message.success")
       redirect_to @event
     else

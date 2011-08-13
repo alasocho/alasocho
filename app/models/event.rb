@@ -13,6 +13,11 @@ class Event < ActiveRecord::Base
 
   attr_accessor :invitee_list
 
+  def publish!
+    state_machine.trigger(:publish)
+    save(:validate => false)
+  end
+
   def state_machine
     @state_machine ||= MicroMachine.new(state || "created").tap do |machine|
       machine.transitions_for[:publish] = { "created" => "published" }
