@@ -55,4 +55,8 @@ class Attendance < ActiveRecord::Base
     return unless user.present?
     self.user = user
   end
+
+  def confirmed?
+    state_machine.state == "confirmed"
+  end
 end

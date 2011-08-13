@@ -19,8 +19,6 @@ es:
     public: "Este evento es público"
     allow_invites: "Los invitados pueden invitar más gente"
     attendee_quota: "Un límite de"
-    confirm: "Voy"
-    decline: "No voy"
     available_seats: "lugares disponibles"
     invitees: "invitados"
     waitlist: "Lista de espera"
@@ -31,6 +29,10 @@ es:
     invited:
       one:   "1 invitado"
       other: "%{count} invitados"
+    confirm:
+      slots_available: "Voy"
+      no_slots_available: "Lista de espera"
+    decline: "No voy"
 
 
     form:

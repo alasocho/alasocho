@@ -40,6 +40,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @attendance = @event.attendance_for(current_user)
     @comments = @event.comments
   end
 

@@ -32,7 +32,9 @@
       = link_to "YahooCal", "#", :class => "calendar"
 
     #actions
-      = link_to t('event.confirm'), event_attendance_path(@event), :method => :post
+
+      - unless @attendance.try(:confirmed?)
+        = link_to (@event.slots_available? ? t('event.confirm.slots_available') : t("event.confirm.no_slots_available")), event_attendance_path(@event), :method => :post
       = link_to t('event.decline'), event_attendance_path(@event), :method => :delete
 
 
