@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20110813004718) do
-=======
-ActiveRecord::Schema.define(:version => 20110813004304) do
->>>>>>> Add Event#last_commented_at to simplify shit
+ActiveRecord::Schema.define(:version => 20110813014721) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +23,16 @@ ActiveRecord::Schema.define(:version => 20110813004304) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "authorizations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "key"
+    t.string   "provider"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.integer "user_id"
@@ -52,10 +58,11 @@ ActiveRecord::Schema.define(:version => 20110813004304) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "display_name"
+    t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_url"
   end
 
 end
