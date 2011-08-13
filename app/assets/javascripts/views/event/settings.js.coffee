@@ -1,22 +1,26 @@
 class Event::Settings extends Backbone.View
-  events: {
-    'click #event_attendee_quota' : 'valid_numbers'
-    'submit .edit_event' : 'list_attendees'
-  }
-
   attendee_list: -> $(".edit_event #invitee_list")
+  attendee_quota: -> $(".attendee_quota")
 
   valid_numbers: (event) ->
     current_value = $(event.target).val()
     $(event.target).val(0) if current_value < 0
 
-  list_attendees: (event) ->
-    for item in attendee_list.find("input")
-      console.log item
+  list_attendees: (event) =>
+    invitee_list = new String
+    for item in this.attendee_list().find("input")
+      value = $(item).val()
+      invitee_list += "#{value} \n"
+    $("#invitee_list").val invitee_list
 
-    false
+  initialize: (@el) ->
+    this.attendee_quota().click this.valid_numbers
+    $("#no_limit").click =>
+      $(".attendee_quota_field").toggle()
+      this.attendee_quota().val(0)
 
-  initialize: ->
+    $("#submit_event").click => this.list_attendees()
+
     invite = new Event::InvitePeople
     element = invite.render().el
     this.attendee_list().append element
