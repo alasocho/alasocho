@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_filter :check_token, :only => [:show]
   before_filter :authenticate_user
   before_filter :load_own_event, :only => [:invite_people, :update, :invite, :edit]
   before_filter :load_event, :only => [:show]
@@ -53,5 +54,11 @@ private
 
   def load_event
     @event = Event.viewable_by(current_user).find(params[:event_id] || params[:id])
+  end
+
+  def check_token
+    if params[:token].present?
+      session[:attendance_id] == Attendance.find_by_token(params[:token]).try(:id)
+    end
   end
 end
