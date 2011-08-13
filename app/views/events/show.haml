@@ -1,7 +1,7 @@
 #modal_window
 %input{type: :hidden, id: :event_id, value: @event.id}
 #title
-  %h1= t('event.name')
+  %h1= @event.name
   #info_short
     = t "event.confirmed", :count => @event.confirmed_attendees.size
     = t 'event.invited', :count =>  @event.attendances.size
