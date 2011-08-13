@@ -74,7 +74,18 @@ class EventsController < ApplicationController
 
 private
 
-  def load_event
+  def load_own_event
     @event = current_user.hosted_events.find(params[:event_id] || params[:id])
   end
+
+  def load_event
+    @event = Event.viewable_by(current_user).find(params[:event_id] || params[:id])
+  end
+
+  def check_token
+    if params[:token].present?
+      session[:attendance_id] = Attendance.find_by_token(params[:token]).try(:id)
+    end
+  end
+
 end
