@@ -37,12 +37,12 @@ class Attendance < ActiveRecord::Base
     save(:validate => false)
 
     if !event.atendee_quota.nil? && event.available_slots > 0 && event.waitlisted.size > 0
-      event.waitlisted.first.tentative!
+      event.waitlisted.first.reserve_slot!
     end
   end
 
-  def tentative!
-    state_machine.trigger(:tentative)
+  def reserve_slot!
+    state_machine.trigger(:reserve_slot)
     save(:validate => false)
     NotifyOfTentativeState.enqueue(id)
   end

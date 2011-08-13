@@ -72,6 +72,9 @@ es:
       invite:
         subject: "Te han invitado a %{event_name}"
         invite_text: "%{inviter_name} te ha invitado a %{event_name}. Haz click en el siguiente link para ver el evento."
+      tentative:
+        subject: "¡Hay un lugar disponible en %{event_name}!"
+        text: "Alguien canceló su confirmación para %{event_name}, por lo que hay un lugar disponible si aún lo quieres. Sólo tienes que visitar el evento para confirmar. Si no lo quieres, por favor visita el evento e indícalo para que así podamos darle el lugar al siguiente lo antes posible."
 
   comment:
     form:
