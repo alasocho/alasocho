@@ -4,4 +4,5 @@ if [ $? -ne 0 ]; then
   echo "mysql-server mysql-server/root_password select $mysql_password" | debconf-set-selections
   echo "mysql-server mysql-server/root_password_again $mysql_password" | debconf-set-selections
   apt-get install -y mysql-server
+  apt-get install -y libmysqlclient-dev
 fi

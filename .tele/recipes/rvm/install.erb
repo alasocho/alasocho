@@ -2,4 +2,6 @@ which rvm
 if [ $? -eq 1 ]; then
   curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer ; chmod +x rvm-installer ; ./rvm-installer --version latest
   rm rvm-installer;
+  chmod -R g+rw /usr/local/rvm
+  echo 'if [ -s "$HOME/.rvm/scripts/rvm" ] ; then source "$HOME/.rvm/scripts/rvm"; elif [ -s "/usr/local/rvm/scripts/rvm" ] ; then source "/usr/local/rvm/scripts/rvm"; fi;' >> /etc/profile
 fi
