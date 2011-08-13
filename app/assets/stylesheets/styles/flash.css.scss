@@ -1,0 +1,19 @@
+#flash * {
+  margin-left: 150px;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 0 0 10px 10px;
+  border-bottom: 2px solid #fff;
+}
+
+#flash-notice {
+  background: url(/assets/backgrounds/flash-notice.png);
+  text-shadow: 1px 1px #639963;
+  border-bottom-color: #141;
+}
+
+#flash-alert {
+  background: url(/assets/backgrounds/flash-alert.png);
+  text-shadow: 1px 1px #d96363;
+  border-bottom-color: #411;
+}

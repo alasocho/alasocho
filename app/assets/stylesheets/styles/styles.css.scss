@@ -1,30 +1,6 @@
 /* ============================== */
 /* ! Layout for desktop version   */
 /* ============================== */
-  div#modal_window {
-    display: block;
-    width: 560px;
-    position: absolute;
-    top: -400px;
-    left: 370px;
-    border: solid 1px #999;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgb(255,255,255)), to(rgb(230,230,230)));
-    padding: 50px;
-    -webkit-transition: -webkit-transform 0.25s ease-out;
-    -webkit-transform: translateY(0);
-    -webkit-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
-  }
-
-  div#modal_window.show {
-    -webkit-border-bottom-left-radius: 6px;
-    -webkit-border-bottom-right-radius: 6px;
-    -webkit-transition: -webkit-transform 0.25s ease-out;
-    -webkit-transform: translateY(400px);
-    opacity: 1.0;
-    z-index: 100;
-    -webkit-transition-duration: 0.25s;
-  }
-
   body {
     background: #f8f8f8 url(/assets/backgrounds/page.png);
     font-family: Actor, sans-serif;
@@ -32,24 +8,18 @@
     line-height: 24px;
   }
 
-  #flash * {
-    margin-left: 150px;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 0 0 10px 10px;
-    border-bottom: 2px solid #fff;
+  .container {
+    width: 960px;
+    margin: 0 auto;
   }
 
-  #flash-notice {
-    background: url(/assets/backgrounds/flash-notice.png);
-    text-shadow: 1px 1px #639963;
-    border-bottom-color: #141;
+  .row {
+    width: 960px;
   }
 
-  #flash-alert {
-    background: url(/assets/backgrounds/flash-alert.png);
-    text-shadow: 1px 1px #d96363;
-    border-bottom-color: #411;
+  #main {
+    margin-top: 24px;
+    margin-left: 140px;
   }
 
 /* ============================= */

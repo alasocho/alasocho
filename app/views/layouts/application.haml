@@ -11,11 +11,11 @@
     %link(rel="home" href="/")
   %body
     .container
-      %header.row
-        %h1.eightcol
+      %header
+        %h1
           = link_to t("app.title"), root_path
 
-        #user_area.fourcol.last
+        #user_area
           - if signed_in?
             #current_user
               = image_tag current_user.picture_url
@@ -30,7 +30,7 @@
 
       = flash_messages
 
-      %section#main.row
+      %section#main
         = yield
 
     = javascript_include_tag :application, :a8
