@@ -11,18 +11,28 @@
 
   .form_field
     = f.label :attendee_quota, t("event.attendee_quota")
-    = f.text_field :attendee_quota, :size => 2
+    = f.text_field :attendee_quota, :type => :number, :size => 3, :class => "attendee_quota"
     = t("event.form.invite.after_attendee_quota")
 
   .form_field
+    = t("event.form.invite.no_limit")
+    %input{type: :checkbox}
+
+  .form_field
     = f.label :invitee_list, t("event.invitee_list")
-    = f.text_area :invitee_list
+    = f.hidden_field :invitee_list
+    #invitee_list
 
   .explanation
     = t("event.form.invite.explanation")
 
   .submit_button
-    = f.submit t("event.form.invite.submit")
+    = f.submit t("event.form.invite.submit"), id: :submit_event
 
 
+:javascript
+  $(document).ready(function(){
+    var a = new Event.prototype.Settings();
+    a.render()
+  });
 

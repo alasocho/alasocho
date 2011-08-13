@@ -4,7 +4,7 @@
     %title A Las Ocho
     = csrf_meta_tags
     = stylesheet_link_tag :application
-    = javascript_include_tag :application
+    = javascript_include_tag :application, :eight
   %body
     - if flash[:notice].present?
       .notice= flash[:notice]
