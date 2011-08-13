@@ -15,6 +15,7 @@ es:
   activerecord:
     models:
       event: "evento"
+      user: "Usuario"
     attributes:
       event:
         name: "Nombre"
@@ -26,6 +27,9 @@ es:
         public: "Este evento es público"
         allow_invites: "Los invitados pueden invitar más gente"
         attendee_quota: "Un límite de"
+      user:
+        name: "Nombre"
+        email: "Email"
 
   events:
     form:
@@ -96,3 +100,10 @@ es:
       title: "Comentarios"
       leave_a_comment: "Deja un comentario"
       submit: "Enviar comentario"
+
+  accounts:
+    edit:
+      link: "Mi Cuenta"
+      message:
+        success: "Tus datos fueron actualizados."
+        error: "Ocurrió un error al actualizar tus datos."

@@ -21,6 +21,8 @@
               = image_tag current_user.picture_url
               = current_user.name
               |
+              = link_to t("accounts.edit.link"), edit_account_path
+              |
               = link_to t("sessions.sign_out.link"), "/auth/sign_out"
           - else
             = link_to t("sessions.sign_in.twitter"),  "/auth/twitter",  class: "sign_in twitter"

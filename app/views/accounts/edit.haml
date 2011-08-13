@@ -1,0 +1,15 @@
+%br
+%br
+%br
+%br
+%br
+= form_for current_user, :url => account_path do |f|
+  .form_field
+    = f.label :name
+    = f.text_field :name
+  .form_field
+    = f.label :email
+    = f.text_field :email
+
+  .submit_button
+    = f.submit

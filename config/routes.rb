@@ -9,6 +9,8 @@ ALasOcho::Application.routes.draw do
     resource :attendance, :only => [:create, :destroy]
   end
 
+  resource :account, :only => [:edit, :update]
+
   match "/auth/sign_out" => "sessions#destroy"
   match "/auth/:provider/callback" => "sessions#create"
 end
