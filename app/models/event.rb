@@ -38,6 +38,12 @@ class Event < ActiveRecord::Base
     attendances.each(&:invite!)
   end
 
+  def cancel!
+    state_machine.trigger(:cancel)
+    ## TODO: notify users
+    save!(:validate => false)
+  end
+
   def state_machine
     @state_machine ||= MicroMachine.new(state || "created").tap do |machine|
       machine.transitions_for[:publish] = { "created" => "published" }
@@ -59,17 +65,6 @@ class Event < ActiveRecord::Base
 
   def attendance_for(user)
     attendances.where(:user_id => user).first || public_attendance_for(user)
-  end
-
-  def publish!
-    state_machine.trigger(:publish)
-    save!(:validate => false)
-  end
-
-  def cancel!
-    state_machine.trigger(:cancel)
-    ## TODO: notify users
-    save!(:validate => false)
   end
 
   def public_attendance_for(user)
