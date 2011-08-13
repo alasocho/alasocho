@@ -39,7 +39,7 @@ class Attendance < ActiveRecord::Base
       machine.transitions_for[:decline]      = { "invited" => "declined", "waitlisted" => "declined", "tentative" => "declined", "confirmed" => "declined" }
       machine.transitions_for[:waitlist]     = { "invited" => "waitlisted", "declined" => "waitlisted" }
       machine.transitions_for[:reserve_slot] = { "waitlisted" => "tentative" }
-      machine.on(:invite) { send_invite_email }
+      machine.on(:invited) { send_invite_email }
     end
   end
 
