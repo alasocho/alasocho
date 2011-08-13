@@ -26,6 +26,8 @@
             = link_to t("sessions.sign_in.twitter"),  "/auth/twitter",  class: "sign_in twitter"
             = link_to t("sessions.sign_in.facebook"), "/auth/facebook", class: "sign_in facebook"
 
+      = flash_messages
+
       %section#main.row
         = yield
 

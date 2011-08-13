@@ -39,12 +39,12 @@ class Attendance < ActiveRecord::Base
     save!(:validate => false)
 
     if !event.atendee_quota.nil? && event.available_slots > 0 && event.waitlisted.size > 0
-      event.waitlisted.first.tentative!
+      event.waitlisted.first.reserve_slot!
     end
   end
 
-  def tentative!
-    state_machine.trigger(:tentative)
+  def reserve_slot!
+    state_machine.trigger(:reserve_slot)
     save(:validate => false)
     NotifyOfTentativeState.enqueue(id)
   end
@@ -65,7 +65,7 @@ class Attendance < ActiveRecord::Base
   end
 
   def send_invite_email
-    AttendanceMailer.invite_notification(self).deliver
+    NotifyInvite.enqueue(id)
   end
 
   def attach_to_user
