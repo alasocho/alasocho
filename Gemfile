@@ -5,6 +5,8 @@ gem "mysql2"
 gem "jquery-rails"
 gem "oa-oauth"
 
+gem 'haml'
+
 # Daemon to control Resque
 gem 'daemons'
 

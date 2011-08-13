@@ -2,6 +2,8 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+require 'haml'
+
 if defined?(Bundler)
   Bundler.setup *Rails.groups(:assets => %w(development test))
 end
