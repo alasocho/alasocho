@@ -22,12 +22,14 @@ class EventsController < ApplicationController
   end
 
   def invite
-    load_own_event
-    list = JSON params[:invitees]
-    @event.invitee_list = list
-    @event.save
-    respond_to do |format|
-      format.json { render :json => "OK"}
+    load_event_writable
+    if @event.allow_invites_from(current_user)
+      list = JSON params[:invitees]
+      @event.invitee_list = list
+      @event.save
+      respond_to do |format|
+        format.json { render :json => "OK"}
+      end
     end
   end
 
@@ -85,6 +87,11 @@ private
 
   def load_event
     @event = Event.viewable_by(current_user).find(params[:event_id] || params[:id])
+  end
+
+  def load_event_writable
+    load_event
+    @event = Event.find(@event.id)
   end
 
   def check_token

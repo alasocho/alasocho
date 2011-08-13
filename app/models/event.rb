@@ -74,6 +74,10 @@ class Event < ActiveRecord::Base
     public? ? attendances.new(:user_id => user.id, :state => "invited") : nil
   end
 
+  def allow_invites_from(user)
+    self.public or allow_invites or host == user
+  end
+
   def slots_available?
     return true unless limited?
     slots_taken < attendee_quota
