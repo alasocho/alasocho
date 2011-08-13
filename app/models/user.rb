@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def can_be_linked_further?
-    Authorization::PROVIDERS.any? { |provider| !linked_providers.include?(provider) }
+    (Authorization::PROVIDERS & linked_providers).any?
   end
 
   def linked_providers
