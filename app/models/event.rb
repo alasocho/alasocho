@@ -2,6 +2,16 @@ require 'micromachine'
 
 class Event < ActiveRecord::Base
   has_many :attendances
+
+  has_many :confirmed_invitations, :class_name => "Attendance", :conditions => where(:state => ["tentative", "confirmed"])
+  has_many :confirmed_attendees, :through => :confirmed_invitations, :source => :user
+
+  has_many :pending_invitations, :class_name => "Attendance", :conditions => where(:state => "invited")
+  has_many :invitees, :through => :pending_invitations, :source => :user
+
+  has_many :waitlisted_invitations, :class_name => "Attendance", :conditions => where(:state => "waitlisted")
+  has_many :whitelisted, :through => :waitlisted_invitations, :source => :user
+
   has_many :comments
   belongs_to :host, :class_name => "User"
 

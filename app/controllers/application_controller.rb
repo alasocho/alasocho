@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
       @current_user = user
     end
   end
+
+  def authenticate_user
+    redirect_to root_path, :alert => I18n.t("flash.need_to_sign_in") unless signed_in?
+  end
 end

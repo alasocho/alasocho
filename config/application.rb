@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 require 'haml'
+require "rails-i18n"
 
 if defined?(Bundler)
   Bundler.setup *Rails.groups(:assets => %w(development test))

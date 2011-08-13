@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_filter :load_event, :only => [:invite_people, :update]
+  before_filter :load_event, :only => [:invite_people, :update, :show]
+  before_filter :authenticate_user, :except => :show
 
   def new
     @event = current_user.hosted_events.new #FIXME Needs current_user, right?
@@ -30,6 +31,9 @@ class EventsController < ApplicationController
       flash.now[:alert] = t("event.form.invite.message.error")
       render :action => :invite_people
     end
+  end
+
+  def show
   end
 
 private

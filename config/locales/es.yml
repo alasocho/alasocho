@@ -9,6 +9,18 @@ es:
     public: "Este evento es público"
     allow_invites: "Los invitados pueden invitar más gente"
     attendee_quota: "Un límite de"
+    confirm: "Voy"
+    decline: "No voy"
+    available_seats: "lugares disponibles"
+    invitees: "invitados"
+    waitlist: "Lista de espera"
+    people_waiting: "personas esperando"
+    confirmed:
+      one:   "1 confirmado"
+      other: "%{count} confirmados"
+    invited:
+      one:   "1 invitado"
+      other: "%{count} invitados"
 
 
     form:
@@ -23,7 +35,12 @@ es:
         after_attendee_quota: "personas pueden asistir"
         explanation: "Puede invitar a más de 10 personas! Si más personas confirman quedarán en una lista de espera."
         submit: "Publicar evento"
+        people: "Invitar más gente"
         message:
           success: "Evento publicado"
           error: "No pudimos publicar el evento"
 
+  time:
+    formats:
+      default: "%A %d de %B, %Y, %H:%M"
+      time: "%H:%M"

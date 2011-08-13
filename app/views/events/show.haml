@@ -1,1 +1,69 @@
-%h2 IT'S SHOW PAGE!
+#title
+  %h1= t('event.name')
+  #info_short
+    = t "event.confirmed", :count => @event.confirmed_attendees.size
+    = t 'event.invited', :count =>  @event.attendances.size
+    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event)
+
+  #left_column
+
+    #description
+      %p= @event.description
+
+    #comments
+      /= render :partial => 'comments/new'
+
+      /= render :partial => 'comments/index'
+
+  #right_column
+
+    #time_and_space
+      %h3= l @event.start_at, :format => :time
+      - unless @event.end_at.nil?
+        = "#{ t('event.end_at') } #{ @event.end_at }"
+
+      %h3= @event.location
+      = @event.city
+
+      = link_to "iCal", "#", :class => "calemdar"
+      = link_to "GoogleCal", "#", :class => "calendar"
+      = link_to "YahooCal", "#", :class => "calendar"
+
+    #actions
+      = link_to t('event.confirm'), "#"
+      = link_to t('event.decline'), "#"
+
+
+    #invitees
+      %h2=t 'event.confirmed', :count => @event.confirmed_attendees.size
+      %span= "(#{ @event.attendee_quota - @event.confirmed_attendees.size } " +  t('event.available_seats') + ")"
+
+      - @event.confirmed_attendees.each do |confirmed_attendee|
+        = image_tag @confirmed_attendee.picture_url
+        = @confirmed_attendee.name
+      = link_to t('event.form.see_all'), "#"
+
+
+      - unless @event.whitelisted.empty?
+        %h2= t('event.whitelist')
+        %span= "#{ @event.whitelisted.size }" + t('event.people_waiting')
+        - @event.whitelisted.each do |whitelisted|
+          = image_tag @confirmed_attendee.picture_url
+          = @confirmed_attendee.name
+        = link_to t('event.form.see_all'), "#"
+
+
+      - @event.confirmed_attendees.each do |confirmed_attendee|
+        = image_tag @confirmed_attendee.picture_url
+        = @confirmed_attendee.name
+      = link_to t('event.form.see_all'), "#"
+
+
+      %h2= "#{ @event.invitees.size } " + t('event.invitees')
+      %span= link_to t('event.form.invite.people'), event_invite_people_path(@event)
+      = link_to t('event.form.see_all'), "#"
+
+      - @event.invitees.each do |invitee|
+        = image_tag invitee.picture_url
+        = invitee.name
+
