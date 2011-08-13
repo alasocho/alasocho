@@ -1,6 +1,8 @@
 ALasOcho::Application.routes.draw do
   root to: "pages#home"
 
+  get "dashboard", :to => "dashboard#index", :as => :user_root
+
   resources :events, :only => [:edit, :new, :create, :show, :update, :destroy, :index] do
     resources :comments, :only => [:create]
     post :invite
