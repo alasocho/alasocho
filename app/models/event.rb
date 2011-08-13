@@ -46,10 +46,19 @@ class Event < ActiveRecord::Base
   end
 
   def slots_available?
+    return true unless limited?
     slots_taken < attendee_quota
   end
 
   def slots_taken
     confirmed_invitations.count
+  end
+
+  def slots_available_count
+    attendee_quota - slots_taken
+  end
+
+  def limited?
+    attendee_quota.present?
   end
 end
