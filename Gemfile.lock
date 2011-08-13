@@ -152,6 +152,7 @@ GEM
       railties (~> 3.1.0.rc1)
       sass (>= 3.1.4)
       sprockets (>= 2.0.0.beta.9)
+    simple_uuid (0.1.2)
     sinatra (1.2.6)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
@@ -191,5 +192,6 @@ DEPENDENCIES
   resque
   ruby-debug19
   sass-rails (~> 3.1.0.rc)
+  simple_uuid
   turn
   uglifier

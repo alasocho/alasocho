@@ -9,6 +9,7 @@ gem 'rails-i18n'
 gem 'resque'
 gem 'daemons'
 gem 'postmark-rails'
+gem 'simple_uuid'
 
 gem "jquery-rails"
 gem "backbone-rails"
