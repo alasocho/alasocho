@@ -3,7 +3,10 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 require 'haml'
+
 require "rails-i18n"
+
+require 'postmark-rails'
 
 if defined?(Bundler)
   Bundler.setup *Rails.groups(:assets => %w(development test))
@@ -48,5 +51,8 @@ module ALasOcho
 
     # Enable the asset pipeline
     config.assets.enabled = true
+
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { api_key: "b494a82c-c77b-4f3c-a502-e8a0f5c33424" }
   end
 end

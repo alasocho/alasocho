@@ -44,3 +44,12 @@ es:
     formats:
       default: "%A %d de %B, %Y, %H:%M"
       time: "%H:%M"
+
+  email:
+    generic:
+      greeting: "¡Hola!"
+    attendance:
+      invite:
+        subject: "Te han invitado a %{event_name}"
+        invite_text: "%{inviter_name} te ha invitado a %{event_name}. Haz click en el siguiente link para ver el evento."
+
