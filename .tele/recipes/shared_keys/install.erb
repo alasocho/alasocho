@@ -12,4 +12,5 @@ if [ ! -f $authorized_keys_file ]; then
   echo $nacho >> $authorized_keys_file
   echo $foca >> $authorized_keys_file
   echo $elcuervo >> $authorized_keys_file
+  chown deploy $authorized_keys_file
 fi
