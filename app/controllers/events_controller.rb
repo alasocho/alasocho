@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  before_filter :load_event, :only => [:invite_people, :update, :show]
   before_filter :authenticate_user, :except => :show
 
   def new
@@ -18,11 +17,13 @@ class EventsController < ApplicationController
   end
 
   def invite_people
-
+    load_event
   end
 
   def update
+    load_event
     @event.update_attributes(params[:event])
+
     if @event.save
       @event.publish!
       flash[:notice] = t("event.form.invite.message.success")
@@ -34,6 +35,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    load_event
+    @comments = @event.comments
   end
 
 private

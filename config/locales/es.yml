@@ -53,3 +53,8 @@ es:
         subject: "Te han invitado a %{event_name}"
         invite_text: "%{inviter_name} te ha invitado a %{event_name}. Haz click en el siguiente link para ver el evento."
 
+  comment:
+    form:
+      title: "Comentarios"
+      leave_a_comment: "Deja un comentario"
+      submit: "Enviar comentario"

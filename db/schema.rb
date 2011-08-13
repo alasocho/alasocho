@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813035511) do
+ActiveRecord::Schema.define(:version => 20110813070213) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id"
@@ -36,9 +36,11 @@ ActiveRecord::Schema.define(:version => 20110813035511) do
   add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"
 
   create_table "comments", :force => true do |t|
-    t.integer "user_id"
-    t.integer "event_id"
-    t.text    "text"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", :force => true do |t|

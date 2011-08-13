@@ -11,9 +11,9 @@
       %p= @event.description
 
     #comments
-      /= render :partial => 'comments/new'
+      = render :partial => 'comments/new'
 
-      /= render :partial => 'comments/index'
+      = render @comments
 
   #right_column
 

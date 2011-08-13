@@ -1,0 +1,6 @@
+= form_for [@event, Comment.new] do |f|
+  .form_field
+    = f.label :text, t('comment.form.leave_a_coment')
+    = f.text_area :text
+
+  = f.submit t('comment.form.submit')
