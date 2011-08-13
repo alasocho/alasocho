@@ -77,6 +77,7 @@ GEM
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
+    geoip (1.1.1)
     haml (3.1.2)
     hike (1.2.0)
     hoptoad_notifier (2.4.11)
@@ -193,6 +194,7 @@ DEPENDENCIES
   backbone-rails
   coffee-rails (~> 3.1.0.rc)
   daemons
+  geoip
   haml
   hoptoad_notifier
   jquery-rails

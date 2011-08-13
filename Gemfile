@@ -12,6 +12,7 @@ gem 'daemons'
 gem 'postmark-rails'
 gem 'hoptoad_notifier'
 gem 'simple_uuid'
+gem 'geoip'
 
 gem "jquery-rails"
 gem "backbone-rails"
