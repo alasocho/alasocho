@@ -1,8 +1,6 @@
 class EventsController < ApplicationController
-  before_filter :check_token, :only => [:show]
-  before_filter :authenticate_user
-  before_filter :load_own_event, :only => [:invite_people, :update, :invite, :edit]
-  before_filter :load_event, :only => [:show]
+  before_filter :authenticate_user, :except => :show
+  before_filter :load_event, :only => [:invite_people, :update, :show, :invite, :edit]
 
   def new
     @event = current_user.hosted_events.new
@@ -32,6 +30,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def my_events
+    @my_events = current_user.hosted_events
+    @intested_in_events = current_user.interested_in_events
+  end
+
   def update
     @event.update_attributes(params[:event])
 
@@ -46,7 +49,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @attendance = @event.attendance_for(current_user)
     @comments = @event.comments
   end
 
@@ -59,17 +61,7 @@ class EventsController < ApplicationController
 
 private
 
-  def load_own_event
-    @event = current_user.hosted_events.find(params[:event_id] || params[:id])
-  end
-
   def load_event
-    @event = Event.viewable_by(current_user).find(params[:event_id] || params[:id])
-  end
-
-  def check_token
-    if params[:token].present?
-      session[:attendance_id] = Attendance.find_by_token(params[:token]).try(:id)
-    end
+    @event = current_user.hosted_events.find(params[:event_id] || params[:id])
   end
 end

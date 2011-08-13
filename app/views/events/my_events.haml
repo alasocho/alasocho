@@ -1,0 +1,4 @@
+%h1 Mis eventos
+- if !@interested_in_events.nil?
+  - @interested_in_events.each do |event|
+    = event.name
