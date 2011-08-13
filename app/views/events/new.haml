@@ -1,4 +1,4 @@
-%h2 Create an Event!
+%h2= t("event.form.create.title")
 
 = form_for @event do |f|
   = render :partial => "form", :locals => {:f => f}

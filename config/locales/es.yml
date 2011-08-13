@@ -6,3 +6,8 @@ es:
     end_at: "Fin"
     location: "Ubicación"
     city: "Ciudad"
+
+    form:
+      create:
+        title: "Crea un nuevo evento"
+        submit: "Crear evento"
