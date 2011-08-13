@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :authorizations, dependent: :destroy
 
   has_many :hosted_events, :class_name => "Event", :foreign_key => "host_id"
+  has_many :attendances
+  has_many :comments
 
   def self.create_from_auth!(auth_hash)
     auth_hash = auth_hash.fetch("user_info")
