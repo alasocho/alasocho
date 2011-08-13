@@ -3,7 +3,7 @@ require 'micromachine'
 class Event < ActiveRecord::Base
   has_many :attendances
 
-  has_many :confirmed_invitations, :class_name => "Attendance", :conditions => where(:state => Attendance::STATES_CONFIRMED)
+  has_many :confirmed_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_CONFIRMED }
   has_many :confirmed_attendees, :through => :confirmed_invitations, :source => :user
 
   has_many :pending_invitations, :class_name => "Attendance", :conditions => where(:state => "invited")
