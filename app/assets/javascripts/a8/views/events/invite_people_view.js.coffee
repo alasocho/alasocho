@@ -5,14 +5,19 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
 
   events: {
     'keypress .add_attendee'  : 'enter_pressed'
-    'click button'            : 'invite'
+    'click button#invite'     : 'invite'
+    'click button#close_modal': 'end'
   }
 
   container: null
 
   event_id: $("#event_id").val()
 
-  template: "<button>Invite</button>"
+  template: "
+    <h1>Invite new users</h1>
+    <button id='invite'>Invite</button>
+    <button id='close_modal'>close</button>
+      "
 
   attendees_count: 0
 
@@ -31,8 +36,12 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     # TODO: Refactor someday
     invitations = _.map $(this.el).find("input"), (input) -> $(input).val()
     ajax = $.post "/events/#{this.event_id}/invite", invitees: JSON.stringify invitations
-    ajax.complete => this.container.html ""
+    ajax.complete => this.end()
     false
+
+  end: ->
+    this.container.removeClass "show"
+    this.container.html ""
 
   enter_pressed: (event) ->
     if event.keyCode is 13
@@ -43,7 +52,7 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     item = new A8.Views.Events.InvitePeopleView.AddInviteeView({parent: this})
     element = item.render().el
     this.attendees_count++
-    $(this.el).prepend element
+    $(this.el).append element
     $(element).find("input").focus()
 
   render: ->
