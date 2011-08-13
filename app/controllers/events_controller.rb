@@ -8,11 +8,11 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.hosted_events.new(params[:event])
+
     if @event.save
       flash[:notice] = t("event.form.create.message.success")
       redirect_to event_invite_people_path(@event)
     else
-      flash.now[:alert] = t("event.form.create.message.error")
       render :action => :new
     end
   end
@@ -46,7 +46,6 @@ class EventsController < ApplicationController
 
     date_changed = @event.start_at_changed? || @event.end_at_changed?
 
-
     if @event.save
       @event.publish!
       NotifyDateChange.enqueue(@event.id) if date_changed
@@ -54,7 +53,6 @@ class EventsController < ApplicationController
 
       redirect_to @event
     else
-      flash.now[:alert] = t("event.form.invite.message.error")
       render :action => :invite_people
     end
   end

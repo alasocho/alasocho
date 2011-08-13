@@ -2,27 +2,33 @@
   .form_field
     = f.label :name
     = f.text_field :name, placeholder: placeholder_i18n.t(:name)
+    = f.errors :name
 
   .form_field
     = f.label :description
     = f.text_area :description, placeholder: placeholder_i18n.t(:description)
+    = f.errors :description
 
   .double_feature
     .form_field
       = f.label :start_at
       = f.text_field :start_at, type: "datetime", placeholder: placeholder_i18n.t(:start_at)
+      = f.errors :start_at
 
     .form_field
       = f.label :end_at
       = f.text_field :end_at, type: "datetime", placeholder: placeholder_i18n.t(:end_at)
+      = f.errors :end_at
 
   .form_field
     = f.label :location
     = f.text_field :location, placeholder: placeholder_i18n.t(:location)
+    = f.errors :location
 
   .form_field
     = f.label :city
     = f.text_field :city, placeholder: placeholder_i18n.t(:city)
+    = f.errors :city
 
   .submit_button
     = f.submit
