@@ -1,6 +1,16 @@
-%br
-%br
-%br
+%h1=t "accounts.edit.title"
+
+= form_for current_user, :url => account_path do |f|
+  .form_field
+    = f.label :name
+    = f.text_field :name, placeholder: t("accounts.form.placeholders.name")
+  .form_field
+    = f.label :email
+    = f.text_field :email, placeholder: t("accounts.form.placeholders.email")
+
+  .submit_button
+    = f.submit
+
 .link_accounts
   - Authorization::PROVIDERS.each do |service|
     - unless current_user.linked_to?(service)
@@ -8,13 +18,3 @@
   - if current_user.can_be_linked_further?
     .explain
       = t("accounts.link_with.why")
-= form_for current_user, :url => account_path do |f|
-  .form_field
-    = f.label :name
-    = f.text_field :name
-  .form_field
-    = f.label :email
-    = f.text_field :email
-
-  .submit_button
-    = f.submit

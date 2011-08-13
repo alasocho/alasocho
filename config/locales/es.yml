@@ -15,7 +15,7 @@ es:
   activerecord:
     models:
       event: "evento"
-      user: "Usuario"
+      user: "usuario"
     attributes:
       event:
         name: "Nombre"
@@ -43,6 +43,22 @@ es:
 
   shared:
     are_you_sure: "¿Estás seguro?"
+
+  accounts:
+    form:
+      placeholders:
+        name: "Por ejemplo: Final de la liga"
+        email: "El email al que te enviaremos notificaciones"
+    edit:
+      link: "Mi Cuenta"
+      title: "Mi Cuenta"
+      message:
+        success: "Tus datos fueron actualizados."
+        error: "Ocurrió un error al actualizar tus datos."
+    link_with:
+      twitter: "Vincular con Twitter"
+      facebook: "Vincular con Facebook"
+      why: "Si vinculas tu cuenta con otros servicios, te será más fácil recordar cómo entrar."
 
   event:
     available_seats: "lugares disponibles"
@@ -108,14 +124,3 @@ es:
       title: "Comentarios"
       leave_a_comment: "Deja un comentario"
       submit: "Enviar comentario"
-
-  accounts:
-    edit:
-      link: "Mi Cuenta"
-      message:
-        success: "Tus datos fueron actualizados."
-        error: "Ocurrió un error al actualizar tus datos."
-    link_with:
-      twitter: "Vincular con Twitter"
-      facebook: "Vincular con Facebook"
-      why: "Si vinculas tu cuenta con otros servicios, te será más fácil recordar cómo entrar."
