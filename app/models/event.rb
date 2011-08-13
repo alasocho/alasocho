@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   belongs_to :host, :class_name => "User"
 
   before_save :preserve_state_machine
+  after_save :create_invitations
 
   validates :name, :start_at, :presence => true
 
@@ -16,6 +17,10 @@ class Event < ActiveRecord::Base
   def publish!
     state_machine.trigger(:publish)
     save(:validate => false)
+  end
+
+  def create_invitations
+    invitee_list.split("\n").map { |email| attendances.create :email => email } if invitee_list.present?
   end
 
   def state_machine
