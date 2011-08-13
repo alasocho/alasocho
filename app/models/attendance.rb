@@ -9,6 +9,7 @@ class Attendance < ActiveRecord::Base
   STATES_CONFIRMED      = %w(confirmed tentative)
 
   before_save :preserve_state_machine
+  before_create :attach_to_user
 
   attr_accessible :email
 
@@ -47,5 +48,11 @@ class Attendance < ActiveRecord::Base
 
   def send_invite_email
     AttendanceMailer.invite_notification(self).deliver
+  end
+
+  def attach_to_user
+    user = User.where(:email => email).first
+    return unless user.present?
+    self.user = user
   end
 end
