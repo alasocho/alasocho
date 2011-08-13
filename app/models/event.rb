@@ -18,7 +18,8 @@ class Event < ActiveRecord::Base
   before_save :preserve_state_machine
   after_save :create_invitations
 
-  scope :viewable_by, lambda { |user| joins(:attendances).where("attendances.user_id = :user_id or events.host_id = :user_id or events.public is true", :user_id => user.id) }
+  scope :viewable_by, lambda { |user| join_attendances.where("attendances.user_id = :user_id or events.host_id = :user_id or events.public is true", :user_id => user.id) }
+  scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
 
   validates :name, :start_at, :presence => true
   validates :attendee_quota, :numericality => {
