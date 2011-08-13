@@ -47,5 +47,8 @@ module ALasOcho
 
     # Enable the asset pipeline
     config.assets.enabled = true
+
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { :api_key => ALasOcho.config[:postmark][:api_key] }
   end
 end

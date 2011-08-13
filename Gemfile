@@ -9,6 +9,7 @@ gem 'micromachine'
 gem 'rails-i18n'
 gem 'resque'
 gem 'daemons'
+gem 'postmark-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
