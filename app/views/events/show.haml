@@ -40,8 +40,8 @@
         %span= "(#{ @event.slots_available_count } " +  t('event.available_seats') + ")"
 
       - @event.confirmed_attendees.each do |confirmed_attendee|
-        = image_tag @confirmed_attendee.picture_url
-        = @confirmed_attendee.name
+        = image_tag confirmed_attendee.picture_url
+        = confirmed_attendee.name
       = link_to t('event.form.see_all'), "#"
 
 
