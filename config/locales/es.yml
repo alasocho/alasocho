@@ -1,0 +1,8 @@
+es:
+  event:
+    name: "Nombre"
+    description: "Descripción"
+    start_at: "Comienzo"
+    end_at: "Fin"
+    location: "Ubicación"
+    city: "Ciudad"
