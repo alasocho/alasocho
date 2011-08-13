@@ -1,4 +1,6 @@
 class AttendanceMailer < ActionMailer::Base
+  default_url_options[:host] = ALasOcho.config[:canonical_host]
+
   def invite_notification(attendance)
     @attendance = attendance
     mail(
