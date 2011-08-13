@@ -8,10 +8,12 @@
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Actor", :application
     /[if lte IE 9]
       = stylesheet_link_tag "ie"
+    %link(rel="home" href="/")
   %body
     .container
       %header.row
-        %h1.eightcol A Las Ocho
+        %h1.eightcol
+          = link_to t("app.title"), root_path
 
         #user_area.fourcol.last
           - if signed_in?
