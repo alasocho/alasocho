@@ -40,6 +40,11 @@ es:
           success: "Evento publicado"
           error: "No pudimos publicar el evento"
 
+  attendance:
+    message:
+      confirm: "Has confirmado tu asistencia a %{event_name}"
+      waitlist: "Estás en la lista de espera para %{event_name}. Si se libera algún lugar te avisamos."
+
   time:
     formats:
       default: "%A %d de %B, %Y, %H:%M"

@@ -3,6 +3,8 @@ ALasOcho::Application.routes.draw do
 
   resources :events, :only => [:new, :create, :show, :update] do
     get :invite_people
+
+    resource :attendance, :only => [:create, :destroy]
   end
 
   match "/auth/:provider/callback" => "sessions#create"

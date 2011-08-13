@@ -44,4 +44,12 @@ class Event < ActiveRecord::Base
   def preserve_state_machine
     self.state = state_machine.state
   end
+
+  def slots_available?
+    slots_taken < attendee_quota
+  end
+
+  def slots_taken
+    attendances.taking_space.count
+  end
 end

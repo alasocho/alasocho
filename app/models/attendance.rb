@@ -6,6 +6,7 @@ class Attendance < ActiveRecord::Base
 
   STATES_NEEDING_ACTION = %w(invited tentative)
   STATES_INTERESTED     = %w(confirmed tentative waitlisted)
+  STATES_TAKING_SPACE   = %w(confirmed tentative)
 
   before_save :preserve_state_machine
 
@@ -13,9 +14,20 @@ class Attendance < ActiveRecord::Base
 
   scope :need_attention, joins(:event).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED)
   scope :need_action, where("attendances.state in (?)", STATES_NEEDING_ACTION)
+  scope :taking_space, where("attendances.state in (?)", STATES_TAKING_SPACE)
 
   def invite!
     state_machine.trigger(:invite)
+    save(:validate => false)
+  end
+
+  def confirm!
+    state_machine.trigger(:confirm)
+    save(:validate => false)
+  end
+
+  def waitlist!
+    state_machine.trigger(:waitlist)
     save(:validate => false)
   end
 
