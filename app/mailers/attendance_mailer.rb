@@ -27,4 +27,13 @@ class AttendanceMailer < ActionMailer::Base
       :from    => "arturito@alasocho.com"
     )
   end
+
+  def date_change_notification(attendance)
+    @attendance = attendance
+    mail(
+      :subject => t("email.attendance.date_change.subject", :event_name => attendance.event.name),
+      :to      => attendance.user.try(:email) || attendance.email,
+      :from    => "arturito@alasocho.com"
+    )
+  end
 end

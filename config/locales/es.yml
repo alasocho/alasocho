@@ -132,6 +132,10 @@ es:
     event_cancelled:
       subject: "El evento %{event_name} ha sido cancelado"
       text: "%{user_name} ha cancelado el evento %{event_name}. Si lo deseas, aún puedes comentar en él."
+      date_change:
+        subject: "¡Se ha cambiado la fecha de %{event_name}!"
+        text: "%{host_name} ha cambiado la fecha para %{event_name}. Haz click en el siguiente link para ver los cambios"
+
 
   comment:
     form:

@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user, :except => :show
-  before_filter :load_event, :only => [:invite_people, :update, :show, :invite, :edit]
+  before_filter :check_token, :only => [:show]
+  before_filter :authenticate_user
 
   def new
     @event = current_user.hosted_events.new
@@ -22,6 +22,7 @@ class EventsController < ApplicationController
   end
 
   def invite
+    load_own_event
     list = JSON params[:invitees]
     @event.invitee_list = list
     @event.save
@@ -35,12 +36,22 @@ class EventsController < ApplicationController
     @interested_to_attend = current_user.interested_to_attend
   end
 
+  def invite_people
+    load_own_event
+  end
+
   def update
-    @event.update_attributes(params[:event])
+    load_own_event
+    @event.attributes = params[:event]
+
+    date_changed = @event.start_at_changed? || @event.end_at_changed?
+
 
     if @event.save
       @event.publish!
+      NotifyDateChange.enqueue(@event.id) if date_changed
       flash[:notice] = t("event.form.invite.message.success")
+
       redirect_to @event
     else
       flash.now[:alert] = t("event.form.invite.message.error")
@@ -49,6 +60,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    load_event
+    @attendance = @event.attendance_for(current_user)
     @comments = @event.comments
   end
 
