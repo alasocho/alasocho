@@ -1,5 +1,13 @@
 %h1=t "accounts.edit.title"
 
+- if current_user.can_be_linked_further?
+  %aside.link_accounts
+    - Authorization::PROVIDERS.each do |service|
+      - unless current_user.linked_to?(service)
+        = link_to t("accounts.link_with.#{service}"), "/auth/#{service}", class: "#{service} sign_in"
+    .explain
+      = t("accounts.link_with.why")
+
 = form_for current_user, :url => account_path do |f|
   .form_field
     = f.label :name
@@ -10,11 +18,3 @@
 
   .submit_button
     = f.submit
-
-.link_accounts
-  - Authorization::PROVIDERS.each do |service|
-    - unless current_user.linked_to?(service)
-      = link_to t("accounts.link_with.#{service}"),  "/auth/#{service}"
-  - if current_user.can_be_linked_further?
-    .explain
-      = t("accounts.link_with.why")

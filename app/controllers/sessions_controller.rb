@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
     authorization = Authorization.find_from_auth(auth_hash)
 
-    if authorization.present? && authorization.user != current_user # Another user is already using that one => let him merge
+    if signed_in? && authorization.present? && authorization.user != current_user # Another user is already using that one => let him merge
       session[:authorized_user_id] = authorization.user.id
       redirect_to new_account_merge_path
     else # Normal flow, either create new current_user or login, or join account

@@ -29,33 +29,6 @@ header h1 a {
   margin-top: 7px;
   text-align: right;
 
-  .sign_in:link, .sign_in:visited {
-    background-position: 0 0;
-    display: block;
-    float: right;
-    text-indent: 9999em;
-    height: 22px;
-    width: 150px;
-    margin: 0 0 0 10px;
-    overflow: hidden;
-  }
-
-  .sign_in:hover {
-    background-position: 0 46px;
-  }
-
-  .sign_in:active {
-    background-position: 0 22px;
-  }
-
-  .twitter {
-    background-image: url(/assets/buttons/signin_twitter.png);
-  }
-
-  .facebook {
-    background-image: url(/assets/buttons/signin_facebook.png);
-  }
-
   #current_user {
     position: relative;
     bottom: 12px;

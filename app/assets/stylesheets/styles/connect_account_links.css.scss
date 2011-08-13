@@ -1,0 +1,33 @@
+header .sign_in {
+  float: right;
+  margin: 0 0 0 10px;
+}
+
+aside .sign_in {
+  margin-bottom: 8px;
+}
+
+.sign_in:link, .sign_in:visited {
+  background-position: 0 0;
+  display: block;
+  text-indent: 9999em;
+  height: 22px;
+  width: 150px;
+  overflow: hidden;
+}
+
+.sign_in:hover {
+  background-position: 0 46px;
+}
+
+.sign_in:active {
+  background-position: 0 22px;
+}
+
+.twitter {
+  background-image: url(/assets/buttons/signin_twitter.png);
+}
+
+.facebook {
+  background-image: url(/assets/buttons/signin_facebook.png);
+}
