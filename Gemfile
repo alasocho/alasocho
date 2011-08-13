@@ -7,6 +7,7 @@ gem "oa-oauth"
 gem 'haml'
 gem 'micromachine'
 gem 'rails-i18n'
+gem 'resque'
 gem 'daemons'
 
 # Gems used only for assets and not required
