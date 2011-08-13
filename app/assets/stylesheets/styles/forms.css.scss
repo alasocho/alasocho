@@ -41,6 +41,13 @@ input, textarea {
   line-height: 24px;
 }
 
+input[type=checkbox] {
+  float: left;
+  width: auto;
+  position: relative;
+  top: 2px;
+}
+
 textarea {
   height: 72px;
 }
