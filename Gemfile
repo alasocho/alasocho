@@ -3,6 +3,7 @@ source "http://rubygems.org"
 gem "rails", :git => "http://github.com/rails/rails.git", :ref => "3-1-stable"
 gem "mysql2"
 gem "jquery-rails"
+gem "oa-oauth"
 
 # Gems used only for assets and not required
 # in production environments by default.
