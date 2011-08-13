@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     )
   end
 
+  def interested_to_attend
+    attendances.need_attention
+  end
+
   def linked_to?(service)
     authorizations.where(provider: service).any?
   end

@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 
   def my_events
     @my_events = current_user.hosted_events
-    @intested_in_events = current_user.interested_in_events
+    @interested_to_attend = current_user.interested_to_attend
   end
 
   def update

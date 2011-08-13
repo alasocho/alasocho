@@ -33,11 +33,7 @@
       = link_to "YahooCal", "#", :class => "calendar"
 
     #actions
-      - unless @attendance.try(:confirmed?)
-        = link_to (@event.slots_available? ? t('event.confirm.slots_available') : t("event.confirm.no_slots_available")), event_attendance_path(@event), :method => :post
-      - unless @attendance.try(:declined?)
-        = link_to t('event.decline'), event_attendance_path(@event), :method => :delete
-
+      = render :partial => "attendance_actions", :locals => {:attendance => @attendance, :event => @event}
 
     #invitees
       %h2=t 'event.confirmed', :count => @event.confirmed_attendees.size
@@ -55,7 +51,7 @@
         %span= "#{ @event.waitlisted.size }" + t('event.people_waiting')
         - @event.waitlisted.each do |waitlisted|
           = image_tag waitlisted.picture_url
-          = @confirmed_attendee.name
+          = waitlisted.name
         = link_to t('event.form.see_all'), "#"
 
 

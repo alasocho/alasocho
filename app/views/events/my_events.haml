@@ -1,4 +1,17 @@
+%br
+%br
+%br
+%br
+%br
+%br
+%br
 %h1 Mis eventos
-- if !@interested_in_events.nil?
-  - @interested_in_events.each do |event|
-    = event.name
+- @my_events.each do |personal_event|
+  .event= link_to personal_event.name, personal_event
+
+%h1 Interested in
+- if !@interested_to_attend.nil?
+  - @interested_to_attend.each do |attendance|
+    .event= link_to attendance.event.name, attendance.event
+    .action
+      = render :partial => "attendance_actions", :locals => {:attendance => attendance, :event => attendance.event}
