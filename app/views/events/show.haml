@@ -44,10 +44,10 @@
       = link_to t('event.form.see_all'), "#"
 
 
-      - unless @event.whitelisted.empty?
-        %h2= t('event.whitelist')
-        %span= "#{ @event.whitelisted.size }" + t('event.people_waiting')
-        - @event.whitelisted.each do |whitelisted|
+      - unless @event.waitlisted.empty?
+        %h2= t('event.waitlist')
+        %span= "#{ @event.waitlisted.size }" + t('event.people_waiting')
+        - @event.waitlisted.each do |waitlisted|
           = image_tag @confirmed_attendee.picture_url
           = @confirmed_attendee.name
         = link_to t('event.form.see_all'), "#"
