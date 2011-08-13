@@ -6,6 +6,7 @@ class Attendance < ActiveRecord::Base
 
   STATES_NEEDING_ACTION = %w(invited tentative)
   STATES_INTERESTED     = %w(confirmed tentative waitlisted)
+  STATES_CONFIRMED      = %w(confirmed tentative)
 
   before_save :preserve_state_machine
 
@@ -16,6 +17,16 @@ class Attendance < ActiveRecord::Base
 
   def invite!
     state_machine.trigger(:invite)
+    save(:validate => false)
+  end
+
+  def confirm!
+    state_machine.trigger(:confirm)
+    save(:validate => false)
+  end
+
+  def waitlist!
+    state_machine.trigger(:waitlist)
     save(:validate => false)
   end
 

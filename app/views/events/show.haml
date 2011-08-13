@@ -36,7 +36,8 @@
 
     #invitees
       %h2=t 'event.confirmed', :count => @event.confirmed_attendees.size
-      %span= "(#{ @event.attendee_quota - @event.confirmed_attendees.size } " +  t('event.available_seats') + ")"
+      - if @event.limited?
+        %span= "(#{ @event.slots_available_count } " +  t('event.available_seats') + ")"
 
       - @event.confirmed_attendees.each do |confirmed_attendee|
         = image_tag @confirmed_attendee.picture_url
@@ -44,10 +45,10 @@
       = link_to t('event.form.see_all'), "#"
 
 
-      - unless @event.whitelisted.empty?
-        %h2= t('event.whitelist')
-        %span= "#{ @event.whitelisted.size }" + t('event.people_waiting')
-        - @event.whitelisted.each do |whitelisted|
+      - unless @event.waitlisted.empty?
+        %h2= t('event.waitlist')
+        %span= "#{ @event.waitlisted.size }" + t('event.people_waiting')
+        - @event.waitlisted.each do |waitlisted|
           = image_tag @confirmed_attendee.picture_url
           = @confirmed_attendee.name
         = link_to t('event.form.see_all'), "#"
