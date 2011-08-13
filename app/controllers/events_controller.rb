@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user, :except => :show
-  before_filter :load_event, :only => [:invite_people, :update, :show, :invite]
+  before_filter :load_event, :only => [:invite_people, :update, :show, :invite, :edit]
 
   def new
     @event = current_user.hosted_events.new #FIXME Needs current_user, right?

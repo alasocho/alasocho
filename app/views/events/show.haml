@@ -6,6 +6,7 @@
     = t "event.confirmed", :count => @event.confirmed_attendees.size
     = t 'event.invited', :count =>  @event.attendances.size
     %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), id: :invite_more
+    %span= link_to t('event.form.event.edit'), edit_event_path(@event)
 
   #left_column
 

@@ -1,0 +1,5 @@
+%h2= t("event.form.edit.title")
+
+= form_for @event do |f|
+  -# FIXME Needs error messages
+  = render :partial => "form", :locals => {:f => f}
