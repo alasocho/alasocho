@@ -39,9 +39,7 @@ class Attendance < ActiveRecord::Base
     state_machine.trigger(:decline)
     save!(:validate => false)
 
-    if !event.atendee_quota.nil? && event.available_slots > 0 && event.waitlisted.size > 0
-      event.waitlisted.first.reserve_slot!
-    end
+    event.process_waitlist
   end
 
   def reserve_slot!

@@ -75,7 +75,7 @@ class Event < ActiveRecord::Base
   end
 
   def slots_available_count
-    attendee_quota - slots_taken
+    available_slots # FIXME: Remove this, I just don't want to grep anymore :(
   end
 
   def limited?
@@ -86,5 +86,11 @@ class Event < ActiveRecord::Base
     return  1 if self.attendee_quota.nil?
 
     attendee_quota - slots_taken
+  end
+
+  def process_waitlist
+    if limited? && event.available_slots > 0 && event.waitlisted.size > 0
+      event.waitlisted.first.reserve_slot!
+    end
   end
 end
