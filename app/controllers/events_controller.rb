@@ -1,4 +1,4 @@
-class EventsController < ActionController::Base
+class EventsController < ApplicationController
   def new
     @event = Event.new #FIXME Needs current_user, right?
   end
