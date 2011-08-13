@@ -17,6 +17,8 @@ class Attendance < ActiveRecord::Base
   scope :need_attention, joins(:event).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED)
   scope :need_action, where("attendances.state in (?)", STATES_NEEDING_ACTION)
 
+  scope :not_visited_after, lambda { |datetime| where("updated_at < ?", datetime) }
+
   validates :user_id, :uniqueness => { :scope => :event_id, :allow_nil => true }
 
   def invite!
@@ -71,6 +73,10 @@ class Attendance < ActiveRecord::Base
     NotifyEventCancelled.enqueue(id)
   end
 
+  def send_new_comment_email
+    NotifyNewComment.enqueue(id)
+  end
+
   def attach_to_user
     user = User.where(:email => email).first
     return unless user.present?
@@ -88,4 +94,5 @@ class Attendance < ActiveRecord::Base
   def generate_token
     self.token = SimpleUUID::UUID.new.to_guid
   end
+
 end
