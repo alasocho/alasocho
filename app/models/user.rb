@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  attr_accessible :name, :email, :picture_url
+  attr_accessible :name, :email, :picture_url, :wants_comment_notifications
 
   def self.create_from_auth!(auth_hash)
     auth_hash = auth_hash.fetch("user_info")
