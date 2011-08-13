@@ -30,9 +30,8 @@
     = f.submit t("event.form.invite.submit"), id: :submit_event
 
 
-:javascript
-  $(document).ready(function(){
-    var a = new Event.prototype.Settings($("#invite_more_people"));
-    a.render()
-  });
-
+- content_for :javascript do
+  :javascript
+    $(document).ready(function(){
+      new A8.Views.Events.SettingsView($("#invite_more_people"));
+    });

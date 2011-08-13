@@ -1,0 +1,66 @@
+A8.Views.Events ||= {}
+
+class A8.Views.Events.InvitePeopleView extends Backbone.View
+  tagName: 'ul'
+
+  events: {
+    'keypress .add_attendee'  : 'enter_pressed'
+    'click button'            : 'invite'
+  }
+
+  template: "<button>Invite</button>"
+
+  attendees_count: 0
+
+  initialize: ->
+    this.bind('add', this.add_one, this)
+    this.bind('reset', this.add_all, this)
+    this.bind('all', this.render, this)
+
+    content = _.template(this.template)
+    $(this.el).append content
+
+    this.add_one()
+    this
+
+  invite: (event) ->
+    console.log event
+    false
+
+  enter_pressed: (event) ->
+    if event.keyCode is 13
+      this.add_one() if $(event.target).val().length
+      false
+
+  add_one: ->
+    item = new A8.Views.Events.InvitePeopleView.AddInviteeView({parent: this})
+    element = item.render().el
+    this.attendees_count++
+    $(this.el).prepend element
+    $(element).find("input").focus()
+
+  render: ->
+    this
+
+class A8.Views.Events.InvitePeopleView.AddInviteeView extends Backbone.View
+  tagName: 'li'
+
+  events: {
+    'click .remove_attendee': 'remove_attendee'
+  }
+
+  template: "<input class='add_attendee'> <button class='remove_attendee'>-</button>"
+
+  initialize: (@options) ->
+    content = _.template(this.template)
+    $(this.el).append content
+    this
+
+  remove_attendee: (event) ->
+    unless this.options.parent.attendees_count is 1
+      $(this.el).remove()
+      this.options.parent.attendees_count--
+    false
+
+  render: ->
+    this

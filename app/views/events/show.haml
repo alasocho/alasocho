@@ -1,9 +1,10 @@
+#modal_window
 #title
   %h1= t('event.name')
   #info_short
     = t "event.confirmed", :count => @event.confirmed_attendees.size
     = t 'event.invited', :count =>  @event.attendances.size
-    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event)
+    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), id: :invite_more
 
   #left_column
 
@@ -62,3 +63,8 @@
         = image_tag invitee.picture_url
         = invitee.name
 
+- content_for :javascript do
+  :javascript
+    $(document).ready(function(){
+      new A8.Routers.EventRouter();
+    });

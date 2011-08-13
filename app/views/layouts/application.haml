@@ -10,7 +10,7 @@
       = stylesheet_link_tag "ie"
     %link(rel="home" href="/")
   %body
-    .container
+    container
       %header.row
         %h1.eightcol
           = link_to t("app.title"), root_path
@@ -29,4 +29,12 @@
       %section#main.row
         = yield
 
-    = javascript_include_tag :defaults
+    = yield
+    = javascript_include_tag :application, :a8
+    = yield :javascript
+    :javascript
+      $(document).ready(function(){
+        if(Backbone.history){
+          Backbone.history.start({"pushState": true, "root": window.location.pathname});
+        }
+      });

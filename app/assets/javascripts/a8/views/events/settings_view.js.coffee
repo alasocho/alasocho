@@ -1,4 +1,4 @@
-class Event::Settings extends Backbone.View
+class A8.Views.Events.SettingsView extends Backbone.View
   attendee_list: -> $(".edit_event #invitee_list")
   attendee_quota: -> $(".attendee_quota")
 
@@ -21,7 +21,7 @@ class Event::Settings extends Backbone.View
 
     $("#submit_event").click => this.list_attendees()
 
-    invite = new Event::InvitePeople
+    invite = new A8.Views.Events.InvitePeopleView
     element = invite.render().el
     this.attendee_list().append element
     this
