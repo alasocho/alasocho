@@ -1,15 +1,8 @@
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%h1 Mis eventos
+%h1= t('my_events.title')
 - @my_events.each do |personal_event|
   .event= link_to personal_event.name, personal_event
 
-%h1 Interested in
+%h1= t('my_events.interested_in')
 - if !@interested_to_attend.nil?
   - @interested_to_attend.each do |attendance|
     .event= link_to attendance.event.name, attendance.event
