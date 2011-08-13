@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813034659) do
+ActiveRecord::Schema.define(:version => 20110813035511) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20110813034659) do
     t.datetime "waitlisted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
   create_table "authorizations", :force => true do |t|
