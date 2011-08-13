@@ -30,8 +30,8 @@
       = link_to "YahooCal", "#", :class => "calendar"
 
     #actions
-      = link_to t('event.confirm'), "#"
-      = link_to t('event.decline'), "#"
+      = link_to t('event.confirm'), event_attendance_path(@event), :method => :post
+      = link_to t('event.decline'), event_attendance_path(@event), :method => :delete
 
 
     #invitees
