@@ -62,6 +62,7 @@ end
 
 task :create_various_symlinks do
   run "ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
+  run "ln -s #{shared_path}/data #{release_path}/data"
 end
 
 after "deploy:rollback:revision", "bundler:install"
