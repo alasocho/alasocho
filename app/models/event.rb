@@ -61,4 +61,10 @@ class Event < ActiveRecord::Base
   def limited?
     attendee_quota.present?
   end
+
+  def available_slots
+    return  1 if self.attendee_quota.nil?
+
+    attendee_quota - slots_taken
+  end
 end

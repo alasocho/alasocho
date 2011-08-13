@@ -30,6 +30,21 @@ class Attendance < ActiveRecord::Base
     save(:validate => false)
   end
 
+  def decline!
+    state_machine.trigger(:decline)
+    save(:validate => false)
+
+    if !event.atendee_quota.nil? && event.available_slots > 0 && event.waitlisted.size > 0
+      event.waitlisted.first.tentative!
+    end
+  end
+
+  def tentative!
+    state_machine.trigger(:tentative)
+    save(:validate => false)
+    NotifyOfTentativeState.enqueue(id)
+  end
+
   def state_machine
     @state_machine ||= MicroMachine.new(state || "added").tap do |machine|
       machine.transitions_for[:invite]       = { "added" => "invited" }
