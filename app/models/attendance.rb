@@ -19,22 +19,24 @@ class Attendance < ActiveRecord::Base
 
   def invite!
     state_machine.trigger(:invite)
-    save(:validate => false)
+    save!(:validate => false)
   end
 
   def confirm!
+    debugger
     state_machine.trigger(:confirm)
-    save(:validate => false)
+    self.confirmed_at = Time.current
+    save!(:validate => false)
   end
 
   def waitlist!
     state_machine.trigger(:waitlist)
-    save(:validate => false)
+    save!(:validate => false)
   end
 
   def decline!
     state_machine.trigger(:decline)
-    save(:validate => false)
+    save!(:validate => false)
 
     if !event.atendee_quota.nil? && event.available_slots > 0 && event.waitlisted.size > 0
       event.waitlisted.first.tentative!
