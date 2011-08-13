@@ -1,12 +1,8 @@
 require 'geoip'
 
 class GeoLocator
-  def initialize(ip)
-    @ip = ip
-  end
-
-  def data
-    @data ||= self.class.source.city(@ip)
+  def self.data(ip)
+    source.city(ip)
   end
 
   def self.source
@@ -18,7 +14,7 @@ class GeoLocator
   end
 
   def self.city_from_ip(ip)
-    info = new(ip).data
+    info = data(ip)
     return "" if info.blank?
     [:city_name, :country_name].map { |m| info.send(m) }.join(", ")
   end
