@@ -7,8 +7,9 @@ class A8.Routers.EventRouter extends Backbone.Router
     $("#invite_more").click =>
       this.navigate "/invite_people"
       invite = new A8.Views.Events.InvitePeopleView
+      invite.container = $("#modal_window")
       element = invite.render().el
-      $("#modal_window").html element
+      invite.container.html element
       false
 
   invite: ->

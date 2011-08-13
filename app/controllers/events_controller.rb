@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user, :except => :show
+  before_filter :load_event, :only => [:invite_people, :update, :show, :invite]
 
   def new
     @event = current_user.hosted_events.new #FIXME Needs current_user, right?
@@ -16,12 +17,16 @@ class EventsController < ApplicationController
     end
   end
 
-  def invite_people
-    load_event
+  def invite
+    list = JSON params[:invitees]
+    @event.invitee_list = list
+    @event.save
+    respond_to do |format|
+      format.json { render :json => "OK"}
+    end
   end
 
   def update
-    load_event
     @event.update_attributes(params[:event])
 
     if @event.save
@@ -35,7 +40,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    load_event
     @comments = @event.comments
   end
 

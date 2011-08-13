@@ -8,6 +8,10 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     'click button'            : 'invite'
   }
 
+  container: null
+
+  event_id: $("#event_id").val()
+
   template: "<button>Invite</button>"
 
   attendees_count: 0
@@ -24,7 +28,10 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     this
 
   invite: (event) ->
-    console.log event
+    # TODO: Refactor someday
+    invitations = _.map $(this.el).find("input"), (input) -> $(input).val()
+    ajax = $.post "/events/#{this.event_id}/invite", invitees: JSON.stringify invitations
+    ajax.complete => this.container.html ""
     false
 
   enter_pressed: (event) ->

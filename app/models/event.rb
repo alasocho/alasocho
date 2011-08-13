@@ -47,11 +47,11 @@ class Event < ActiveRecord::Base
   end
 
   def create_invitations
-    if invitee_list.present?
-      invitee_list.split("\r\n").map do |email|
-        attendances.create(:email => email.strip) if !email.strip.empty?
-      end
-    end
+    invitee_list.each { |email| create_invitation(email) } if invitee_list.present?
+  end
+
+  def create_invitation(email)
+    attendances.create(:email => email.strip) if !email.strip.empty?
   end
 
   def attendance_for(user)
