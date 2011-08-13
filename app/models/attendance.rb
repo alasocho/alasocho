@@ -59,4 +59,8 @@ class Attendance < ActiveRecord::Base
   def confirmed?
     state_machine.state == "confirmed"
   end
+
+  def declined?
+    state_machine.state == "confirmed"
+  end
 end
