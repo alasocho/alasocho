@@ -5,6 +5,9 @@ gem "mysql2"
 gem "jquery-rails"
 gem "oa-oauth"
 
+# Daemon to control Resque
+gem 'daemons'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
