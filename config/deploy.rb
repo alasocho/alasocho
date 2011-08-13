@@ -1,3 +1,7 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
+require "rvm/capistrano"                  # Load RVM's capistrano plugin.
+set :rvm_ruby_string, '1.9.2'        # Or whatever env you want it to run in.
+
 set :application,               "alasocho"
 set :repository,                "git@github.com:rallyonrails/2011-equipo-09.git"
 set :use_sudo,                  false
@@ -54,10 +58,6 @@ end
 
 task :restart_resque do
   run "cd #{current_path} && RAILS_ENV=#{rails_env} VERBOSE=1 QUEUE=* ./script/resque_worker restart"
-end
-
-task :compile_coffesscript do
-  run "cd #{current_path} && RAILS_ENV=#{rails_env} rake barista:brew"
 end
 
 task :create_various_symlinks do
