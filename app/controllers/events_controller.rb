@@ -58,7 +58,7 @@ private
 
   def check_token
     if params[:token].present?
-      session[:attendance_id] == Attendance.find_by_token(params[:token]).try(:id)
+      session[:attendance_id] = Attendance.find_by_token(params[:token]).try(:id)
     end
   end
 end
