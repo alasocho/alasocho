@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user, :except => :show
-  before_filter :load_event, :only => [:invite_people, :update, :show, :invite, :edit]
+  before_filter :load_own_event, :only => [:invite_people, :update, :invite, :edit]
+  before_filter :load_event, :only => [:show]
 
   def new
     @event = current_user.hosted_events.new #FIXME Needs current_user, right?
@@ -46,7 +47,11 @@ class EventsController < ApplicationController
 
 private
 
-  def load_event
+  def load_own_event
     @event = current_user.hosted_events.find(params[:event_id] || params[:id])
+  end
+
+  def load_event
+    @event = Event.viewable_by(current_user)
   end
 end
