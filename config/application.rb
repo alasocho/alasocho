@@ -4,6 +4,7 @@ require 'rails/all'
 
 require 'haml'
 
+require 'jquery-rails'
 require "rails-i18n"
 
 require 'postmark-rails'
