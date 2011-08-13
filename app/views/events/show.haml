@@ -1,11 +1,11 @@
 #modal_window
 %input{type: :hidden, id: :event_id, value: @event.id}
 #title
-  %h1= @event.name
+  %h1= t('event.name')
   #info_short
     = t "event.confirmed", :count => @event.confirmed_attendees.size
     = t 'event.invited', :count =>  @event.attendances.size
-    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), id: :invite_more
+    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more
     %span= link_to t('event.form.event.edit'), edit_event_path(@event)
 
   #left_column
@@ -28,16 +28,13 @@
       %h3= @event.location
       = @event.city
 
-      = link_to "iCal", "#", :class => "calendar"
+      = link_to "iCal", "#", :class => "calemdar"
       = link_to "GoogleCal", "#", :class => "calendar"
       = link_to "YahooCal", "#", :class => "calendar"
 
     #actions
-
-      - unless @attendance.try(:confirmed?)
-        = link_to (@event.slots_available? ? t('event.confirm.slots_available') : t("event.confirm.no_slots_available")), event_attendance_path(@event), :method => :post
-      - unless @attendance.try(:declined?)
-        = link_to t('event.decline'), event_attendance_path(@event), :method => :delete
+      = link_to t('event.confirm'), event_attendance_path(@event), :method => :post
+      = link_to t('event.decline'), event_attendance_path(@event), :method => :delete
 
 
     #invitees
@@ -61,7 +58,7 @@
 
 
       %h2= "#{ @event.invitees.size } " + t('event.invitees')
-      %span= link_to t('event.form.invite.people'), event_invite_people_path(@event)
+      %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more
       = link_to t('event.form.see_all'), "#"
 
       - @event.invitees.each do |invitee|
