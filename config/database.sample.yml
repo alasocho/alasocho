@@ -1,0 +1,14 @@
+development: &defaults
+  adapter: mysql2
+  database: alasocho
+  encoding: utf8
+  username: root
+  password:
+  host: localhost
+
+test:
+  << : *defaults
+  database: alasocho_test
+
+production:
+  << : *defaults
