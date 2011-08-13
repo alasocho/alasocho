@@ -1,6 +1,12 @@
 %h1 Dashboard
 
+= link_to t('events.form.button.new'), new_event_path
 
 
-#my_events
-  = render :partial => "events/my_events"
+#left_column
+  #my_events
+    = render :partial => "events/my_events"
+
+#right_column
+  #public_events
+    = render :partial => "events/public_events"

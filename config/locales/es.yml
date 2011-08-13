@@ -33,7 +33,15 @@ es:
         wants_comment_notifications: "Quiero recibir notificaciones de nuevos comentarios"
 
   events:
+    public:
+      title: "Eventos públicos"
+      see_all: "Ver todos los eventos públicos"
+    my_events:
+      title: "Mis Eventos"
+      see_all: "Ver todos mis eventos"
     form:
+      button:
+        new: "Crear un Evento"
       placeholders:
         name: "Por ejemplo: Final de la liga"
         description: "Describe esta reunión"
@@ -70,7 +78,8 @@ es:
       success: "La cuenta %{user_name} ha sido combinada con la tuya"
 
   event:
-    available_seats: "lugares disponibles"
+    available_seats: "lugares disponibles."
+    occupied_seats: "cupos llenos."
     invitees: "invitados"
     waitlist: "Lista de espera"
     people_waiting: "personas esperando"

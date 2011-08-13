@@ -1,0 +1,10 @@
+%h2= t('events.public.title')
+- @public_events.each do |public_event|
+  .event
+    = link_to public_event.name, public_event
+    .date
+      = public_event.start_at
+    - unless public_event.attendee_quota.nil?
+      %span= "#{ public_event.confirmed_attendees.size }/#{ public_event.attendee_quota } " + t('event.occupied_seats')
+
+= link_to t('events.public.see_all'), "#"
