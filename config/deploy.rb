@@ -68,3 +68,6 @@ after "deploy:rollback:revision", "bundler:install"
 after "deploy:update_code", "bundler:bundle_new_release"
 after "deploy:update_code", "create_various_symlinks"
 after "deploy:restart", "restart_resque"
+
+        require './config/boot'
+        require 'hoptoad_notifier/capistrano'

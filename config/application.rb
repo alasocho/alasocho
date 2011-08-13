@@ -9,6 +9,8 @@ require 'backbone-rails'
 require 'jquery-rails'
 require "rails-i18n"
 
+require 'hoptoad_notifier'
+
 require 'postmark-rails'
 
 if defined?(Bundler)
