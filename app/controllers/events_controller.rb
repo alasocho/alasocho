@@ -4,5 +4,12 @@ class EventsController < ActionController::Base
   end
 
   def create
+    @event = Event.new(params[:event])
+    # FIXME flashes
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render :action => :new
+    end
   end
 end
