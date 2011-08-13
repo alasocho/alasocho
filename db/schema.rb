@@ -10,7 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813002515) do
+ActiveRecord::Schema.define(:version => 20110813003015) do
+
+  create_table "attendances", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "state"
+    t.datetime "confirmed_at"
+    t.datetime "declined_at"
+    t.datetime "waitlisted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.text    "text"
+  end
 
   create_table "events", :force => true do |t|
     t.string   "name"
