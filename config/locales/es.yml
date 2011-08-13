@@ -48,7 +48,7 @@ es:
   accounts:
     form:
       placeholders:
-        name: "Por ejemplo: Final de la liga"
+        name: "Tu nombre"
         email: "El email al que te enviaremos notificaciones"
     edit:
       link: "Mi Cuenta"
