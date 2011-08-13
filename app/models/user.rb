@@ -20,4 +20,12 @@ class User < ActiveRecord::Base
   def linked_to?(service)
     authorizations.where(provider: service).any?
   end
+
+  def can_be_linked_further?
+    Authorization::PROVIDERS.any? { |provider| !linked_providers.include?(provider) }
+  end
+
+  def linked_providers
+    authorizations.map(&:provider)
+  end
 end
