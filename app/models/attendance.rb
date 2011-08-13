@@ -63,7 +63,7 @@ class Attendance < ActiveRecord::Base
   end
 
   def send_invite_email
-    AttendanceMailer.invite_notification(self).deliver
+    NotifyInvite.enqueue(id)
   end
 
   def attach_to_user
