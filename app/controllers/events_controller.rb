@@ -5,10 +5,11 @@ class EventsController < ActionController::Base
 
   def create
     @event = Event.new(params[:event])
-    # FIXME flashes
     if @event.save
+      flash[:notice] = t("event.form.create.message.saved")
       redirect_to event_path(@event)
     else
+      flash.now[:alert] = t("event.form.create.message.error")
       render :action => :new
     end
   end

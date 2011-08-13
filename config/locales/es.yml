@@ -11,3 +11,6 @@ es:
       create:
         title: "Crea un nuevo evento"
         submit: "Crear evento"
+        message:
+          saved: "Evento guardado"
+          error: "No pudimos guardar el evento. Por favor, verifica la información."
