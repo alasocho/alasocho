@@ -59,10 +59,17 @@ class EventsController < ApplicationController
     end
   end
 
+  MAX_CONFIRMED_ATTENDEES = 8
+  MAX_WAITLISTED_ATTENDEES = 4
+  MAX_PENDING_ATTENDEES = 4
+
   def show
     load_event
     @attendance = @event.attendance_for(current_user)
     @comments = @event.comments
+    @confirmed_attendees = @event.confirmed_attendees.limit(MAX_CONFIRMED_ATTENDEES)
+    @waitlisted          = @event.waitlisted.limit(MAX_WAITLISTED_ATTENDEES)
+    @invitees           = @event.invitees.limit(MAX_PENDING_ATTENDEES)
   end
 
   def destroy

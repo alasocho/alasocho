@@ -107,6 +107,7 @@ es:
         cancel_event: "Cancela este Evento"
       cancel:
         message_cancelled: "El evento %{event_name} ha sido cancelado."
+      see_all: "Ver todos"
 
   attendance:
     message:

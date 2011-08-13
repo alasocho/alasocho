@@ -40,26 +40,29 @@
       - if @event.limited?
         %span= "(#{ @event.available_slots } " +  t('event.available_seats') + ")"
 
-      - @event.confirmed_attendees.each do |confirmed_attendee|
+      - @confirmed_attendees.each do |confirmed_attendee|
         = image_tag confirmed_attendee.picture_url
         = confirmed_attendee.name
-      = link_to t('event.form.see_all'), "#"
+      - if @event.confirmed_attendees.size > EventsController::MAX_CONFIRMED_ATTENDEES
+        = link_to t('event.form.see_all'), "#"
 
 
-      - unless @event.waitlisted.empty?
+      - unless @waitlisted.empty?
         %h2= t('event.waitlist')
         %span= "#{ @event.waitlisted.size }" + t('event.people_waiting')
-        - @event.waitlisted.each do |waitlisted|
+        - @waitlisted.each do |waitlisted|
           = image_tag waitlisted.picture_url
           = waitlisted.name
-        = link_to t('event.form.see_all'), "#"
+        - if @event.waitlisted.size > EventsController::MAX_WAITLISTED_ATTENDEES
+          = link_to t('event.form.see_all'), "#"
 
 
       %h2= "#{ @event.invitees.size } " + t('event.invitees')
       %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more
-      = link_to t('event.form.see_all'), "#"
+      - if @event.invitees.size > EventsController::MAX_PENDING_ATTENDEES
+        = link_to t('event.form.see_all'), "#"
 
-      - @event.invitees.each do |invitee|
+      - @invitees.each do |invitee|
         = image_tag invitee.picture_url
         = invitee.name
 
