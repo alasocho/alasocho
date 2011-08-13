@@ -21,6 +21,6 @@ class AttendancesController < ApplicationController
 private
   def load_event_and_attendance
     @event = Event.find(params[:event_id])
-    @attendance = @event.attendances.where(:user_id => current_user).first
+    @attendance = @event.attendance_for(current_user)
   end
 end

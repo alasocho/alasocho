@@ -30,10 +30,6 @@ class Event < ActiveRecord::Base
     attendances.each(&:invite!)
   end
 
-  def create_invitations
-    invitee_list.split("\n").map { |email| attendances.create :email => email } if invitee_list.present?
-  end
-
   def state_machine
     @state_machine ||= MicroMachine.new(state || "created").tap do |machine|
       machine.transitions_for[:publish] = { "created" => "published" }
@@ -43,6 +39,14 @@ class Event < ActiveRecord::Base
 
   def preserve_state_machine
     self.state = state_machine.state
+  end
+
+  def create_invitations
+    invitee_list.split("\n").map { |email| attendances.create :email => email } if invitee_list.present?
+  end
+
+  def attendance_for(user)
+    attendances.where(:user_id => user).first
   end
 
   def slots_available?
