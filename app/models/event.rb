@@ -3,6 +3,7 @@ require 'micromachine'
 class Event < ActiveRecord::Base
   has_many :attendances
   has_many :comments
+  belongs_to :host, :class_name => "User"
 
   before_save :preserve_state_machine
 
