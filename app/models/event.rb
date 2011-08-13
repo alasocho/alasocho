@@ -17,6 +17,7 @@ class Event < ActiveRecord::Base
   def publish!
     state_machine.trigger(:publish)
     save(:validate => false)
+    attendances.each(&:invite!)
   end
 
   def create_invitations

@@ -12,6 +12,11 @@ class Attendance < ActiveRecord::Base
   scope :need_attention, joins(:event).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED)
   scope :need_action, where("attendances.state in (?)", STATES_NEEDING_ACTION)
 
+  def invite!
+    state_machine.trigger(:invite)
+    save(:validate => false)
+  end
+
   def state_machine
     @state_machine ||= MicroMachine.new(state || "added").tap do |machine|
       machine.transitions_for[:invite]       = { "added" => "invited" }
