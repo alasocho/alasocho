@@ -1,4 +1,6 @@
 header {
+  position: relative;
+  z-index: 1;
   height: 46px;
   background: #ffc200 url(/assets/backgrounds/header.png);
   border-radius: 0 0 10px 10px;
