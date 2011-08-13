@@ -17,7 +17,9 @@ class Attendance < ActiveRecord::Base
   scope :need_attention, joins(:event).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED)
   scope :need_action, where("attendances.state in (?)", STATES_NEEDING_ACTION)
 
-  scope :not_visited_after, lambda { |datetime| where("updated_at < ?", datetime) }
+  scope :not_visited_after, lambda { |datetime| where("attendances.updated_at < ?", datetime) }
+
+  scope :user_wants_comment_notifications, joins(:user).merge(User.want_comment_notifications)
 
   validates :user_id, :uniqueness => { :scope => :event_id, :allow_nil => true }
 

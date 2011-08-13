@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :picture_url, :wants_comment_notifications
 
+  scope :want_comment_notifications, where(:wants_comment_notifications => true)
+
   def self.create_from_auth!(auth_hash)
     auth_hash = auth_hash.fetch("user_info")
 
