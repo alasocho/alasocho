@@ -30,6 +30,7 @@ es:
       user:
         name: "Nombre"
         email: "Email"
+        wants_comment_notifications: "Quiero recibir notificaciones de nuevos comentarios"
 
   events:
     form:
