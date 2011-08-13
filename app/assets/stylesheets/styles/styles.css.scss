@@ -1,10 +1,17 @@
 /* ============================== */
+/* ! Colors                       */
+/* ============================== */
+
+$gold: #ffc200;
+
+/* ============================== */
 /* ! Layout for desktop version   */
 /* ============================== */
 
   body {
+    background: #f8f8f8 url(/assets/backgrounds/page.png);
+    font-family: Actor, sans-serif;
   }
-
 
 /* ============================= */
 /* ! Layout for mobile version   */

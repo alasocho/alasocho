@@ -5,9 +5,26 @@
     %title=t "app.title"
     = csrf_meta_tags
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    = stylesheet_link_tag :application
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Actor", :application
     /[if lte IE 9]
       = stylesheet_link_tag "ie"
   %body
-    = yield
+    .container
+      %header.row
+        %h1.eightcol A Las Ocho
+
+        #user_area.fourcol.last
+          - if signed_in?
+            #current_user
+              = image_tag current_user.picture_url
+              = current_user.name
+              |
+              = link_to t("sessions.sign_out.link"), "/auth/sign_out"
+          - else
+            = link_to t("sessions.sign_in.twitter"),  "/auth/twitter",  class: "sign_in twitter"
+            = link_to t("sessions.sign_in.facebook"), "/auth/facebook", class: "sign_in facebook"
+
+      %section#main.row
+        = yield
+
     = javascript_include_tag :defaults

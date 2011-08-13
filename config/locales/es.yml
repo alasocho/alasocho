@@ -1,6 +1,14 @@
 es:
   app:
     title: "A Las Ocho"
+  sessions:
+    sign_out:
+      link: "Cerrar sesión"
+      success: "Hasta pronto!"
+    sign_in:
+      success: "Hola! Has entrado exitosamente"
+      twitter: "Entrar con Twitter"
+      facebook: "Entrar con Facebook"
   event:
     name: "Nombre"
     description: "Descripción"

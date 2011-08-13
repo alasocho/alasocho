@@ -9,4 +9,5 @@ ALasOcho::Application.routes.draw do
   end
 
   match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/sign_out" => "sessions#destroy"
 end
