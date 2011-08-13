@@ -58,6 +58,7 @@ es:
       confirm: "Has confirmado tu asistencia a %{event_name}"
       waitlist: "Estás en la lista de espera para %{event_name}. Si se libera algún lugar te avisamos."
       decline: "Ya no estás en la lista de invitados de %{event_name}. ¿Quizás la próxima?"
+      already_taken: "Esa invitación ya fue asignada a otro usuario."
 
   time:
     formats:
