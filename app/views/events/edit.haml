@@ -11,3 +11,9 @@
     #actions
       = link_to t('event.form.edit.cancel_event'), event_path(@event), :method => :delete, :confirm => t('shared.are_you_sure')
     = render :partial => "invitee_list", :locals => {:f => f}
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function(){
+      new A8.Views.Events.SettingsView
+    });

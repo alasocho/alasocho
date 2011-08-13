@@ -10,11 +10,11 @@
   .double_feature
     .form_field
       = f.label :start_at
-      = f.text_field :start_at, type: "date", placeholder: placeholder_i18n.t(:start_at)
+      = f.text_field :start_at, type: "datetime", placeholder: placeholder_i18n.t(:start_at)
 
     .form_field
       = f.label :end_at
-      = f.text_field :end_at, type: "date", placeholder: placeholder_i18n.t(:end_at)
+      = f.text_field :end_at, type: "datetime", placeholder: placeholder_i18n.t(:end_at)
 
   .form_field
     = f.label :location
