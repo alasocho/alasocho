@@ -19,6 +19,11 @@ class Event < ActiveRecord::Base
   after_save :create_invitations
 
   validates :name, :start_at, :presence => true
+  validates :attendee_quota, :numericality => {
+    :only_integer => true,
+    :greater_than => lambda{|record| record.confirmed_attendees.size},
+    :allow_nil => true
+  }
 
   attr_accessible :name, :description, :start_at, :end_at, :location, :city, :public, :allow_invites, :attendee_quota, :invitee_list
 
@@ -42,7 +47,7 @@ class Event < ActiveRecord::Base
   end
 
   def create_invitations
-    invitee_list.split("\n").map { |email| attendances.create :email => email } if invitee_list.present?
+    invitee_list.split("\r\n").map { |email| attendances.create(:email => email) } if invitee_list.present?
   end
 
   def attendance_for(user)
