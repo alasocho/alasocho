@@ -1,6 +1,7 @@
 es:
   app:
     title: "A Las Ocho"
+
   sessions:
     sign_out:
       link: "Cerrar sesión"
@@ -10,16 +11,33 @@ es:
       twitter: "Entrar con Twitter"
       facebook: "Entrar con Facebook"
     need_to_sign_in: "Oops, tienes que ingresar al sitio para acceder a esta página"
+
+  activerecord:
+    models:
+      event: "evento"
+    attributes:
+      event:
+        name: "Nombre"
+        description: "Descripción"
+        start_at: "Comienzo"
+        end_at: "Fin"
+        location: "Ubicación"
+        city: "Ciudad"
+        public: "Este evento es público"
+        allow_invites: "Los invitados pueden invitar más gente"
+        attendee_quota: "Un límite de"
+
+  events:
+    form:
+      placeholders:
+        name: "Por ejemplo: Final de la liga"
+        description: "Describe esta reunión"
+        start_at: "20/8/2011 19:00"
+        end_at: "20/8/2011 21:00"
+        location: "Paraguay 2211"
+        city: "Montevideo, Uruguay"
+
   event:
-    name: "Nombre"
-    description: "Descripción"
-    start_at: "Comienzo"
-    end_at: "Fin"
-    location: "Ubicación"
-    city: "Ciudad"
-    public: "Este evento es público"
-    allow_invites: "Los invitados pueden invitar más gente"
-    attendee_quota: "Un límite de"
     available_seats: "lugares disponibles"
     invitees: "invitados"
     waitlist: "Lista de espera"
@@ -34,7 +52,6 @@ es:
       slots_available: "Voy"
       no_slots_available: "Lista de espera"
     decline: "No voy"
-
 
     form:
       create:
@@ -73,9 +90,6 @@ es:
       invite:
         subject: "Te han invitado a %{event_name}"
         invite_text: "%{inviter_name} te ha invitado a %{event_name}. Haz click en el siguiente link para ver el evento."
-      tentative:
-        subject: "¡Hay un lugar disponible en %{event_name}!"
-        text: "Alguien canceló su confirmación para %{event_name}, por lo que hay un lugar disponible si aún lo quieres. Sólo tienes que visitar el evento para confirmar. Si no lo quieres, por favor visita el evento e indícalo para que así podamos darle el lugar al siguiente lo antes posible."
 
   comment:
     form:

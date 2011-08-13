@@ -1,26 +1,26 @@
-.form_field
-  = f.label :name, t("event.name")
-  = f.text_field :name
+- with_options :scope => [:events, :form, :placeholders] do |placeholder_i18n|
+  .form_field
+    = f.label :name
+    = f.text_field :name, placeholder: placeholder_i18n.t(:name)
 
-.form_field
-  = f.label :description, t("event.description")
-  = f.text_area :description
+  .form_field
+    = f.label :description
+    = f.text_area :description, placeholder: placeholder_i18n.t(:description)
 
-.form_field
-  = f.label :start_at, t("event.start_at")
-  = f.text_field :start_at, :value => f.object.start_at, :type => "date"
+  .form_field.horizontal
+    = f.label :start_at
+    = f.text_field :start_at, type: "date", placeholder: placeholder_i18n.t(:start_at)
 
-.form_field
-  = f.label :end_at, t("event.end_at")
-  = f.text_field :end_at, :value => f.object.end_at, :type => "date"
+    = f.label :end_at
+    = f.text_field :end_at, type: "date", placeholder: placeholder_i18n.t(:end_at)
 
-.form_field
-  = f.label :location, t("event.location")
-  = f.text_field :location
+  .form_field
+    = f.label :location
+    = f.text_field :location, placeholder: placeholder_i18n.t(:location)
 
-.form_field
-  = f.label :city, t("event.city")
-  = f.text_field :city
+  .form_field
+    = f.label :city
+    = f.text_field :city, placeholder: placeholder_i18n.t(:city)
 
-.submit_button
-  = f.submit t("event.form.create.submit")
+  .submit_button
+    = f.submit
