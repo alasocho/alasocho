@@ -20,7 +20,7 @@ class AttendancesController < ApplicationController
 
 private
   def load_event_and_attendance
-    @event = Event.find(params[:event_id])
+    @event = Event.viewable_by(current_user).find(params[:event_id])
     @attendance = @event.attendance_for(current_user)
   end
 end
