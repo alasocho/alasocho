@@ -52,6 +52,6 @@ private
   end
 
   def load_event
-    @event = Event.viewable_by(current_user)
+    @event = Event.viewable_by(current_user).find(params[:event_id] || params[:id])
   end
 end
