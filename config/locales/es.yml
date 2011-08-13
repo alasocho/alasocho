@@ -73,6 +73,7 @@ es:
     invitees: "invitados"
     waitlist: "Lista de espera"
     people_waiting: "personas esperando"
+    end_at: "Fin"
     confirmed:
       one:   "1 confirmado"
       other: "%{count} confirmados"
