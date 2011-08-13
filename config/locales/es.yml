@@ -88,8 +88,7 @@ es:
 
     form:
       create:
-        title: "Crea un nuevo evento"
-        submit: "Crear evento"
+        title: "Organiza un evento"
         message:
           success: "Evento guardado"
           error: "No pudimos guardar el evento. Por favor, verifica la información."
