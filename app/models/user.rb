@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
       picture_url: auth_hash.fetch("image", "")
     )
   end
+
+  def linked_to?(service)
+    authorizations.where(provider: service).any?
+  end
 end

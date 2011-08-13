@@ -1,8 +1,12 @@
 %br
 %br
 %br
-%br
-%br
+.link_accounts
+  - %w(twitter facebook).each do |service|
+    - unless current_user.linked_to?(service)
+      = link_to t("accounts.link_with.#{service}"),  "/auth/#{service}"
+  .explain
+    = t("accounts.link_with.why")
 = form_for current_user, :url => account_path do |f|
   .form_field
     = f.label :name

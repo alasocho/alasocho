@@ -115,3 +115,7 @@ es:
       message:
         success: "Tus datos fueron actualizados."
         error: "Ocurrió un error al actualizar tus datos."
+    link_with:
+      twitter: "Vincular con Twitter"
+      facebook: "Vincular con Facebook"
+      why: "Si vinculas tu cuenta con otros servicios, te será más fácil recordar cómo entrar."
