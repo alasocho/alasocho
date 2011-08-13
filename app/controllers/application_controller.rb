@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     unless signed_in?
       session[:wants_page] = request.path
-      redirect_to root_path, :alert => I18n.t("flash.need_to_sign_in")
+      redirect_to root_path, :alert => I18n.t("sessions.need_to_sign_in")
     end
   end
 end

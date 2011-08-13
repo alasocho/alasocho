@@ -9,6 +9,7 @@ es:
       success: "Hola! Has entrado exitosamente"
       twitter: "Entrar con Twitter"
       facebook: "Entrar con Facebook"
+    need_to_sign_in: "Oops, tienes que ingresar al sitio para acceder a esta página"
   event:
     name: "Nombre"
     description: "Descripción"
