@@ -1,13 +1,9 @@
 !!! 5
 %html(lang="#{current_locale}")
   %head
-    %title A Las Ocho
+    %title=t "app.title"
     = csrf_meta_tags
     = stylesheet_link_tag :application
     = javascript_include_tag :application, :eight
   %body
-    - if flash[:notice].present?
-      .notice= flash[:notice]
-    - if flash[:alert].present?
-      .alert= flash[:alert]
     = yield

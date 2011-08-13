@@ -1,4 +1,6 @@
 es:
+  app:
+    title: "A Las Ocho"
   event:
     name: "Nombre"
     description: "Descripción"
