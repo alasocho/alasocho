@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813033342) do
+ActiveRecord::Schema.define(:version => 20110813034659) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20110813033342) do
     t.datetime "end_at"
     t.string   "location"
     t.string   "city"
-    t.boolean  "public"
+    t.boolean  "public",            :default => true
     t.boolean  "allow_invites"
     t.string   "state",             :default => "created"
     t.integer  "attendee_quota"
