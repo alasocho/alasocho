@@ -49,7 +49,7 @@
         %h2= t('event.waitlist')
         %span= "#{ @event.waitlisted.size }" + t('event.people_waiting')
         - @event.waitlisted.each do |waitlisted|
-          = image_tag @confirmed_attendee.picture_url
+          = image_tag waitlisted.picture_url
           = @confirmed_attendee.name
         = link_to t('event.form.see_all'), "#"
 
