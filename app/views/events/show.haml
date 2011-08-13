@@ -5,7 +5,7 @@
   #info_short
     = t "event.confirmed", :count => @event.confirmed_attendees.size
     = t 'event.invited', :count =>  @event.attendances.size
-    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more
+    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more if @event.allow_invites or @event.host == current_user
     %span= link_to t('event.form.event.edit'), edit_event_path(@event) if current_user == @event.host
 
   #left_column
@@ -58,7 +58,7 @@
 
 
       %h2= "#{ @event.invitees.size } " + t('event.invitees')
-      %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more
+      %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more if @event.allow_invites or @event.host == current_user
       - if @event.invitees.size > EventsController::MAX_PENDING_ATTENDEES
         = link_to t('event.form.see_all'), "#"
 
