@@ -3,6 +3,8 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 require 'haml'
+require 'jquery-rails'
+require 'backbone-rails'
 
 require 'jquery-rails'
 require "rails-i18n"
