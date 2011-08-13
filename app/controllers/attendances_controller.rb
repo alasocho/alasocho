@@ -13,11 +13,14 @@ class AttendancesController < ApplicationController
   end
 
   def destroy
+    @attendance.decline!
+    flash[:notice] = t("attendance.message.decline", :event_name => @event.name)
+    redirect_to @event
   end
 
 private
   def load_event_and_attendance
     @event = Event.find(params[:event_id])
-    @attendance = @event.attendances.where(:user => current_user).first
+    @attendance = @event.attendance_for(current_user)
   end
 end

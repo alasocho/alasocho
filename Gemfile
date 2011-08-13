@@ -2,7 +2,6 @@ source "http://rubygems.org"
 
 gem "rails", :git => "http://github.com/rails/rails.git", :ref => "3-1-stable"
 gem "mysql2"
-gem "jquery-rails"
 gem "oa-oauth"
 gem 'haml'
 gem 'micromachine'
@@ -10,6 +9,10 @@ gem 'rails-i18n'
 gem 'resque'
 gem 'daemons'
 gem 'postmark-rails'
+gem 'simple_uuid'
+
+gem "jquery-rails"
+gem "backbone-rails"
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,0 +1,69 @@
+header {
+  height: 43px;
+  background: #ffc200;
+  border-radius: 0 0 10px 10px;
+  padding: 5px 10px;
+  border-bottom: 2px solid #e88801;
+}
+
+header:after {
+  clear: both;
+  display: table;
+  content: "";
+}
+
+header h1 a {
+  position: absolute;
+  display: block;
+  background: transparent url(/assets/logo-header.png) 10px 10px no-repeat;
+  text-indent: -9999em;
+  width: 105px;
+  height: 120px;
+  padding: 10px;
+  margin-top: -12px;
+}
+
+#user_area {
+  margin-top: 7px;
+  text-align: right;
+
+  .sign_in:link, .sign_in:visited {
+    background-position: 0 0;
+    display: block;
+    float: right;
+    text-indent: 9999em;
+    height: 22px;
+    width: 150px;
+    margin: 0 0 0 10px;
+    overflow: hidden;
+  }
+
+  .sign_in:hover {
+    background-position: 0 46px;
+  }
+
+  .sign_in:active {
+    background-position: 0 22px;
+  }
+
+  .twitter {
+    background-image: url(/assets/buttons/signin_twitter.png);
+  }
+
+  .facebook {
+    background-image: url(/assets/buttons/signin_facebook.png);
+  }
+
+  #current_user {
+    position: relative;
+    bottom: 12px;
+
+    img {
+      position: relative;
+      top: 7px;
+      width: 24px;
+      border: 2px solid #e88801;
+      padding: 1px;
+    }
+  }
+}

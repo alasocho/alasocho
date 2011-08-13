@@ -1,4 +1,14 @@
 es:
+  app:
+    title: "A Las Ocho"
+  sessions:
+    sign_out:
+      link: "Cerrar sesión"
+      success: "Hasta pronto!"
+    sign_in:
+      success: "Hola! Has entrado exitosamente"
+      twitter: "Entrar con Twitter"
+      facebook: "Entrar con Facebook"
   event:
     name: "Nombre"
     description: "Descripción"
@@ -9,8 +19,6 @@ es:
     public: "Este evento es público"
     allow_invites: "Los invitados pueden invitar más gente"
     attendee_quota: "Un límite de"
-    confirm: "Voy"
-    decline: "No voy"
     available_seats: "lugares disponibles"
     invitees: "invitados"
     waitlist: "Lista de espera"
@@ -21,6 +29,10 @@ es:
     invited:
       one:   "1 invitado"
       other: "%{count} invitados"
+    confirm:
+      slots_available: "Voy"
+      no_slots_available: "Lista de espera"
+    decline: "No voy"
 
 
     form:
@@ -34,6 +46,7 @@ es:
         title: "Invitaciones"
         after_attendee_quota: "personas pueden asistir"
         explanation: "Puede invitar a más de 10 personas! Si más personas confirman quedarán en una lista de espera."
+        no_limit: "sin limite?"
         submit: "Publicar evento"
         people: "Invitar más gente"
         message:
@@ -44,6 +57,8 @@ es:
     message:
       confirm: "Has confirmado tu asistencia a %{event_name}"
       waitlist: "Estás en la lista de espera para %{event_name}. Si se libera algún lugar te avisamos."
+      decline: "Ya no estás en la lista de invitados de %{event_name}. ¿Quizás la próxima?"
+      already_taken: "Esa invitación ya fue asignada a otro usuario."
 
   time:
     formats:

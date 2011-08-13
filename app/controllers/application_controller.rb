@@ -10,7 +10,17 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @current_user ||= User.find_by_id(session[:user_id]).tap do |user|
+      if user.present? && session[:attendance_id].present?
+        attendance = Attendance.find(session.delete(:attendance_id))
+        if attendance.user.present? && attendance.user != user
+          flash.now[:alert] = t("attendance.message.already_taken")
+        elsif attendance.user.nil?
+          attendance.user = user
+          attendance.save
+        end
+      end
+    end
   end
 
   def current_user=(user)
@@ -21,6 +31,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    redirect_to root_path, :alert => I18n.t("flash.need_to_sign_in") unless signed_in?
+    unless signed_in?
+      session[:wants_page] = request.path
+      redirect_to root_path, :alert => I18n.t("flash.need_to_sign_in")
+    end
   end
 end

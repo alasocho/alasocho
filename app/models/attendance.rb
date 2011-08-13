@@ -1,4 +1,5 @@
 require 'micromachine'
+require 'simple_uuid'
 
 class Attendance < ActiveRecord::Base
   belongs_to :event
@@ -9,8 +10,9 @@ class Attendance < ActiveRecord::Base
   STATES_CONFIRMED      = %w(confirmed tentative)
 
   before_save :preserve_state_machine
+  before_create :attach_to_user, :generate_token
 
-  attr_accessible :email
+  attr_accessible :email, :user_id, :state
 
   scope :need_attention, joins(:event).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED)
   scope :need_action, where("attendances.state in (?)", STATES_NEEDING_ACTION)
@@ -52,7 +54,7 @@ class Attendance < ActiveRecord::Base
       machine.transitions_for[:decline]      = { "invited" => "declined", "waitlisted" => "declined", "tentative" => "declined", "confirmed" => "declined" }
       machine.transitions_for[:waitlist]     = { "invited" => "waitlisted", "declined" => "waitlisted" }
       machine.transitions_for[:reserve_slot] = { "waitlisted" => "tentative" }
-      machine.on(:invite) { send_invite_email }
+      machine.on(:invited) { send_invite_email }
     end
   end
 
@@ -62,5 +64,23 @@ class Attendance < ActiveRecord::Base
 
   def send_invite_email
     AttendanceMailer.invite_notification(self).deliver
+  end
+
+  def attach_to_user
+    user = User.where(:email => email).first
+    return unless user.present?
+    self.user = user
+  end
+
+  def confirmed?
+    state_machine.state == "confirmed"
+  end
+
+  def declined?
+    state_machine.state == "confirmed"
+  end
+
+  def generate_token
+    self.token = SimpleUUID::UUID.new.to_guid
   end
 end

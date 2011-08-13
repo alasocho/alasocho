@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user, :except => :show
+  before_filter :check_token, :only => [:show]
+  before_filter :authenticate_user
+  before_filter :load_own_event, :only => [:invite_people, :update, :invite, :edit]
+  before_filter :load_event, :only => [:show]
 
   def new
     @event = current_user.hosted_events.new #FIXME Needs current_user, right?
@@ -16,12 +19,16 @@ class EventsController < ApplicationController
     end
   end
 
-  def invite_people
-    load_event
+  def invite
+    list = JSON params[:invitees]
+    @event.invitee_list = list
+    @event.save
+    respond_to do |format|
+      format.json { render :json => "OK"}
+    end
   end
 
   def update
-    load_event
     @event.update_attributes(params[:event])
 
     if @event.save
@@ -35,13 +42,23 @@ class EventsController < ApplicationController
   end
 
   def show
-    load_event
+    @attendance = @event.attendance_for(current_user)
     @comments = @event.comments
   end
 
 private
 
-  def load_event
+  def load_own_event
     @event = current_user.hosted_events.find(params[:event_id] || params[:id])
+  end
+
+  def load_event
+    @event = Event.viewable_by(current_user).find(params[:event_id] || params[:id])
+  end
+
+  def check_token
+    if params[:token].present?
+      session[:attendance_id] == Attendance.find_by_token(params[:token]).try(:id)
+    end
   end
 end

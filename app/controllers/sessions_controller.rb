@@ -7,6 +7,20 @@ class SessionsController < ApplicationController
 
     self.current_user = authorization.user
 
-    render text: "Hola, #{current_user.name}"
+    redirect_to after_login_path, notice: t("sessions.sign_in.success")
   end
+
+  def destroy
+    self.current_user = nil
+    session.clear
+
+    redirect_to root_path, notice: t("sessions.sign_out.success")
+  end
+
+private
+
+  def after_login_path
+    session.delete(:wants_page) || root_path
+  end
+
 end

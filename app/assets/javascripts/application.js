@@ -6,4 +6,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+window.A8 = {
+  "Models": {},
+  "Collections": {},
+  "Routers": {},
+  "Views": {}
+}
+

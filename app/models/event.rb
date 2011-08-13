@@ -3,13 +3,13 @@ require 'micromachine'
 class Event < ActiveRecord::Base
   has_many :attendances
 
-  has_many :confirmed_invitations, :class_name => "Attendance", :conditions => where(:state => Attendance::STATES_CONFIRMED)
+  has_many :confirmed_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_CONFIRMED }
   has_many :confirmed_attendees, :through => :confirmed_invitations, :source => :user
 
-  has_many :pending_invitations, :class_name => "Attendance", :conditions => where(:state => "invited")
+  has_many :pending_invitations, :class_name => "Attendance", :conditions => { :state => "invited" }
   has_many :invitees, :through => :pending_invitations, :source => :user
 
-  has_many :waitlisted_invitations, :class_name => "Attendance", :conditions => where(:state => "waitlisted")
+  has_many :waitlisted_invitations, :class_name => "Attendance", :conditions => { :state => "waitlisted" }
   has_many :waitlisted, :through => :waitlisted_invitations, :source => :user
 
   has_many :comments
@@ -18,7 +18,15 @@ class Event < ActiveRecord::Base
   before_save :preserve_state_machine
   after_save :create_invitations
 
+  scope :viewable_by, lambda { |user| join_attendances.where("attendances.user_id = :user_id or events.host_id = :user_id or events.public is true", :user_id => user.id) }
+  scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
+
   validates :name, :start_at, :presence => true
+  validates :attendee_quota, :numericality => {
+    :only_integer => true,
+    :greater_than => lambda{|record| record.confirmed_attendees.size},
+    :allow_nil => true
+  }
 
   attr_accessible :name, :description, :start_at, :end_at, :location, :city, :public, :allow_invites, :attendee_quota, :invitee_list
 
@@ -30,10 +38,6 @@ class Event < ActiveRecord::Base
     attendances.each(&:invite!)
   end
 
-  def create_invitations
-    invitee_list.split("\n").map { |email| attendances.create :email => email } if invitee_list.present?
-  end
-
   def state_machine
     @state_machine ||= MicroMachine.new(state || "created").tap do |machine|
       machine.transitions_for[:publish] = { "created" => "published" }
@@ -43,6 +47,22 @@ class Event < ActiveRecord::Base
 
   def preserve_state_machine
     self.state = state_machine.state
+  end
+
+  def create_invitations
+    invitee_list.each { |email| create_invitation(email) } if invitee_list.present?
+  end
+
+  def create_invitation(email)
+    attendances.create(:email => email.strip) if !email.strip.empty?
+  end
+
+  def attendance_for(user)
+    attendances.where(:user_id => user).first || public_attendance_for(user)
+  end
+
+  def public_attendance_for(user)
+    public? ? attendances.new(:user_id => user, :state => "invited") : nil
   end
 
   def slots_available?

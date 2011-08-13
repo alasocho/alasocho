@@ -1,9 +1,12 @@
+#modal_window
+%input{type: :hidden, id: :event_id, value: @event.id}
 #title
   %h1= t('event.name')
   #info_short
     = t "event.confirmed", :count => @event.confirmed_attendees.size
     = t 'event.invited', :count =>  @event.attendances.size
-    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event)
+    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), id: :invite_more
+    %span= link_to t('event.form.event.edit'), edit_event_path(@event)
 
   #left_column
 
@@ -25,13 +28,16 @@
       %h3= @event.location
       = @event.city
 
-      = link_to "iCal", "#", :class => "calemdar"
+      = link_to "iCal", "#", :class => "calendar"
       = link_to "GoogleCal", "#", :class => "calendar"
       = link_to "YahooCal", "#", :class => "calendar"
 
     #actions
-      = link_to t('event.confirm'), "#"
-      = link_to t('event.decline'), "#"
+
+      - unless @attendance.try(:confirmed?)
+        = link_to (@event.slots_available? ? t('event.confirm.slots_available') : t("event.confirm.no_slots_available")), event_attendance_path(@event), :method => :post
+      - unless @attendance.try(:declined?)
+        = link_to t('event.decline'), event_attendance_path(@event), :method => :delete
 
 
     #invitees
@@ -40,8 +46,8 @@
         %span= "(#{ @event.slots_available_count } " +  t('event.available_seats') + ")"
 
       - @event.confirmed_attendees.each do |confirmed_attendee|
-        = image_tag @confirmed_attendee.picture_url
-        = @confirmed_attendee.name
+        = image_tag confirmed_attendee.picture_url
+        = confirmed_attendee.name
       = link_to t('event.form.see_all'), "#"
 
 
@@ -49,15 +55,9 @@
         %h2= t('event.waitlist')
         %span= "#{ @event.waitlisted.size }" + t('event.people_waiting')
         - @event.waitlisted.each do |waitlisted|
-          = image_tag @confirmed_attendee.picture_url
+          = image_tag waitlisted.picture_url
           = @confirmed_attendee.name
         = link_to t('event.form.see_all'), "#"
-
-
-      - @event.confirmed_attendees.each do |confirmed_attendee|
-        = image_tag @confirmed_attendee.picture_url
-        = @confirmed_attendee.name
-      = link_to t('event.form.see_all'), "#"
 
 
       %h2= "#{ @event.invitees.size } " + t('event.invitees')
@@ -68,3 +68,8 @@
         = image_tag invitee.picture_url
         = invitee.name
 
+- content_for :javascript do
+  :javascript
+    $(document).ready(function(){
+      new A8.Routers.EventRouter();
+    });
