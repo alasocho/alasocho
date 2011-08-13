@@ -30,4 +30,14 @@ class User < ActiveRecord::Base
   def linked_providers
     authorizations.map(&:provider)
   end
+
+  def merge_with(another_user)
+    transaction do
+      another_user.hosted_events.update_all(host_id: id)
+      another_user.attendances.update_all(user_id: id)
+      another_user.comments.update_all(user_id: id)
+      another_user.authorizations.update_all(user_id: id)
+      another_user.destroy
+    end
+  end
 end
