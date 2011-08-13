@@ -58,7 +58,11 @@ class Event < ActiveRecord::Base
   end
 
   def attendance_for(user)
-    attendances.where(:user_id => user).first
+    attendances.where(:user_id => user).first || public_attendance_for(user)
+  end
+
+  def public_attendance_for(user)
+    public? ? attendances.new(:user_id => user, :state => "invited") : nil
   end
 
   def slots_available?
