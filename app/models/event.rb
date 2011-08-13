@@ -9,7 +9,9 @@ class Event < ActiveRecord::Base
 
   validates :name, :start_at, :presence => true
 
-  attr_accessible :name, :description, :start_at, :end_at, :location, :city
+  attr_accessible :name, :description, :start_at, :end_at, :location, :city, :public, :allow_invites, :attendee_quota, :invitee_list
+
+  attr_accessor :invitee_list
 
   def state_machine
     @state_machine ||= MicroMachine.new(state || "created").tap do |machine|

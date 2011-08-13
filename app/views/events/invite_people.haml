@@ -1,0 +1,28 @@
+%h2= t("event.form.invite.title")
+= form_for @event do |f|
+
+  .form_field
+    = f.check_box :public
+    = f.label :public, t("event.public")
+
+  .form_field
+    = f.check_box :allow_invites
+    = f.label :allow_invites, t("event.allow_invites")
+
+  .form_field
+    = f.label :attendee_quota, t("event.attendee_quota")
+    = f.text_field :attendee_quota, :size => 2
+    = t("event.form.invite.after_attendee_quota")
+
+  .form_field
+    = f.label :invitee_list, t("event.invitee_list")
+    = f.text_area :invitee_list
+
+  .explanation
+    = t("event.form.invite.explanation")
+
+  .submit_button
+    = f.submit t("event.form.invite.submit")
+
+
+

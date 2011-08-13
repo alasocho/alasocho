@@ -6,6 +6,10 @@ es:
     end_at: "Fin"
     location: "Ubicación"
     city: "Ciudad"
+    public: "Este evento es público"
+    allow_invites: "Los invitados pueden invitar más gente"
+    attendee_quota: "Un límite de"
+
 
     form:
       create:
@@ -14,3 +18,9 @@ es:
         message:
           saved: "Evento guardado"
           error: "No pudimos guardar el evento. Por favor, verifica la información."
+      invite:
+        title: "Invitaciones"
+        after_attendee_quota: "personas pueden asistir"
+        explanation: "Puede invitar a más de 10 personas! Si más personas confirman quedarán en una lista de espera."
+        submit: "Publicar evento"
+
