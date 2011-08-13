@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user, :except => :show
+  before_filter :authenticate_user
   before_filter :load_own_event, :only => [:invite_people, :update, :invite, :edit]
   before_filter :load_event, :only => [:show]
 
