@@ -1,14 +1,36 @@
 .form_field, .submit_button {
+  width: 400px;
   margin-top: 24px;
+}
+
+.double_feature .form_field {
+  float: left;
+  width: 195px;
+
+  &:first-child {
+    margin-right: 5px;
+  }
+
+  &:last-child {
+    margin-left: 5px;
+  }
+}
+
+.double_feature:after {
+  display: table;
+  content: "";
+  clear: both;
 }
 
 label {
   display: block;
   line-height: 24px;
   height: 24px;
+  width: 100%;
 }
 
 input, textarea {
+  width: 100%;
   padding: 0 5px;
   font-family: Actor, sans-serif;
   font-size: 16px;
@@ -16,5 +38,9 @@ input, textarea {
 }
 
 textarea {
-  height: 96px;
+  height: 72px;
+}
+
+button[type=submit] {
+
 }

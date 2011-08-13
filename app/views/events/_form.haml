@@ -7,12 +7,14 @@
     = f.label :description
     = f.text_area :description, placeholder: placeholder_i18n.t(:description)
 
-  .form_field.horizontal
-    = f.label :start_at
-    = f.text_field :start_at, type: "date", placeholder: placeholder_i18n.t(:start_at)
+  .double_feature
+    .form_field
+      = f.label :start_at
+      = f.text_field :start_at, type: "date", placeholder: placeholder_i18n.t(:start_at)
 
-    = f.label :end_at
-    = f.text_field :end_at, type: "date", placeholder: placeholder_i18n.t(:end_at)
+    .form_field
+      = f.label :end_at
+      = f.text_field :end_at, type: "date", placeholder: placeholder_i18n.t(:end_at)
 
   .form_field
     = f.label :location
