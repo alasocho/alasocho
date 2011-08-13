@@ -1,0 +1,6 @@
+%h2= t("merges.new.title")
+
+.combine_explanation
+  = t("merges.new.explanation", :user_name => @mergeable_user.name).html_safe
+
+= link_to t("merges.new.action"), account_merge_path, :method => :post
