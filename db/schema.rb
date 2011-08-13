@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110813004718) do
+=======
+ActiveRecord::Schema.define(:version => 20110813004304) do
+>>>>>>> Add Event#last_commented_at to simplify shit
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20110813004718) do
     t.integer  "host_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "last_commented_at"
   end
 
   create_table "users", :force => true do |t|
