@@ -1,0 +1,5 @@
+which rvm
+if [ $? -eq 1 ]; then
+  curl -s https://rvm.beginrescueend.com/install/rvm -o rvm-installer ; chmod +x rvm-installer ; ./rvm-installer --version latest
+  rm rvm-installer;
+fi

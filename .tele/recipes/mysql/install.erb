@@ -1,0 +1,7 @@
+which mysqld
+if [ $? -ne 0 ]; then
+  mysql_password="supersecretpassword"
+  echo "mysql-server mysql-server/root_password select $mysql_password" | debconf-set-selections
+  echo "mysql-server mysql-server/root_password_again $mysql_password" | debconf-set-selections
+  apt-get install -y mysql-server
+fi

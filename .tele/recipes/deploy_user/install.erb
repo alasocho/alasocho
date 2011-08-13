@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $(id -u) -eq 0 ]; then
+  username="deploy"
+  egrep "^$username" /etc/passwd >/dev/null
+  if [ $? -eq 1 ]; then
+    pass=$(perl -e 'print crypt("im a great password", "password")')
+    useradd -m -p $pass $username
+  else
+    usermod -G rvm deploy
+    usermod -G www-data deploy
+  fi
+else
+  echo "Only root may add a user to the system"
+  exit 2
+fi

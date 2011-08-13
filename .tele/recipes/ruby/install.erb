@@ -1,0 +1,11 @@
+which rvm
+if [ $? -eq 0 ]; then
+  which ruby
+  if [ $? -eq 1 ]; then
+    version=$(ruby -v | awk '{print $2}' | awk -Fp '{print $1}');
+    if [ "$version" != "1.9.2" ]; then
+      rvm install 1.9.2 --with-openssl-dir=/usr/local;
+      rvm use 1.9.2 --default;
+    fi
+  fi
+fi

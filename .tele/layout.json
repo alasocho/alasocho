@@ -1,0 +1,17 @@
+{
+  "rally": {
+    "servers": {
+      "rally": [
+        "apt_essentials",
+        "deploy_user",
+        "rvm",
+        "ruby",
+        "passenger",
+        "mysql",
+        "shared_keys",
+        "deploy_path",
+        "redis"
+      ]
+    }
+  }
+}

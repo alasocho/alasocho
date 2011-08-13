@@ -1,0 +1,4 @@
+if [ ! -f /usr/local/nginx/sbin/nginx ]; then
+  gem install passenger
+  passenger-install-nginx-module --prefix=/usr/local/nginx --auto --auto-download
+fi

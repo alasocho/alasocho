@@ -1,0 +1,8 @@
+which redis-server
+if [ $? -ne 0 ]; then
+  wget http://redis.googlecode.com/files/redis-2.2.12.tar.gz
+  tar xfz redis-2.2.12.tar.gz
+  cd redis-2.2.12
+  make
+  make install
+fi
