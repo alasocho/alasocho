@@ -1,4 +1,5 @@
 require 'micromachine'
+require 'simple_uuid'
 
 class Attendance < ActiveRecord::Base
   belongs_to :event
@@ -9,7 +10,7 @@ class Attendance < ActiveRecord::Base
   STATES_CONFIRMED      = %w(confirmed tentative)
 
   before_save :preserve_state_machine
-  before_create :attach_to_user
+  before_create :attach_to_user, :generate_token
 
   attr_accessible :email, :user_id, :state
 
@@ -62,5 +63,9 @@ class Attendance < ActiveRecord::Base
 
   def declined?
     state_machine.state == "confirmed"
+  end
+
+  def generate_token
+    self.token = SimpleUUID::UUID.new.to_guid
   end
 end
