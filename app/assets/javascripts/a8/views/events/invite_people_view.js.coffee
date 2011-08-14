@@ -11,8 +11,6 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
 
   container: null
 
-  event_id: $("#event_id").val()
-
   template: "
     <h1>Invite new users</h1>
     <button id='invite'>Invite</button>
@@ -21,7 +19,7 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
 
   attendees_count: 0
 
-  initialize: ->
+  initialize: (@event_id) ->
     this.bind('add', this.add_one, this)
     this.bind('reset', this.add_all, this)
     this.bind('all', this.render, this)
