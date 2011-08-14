@@ -90,7 +90,8 @@ class EventsController < ApplicationController
     @comments               = @event.comments
     @confirmed_invitations  = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
     @waitlisted_invitations = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
-    @invited_invitations    = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES)
+    @pending_invitations    = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES)
+
     respond_to do |format|
       format.html
       format.ics { render text: @event.to_ical }

@@ -73,12 +73,12 @@
 
 
   %aside#unconfirmed.guests{ :class => @event.waitlisted_invitations.any? ? "alternate" : "" }
-    %h2=t "events.show.invited", count: @event.attendances.size
+    %h2=t "events.show.invited", count: @event.pending_invitations.size
     - if signed_in?
       %span= link_to_invite_if_allowed @event
-    - if @event.attendances.size > EventsController::MAX_PENDING_ATTENDEES
+    - if @event.pending_invitations.size > EventsController::MAX_PENDING_ATTENDEES
       = link_to t('event.form.see_all'), event_invited_path(@event)
-    %ul= render @invited_invitations
+    %ul= render @pending_invitations
 
 #modal_window
 
