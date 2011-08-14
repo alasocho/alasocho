@@ -3,7 +3,7 @@ class A8.Views.Events.SettingsView extends Backbone.View
 
   previous_attendee_quota: 0
 
-  valid_numbers: (event) =>
+  valid_numbers: =>
     current_value = this.attendee_quota().val()
     if current_value < 0
       this.attendee_quota().val(0)
@@ -13,13 +13,15 @@ class A8.Views.Events.SettingsView extends Backbone.View
   initialize: (@el, @watcher) ->
     this.valid_numbers()
     this.attendee_quota().click this.valid_numbers
-    $("#no_limit").toggle(=>
+    $(this.el).toggle(=>
           value = this.attendee_quota().val()
           this.previous_attendee_quota = value if value > 0
           this.attendee_quota().val(null)
+          $(this.el).addClass("down")
           $(".attendee_quota_field").hide()
       , =>
           this.attendee_quota().val(this.previous_attendee_quota)
+          $(this.el).removeClass("down")
           $(".attendee_quota_field").show()
       )
 

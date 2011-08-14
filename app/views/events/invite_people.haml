@@ -5,8 +5,6 @@
   = render "settings", :f => f
   = render "invitee_list", :f => f
 
-  %a.invite_more= t("event.form.invite.more")
-
   .submit_button
     = f.submit t("event.form.invite.submit"), id: :submit_event
 
@@ -15,7 +13,7 @@
   :javascript
     $(function(){
       var watcher = new A8.Routers.EventRouter(#{@event.id});
-      new A8.Views.Events.SettingsView($("#invite_more"), watcher);
+      new A8.Views.Events.SettingsView($("#no_limit"), watcher);
     });
 
 = render "invite_people_template"

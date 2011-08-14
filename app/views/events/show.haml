@@ -76,5 +76,9 @@
 - content_for :javascript do
   :javascript
     $(document).ready(function(){
-      new A8.Routers.EventRouter(#{@event.id});
+      router = new A8.Routers.EventRouter(#{@event.id});
+      router.counter_updated(#{@event.attendances.size})
     });
+
+
+= render "invite_people_template"

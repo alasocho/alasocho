@@ -49,7 +49,6 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     $(this.el).append element
     $(element).find("input").focus()
 
-
   render: ->
     content = _.template(this.template)
     $(this.el).append content()
