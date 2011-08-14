@@ -1,10 +1,10 @@
 - scope = local_assigns.fetch(:scope, "event")
 
 - if attendance.try(:confirmed?) || attendance.try(:waitlisted?)
-  - button_text = attendance.try(:confirmed?) ? t('confirm.slots_available') : t("confirm.no_slots_available")
-  %span.confirm.disabled= (attendance.event.slots_available? ? t('confirm.slots_available', scope: scope) : t("confirm.no_slots_available", scope: scope))
+  - button_text_source = attendance.try(:confirmed?) ? 'confirm.slots_available' : "confirm.no_slots_available"
+  %span.confirm.disabled= t(button_text_source, scope: scope)
 - else
-  = link_to (attendance.event.slots_available? ? t('confirm.slots_available', scope: scope) : t("confirm.no_slots_available", scope: scope)), event_attendance_path(attendance.event), :method => :post, :class => "confirm"
+  = link_to ((attendance.event.slots_available? !! attendance.tentative?) ? t('confirm.slots_available', scope: scope) : t("confirm.no_slots_available", scope: scope)), event_attendance_path(attendance.event), :method => :post, :class => "confirm"
 
 - if attendance.try(:declined?)
   %span.decline.disabled= t('decline', scope: scope)
