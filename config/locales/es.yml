@@ -169,6 +169,8 @@ es:
           success: "Evento guardado"
           error: "No pudimos guardar el evento. Por favor, verifica la información."
       invite:
+        button: "Invitar"
+        close: "Cerrar"
         title: "Invitaciones"
         after_attendee_quota: "personas pueden asistir"
         explanation: "¡Puedes invitar a más de %{spots_left} personas! Si más personas confirman quedaran en una lista de espera"
