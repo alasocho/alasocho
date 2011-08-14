@@ -83,16 +83,20 @@ h1 .edit {
  *  Action buttons                      *
  ****************************************/
 
+
 #actions {
   background: none;
   padding: 0;
   width: 380px;
-  text-align: left;
+  text-align: center;
   border-radius: 0;
+  font-weight: bold;
+  color: #c93c00;
 }
 
 #actions * {
   display: block;
+  text-align: left;
   float: left;
   background: #ffc200;
   width: 190px;
