@@ -69,7 +69,7 @@ class EventsController < ApplicationController
     @comments = @event.comments
     @confirmed_attendees = @event.confirmed_attendees.limit(MAX_CONFIRMED_ATTENDEES)
     @waitlisted          = @event.waitlisted.limit(MAX_WAITLISTED_ATTENDEES)
-    @invitees           = @event.invitees.limit(MAX_PENDING_ATTENDEES)
+    @invitations         = @event.attendances.limit(MAX_PENDING_ATTENDEES)
   end
 
   def destroy
