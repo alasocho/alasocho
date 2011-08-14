@@ -1,6 +1,6 @@
 .event
   = link_to event.name, event
-  = event.location
+  .location= event.location
   .date
     = event.start_at
   - if event.limited?

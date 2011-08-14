@@ -1,5 +1,12 @@
 #notifications {
   display: none;
+  .location {
+    text-solid: .8em;
+  }
+  .date {
+    color: grey;
+    text-size: .8em
+  }
   .holding_box {
     position: absolute;
     width: 100%;
