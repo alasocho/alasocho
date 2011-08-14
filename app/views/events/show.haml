@@ -6,16 +6,15 @@
         %span= link_to t('events.edit.link'), edit_event_path(@event)
         %span= link_to t('events.edit.admin_attendees.link'), event_everyone_path(@event)
 
-
   #info_short
     %address.organizer
       %span=t "events.show.organizer"
       = image_tag @event.host.picture_url, class: "tiny avatar"
       = @event.host.name
 
-    = tagline(@event)
-    / Is this --v ok?
-    = link_to_invite_if_allowed @event
+    .tagline
+      = tagline(@event)
+      = link_to_invite_if_allowed @event
 
   #left_column
 
