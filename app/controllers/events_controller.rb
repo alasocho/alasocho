@@ -54,7 +54,7 @@ class EventsController < ApplicationController
   def everyone
     load_own_event
     @page_title = @event.name
-    @attendances = @event.attendances
+    @attendances = @event.attendances.includes(:event, :user)
   end
 
   def invite_people

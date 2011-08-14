@@ -3,7 +3,7 @@
  ****************************************/
 
 
-#actions {
+.actions {
   background: none;
   padding: 0;
   width: 380px;
@@ -13,11 +13,10 @@
   color: #c93c00;
 }
 
-#actions * {
+.actions span, .actions a:link, .actions a:visited {
   display: block;
   text-align: left;
   float: left;
-  background: #ffc200;
   width: 190px;
   height: 36px;
   line-height: 35px;
@@ -25,13 +24,13 @@
   color: #fff;
 }
 
-#actions .disabled {
+.actions .disabled, .actions a.disabled:link, .actions a.disabled:visited {
   color: #ccc;
   cursor: default;
   text-shadow: -1px -1px #666;
 }
 
-#actions .decline {
+.actions .decline, .actions a.decline:link, .actions a.decline:visited {
   background: #b21515;
   background: -moz-linear-gradient(top, #900303 0%, #a11414 50%, #900303 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#900303), color-stop(50%,#a11414), color-stop(100%,#900303)); /* Chrome,Safari4+ */
@@ -48,7 +47,7 @@
   text-shadow: 2px 2px #900303;
 }
 
-#actions .decline.disabled {
+.actions .decline.disabled {
   text-shadow: -2px -2px #900303;
   background: #900303;
 
@@ -57,7 +56,7 @@
   box-shadow: inset -3px -3px 6px #c32626, inset 6px 6px 12px #600;
 }
 
-#actions .confirm {
+.actions .confirm {
   background: #3b7c0f;
   background: -moz-linear-gradient(top, #3b7c0f 0%, #4c8d1f 50%, #3b7c0f 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3b7c0f), color-stop(50%,#4c8d1f), color-stop(100%,#3b7c0f)); /* Chrome,Safari4+ */
@@ -74,7 +73,7 @@
   text-shadow: 2px 2px #195a0d;
 }
 
-#actions .confirm.disabled {
+.actions .confirm.disabled {
   text-shadow: -2px -2px #195a0d;
 
   -moz-box-shadow: inset -3px -3px 6px #4c8d1f, inset 3px 3px 6px #060;

@@ -42,9 +42,9 @@
     - if @event.city.present?
       .city= @event.city
 
-  %aside#actions
+  %aside.actions
     - if signed_in?
-      = render "attendance_actions", attendance: @attendance, event: @event
+      = render "attendance_actions", attendance: @attendance
     - else
       = t("event.need_login_to_confirm")
 
