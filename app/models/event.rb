@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
 
   before_save :preserve_state_machine
   after_save :create_invitations
-  before_create :default_last_commented_at
+  before_create :set_default_last_commented_at
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
 
@@ -114,7 +114,7 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def default_last_commented_at
-    self.default_last_commented_at ||= Time.now
+  def set_default_last_commented_at
+    self.last_commented_at ||= Time.current
   end
 end
