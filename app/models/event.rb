@@ -85,7 +85,7 @@ class Event < ActiveRecord::Base
   end
 
   def attendance_for(user)
-    attendances.where(:user_id => user).first || public_attendance_for(user)
+    attendances.where(:user_id => user.id).first || public_attendance_for(user)
   end
 
   def public_attendance_for(user)
