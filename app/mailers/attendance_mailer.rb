@@ -6,7 +6,7 @@ class AttendanceMailer < ActionMailer::Base
     mail(
       :subject              => t("email.attendance.invite.subject", :event_name => attendance.event.name),
       :to                   => attendance.email,
-      :from                 => "arturito@alasocho.com"
+      :from                 => "arturito@alasocho.com",
       :postmark_attachments => [File.new("#{ attendance.event.name.split.join("_") }.ics", "w") { |f| f.write attendance.event.to_ical }]
     )
   end
