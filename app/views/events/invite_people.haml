@@ -1,9 +1,8 @@
 %h2= t("event.form.invite.title")
-= form_for @event, html: { class: :invite_more_people } do |f|
 
-  = render :partial => :settings, :locals => {:f => f}
-
-  = render :partial => :invitee_list, :locals => {:f => f}
+= form_for @event, class: :invite_more_people do |f|
+  = render "settings", :f => f
+  = render "invitee_list", :f => f
 
   .explanation
     = t("event.form.invite.explanation")
@@ -14,6 +13,6 @@
 
 - content_for :javascript do
   :javascript
-    $(document).ready(function(){
+    $(function(){
       new A8.Views.Events.SettingsView($("#invite_more_people"));
     });

@@ -1,6 +1,7 @@
 header .sign_in {
   float: right;
   margin: 0 0 0 10px;
+  text-align: left;
 }
 
 aside .sign_in {
@@ -9,19 +10,15 @@ aside .sign_in {
 
 .sign_in:link, .sign_in:visited {
   background-position: 0 0;
+  background-repeat: no-repeat;
+  padding-left: 26px;
   display: block;
-  text-indent: 9999em;
   height: 22px;
   width: 150px;
-  overflow: hidden;
+  font-size: 14px;
 }
 
 .sign_in:hover {
-  background-position: 0 46px;
-}
-
-.sign_in:active {
-  background-position: 0 22px;
 }
 
 .twitter {
@@ -30,4 +27,8 @@ aside .sign_in {
 
 .facebook {
   background-image: url(/assets/buttons/signin_facebook.png);
+}
+
+.google {
+  background-image: url(/assets/buttons/signin_google.png);
 }
