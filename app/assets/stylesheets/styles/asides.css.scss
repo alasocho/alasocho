@@ -1,5 +1,6 @@
 aside {
   float: right;
+  clear: right;
   width: 340px;
   padding: 24px 20px;
   border-radius: 12px;
@@ -10,4 +11,9 @@ aside {
   p {
     margin-top: 16px;
   }
+}
+
+.alternate {
+  background: #fa4100 url(/assets/backgrounds/orange-aside.png);
+  color: #fff;
 }
