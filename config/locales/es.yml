@@ -151,6 +151,7 @@ es:
       title: "Combinar cuentas"
       explanation: "El servicio que intentaste asociar a tu cuenta ya se encuentra asociado al usuario %{user_name}. Puedes, si lo deseas, combinar ambos usuarios en tu usuario actual. Esto transferirá todos los eventos, comentarios, y métodos de autenticación de %{user_name} a tu cuenta. Ten en cuenta que esto <b>no es reversible en ningún caso</b>."
       action: "Estoy seguro, quiero combinar mis cuentas."
+      cancel: "Cancelar, no quiero seguir"
     create:
       success: "La cuenta %{user_name} ha sido combinada con la tuya"
 

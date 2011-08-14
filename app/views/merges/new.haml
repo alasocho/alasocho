@@ -3,4 +3,5 @@
 .combine_explanation
   = t("merges.new.explanation", :user_name => @mergeable_user.name).html_safe
 
-= link_to t("merges.new.action"), account_merge_path, :method => :post
+= link_to t("merges.new.cancel"), root_path, :class => ["awesome","red", "merge"]
+= link_to t("merges.new.action"), account_merge_path, :method => :post, :class => ["awesome", "merge"]
