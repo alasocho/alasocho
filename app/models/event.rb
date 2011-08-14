@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
   has_many :interested_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_INTERESTED }
   has_many :interested, :through => :interested_invitations, :source => :user
 
-  has_many :comments, :order => "created_at desc"
+  has_many :comments
   belongs_to :host, :class_name => "User"
 
   before_save :preserve_state_machine
@@ -137,10 +137,6 @@ class Event < ActiveRecord::Base
     [self.location, self.city].compact.join(", ")
   end
 
-  def full_description
-    [self.to_url, self.description].compact.join("\n\n")
-  end
-
   def to_url
      Rails.application.routes.url_helpers.event_url(self, host: ALasOcho.config[:canonical_host])
   end
@@ -148,7 +144,9 @@ class Event < ActiveRecord::Base
   def to_ical
     element = self
     RiCal.Event do
-      description element.full_description
+      summary     element.name
+      url         element.to_url
+      description element.description
       dtstart     element.start_at
       dtend       element.end_at.nil? ? element.start_at + 1.hour : element.end_at
       location    element.full_address

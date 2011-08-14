@@ -42,9 +42,8 @@
 
   %aside#feeds
     = t("events.show.feed.subscribe")
-    = link_to t("events.show.feed.ical"), "#", :class => "calendar"
+    = link_to t("events.show.feed.ical/outlook"), "#{event_path(@event) }.ics", :class => "calendar"
     = link_to t("events.show.feed.gcal"), "#", :class => "calendar"
-    = link_to t("events.show.feed.ycal"), "#", :class => "calendar"
 
   %aside#actions
     - if signed_in?

@@ -68,7 +68,7 @@ es:
 
       feed:
         subscribe: "Suscríbete:"
-        ical: "iCal"
+        ical/outlook: "iCal/Outlook"
         gcal: "Google Calendar"
         ycal: "Yahoo! Calendar"
 
