@@ -1,6 +1,8 @@
 require 'micromachine'
 
 class Event < ActiveRecord::Base
+  VIEWABLE_STATES = %w(published cancelled)
+
   has_many :attendances
 
   has_many :confirmed_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_CONFIRMED }
@@ -21,8 +23,14 @@ class Event < ActiveRecord::Base
   before_save :preserve_state_machine
   after_save :create_invitations
 
-  scope :viewable_by, lambda { |user| join_attendances.where("attendances.user_id = :user_id or events.host_id = :user_id or events.public is true", :user_id => user.id) }
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
+
+  def self.viewable_by
+    lambda do |user|
+      join_attendances.where("events.host_id = :user_id or ((attendances.user_id = :user_id or events.public is true) and events.state in (:states))",
+                             :user_id => user.id), :states => VIEWABLE_STATES }
+    end
+  end
 
   validates :name, :start_at, :presence => true
   validates :attendee_quota, :numericality => {
