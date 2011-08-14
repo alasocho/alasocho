@@ -6,8 +6,18 @@ class EventsController < ApplicationController
     @event = current_user.hosted_events.new(:city => GeoLocator.city_from_ip(request.remote_addr))
   end
 
+  def cleanup_date(hash)
+    Time.parse("#{hash[:date]} #{hash[:time]}")
+  rescue => e
+    nil
+  end
+
   def create
-    @event = current_user.hosted_events.new(params[:event])
+    # TODO nasty workaround
+    data = params[:event]
+    data[:start_at] = cleanup_date data[:start_at]
+    data[:end_at] = cleanup_date data[:end_at]
+    @event = current_user.hosted_events.new(data)
 
     if @event.save
       flash[:notice] = t("event.form.create.message.success")

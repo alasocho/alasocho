@@ -9,16 +9,21 @@
     = f.text_area :description, placeholder: placeholder_i18n.t(:description)
     = f.errors :description
 
+
   .double_feature
     .form_field
+      = f.errors :start_at
       = f.label :start_at
-      = f.datetime_select :start_at, placeholder: placeholder_i18n.t(:start_at)
-      = f.errors :end_at
+      = f.fields_for :start_at do |start_at|
+        = start_at.text_field :date, type: "date"
+        = start_at.text_field :time, type: "time"
 
     .form_field
-      = f.label :end_at
-      = f.datetime_select :end_at, placeholder: placeholder_i18n.t(:end_at)
       = f.errors :end_at
+      = f.label :end_at
+      = f.fields_for :end_at do |end_at|
+        = end_at.text_field :date, type: "date"
+        = end_at.text_field :time, type: "time"
 
   .form_field
     = f.label :location
@@ -29,3 +34,12 @@
     = f.label :city
     = f.text_field :city, placeholder: placeholder_i18n.t(:city)
     = f.errors :city
+
+  .submit_button
+    = f.submit
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function(){
+      $("input[type=date]").datepicker({dateFormat: 'yy-mm-dd'});
+    });
