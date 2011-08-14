@@ -10,5 +10,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, facebook_config.fetch(:api_key),
                       facebook_config.fetch(:api_secret)
   provider :google, google_config.fetch(:consumer_key),
-                    google_config.fetch(:consumer_secret)
+                    google_config.fetch(:consumer_secret),
+                    scope: "http://www.google.com/m8/feeds/"
 end
