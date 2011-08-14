@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   has_many :invitations_timeline, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_RELEVANT }
   has_many :events_timeline, :through => :invitations_timeline, :source => :event
 
+  has_many :pending_attendances, :class_name => "Attendance", :conditions => { :state => "invited" }
+  has_many :pending_events, :through => :pending_attendances, :source => :event
+
 
 
   def self.create_from_auth!(auth_hash)

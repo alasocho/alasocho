@@ -2,6 +2,13 @@
 
 
 #left_column
+  #invites
+    %h2= t('events.invites.title')
+    - unless @pending_invites.empty?
+      - @pending_invites.each do |invite|
+        = render invite
+        = link_to t('events.invites.see_all'), "#"
+
   #my_events
     %h2= t('events.my_events.title')
     = render @my_events
