@@ -79,7 +79,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.public_events_near(city)
-    public_events.where("city LIKE '%#{city}%'")
+    public_events.where(:city => city)
   end
 
   def attendance_for(user)
