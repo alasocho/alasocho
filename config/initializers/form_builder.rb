@@ -4,6 +4,10 @@ module ALasOcho
       messages = @object.errors[method]
       @template.content_tag(:span, messages.to_sentence, class: "errors", id: "error_for_#{@object_name}_#{method}") if messages.any?
     end
+
+    def submit(value=nil, options={})
+      super(value, { :class => "awesome medium magenta" }.merge(options))
+    end
   end
 end
 

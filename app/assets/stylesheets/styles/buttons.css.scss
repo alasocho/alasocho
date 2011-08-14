@@ -1,0 +1,46 @@
+.awesome{
+  background: #222 url(/images/alert-overlay.png) repeat-x;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 0 1px 3px #999;
+  -webkit-box-shadow: 0 1px 3px #999;
+  text-shadow: 0 -1px 1px #222;
+  border-bottom: 1px solid #222;
+  position: relative;
+  cursor: pointer;
+
+  /* Sizes ---------- */
+  &.small {
+    font-size: 11px;
+  }
+  &.medium {
+    font-size: 13px;
+  }
+  &.large {
+    font-size: 14px;
+    padding: 8px 14px 9px;
+  }
+
+  /* Colors ---------- */
+  &.blue {
+    background-color: #2daebf;
+  }
+  &.red {
+    background-color: #e33100;
+  }
+  &.magenta {
+    background-color: #a9014b;
+  }
+  &.orange {
+    background-color: #ff5c00;
+  }
+  &.yellow {
+    background-color: #ffb515;
+  }
+}
