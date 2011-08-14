@@ -4,7 +4,7 @@ module EventsHelper
     counts = {
       "events.show.confirmed"  => event.confirmed_invitations.size,
       "events.show.waitlisted" => event.waitlisted_invitations.size,
-      "events.show.invited"    => event.attendances.size
+      "events.show.invited"    => event.pending_invitations.size
     }
 
     counts.reject { |key, count| count.zero? }.map { |key, count| t(key, count: count) }.join(", ")
