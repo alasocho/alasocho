@@ -1,9 +1,6 @@
 class User::Anonymous
   attr_accessor :attendance
 
-  extend ActiveModel::Naming
-  include ActiveModel::Conversion
-
   def initialize(attendance)
     self.attendance = attendance
   end
@@ -17,6 +14,12 @@ class User::Anonymous
   def picture_url
     Gravatar.new(email).path
   end
+
+
+  # Stuff to play nice with the rest of Rails magic shit
+
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
 
   def self.model_name
     User.model_name
