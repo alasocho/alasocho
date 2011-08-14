@@ -164,6 +164,7 @@ es:
     are_you_sure: "¿Estás seguro?"
 
   event:
+    attendees_can_invite: "Los invitados pueden invitar más gente"
     confirmed_users:
       title: "Usuarios confirmados para el evento"
     waitlisted_users:
