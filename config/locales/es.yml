@@ -195,6 +195,7 @@ es:
           error: "No pudimos publicar el evento"
         cancel: "Cancela este Evento"
       edit:
+        title: "Edita este evento"
         cancel_event: "Cancela este Evento"
         title: "Actualiza este evento"
       cancel:
