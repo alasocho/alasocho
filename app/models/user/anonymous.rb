@@ -1,6 +1,9 @@
 class User::Anonymous
   attr_accessor :attendance
 
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+
   def initialize(attendance)
     self.attendance = attendance
   end
@@ -19,7 +22,10 @@ class User::Anonymous
     User.model_name
   end
 
-  def to_key
-    "anon"
+  # ActiveModel::Conversion seems to rely on that
+  def persisted?
+    false
   end
+
+
 end
