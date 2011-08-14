@@ -60,8 +60,19 @@
     top: 4px;
   }
 
-  #footer {
-    margin-top: 10px;
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 40px;
+    border-top: 1px solid #ccc;
+  }
+
+  footer a {
+    margin-right: 10px;
+  }
+
+  footer a:last-child {
+    margin-right: 0;
   }
 
 /* ============================= */
