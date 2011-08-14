@@ -148,6 +148,7 @@ es:
       success: "La cuenta %{user_name} ha sido combinada con la tuya"
 
   shared:
+    nothing_here: "No hay nada aqui."
     are_you_sure: "¿Estás seguro?"
 
   event:
