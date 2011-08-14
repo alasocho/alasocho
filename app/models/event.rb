@@ -1,6 +1,8 @@
 require 'micromachine'
+require 'ri_cal'
 
 class Event < ActiveRecord::Base
+
   VIEWABLE_STATES = %w(published cancelled)
 
   has_many :attendances
@@ -129,5 +131,27 @@ class Event < ActiveRecord::Base
 
   def set_default_last_commented_at
     self.last_commented_at ||= Time.current
+  end
+
+  def full_address
+    [self.location, self.city].compact.join(", ")
+  end
+
+  def full_description
+    [self.to_url, self.description].compact.join("\n\n")
+  end
+
+  def to_url
+     Rails.application.routes.url_helpers.event_url(self, host: ALasOcho.config[:canonical_host])
+  end
+
+  def to_ical
+    element = self
+    RiCal.Event do
+      description element.full_description
+      dtstart     element.start_at
+      dtend       element.end_at.nil? ? element.start_at + 1.hour : element.end_at
+      location    element.full_address
+    end.export
   end
 end

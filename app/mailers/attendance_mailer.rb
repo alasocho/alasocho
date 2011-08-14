@@ -3,6 +3,7 @@ class AttendanceMailer < ActionMailer::Base
 
   def invite_notification(attendance)
     @attendance = attendance
+    attachments['event.ics'] = attendance.event.to_ical
     mail(
       :subject => t("email.attendance.invite.subject", :event_name => attendance.event.name),
       :to      => attendance.email,
