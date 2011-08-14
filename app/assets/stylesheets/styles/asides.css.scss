@@ -16,4 +16,9 @@ aside {
 .alternate {
   background: #fa4100 url(/assets/backgrounds/orange-aside.png);
   color: #fff;
+
+  h2 {
+    color: #fff !important;
+    text-shadow: 1px 1px #fb5211 !important;
+  }
 }
