@@ -57,14 +57,14 @@
           = link_to t('event.form.see_all'), "#"
 
 
-      %h2= "#{ @event.atendees.size } " + t('event.invitees')
+      %h2= "#{ @event.attendances.size } " + t('event.invitees')
       %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more if @event.allow_invites or @event.host == current_user
       - if @event.attendances.size > EventsController::MAX_PENDING_ATTENDEES
         = link_to t('event.form.see_all'), event_invited_path(@event)
 
-      - @event.attendees.each do |invited|
-        = image_tag invited.picture_url
-        = invited.name
+      - @event.attendances.where(:state => 'invited').each do |attendance|
+        = image_tag attendance.user.picture_url
+        = attendance.user.name
 
 - content_for :javascript do
   :javascript
