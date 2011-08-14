@@ -13,8 +13,18 @@ window.A8 = {
   "Routers": {},
   "Views": {}
 }
+var hide_notifications = function(){
+  $("#notifications").hide()
+}
+
 $("#rally_badge").click(function(){
   window.location = "http://rallyonrails.com/teams/9";
+});
+
+$(document).keyup(function(event){
+  if(event.keyCode == 27){
+    hide_notifications()
+  }
 });
 
 $('#notifications_link').click(function(ev) {
