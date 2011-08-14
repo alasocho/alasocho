@@ -5,9 +5,11 @@ Bundler.setup
 
 require 'daemons'
 
+env_file = File.expand_path(File.dirname(__FILE__) + '/../config/environment')
 pid_dir  = File.expand_path(File.dirname(__FILE__) + '/../tmp/pids')
 
 Daemons.run_proc('resque_worker', dir_mode: :normal, dir: pid_dir, log_output: true) do
+  require env_file
   require 'resque'
 
   worker = nil
