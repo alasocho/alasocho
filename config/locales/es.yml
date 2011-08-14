@@ -87,16 +87,15 @@ es:
       link: "Editar detalles"
 
     invites:
-      title: "Mis invitaciones pendientes"
-      see_all: "Ver mis invitaciones pendientes"
+      title: "Invitaciones pendientes"
     relevant_events:
       title: "Todos mis eventos"
     public:
       title: "Eventos públicos"
       see_all: "Ver todos los eventos públicos"
-      near_you: "Eventos públicos en %{current_city}"
+      near_you: "Mostrando eventos en %{current_city}"
     my_events:
-      title: "Mis Eventos"
+      title: "Mis eventos"
       see_all: "Ver todos mis eventos"
     declined:
       title: "Quiénes rechazaron la invitación"
@@ -171,7 +170,9 @@ es:
     invited_users:
       title: "Usuarios invitados a este evento"
     available_seats: "lugares disponibles."
-    occupied_seats: "cupos llenos."
+    occupied_seats:
+      one: "%{used}/%{count} lugar"
+      other: "%{used}/%{count} lugares"
     waitlist: "Lista de espera"
     people_waiting: "personas esperando"
     end_at: "Fin"

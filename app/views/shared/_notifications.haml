@@ -6,6 +6,6 @@
       - notifications.each do |attendance|
         %li
           - if attendance.need_action?
-            = render :partial => "attendances/as_event", :locals => { :attendance => attendance }
+            = render attendance.event, attendance: attendance
           - else
-            = render :partial => "shared/commented_attendance", :locals => { :attendance => attendance }
+            = render "shared/commented_attendance", :attendance => attendance

@@ -1,24 +1,21 @@
 = link_to t('events.form.button.new'), new_event_path
 
+#public_events
+  %h2= t('events.public.title')
+  = t('events.public.near_you', :current_city => @current_city)
+  %ul= render @public_events
+  = link_to t('events.public.see_all'), public_events_path
 
-#left_column
-  #invites
-    %h2= t('events.invites.title')
-    - if !@pending_invites.empty?
+#invites
+  %h2= t('events.invites.title')
+  - if @pending_invites.any?
+    %ul
       - @pending_invites.each do |invite|
-        = render :partial => 'attendances/as_event', :locals => { :attendance => invite }
-        = link_to t('events.invites.see_all'), "#"
-    - else
-      = t('shared.nothing_here')
+        = render invite.event, attendance: invite
+  - else
+    = t('shared.nothing_here')
 
-  #my_events
-    %h2= t('events.my_events.title')
-    = render @my_events
-    = link_to t('events.my_events.see_all'), events_path
-
-#right_column
-  #public_events
-    %h2= t('events.public.title')
-    = t('events.public.near_you', :current_city => @current_city)
-    = render @public_events
-    = link_to t('events.public.see_all'), public_events_path
+#my_events
+  %h2= t('events.my_events.title')
+  %ol= render @my_events
+  = link_to t('events.my_events.see_all'), events_path

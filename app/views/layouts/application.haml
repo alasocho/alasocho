@@ -32,8 +32,9 @@
               = link_to t("accounts.edit.link"), edit_account_path
               |
               = link_to t("sessions.sign_out.link"), "/auth/sign_out"
-              |
-              = render :partial => "shared/notifications"
+              - if current_user.attendances.need_attention.includes(:event).any?
+                |
+              = render "shared/notifications"
           - else
             - Authorization::PROVIDERS.each do |provider|
               = link_to t("sessions.sign_in.#{provider}"),  "/auth/#{provider}",  class: "sign_in #{provider}"
