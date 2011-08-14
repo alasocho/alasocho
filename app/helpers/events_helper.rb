@@ -36,7 +36,7 @@ module EventsHelper
       t("events.show.duration.minutes", minutes: minutes)
     else
       hours, minutes = "%02d" % hours, "%02d" % minutes
-      t("events.show.duration.hours", hours: hours, minutes: minutes)
+      t("events.show.duration.hours", count: hours, minutes: minutes)
     end
   end
 

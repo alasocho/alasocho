@@ -31,6 +31,9 @@
     - if @event.end_at.present?
       %time.end_time(datetime="#{@event.end_at.to_s(:db)}")
         = fancy_end_at @event
+    - else
+      %span.end_time
+        =t "events.show.end_time.default"
 
     .location= @event.location
     - if @event.city.present?

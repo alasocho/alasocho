@@ -57,13 +57,14 @@ es:
           other: "%{count} días"
         hours:
           one:   "1 hora"
-          other: "%{hours}:%{minutes} horas"
+          other: "%{count}:%{minutes} horas"
         minutes: "%{minutes} minutos"
 
       end_time:
         hours: "Termina a las %{time} (%{duration})"
         next_day: "Termina al día siguiente a las %{time} (%{duration})"
         arbitrary: "Termina el %{time}"
+        default: "Sin hora de finalización"
 
       feed:
         subscribe: "Suscríbete:"
