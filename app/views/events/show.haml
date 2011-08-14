@@ -40,16 +40,16 @@
     - if @event.city.present?
       .city= @event.city
 
-  %aside#feeds
-    = t("events.show.feed.subscribe")
-    = link_to t("events.show.feed.ical/outlook"), "#{event_path(@event) }.ics", :class => "calendar"
-    = link_to t("events.show.feed.gcal"), "#", :class => "calendar"
-
   %aside#actions
     - if signed_in?
       = render "attendance_actions", attendance: @attendance, event: @event
     - else
       = t("event.need_login_to_confirm")
+
+  %aside#feeds
+    = t("events.show.feed.subscribe")
+    = link_to t("events.show.feed.ical/outlook"), "#{event_path(@event) }.ics", :class => "calendar"
+    = link_to t("events.show.feed.gcal"), "#", :class => "calendar"
 
   - if @event.confirmed_invitations.any?
     %aside#confirmed_guests.guests.alternate

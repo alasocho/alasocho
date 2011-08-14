@@ -1,4 +1,9 @@
-- unless attendance.try(:confirmed?)
-  = link_to (attendance.event.slots_available? ? t('event.confirm.slots_available') : t("event.confirm.no_slots_available")), event_attendance_path(attendance.event), :method => :post
-- unless attendance.try(:declined?)
-  = link_to t('event.decline'), event_attendance_path(attendance.event), :method => :delete
+- if attendance.try(:confirmed?)
+  %span.confirm.disabled= (attendance.event.slots_available? ? t('event.confirm.slots_available') : t("event.confirm.no_slots_available"))
+- else
+  = link_to (attendance.event.slots_available? ? t('event.confirm.slots_available') : t("event.confirm.no_slots_available")), event_attendance_path(attendance.event), :method => :post, :class => "confirm"
+
+- if attendance.try(:declined?)
+  %span.decline.disabled= t('event.decline')
+- else
+  = link_to t('event.decline'), event_attendance_path(attendance.event), :method => :delete, :class => "decline"
