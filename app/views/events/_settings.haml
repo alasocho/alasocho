@@ -4,7 +4,7 @@
 
 .form_field
   = f.check_box :allow_invites, :disabled => f.object.public?
-  = f.label :allow_invites, t("event.allow_invites")
+  = f.label :allow_invites, t("event.attendees_can_invite")
 
 .form_field
   %button#no_limit.toggle_button= t("event.form.invite.no_limit")

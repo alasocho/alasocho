@@ -15,15 +15,15 @@
       = f.errors :start_at
       = f.label :start_at
       = f.fields_for :start_at do |start_at|
-        = start_at.text_field :date, type: "date"
-        = start_at.time_select :time, type: "time"
+        = start_at.text_field :date, type: "date", value: "#{@event.start_at.to_s(:date) if @event.start_at.present?}"
+        = start_at.text_field :time, type: "time", value: "#{@event.start_at.to_s(:time) if @event.start_at.present?}"
 
     .form_field
       = f.errors :end_at
       = f.label :end_at
       = f.fields_for :end_at do |end_at|
-        = end_at.text_field :date, type: "date"
-        = end_at.time_select :time, type: "time"
+        = end_at.text_field :date, type: "date", value: "#{@event.end_at.to_s(:date) if @event.end_at.present?}"
+        = end_at.text_field :time, type: "time", value: "#{@event.end_at.to_s(:time) if @event.end_at.present?}"
 
   .form_field
     = f.label :location

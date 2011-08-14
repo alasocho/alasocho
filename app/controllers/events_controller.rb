@@ -7,9 +7,11 @@ class EventsController < ApplicationController
   end
 
   def cleanup_date(hash)
-    Time.parse("#{hash[:date]} #{hash[:time]}")
-  rescue => e
-    nil
+    if hash[:date].present? && hash[:time].present?
+      Time.parse("#{hash[:date]} #{hash[:time]} UTC +00:00")
+    else
+      nil
+    end
   end
 
   def create
@@ -69,7 +71,7 @@ class EventsController < ApplicationController
     start_at = cleanup_date data[:start_at]
     end_at = cleanup_date data[:end_at]
     if start_at then data[:start_at] = start_at else data.delete(:start_at) end
-    if end_at then data[:end_at] = end_at else data.delete(:end_at) end
+    data[:end_at] = end_at
 
     @event.attributes = data
 

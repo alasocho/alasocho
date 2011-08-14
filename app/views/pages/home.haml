@@ -1,0 +1,16 @@
+#welcome
+  %h1.greetings= t("homepage.welcome.message")
+  = t("homepage.welcome.description")
+
+  #organize_an_event
+    %h2= t("homepage.welcome.organize_an_event")
+
+  #welcome
+    %ul#features
+      %li= t("homepage.welcome.features.social_logins")
+      %li= t("homepage.welcome.features.waiting_list")
+      %li= t("homepage.welcome.features.private_events")
+      %li= t("homepage.welcome.features.public_events")
+
+  #latest_public_events
+    = t("homepage.welcome.latest_public_events")

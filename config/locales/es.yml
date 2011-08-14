@@ -160,6 +160,7 @@ es:
       title: "Usuarios invitados a este evento"
     available_seats: "lugares disponibles."
     occupied_seats: "cupos llenos."
+    attendees_can_invite: "Los invitados pueden invitar."
     waitlist: "Lista de espera"
     people_waiting: "personas esperando"
     end_at: "Fin"
@@ -195,6 +196,7 @@ es:
         cancel: "Cancela este Evento"
       edit:
         cancel_event: "Cancela este Evento"
+        title: "Actualiza este evento"
       cancel:
         message_cancelled: "El evento %{event_name} ha sido cancelado."
       see_all: "Ver todos"
@@ -235,3 +237,17 @@ es:
       new_comment:
         subject: "Hay un nuevo comentario en el evento %{event_name}"
         text: "Hay un nuevo comentario en el evento %{event_name}. Puedes verlo en la página del evento. No volverás a recibir más notificaciones como esta mientras no visites el evento."
+
+  homepage:
+    welcome:
+      message: "Bienvenido!"
+      description:
+      what_is_it:
+      features:
+        social_logins: "Loggeate con cualquiera de tus cuentas favoritas, no necesitas registrarte para poder empezar a crear eventos o encontrar eventos cerca tuyo."
+        waiting_list: "Listas de espera automaticas: nunca mas te quedes corto de invitados. Marca un cupo e invita a todos tus amigos nosotros nos encargaremos de dejarle el lugar disponible a lo que si estan dispuestos a ir."
+        private_events: "Eventos privados: un partido de futbol solo con amigos? cumpleanos? partidas de juegos de mesa?. Elige tus invitados y nosotros los contactaremos por mail mientras tu gestionas el evento como mas te guste."
+        public_events: "Eventos privados: organiza eventos sobre los temas que te gusten y podras conocer otras personas con tus mismos intereses."
+      latest_public_events: "Aqui estan los ultimos eventos publicos"
+      organize_an_event: "Organiza un evento"
+      login: "Loggeate"
