@@ -152,6 +152,11 @@ es:
       slots_available: "Voy"
       no_slots_available: "Lista de espera"
     decline: "No voy"
+    host_actions:
+      confirm:
+        slots_available: "Asiste"
+        no_slots_available: "Lista de espera"
+      decline: "No asiste"
 
     form:
       create:
@@ -182,6 +187,10 @@ es:
       waitlist: "Estás en la lista de espera para %{event_name}. Si se libera algún lugar te avisamos."
       decline: "Ya no estás en la lista de invitados de %{event_name}. ¿Quizás la próxima?"
       already_taken: "Esa invitación ya fue asignada a otro usuario."
+      as_host:
+        confirm: "Has confirmado la asistencia de %{user_name} a %{event_name}"
+        waitlist: "Has puesto a %{user_name} en la lista de espera para %{event_name}. Si se libera algún lugar le avisaremos."
+        decline: "%{user_name} ya no está en la lista de invitados de %{event_name}."
 
   time:
     formats:
