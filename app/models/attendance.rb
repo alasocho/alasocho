@@ -24,6 +24,10 @@ class Attendance < ActiveRecord::Base
 
   validates :user_id, :uniqueness => { :scope => :event_id, :allow_nil => true }
 
+  def owner
+    user || User::Anonymous.new(self)
+  end
+
   def invite!
     state_machine.trigger(:invite)
     save!(:validate => false)
