@@ -1,0 +1,24 @@
+#notifications {
+  display: none;
+  .holding_box {
+    position: absolute;
+    width: 100%;
+    ol {
+      background: #F8F8F8;
+      list-style: none;
+      border: solid 1px #777;
+      max-width: 300px;
+      float: right;
+      li {
+        border-bottom: solid 1px #777;
+        &:hover {
+          background: #F0F0F0;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+        padding: 5px;
+      }
+    }
+  }
+}
