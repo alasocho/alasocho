@@ -5,9 +5,9 @@ es:
   sessions:
     sign_out:
       link: "Cerrar sesión"
-      success: "Hasta pronto!"
+      success: "¡Hasta pronto!"
     sign_in:
-      success: "Hola! Has entrado exitosamente"
+      success: "¡Hola! Has entrado exitosamente"
       twitter: "Entrar con Twitter"
       facebook: "Entrar con Facebook"
       google: "Entrar con Google"
@@ -161,8 +161,8 @@ es:
       invite:
         title: "Invitaciones"
         after_attendee_quota: "personas pueden asistir"
-        explanation: "Puede invitar a mas de %{spots_left} personas! Si mas personas confirman quedaran en una lista de espera"
-        no_limit: "sin limite?"
+        explanation: "¡Puedes invitar a más de %{spots_left} personas! Si más personas confirman quedaran en una lista de espera"
+        no_limit: "¿sin limite?"
         submit: "Publicar evento"
         people: "Invitar más gente"
         message:
