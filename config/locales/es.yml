@@ -28,6 +28,7 @@ es:
         public: "Este evento es público"
         allow_invites: "Los invitados pueden invitar más gente"
         attendee_quota: "Un límite de"
+        invitee_list: "Lista de invitados"
       user:
         name: "Nombre"
         email: "Email"
@@ -106,7 +107,7 @@ es:
       create:
         title: "Organiza un evento"
         message:
-          success: "Evento guardado"
+          success: "Perfecto! Ahora puedes invitar gente y publicar tu evento."
           error: "No pudimos guardar el evento. Por favor, verifica la información."
       invite:
         title: "Invitaciones"

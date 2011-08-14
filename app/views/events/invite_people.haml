@@ -1,10 +1,10 @@
-%h2= t("event.form.invite.title")
+%h2=t  "event.form.invite.title"
 
 = form_for @event, class: :invite_more_people do |f|
   = render "settings", :f => f
   = render "invitee_list", :f => f
 
-  .explanation
+  %p.explanation
     = t("event.form.invite.explanation")
 
   .submit_button
