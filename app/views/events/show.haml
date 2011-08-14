@@ -58,7 +58,7 @@
         = t 'events.show.confirmed', count: @event.confirmed_invitations.size
       - if @event.limited?
         %span= t "events.show.available_seats", count: @event.available_slots
-      = render @confirmed_invitations
+      %ul= render @confirmed_invitations
       - if @event.confirmed_invitations.size > EventsController::MAX_CONFIRMED_ATTENDEES
         = link_to t('event.form.see_all'), event_confirmed_path(@event)
 
@@ -68,7 +68,7 @@
       %h2
         = t "events.show.waitlist"
         %span= t "events.show.people_waiting", count: @event.waitlisted_invitations.size
-      = render @waitlisted_invitations
+      %ul= render @waitlisted_invitations
       - if @event.waitlisted_invitations.size > EventsController::MAX_WAITLISTED_ATTENDEES
         = link_to t('event.form.see_all'), event_waitlisted_path(@event)
 
@@ -79,7 +79,7 @@
       %span= link_to_invite_if_allowed @event
     - if @event.attendances.size > EventsController::MAX_PENDING_ATTENDEES
       = link_to t('event.form.see_all'), event_invited_path(@event)
-    = render @invited_invitations
+    %ul= render @invited_invitations
 
 #modal_window
 

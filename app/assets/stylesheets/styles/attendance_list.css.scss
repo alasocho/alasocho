@@ -3,9 +3,13 @@
   list-style-type: none;
   text-align: center;
   font-size: 13px;
+  height: 90px;
+  width: 64px;
+  line-height: 16px;
 
   .avatar {
     display: block;
-    margin-bottom: 2px;
+    margin-left: 6px;
+    margin-bottom: 5px;
   }
 }
