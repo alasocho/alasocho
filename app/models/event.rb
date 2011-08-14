@@ -172,4 +172,8 @@ class Event < ActiveRecord::Base
     self.token = TokenMaker.new(self).make if token.blank?
     save(:validate => false)
   end
+
+  def to_param
+    [id, token].join("-")
+  end
 end
