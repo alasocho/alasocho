@@ -1,5 +1,5 @@
 !!! 5
-%html(lang="#{current_locale}")
+%html{lang: "#{current_locale}", 'xmlns:og' => "http://ogp.me/ns#"}
   %head
     %meta(charset="utf-8")
     %title=[@page_title, t("app.title")].compact.join(' - ')
