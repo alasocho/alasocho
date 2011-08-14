@@ -8,6 +8,7 @@ ALasOcho::Application.routes.draw do
     post :invite
     get :invite_people
     get :confirmed, :action => "confirmed", :as => "confirmed"
+    get :invited, :action => "invited", :as => "invited"
 
     resource :attendance, :only => [:create, :destroy]
   end
