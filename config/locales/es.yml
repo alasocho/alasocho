@@ -190,6 +190,7 @@ es:
         no_limit: "¿sin límite?"
         submit: "Publicar evento"
         people: "Invitar más gente"
+        more_people: "Agregar invitados ahora"
         message:
           success: "Evento publicado"
           error: "No pudimos publicar el evento"

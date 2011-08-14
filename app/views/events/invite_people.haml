@@ -12,7 +12,7 @@
 - content_for :javascript do
   :javascript
     $(function(){
-      var watcher = new A8.Routers.EventRouter(#{@event.id});
+      var watcher = new A8.Routers.EventRouter(#{@event.id}, $("#invitees"));
       new A8.Views.Events.SettingsView($("#no_limit"), watcher);
     });
 

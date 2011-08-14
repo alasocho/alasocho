@@ -87,7 +87,7 @@
 - content_for :javascript do
   :javascript
     $(document).ready(function(){
-      router = new A8.Routers.EventRouter(#{@event.id});
+      var router = new A8.Routers.EventRouter(#{@event.id}, $("#modal_window"));
       router.counter_updated(#{@event.attendee_quota})
     });
 
