@@ -16,6 +16,6 @@ class User::Anonymous
   end
 
   def self.model_name
-    "User"
+    User.model_name
   end
 end
