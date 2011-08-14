@@ -174,6 +174,6 @@ class Event < ActiveRecord::Base
   end
 
   def to_param
-    [id, token].join("-")
+    [id, token].compact.join("-")
   end
 end
