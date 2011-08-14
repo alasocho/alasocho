@@ -67,7 +67,7 @@
           maxDate: dateMax,
         };
       };
-      var pickers = $("input[type=date]").datepicker({
+      var pickers = $("#event_start_at_date, #event_end_at_date").datepicker({
         dateFormat: 'yy-mm-dd',
         beforeShow: custom_range,
         numberOfMonths: 2

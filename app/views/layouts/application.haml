@@ -26,6 +26,7 @@
         #user_area
           - if signed_in?
             #current_user
+              = link_to t('events.form.button.new'), new_event_path, class: ["awesome", "green", "create_new_event", "right"]
               = image_tag current_user.picture_url
               = current_user.name
               |
