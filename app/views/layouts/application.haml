@@ -14,6 +14,8 @@
     %meta{property: "og:image",     content: (@page_image || "http://#{ALasOcho.config[:canonical_host]}/assets/logo-header.png")}
     %meta{property: "og:url",       content: (@page_url || request.url)}
     %meta{property: "og:site_name", content: t("app.title")}
+    - if @page_description
+      %meta{property: "og:description", content: @page_description}
   %body
     #rally_badge
     .container
