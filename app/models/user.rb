@@ -37,10 +37,6 @@ class User < ActiveRecord::Base
     super.presence || Gravatar.new(email).path
   end
 
-  def interested_to_attend
-    attendances.need_attention
-  end
-
   def linked_to?(service)
     authorizations.where(provider: service).any?
   end
