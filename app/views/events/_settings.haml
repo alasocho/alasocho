@@ -4,7 +4,11 @@
 
 .form_field
   = f.check_box :allow_invites, :disabled => f.object.public?
-  = f.label :allow_invites
+  = f.label :allow_invites, t("event.allow_invites")
+
+.form_field
+  = label_tag :no_limit, t("event.form.invite.no_limit")
+  %input{type: :checkbox, id: :no_limit}
 
 .form_field.attendee_quota_field
   = f.label :attendee_quota

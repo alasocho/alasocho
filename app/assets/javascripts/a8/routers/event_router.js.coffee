@@ -1,16 +1,16 @@
 class A8.Routers.EventRouter extends Backbone.Router
-  routes: {
-    "/invite_people" : "invite"
-  }
-
   initialize: (event_id) ->
+    this.invite = new A8.Views.Events.InvitePeopleView(event_id)
     $(".invite_more").click =>
-      this.navigate "/invite_people"
-      invite = new A8.Views.Events.InvitePeopleView(event_id)
-      invite.container = $("#modal_window")
-      invite.container.addClass("show")
-      element = invite.render().el
-      invite.container.html element
+      # TODO: Refactor
+      this.invite = new A8.Views.Events.InvitePeopleView(event_id)
+      this.invite.container = $("#modal_window")
+      this.invite.container.addClass("show")
+      element = this.invite.render().el
+      this.invite.update_limit this.counter_value
+      this.invite.container.html element
       false
 
-  invite: ->
+  counter_updated: (value) ->
+    this.counter_value = value
+    this.invite.update_limit this.counter_value

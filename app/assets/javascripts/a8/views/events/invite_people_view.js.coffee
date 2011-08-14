@@ -11,24 +11,16 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
 
   container: null
 
-  template: "
-    <h1>Invite new users</h1>
-    <button id='invite'>Invite</button>
-    <button id='close_modal'>close</button>
-   "
+  template: $("div[data-template-for='InvitePeopleView']").html()
 
   attendees_count: 0
 
   initialize: (@event_id) ->
-    this.bind('add', this.add_one, this)
-    this.bind('reset', this.add_all, this)
-    this.bind('all', this.render, this)
 
-    content = _.template(this.template)
-    $(this.el).append content
-
-    this.add_one()
-    this
+  update_limit: (value) ->
+    template = _.template $("div[data-template-for='AttendeeQuotaView']").html()
+    content = template(spots_left: value)
+    $(this.el).find(".explanation").html content
 
   invite: (event) ->
     # TODO: Refactor someday
@@ -57,7 +49,11 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     $(this.el).append element
     $(element).find("input").focus()
 
+
   render: ->
+    content = _.template(this.template)
+    $(this.el).append content()
+    this.add_one()
     this
 
 class A8.Views.Events.InvitePeopleView.AddInviteeView extends Backbone.View
@@ -67,7 +63,7 @@ class A8.Views.Events.InvitePeopleView.AddInviteeView extends Backbone.View
     'click .remove_attendee': 'remove_attendee'
   }
 
-  template: "<input class='add_attendee'> <button class='remove_attendee'>-</button>"
+  template: $("div[data-template-for='AddInviteeView']").html()
 
   initialize: (@options) ->
     content = _.template(this.template)

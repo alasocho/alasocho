@@ -1,0 +1,12 @@
+%div{"data-template-for" => 'InvitePeopleView'}
+  %h1= t("event.form.invite.people")
+  %button#invite= t("event.form.invite.button")
+  %button#close_modal= t("event.form.invite.close")
+  .explanation
+
+%div{"data-template-for" => 'AttendeeQuotaView'}
+  = t("event.form.invite.explanation")
+
+%div{"data-template-for" => 'AddInviteeView'}
+  %input.add_attendee
+  %button.remove_attendee -

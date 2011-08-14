@@ -1,11 +1,11 @@
-%h2=t  "event.form.invite.title"
+#modal_window
+%h2= t("event.form.invite.title")
 
 = form_for @event, class: :invite_more_people do |f|
   = render "settings", :f => f
   = render "invitee_list", :f => f
 
-  %p.explanation
-    = t("event.form.invite.explanation")
+  %a.invite_more= t("event.form.invite.more")
 
   .submit_button
     = f.submit t("event.form.invite.submit"), id: :submit_event
@@ -14,5 +14,8 @@
 - content_for :javascript do
   :javascript
     $(function(){
-      new A8.Views.Events.SettingsView($("#invite_more_people"));
+      var watcher = new A8.Routers.EventRouter(#{@event.id});
+      new A8.Views.Events.SettingsView($("#invite_more"), watcher);
     });
+
+= render "invite_people_template"
