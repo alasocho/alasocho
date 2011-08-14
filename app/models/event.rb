@@ -26,11 +26,6 @@ class Event < ActiveRecord::Base
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
 
-  def self.viewable_by(user)
-    join_attendances.where("events.host_id = :user_id or ((attendances.user_id = :user_id or events.public is true) and events.state in (:states))",
-                           :user_id => user.id, :states => VIEWABLE_STATES)
-  end
-
   validates :name, :start_at, :presence => true
   validates :attendee_quota, :numericality => {
     :only_integer => true,
@@ -41,6 +36,11 @@ class Event < ActiveRecord::Base
   attr_accessible :name, :description, :start_at, :end_at, :location, :city, :public, :allow_invites, :attendee_quota, :invitee_list
 
   attr_accessor :invitee_list
+
+  def self.viewable_by(user)
+    join_attendances.where("events.host_id = :user_id or ((attendances.user_id = :user_id or events.public is true) and events.state in (:states))",
+                           :user_id => user.id, :states => VIEWABLE_STATES)
+  end
 
   def publish!
     state_machine.trigger(:publish)
@@ -59,6 +59,10 @@ class Event < ActiveRecord::Base
       machine.transitions_for[:publish] = { "created" => "published" }
       machine.transitions_for[:cancel]  = { "created" => "cancelled", "published" => "cancelled" }
     end
+  end
+
+  def location
+    self[:location].presence || I18n.t("activerecord.defaults.event.location")
   end
 
   def preserve_state_machine
@@ -82,7 +86,11 @@ class Event < ActiveRecord::Base
   end
 
   def allow_invites_from(user)
-    self.public or allow_invites or host == user
+    public? || allow_invites || host == user
+  end
+
+  def allow_edits_by(user)
+    host == user
   end
 
   def slots_available?

@@ -1,68 +1,75 @@
 #title
-  %h1= @event.name
-  #info_short
-    = tagline(@event)
+  %h1
+    = @event.name
+    - if @event.allow_edits_by(current_user)
+      %span= link_to t('events.edit.link'), edit_event_path(@event), class: "edit"
 
-    %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more if @event.allow_invites or @event.host == current_user
-    %span= link_to t('event.form.event.edit'), edit_event_path(@event) if current_user == @event.host
+  #info_short
+    %address.organizer
+      %span=t "events.show.organizer"
+      = image_tag @event.host.picture_url, class: "tiny avatar"
+      = @event.host.name
+
+    = tagline(@event)
+    = link_to_invite_if_allowed @event
 
   #left_column
 
     #description
-      %p= @event.description
+      =simple_format @event.description
 
-    #comments
-      = render :partial => 'comments/new'
+    %section#comments
+      = render 'comments/new'
+      - if @comments.any?
+        %ol= render @comments
 
-      = render @comments
+  %aside#time_and_space
+    %time.start_time(datetime="#{@event.start_at.to_s(:db)}")
+      = l(@event.start_at, format: :default).capitalize
 
-  #right_column
+    - if @event.end_at.present?
+      %time.end_time(datetime="#{@event.end_at.to_s(:db)}")
+        = fancy_end_at @event
 
-    #time_and_space
-      %h3= l @event.start_at, :format => :time
-      - unless @event.end_at.nil?
-        = "#{ t('event.end_at') } #{ @event.end_at }"
+    .location= @event.location
+    - if @event.city.present?
+      .city= @event.city
 
-      %h3= @event.location
-      = @event.city
+  %aside#feeds
+    = t("events.show.feed.subscribe")
+    = link_to t("events.show.feed.ical"), "#", :class => "calendar"
+    = link_to t("events.show.feed.gcal"), "#", :class => "calendar"
+    = link_to t("events.show.feed.ycal"), "#", :class => "calendar"
 
-      = link_to "iCal", "#", :class => "calendar"
-      = link_to "GoogleCal", "#", :class => "calendar"
-      = link_to "YahooCal", "#", :class => "calendar"
+  %aside#actions
+    = render "attendance_actions", attendance: @attendance, event: @event
 
-    #actions
-      = render "attendance_actions", :attendance => @attendance, :event => @event
-
-    #invitees
-      %h2=t 'event.confirmed', :count => @event.confirmed_invitations.size
+  - if @event.confirmed_invitations.any?
+    %aside#confirmed_guests
+      %h2
+        = t 'events.show.confirmed', count: @event.confirmed_invitations.size
       - if @event.limited?
-        %span= "(#{ @event.available_slots } " +  t('event.available_seats') + ")"
-
-      - @confirmed_attendees.each do |confirmed_attendee|
-        = image_tag confirmed_attendee.picture_url
-        = confirmed_attendee.name
+        %span= t "events.show.available_seats", count: @event.available_slots
+      = render @confirmed_attendees
       - if @event.confirmed_invitations.size > EventsController::MAX_CONFIRMED_ATTENDEES
         = link_to t('event.form.see_all'), event_confirmed_path(@event)
 
 
-      - unless @waitlisted.empty?
-        %h2= t('event.waitlist')
-        %span= "#{ @event.waitlisted_invitations.size }" + t('event.people_waiting')
-        - @waitlisted.each do |waitlisted|
-          = image_tag waitlisted.picture_url
-          = waitlisted.name
-        - if @event.waitlisted_invitations.size > EventsController::MAX_WAITLISTED_ATTENDEES
-          = link_to t('event.form.see_all'), "#"
+  - if @event.waitlisted_invitations.any?
+    %aside#waitlist
+      %h2
+        = t "events.show.waitlist"
+        %span= t "events.show.people_waiting", count: @event.waitlisted_invitations.size
+      = render @waitlisted
+      - if @event.waitlisted_invitations.size > EventsController::MAX_WAITLISTED_ATTENDEES
+        = link_to t('event.form.see_all'), "#"
 
 
-      %h2= "#{ @event.attendances.size } " + t('event.invitees')
-      %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more if @event.allow_invites or @event.host == current_user
-      - if @event.attendances.size > EventsController::MAX_PENDING_ATTENDEES
-        = link_to t('event.form.see_all'), event_invited_path(@event)
-
-      - @event.attendances.where(:state => 'invited').each do |attendance|
-        = image_tag attendance.user.picture_url
-        = attendance.user.name
+  %h2=t "events.show.invited", count: @event.attendances.size
+  %span= link_to_invite_if_allowed @event
+  - if @event.attendances.size > EventsController::MAX_PENDING_ATTENDEES
+    = link_to t('event.form.see_all'), "#"
+  = render @invited
 
 #modal_window
 

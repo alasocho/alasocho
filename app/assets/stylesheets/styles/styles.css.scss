@@ -25,6 +25,8 @@
   #main h1 {
     padding: 10px 0 6px;
     line-height: 32px;
+    color: #c93c00;
+    text-shadow: 1px 1px #ccc;
   }
 
   a {
@@ -38,6 +40,15 @@
   a:hover, a:active {
     color: #c93c00;
     text-decoration: underline;
+  }
+
+  .avatar.tiny {
+    height: 20px;
+    width: 20px;
+    padding: 1px;
+    border: 1px solid #ccc;
+    position: relative;
+    top: 4px;
   }
 
 /* ============================= */

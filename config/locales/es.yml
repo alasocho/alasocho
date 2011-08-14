@@ -32,8 +32,48 @@ es:
         name: "Nombre"
         email: "Email"
         wants_comment_notifications: "Quiero recibir notificaciones de nuevos comentarios"
+    defaults:
+      event:
+        location: "Lugar a convenir"
 
   events:
+    show:
+      confirmed:
+        one:   "1 confirmado"
+        other: "%{count} confirmados"
+      invited: "%{count} sin confirmar"
+      waitlisted: "%{count} en la lista de espera"
+
+      waitlist: "Lista de espera"
+      people_waiting:
+        one:   "1 persona esperando"
+        other: "%{count} personas esperando"
+
+      organizer: "Organizado por"
+
+      duration:
+        days:
+          one:   "1 día"
+          other: "%{count} días"
+        hours:
+          one:   "1 hora"
+          other: "%{hours}:%{minutes} horas"
+        minutes: "%{minutes} minutos"
+
+      end_time:
+        hours: "Termina a las %{time} (%{duration})"
+        next_day: "Termina al día siguiente a las %{time} (%{duration})"
+        arbitrary: "Termina el %{time}"
+
+      feed:
+        subscribe: "Suscríbete:"
+        ical: "iCal"
+        gcal: "Google Calendar"
+        ycal: "Yahoo! Calendar"
+
+    edit:
+      link: "Editar detalles"
+
     invites:
       title: "Mis invitaciones pendientes"
       see_all: "Ver mis invitaciones pendientes"
@@ -47,6 +87,7 @@ es:
       title: "Mis Eventos"
       see_all: "Ver todos mis eventos"
     form:
+      invite: "Invitar más gente"
       button:
         new: "Crear un Evento"
       placeholders:
@@ -57,8 +98,14 @@ es:
         location: "Paraguay 2211"
         city: "Montevideo, Uruguay"
 
-  shared:
-    are_you_sure: "¿Estás seguro?"
+  comments:
+    form:
+      leave_a_comment:
+        zero:  "Deja un comentario"
+        one:   "Únete a la conversación"
+        other: "Únete a la conversación"
+      create: "Tu commentario fue creado"
+      submit: "Enviar comentario"
 
   accounts:
     form:
@@ -85,6 +132,9 @@ es:
     create:
       success: "La cuenta %{user_name} ha sido combinada con la tuya"
 
+  shared:
+    are_you_sure: "¿Estás seguro?"
+
   event:
     confirmed_users:
       title: "Usuarios confirmados para el evento"
@@ -94,16 +144,9 @@ es:
       title: "Usuarios invitados a este evento"
     available_seats: "lugares disponibles."
     occupied_seats: "cupos llenos."
-    invitees: "invitados"
     waitlist: "Lista de espera"
     people_waiting: "personas esperando"
     end_at: "Fin"
-    confirmed:
-      one:   "1 confirmado"
-      other: "%{count} confirmados"
-    invited:
-      one:   "1 invitado"
-      other: "%{count} invitados"
     confirm:
       slots_available: "Voy"
       no_slots_available: "Lista de espera"
@@ -163,10 +206,3 @@ es:
       new_comment:
         subject: "Hay un nuevo comentario en el evento %{event_name}"
         text: "Hay un nuevo comentario en el evento %{event_name}. Puedes verlo en la página del evento. No volverás a recibir más notificaciones como esta mientras no visites el evento."
-
-
-  comment:
-    form:
-      title: "Comentarios"
-      leave_a_comment: "Deja un comentario"
-      submit: "Enviar comentario"

@@ -1,6 +1,6 @@
 = form_for [@event, Comment.new] do |f|
   .form_field
-    = f.label :text, t('comment.form.leave_a_coment')
+    = f.label :text, t("comments.form.leave_a_comment", count: @event.comments.count)
     = f.text_area :text
 
-  = f.submit t('comment.form.submit')
+  = f.submit t('comments.form.submit')

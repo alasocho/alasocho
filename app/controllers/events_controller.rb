@@ -52,6 +52,7 @@ class EventsController < ApplicationController
 
     if @event.save
       @event.publish!
+
       NotifyDateChange.enqueue(@event.id) if date_changed
       flash[:notice] = t("event.form.invite.message.success")
 
@@ -67,11 +68,11 @@ class EventsController < ApplicationController
 
   def show
     load_event
-    @attendance           = @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? }
-    @comments             = @event.comments
-    @confirmed_attendees  = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES).map(&:owner)
-    @waitlisted           = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES).map(&:owner)
-    @invited              = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES).map(&:owner)
+    @attendance          = @event.attendance_for(current_user)#.tap { |a| a.touch(:updated_at) unless a.new_record? }
+    @comments            = @event.comments
+    @confirmed_attendees = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES).map(&:owner)
+    @waitlisted          = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES).map(&:owner)
+    @invited             = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES).map(&:owner)
   end
 
   def destroy

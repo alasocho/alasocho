@@ -1,0 +1,78 @@
+h1 .edit {
+  font-size: 16px;
+  font-weight: normal;
+  text-shadow: none;
+  float: right;
+  text-decoration: underline;
+  text-transform: lowercase;
+}
+
+#info_short, .organizer {
+  margin-bottom: 12px;
+}
+
+.organizer {
+  margin-right: 5px;
+  float: right;
+  font-style: normal;
+  color: #000;
+  font-weight: bold;
+  position: relative;
+  bottom: 6px;
+}
+
+.organizer span {
+  font-size: 14px;
+  color: #999;
+  font-weight: normal;
+  text-transform: lowercase;
+}
+
+#left_column {
+  float: left;
+  width: 400px;
+}
+
+/****************************************
+ *  Time and Date aside                 *
+ ****************************************/
+
+#time_and_space {
+  padding-bottom: 18px;
+}
+
+.start_time, .location {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.end_time, .city {
+  font-size: 13px;
+  position: relative;
+  bottom: 3px;
+}
+
+.location {
+  margin-top: 18px;
+}
+
+/****************************************
+ *  Feeds                               *
+ ****************************************/
+
+#feeds {
+  background: none;
+  padding: 0 20px;
+  text-align: left;
+  border-radius: 0;
+  color: #999;
+}
+
+#feeds a {
+  margin-right: 8px;
+}
+
+#feeds a:first-child {
+  margin-left: 5px;
+}

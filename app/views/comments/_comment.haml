@@ -1,5 +1,8 @@
-= image_tag comment.user.picture_url
-= "#{ comment.user.name } - "
-%span= time_ago_in_words comment.created_at
-
-%p= comment.text
+= content_tag_for "li", comment do
+  %address
+    = image_tag comment.user.picture_url, class: "tiny avatar"
+    %span= comment.user.name
+    hace
+    %time(datetime="#{comment.created_at.to_s(:db)}")= time_ago_in_words comment.created_at
+  .text
+    = simple_format comment.text

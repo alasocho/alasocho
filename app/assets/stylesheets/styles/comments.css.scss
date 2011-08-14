@@ -1,0 +1,89 @@
+#comments {
+  form {
+    margin-bottom: 24px;
+  }
+
+  textarea {
+    width: 390px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  ol {
+    list-style-type: none;
+  }
+
+  .comment {
+    margin-bottom: 12px;
+
+    address {
+      font-style: normal;
+      font-size: 14px;
+      color: #999;
+    }
+
+    address span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      margin-right: 6px;
+    }
+
+    .text {
+      padding: 5px 12px;
+      border-radius: 10px;
+      position: relative;
+      color: #fff;
+    }
+
+    .text:before {
+      width: 0;
+      height: 0;
+      border-bottom: 20px solid transparent;
+      position: absolute;
+      top: -17px;
+      content: "";
+    }
+  }
+
+  .comment:nth-child(even) {
+    address {
+      text-align: right;
+      margin-right: 45px;
+    }
+
+    .text {
+      background: #c93c00;
+    }
+
+    .text:before {
+      right: 20px;
+      border-bottom-color: #c93c00;
+      border-right: 20px solid transparent;
+      -webkit-transform: rotate(-15deg);
+      -moz-transform: rotate(-15deg);
+    }
+  }
+
+  .comment:nth-child(odd) {
+    address {
+      text-align: left;
+      margin-left: 45px;
+    }
+
+    .text {
+      background: #730046;
+    }
+
+    .text:before {
+      left: 20px;
+      border-bottom-color: #730046;
+      border-left: 20px solid transparent;
+      -webkit-transform: rotate(15deg);
+      -moz-transform: rotate(15deg);
+    }
+  }
+}
+
