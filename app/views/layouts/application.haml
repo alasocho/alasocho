@@ -44,6 +44,9 @@
       %section#main
         = yield
       %footer
+        = mail_to "hola@alasocho.com"
+        = link_to t("shared.terms_and_conditions"), terms_and_conditions_path
+        = link_to t('social.twitter.follow_us'), "http://twitter.com/#!/a_las_ocho"
 
     = javascript_include_tag :application, :a8
 
@@ -65,3 +68,4 @@
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
+
