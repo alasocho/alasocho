@@ -88,6 +88,8 @@ es:
   event:
     confirmed_users:
       title: "Usuarios confirmados para el evento"
+    waitlisted_users:
+      title: "Usuarios en la lista de espera de este evento"
     invited_users:
       title: "Usuarios invitados a este evento"
     available_seats: "lugares disponibles."

@@ -92,6 +92,11 @@ class EventsController < ApplicationController
     @users = @event.invitees
   end
 
+  def waitlisted
+    load_own_event
+    @users = @event.waitlisted
+  end
+
 private
 
   def load_own_event
