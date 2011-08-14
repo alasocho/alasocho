@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110814024551) do
+ActiveRecord::Schema.define(:version => 20110814025922) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20110814024551) do
     t.string   "token"
   end
 
+  add_index "attendances", ["event_id"], :name => "index_attendances_on_event_id"
   add_index "attendances", ["user_id"], :name => "index_attendances_on_user_id"
 
   create_table "authorizations", :force => true do |t|
