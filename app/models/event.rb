@@ -152,4 +152,18 @@ class Event < ActiveRecord::Base
       location    element.full_address
     end.export
   end
+
+  def to_gcal
+    dates = [self.start_at, self.end_at || self.start_at + 1.hour].map { |t| t.utc.strftime("%Y%m%dT%H%M%SZ") }.join("/")
+
+    parameters = {
+      :text       => self.name,
+      :dates      => dates,
+      :sprop      => "#{self.to_url}&sprop=name:A Las Ocho",
+      :details    => self.description,
+      :location   => self.location
+    }
+
+    "http://www.google.com/calendar/event?action=TEMPLATE&#{ parameters.to_query }"
+  end
 end

@@ -49,7 +49,7 @@
   %aside#feeds
     = t("events.show.feed.subscribe")
     = link_to t("events.show.feed.ical/outlook"), "#{event_path(@event) }.ics", :class => "calendar"
-    = link_to t("events.show.feed.gcal"), "#", :class => "calendar"
+    = link_to t("events.show.feed.gcal"), @event.to_gcal, :class => "calendar"
 
   - if @event.confirmed_invitations.any?
     %aside#confirmed_guests.guests.alternate
