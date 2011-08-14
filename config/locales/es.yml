@@ -80,8 +80,6 @@ es:
 
     edit:
       link: "Editar detalles"
-      admin_attendees:
-        link: "Administrar Invitados"
 
     invites:
       title: "Mis invitaciones pendientes"
@@ -106,6 +104,9 @@ es:
         end_at: "20/8/2011 21:00"
         location: "Paraguay 2211"
         city: "Montevideo, Uruguay"
+    manage_attendees:
+      title: "Administrar miembros"
+      link: "Administrar Invitados"
 
   invitations:
     form:
