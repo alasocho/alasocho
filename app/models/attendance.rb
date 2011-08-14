@@ -99,7 +99,7 @@ class Attendance < ActiveRecord::Base
   end
 
   def declined?
-    state_machine.state == "confirmed"
+    state_machine.state == "declined"
   end
 
   def generate_token
