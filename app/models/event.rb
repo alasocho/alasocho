@@ -133,8 +133,8 @@ class Event < ActiveRecord::Base
   end
 
   def process_waitlist
-    if limited? && event.available_slots > 0 && event.waitlisted.size > 0
-      event.waitlisted.first.reserve_slot!
+    while limited? && available_slots > 0 && waitlisted_invitations.size > 0
+      waitlisted_invitations.first.reserve_slot!
     end
   end
 
