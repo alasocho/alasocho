@@ -250,9 +250,9 @@ es:
       what_is_it:
       features:
         social_logins: "Ingresa con cualquiera de tus cuentas favoritas. No necesitas registrarte para poder empezar a crear eventos o encontrar eventos cerca tuyo."
-        waiting_list: "Listas de espera automaticas: nunca más te quedes corto de invitados. Marca un cupo e invita a todos tus amigos y nosotros nos encargaremos de dejarle el lugar disponible a lo que si estan dispuestos a ir."
-        private_events: "Eventos privados: ¿un partido de fútbol sólo con amigos? ¿cumpleaños? ¿partidas de juegos de mesa?. Elige tus invitados y nosotros los contactaremos por mail mientras tu gestionas el evento como más te guste."
-        public_events: "Eventos privados: organiza eventos sobre los temas que te gusten y podrás conocer otras personas con tus mismos intereses."
+        waiting_list: "Listas de espera automáticas: nunca más te quedes corto de invitados. Marca un cupo e invita a todos tus amigos y nosotros nos encargaremos de manejar las confirmaciones y la lista de espera."
+        private_events: "Eventos privados: ¿Quieres organizar un partido de fútbol sólo con tus amigos? ¿Un cumpleaños? ¿Partidas de juegos de mesa?. Elige tus invitados y nosotros los contactaremos por email mientras tú gestionas el evento como más te guste."
+        public_events: "Eventos privados: organiza eventos sobre los temas que te gusten y podrás conocer otras personas en tu ciudad con tus mismos intereses."
       latest_public_events: "Aquí están los últimos eventos públicos"
       organize_an_event: "Organiza un evento"
       login: "Ingresa"
