@@ -1,7 +1,6 @@
 class AttendancesController < ApplicationController
-  before_filter :load_event_and_attendance
-
   def create
+    load_event_and_attendance
     if @event.slots_available?
       flash[:notice] = t("attendance.message.confirm", :event_name => @event.name)
       @attendance.confirm!
@@ -13,6 +12,7 @@ class AttendancesController < ApplicationController
   end
 
   def destroy
+    load_event_and_attendance
     @attendance.decline!
     flash[:notice] = t("attendance.message.decline", :event_name => @event.name)
     redirect_to @event
