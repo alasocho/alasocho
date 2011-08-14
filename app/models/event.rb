@@ -22,6 +22,7 @@ class Event < ActiveRecord::Base
 
   before_save :preserve_state_machine
   after_save :create_invitations
+  before_create :default_last_commented_at
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
 
@@ -111,5 +112,9 @@ class Event < ActiveRecord::Base
     if limited? && event.available_slots > 0 && event.waitlisted.size > 0
       event.waitlisted.first.reserve_slot!
     end
+  end
+
+  def default_last_commented_at
+    self.default_last_commented_at ||= Time.now
   end
 end
