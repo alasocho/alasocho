@@ -27,6 +27,19 @@
     line-height: 32px;
   }
 
+  a {
+    text-decoration: none;
+  }
+
+  a:link, a:visited {
+    color: #730046;
+  }
+
+  a:hover, a:active {
+    color: #c93c00;
+    text-decoration: underline;
+  }
+
 /* ============================= */
 /* ! Layout for mobile version   */
 /* ============================= */

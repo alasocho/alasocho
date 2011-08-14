@@ -5,7 +5,7 @@
     - Authorization::PROVIDERS.each do |service|
       - unless current_user.linked_to?(service)
         = link_to t("accounts.link_with.#{service}"), "/auth/#{service}", class: "#{service} sign_in"
-    .explain
+    %p.explain
       = t("accounts.link_with.why")
 
 = form_for current_user, url: account_path do |f|
