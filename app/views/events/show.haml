@@ -1,10 +1,8 @@
-#modal_window
-%input{type: :hidden, id: :event_id, value: @event.id}
 #title
   %h1= @event.name
   #info_short
-    = t "event.confirmed", :count => @event.confirmed_invitations.size
-    = t 'event.invited', :count =>  @event.attendances.size
+    = tagline(@event)
+
     %span= link_to t('event.form.invite.people'), event_invite_people_path(@event), class: :invite_more if @event.allow_invites or @event.host == current_user
     %span= link_to t('event.form.event.edit'), edit_event_path(@event) if current_user == @event.host
 
@@ -33,7 +31,7 @@
       = link_to "YahooCal", "#", :class => "calendar"
 
     #actions
-      = render :partial => "attendance_actions", :locals => {:attendance => @attendance, :event => @event}
+      = render "attendance_actions", :attendance => @attendance, :event => @event
 
     #invitees
       %h2=t 'event.confirmed', :count => @event.confirmed_invitations.size
@@ -65,6 +63,8 @@
       - @event.attendances.where(:state => 'invited').each do |attendance|
         = image_tag attendance.user.picture_url
         = attendance.user.name
+
+#modal_window
 
 - content_for :javascript do
   :javascript
