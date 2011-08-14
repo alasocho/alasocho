@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
   before_create :set_default_last_commented_at
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
-  scope :public_events, where("public = TRUE")
+  scope :public_events, where(public: true, state: %w(cancelled published))
 
   def self.viewable_by(user)
     join_attendances.where("events.host_id = :user_id or ((attendances.user_id = :user_id or events.public is true) and events.state in (:states))",
