@@ -91,6 +91,7 @@ class Attendance < ActiveRecord::Base
   end
 
   def attach_to_user
+    return if user.present?
     user = User.where(:email => email).first
     return unless user.present?
     self.user = user

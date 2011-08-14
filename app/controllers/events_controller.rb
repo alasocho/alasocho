@@ -21,9 +21,7 @@ class EventsController < ApplicationController
 
     if @event.save
       flash[:notice] = t("event.form.create.message.success")
-      @event.attendances.create!(:email => current_user.email, :state => "confirmed") do |attendance|
-        attendance.user = current_user
-      end
+      @event.attendances.create!(email: current_user.email, state: "confirmed", user: current_user)
       redirect_to event_invite_people_path(@event)
     else
       render :action => :new
