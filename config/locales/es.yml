@@ -10,6 +10,7 @@ es:
       success: "Hola! Has entrado exitosamente"
       twitter: "Entrar con Twitter"
       facebook: "Entrar con Facebook"
+      google: "Entrar con Google"
     need_to_sign_in: "Oops, tienes que ingresar al sitio para acceder a esta página"
 
   activerecord:
@@ -67,6 +68,7 @@ es:
     link_with:
       twitter: "Vincular con Twitter"
       facebook: "Vincular con Facebook"
+      google: "Vincular con Google"
       why: "Si vinculas tu cuenta con otros servicios, te será más fácil recordar cómo entrar."
 
   merges:

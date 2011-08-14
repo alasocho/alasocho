@@ -3,7 +3,7 @@ class Authorization < ActiveRecord::Base
 
   belongs_to :user
 
-  PROVIDERS = %w(twitter facebook)
+  PROVIDERS = %w(twitter facebook google)
 
   def self.find_from_auth(auth)
     find_by_provider_and_key(auth.fetch("provider"), auth.fetch("uid"))

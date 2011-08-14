@@ -25,8 +25,8 @@
               |
               = link_to t("sessions.sign_out.link"), "/auth/sign_out"
           - else
-            = link_to t("sessions.sign_in.twitter"),  "/auth/twitter",  class: "sign_in twitter"
-            = link_to t("sessions.sign_in.facebook"), "/auth/facebook", class: "sign_in facebook"
+            - Authorization::PROVIDERS.each do |provider|
+              = link_to t("sessions.sign_in.#{provider}"),  "/auth/#{provider}",  class: "sign_in #{provider}"
 
       = flash_messages
 
