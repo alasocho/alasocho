@@ -1,16 +1,13 @@
 %h2= t("event.form.edit.title")
 
+%aside.alternate#cancel
+  = link_to t('event.form.edit.cancel_event'), event_path(@event), :method => :delete, :confirm => t('shared.are_you_sure')
+
 = form_for @event do |f|
-  -# FIXME Needs error messages
-  #left_column
-    = render :partial => "form", :locals => {:f => f}
-
-    = render :partial => "settings", :locals => {:f => f}
-
-  #right_column
-    #actions
-      = link_to t('event.form.edit.cancel_event'), event_path(@event), :method => :delete, :confirm => t('shared.are_you_sure')
-    = render :partial => "invitee_list", :locals => {:f => f}
+  = render "form", :f => f
+  = render "settings", :f => f
+  %submit_button
+    = f.submit
 
 - content_for :javascript do
   :javascript
