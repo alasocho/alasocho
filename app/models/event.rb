@@ -25,6 +25,7 @@ class Event < ActiveRecord::Base
   before_save :preserve_state_machine
   after_save :create_invitations
   before_create :set_default_last_commented_at
+  after_create :set_token
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
   scope :public_events, where(public: true, state: %w(cancelled published))
@@ -165,5 +166,10 @@ class Event < ActiveRecord::Base
     }
 
     "http://www.google.com/calendar/event?action=TEMPLATE&#{ parameters.to_query }"
+  end
+
+  def set_token
+    self.token = TokenMaker.new(self).make if token.blank?
+    save(:validate => false)
   end
 end
