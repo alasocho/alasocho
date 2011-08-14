@@ -28,7 +28,6 @@ es:
         public: "Este evento es público"
         allow_invites: "Los invitados pueden invitar más gente"
         attendee_quota: "Un límite de"
-        invitee_list: "Lista de invitados"
       user:
         name: "Nombre"
         email: "Email"
@@ -43,6 +42,7 @@ es:
     public:
       title: "Eventos públicos"
       see_all: "Ver todos los eventos públicos"
+      near_you: "Eventos públicos cerca de ti!"
     my_events:
       title: "Mis Eventos"
       see_all: "Ver todos mis eventos"
@@ -107,7 +107,7 @@ es:
       create:
         title: "Organiza un evento"
         message:
-          success: "Perfecto! Ahora puedes invitar gente y publicar tu evento."
+          success: "Evento guardado"
           error: "No pudimos guardar el evento. Por favor, verifica la información."
       invite:
         title: "Invitaciones"
@@ -132,8 +132,6 @@ es:
       waitlist: "Estás en la lista de espera para %{event_name}. Si se libera algún lugar te avisamos."
       decline: "Ya no estás en la lista de invitados de %{event_name}. ¿Quizás la próxima?"
       already_taken: "Esa invitación ya fue asignada a otro usuario."
-    status:
-      has_comment: "Ha recibido un nuevo comentario desde tu última visita."
 
   time:
     formats:
@@ -165,5 +163,4 @@ es:
     form:
       title: "Comentarios"
       leave_a_comment: "Deja un comentario"
-      create: "Tu commentario fue creado"
       submit: "Enviar comentario"
