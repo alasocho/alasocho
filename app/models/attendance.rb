@@ -14,7 +14,7 @@ class Attendance < ActiveRecord::Base
   before_create :attach_to_user, :generate_token
   after_create :invite_if_published_event
 
-  attr_accessible :email, :user_id, :state
+  attr_accessible :email, :user_id, :state, :user
 
   scope :need_attention, joins(:event).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED)
   scope :need_action, where("attendances.state in (?)", STATES_NEEDING_ACTION)
@@ -91,7 +91,7 @@ class Attendance < ActiveRecord::Base
   end
 
   def attach_to_user
-    return if user.present?
+    return if user.present? || user_id.present?
     user = User.where(:email => email).first
     return unless user.present?
     self.user = user
