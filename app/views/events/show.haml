@@ -63,14 +63,15 @@
         %span= t "events.show.people_waiting", count: @event.waitlisted_invitations.size
       = render @waitlisted_invitations
       - if @event.waitlisted_invitations.size > EventsController::MAX_WAITLISTED_ATTENDEES
-        = link_to t('event.form.see_all'), "#"
+        = link_to t('event.form.see_all'), event_waitlisted_path(@event)
 
 
-  %h2=t "events.show.invited", count: @event.attendances.size
-  %span= link_to_invite_if_allowed @event
-  - if @event.attendances.size > EventsController::MAX_PENDING_ATTENDEES
-    = link_to t('event.form.see_all'), "#"
-  = render @invited_invitations
+  %aside#unconfirmed
+    %h2=t "events.show.invited", count: @event.attendances.size
+    %span= link_to_invite_if_allowed @event
+    - if @event.attendances.size > EventsController::MAX_PENDING_ATTENDEES
+      = link_to t('event.form.see_all'), event_invited_path(@event)
+    = render @invited_invitations
 
 #modal_window
 
