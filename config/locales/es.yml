@@ -131,6 +131,8 @@ es:
       waitlist: "Estás en la lista de espera para %{event_name}. Si se libera algún lugar te avisamos."
       decline: "Ya no estás en la lista de invitados de %{event_name}. ¿Quizás la próxima?"
       already_taken: "Esa invitación ya fue asignada a otro usuario."
+    status:
+      has_comment: "Ha recibido un nuevo comentario desde tu última visita."
 
   time:
     formats:

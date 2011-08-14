@@ -1,0 +1,9 @@
+.actionable
+  = link_to attendance.event.name, attendance.event
+  = attendance.event.location
+  .date
+    = attendance.event.start_at
+  - if attendance.event.limited?
+    %span= "#{ attendance.event.confirmed_attendees.size }/#{ attendance.event.attendee_quota } " + t('event.occupied_seats')
+
+  = render :partial => "events/attendance_actions", :locals => { :attendance => attendance }

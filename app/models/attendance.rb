@@ -28,6 +28,10 @@ class Attendance < ActiveRecord::Base
     user || User::Anonymous.new(self)
   end
 
+  def need_action?
+    STATES_NEEDING_ACTION.include?(state)
+  end
+
   def invite!
     state_machine.trigger(:invite)
     save!(:validate => false)

@@ -1,0 +1,8 @@
+.notifications
+  %ol
+    - current_user.attendances.need_attention.includes(:event).each do |attendance|
+      %li
+        - if attendance.need_action?
+          = render :partial => "shared/actionable_attendance", :locals => { :attendance => attendance }
+        - else
+          = render :partial => "shared/commented_attendance", :locals => { :attendance => attendance }

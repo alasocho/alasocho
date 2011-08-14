@@ -33,6 +33,9 @@
       %section#main
         = yield
 
+    - if signed_in?
+      = render :partial => "shared/notifications"
+
     = javascript_include_tag :application, :a8
     = yield :javascript
     :javascript
