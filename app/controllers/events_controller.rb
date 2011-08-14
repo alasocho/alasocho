@@ -144,6 +144,11 @@ class EventsController < ApplicationController
     @attendances = @event.waitlisted_invitations
   end
 
+  def declined
+    load_event
+    @attendances = @event.declined_invitations
+  end
+
 private
 
   def load_own_event

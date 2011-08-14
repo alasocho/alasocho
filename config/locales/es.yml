@@ -55,6 +55,10 @@ es:
         one:   "1 persona esperando"
         other: "%{count} personas esperando"
 
+      declined:
+        one: "1 persona rechazó la invitación"
+        other: "%{count} personas rechazaron la invitación"
+
       organizer: "Organizado por"
 
       duration:
@@ -93,6 +97,8 @@ es:
     my_events:
       title: "Mis Eventos"
       see_all: "Ver todos mis eventos"
+    declined:
+      title: "Quiénes rechazaron la invitación"
     form:
       invite: "Invitar más gente"
       button:

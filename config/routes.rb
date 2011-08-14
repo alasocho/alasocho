@@ -11,6 +11,7 @@ ALasOcho::Application.routes.draw do
     get :confirmed, :action => "confirmed", :as => "confirmed"
     get :invited, :action => "invited", :as => "invited"
     get :waitlisted, :action => "waitlisted", :as => "waitlisted"
+    get :declined, :action => "declined", :as => "declined"
     get :everyone, :action => "everyone", :as => "everyone"
 
     resource :attendance, :only => [:create, :destroy]

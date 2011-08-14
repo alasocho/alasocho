@@ -82,6 +82,12 @@
       = link_to t('event.form.see_all'), event_invited_path(@event)
     %ul= render @pending_invitations
 
+  - if @event.declined_invitations.any?
+    %aside#declined.guests
+      %h2
+        %span= t "events.show.declined", count: @event.declined_invitations.size
+      = link_to t('event.form.see_all'), event_declined_path(@event)
+
 #modal_window
 
 - content_for :javascript do
