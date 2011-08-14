@@ -11,7 +11,8 @@
       %li= t("homepage.welcome.features.private_events")
       %li= t("homepage.welcome.features.public_events")
 
-  #latest_public_events
-    %h3= t("homepage.welcome.latest_public_events", :city => @current_city)
-    %ol
-      = render @public_events
+  -if @public_events.any?
+    #latest_public_events
+      %h3= t("homepage.welcome.latest_public_events", :city => @current_city)
+      %ol
+        = render @public_events
