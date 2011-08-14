@@ -9,11 +9,11 @@
     /[if lte IE 9]
       = stylesheet_link_tag "ie"
     %link(rel="home" href="/")
-    %meta{property: "og-title", value: (@page_title || t("app.title"))}
-    %meta{property: "og-type", value: (@page_type || "article")}
-    %meta{property: "og-image", value: (@page_image || "http://#{ALasOcho.config[:canonical_host]}/assets/logo-header.png")}
-    %meta{property: "og-url", value: (@page_url || request.url)}
-    %meta{property: "og-site_name", value: t("app.title")}
+    %meta{property: "og-title",     content: (@page_title || t("app.title"))}
+    %meta{property: "og-type",      content: (@page_type || "article")}
+    %meta{property: "og-image",     content: (@page_image || "http://#{ALasOcho.config[:canonical_host]}/assets/logo-header.png")}
+    %meta{property: "og-url",       content: (@page_url || request.url)}
+    %meta{property: "og-site_name", content: t("app.title")}
   %body
     #rally_badge
     .container
