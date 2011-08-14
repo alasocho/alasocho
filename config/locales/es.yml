@@ -127,6 +127,7 @@ es:
         one:   "Únete a la conversación"
         other: "Únete a la conversación"
       create: "Tu commentario fue creado"
+      error: "Tu comentario no pudo ser ingresado"
       submit: "Enviar comentario"
 
   accounts:

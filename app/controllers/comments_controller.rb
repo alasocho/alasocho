@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @comment.event, notice: t('comments.form.create')
     else
-      redirect_to @comment.event, alert: t('comments.form.create.error')
+      redirect_to @comment.event, alert: t('comments.form.error')
     end
   end
 end
