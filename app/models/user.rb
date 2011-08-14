@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def picture_url
-    super || Gravatar.new(email).path
+    super.presence || Gravatar.new(email).path
   end
 
   def interested_to_attend
