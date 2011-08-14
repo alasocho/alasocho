@@ -12,5 +12,6 @@ class User::Anonymous
   end
 
   def picture_url
+    Gravatar.new(email).path
   end
 end
