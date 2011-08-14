@@ -92,18 +92,18 @@ class EventsController < ApplicationController
   end
 
   def confirmed
-    load_own_event
-    @users =  @event.confirmed_attendees
+    load_event
+    @attendances =  @event.confirmed_invitations
   end
 
   def invited
-    load_own_event
-    @users = @event.invitees
+    load_event
+    @attendances = @event.pending_invitations
   end
 
   def waitlisted
-    load_own_event
-    @users = @event.waitlisted
+    load_event
+    @attendances = @event.waitlisted_invitations
   end
 
 private
