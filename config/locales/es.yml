@@ -162,4 +162,5 @@ es:
     form:
       title: "Comentarios"
       leave_a_comment: "Deja un comentario"
+      create: "Tu commentario fue creado"
       submit: "Enviar comentario"
