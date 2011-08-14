@@ -1,6 +1,10 @@
 class A8.Views.Events.SettingsView extends Backbone.View
   attendee_quota: -> $(".attendee_quota")
 
+  public_checkbox: -> $("#event_public")
+
+  invitee_checkbox: -> $("#event_allow_invites")
+
   previous_attendee_quota: 0
 
   valid_numbers: =>
@@ -13,6 +17,13 @@ class A8.Views.Events.SettingsView extends Backbone.View
   initialize: (@el, @watcher) ->
     this.valid_numbers()
     this.attendee_quota().click this.valid_numbers
+    this.public_checkbox().click =>
+      if !this.public_checkbox().attr('checked')
+        this.invitee_checkbox().attr('disabled', false)
+      else
+        this.invitee_checkbox().attr('checked', true)
+        this.invitee_checkbox().attr('disabled', true)
+
     $(this.el).toggle(=>
           value = this.attendee_quota().val()
           this.previous_attendee_quota = value if value > 0

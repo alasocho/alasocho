@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
   has_many :comments, :order => "comments.created_at desc"
   belongs_to :host, :class_name => "User"
 
-  before_save :preserve_state_machine
+  before_save :preserve_state_machine, :check_if_public
   after_save :create_invitations
   before_create :set_default_last_commented_at
   after_create :set_token
@@ -71,6 +71,10 @@ class Event < ActiveRecord::Base
 
   def location
     self[:location].presence || I18n.t("activerecord.defaults.event.location")
+  end
+
+  def check_if_public
+    self.allow_invites = true if public?
   end
 
   def preserve_state_machine
