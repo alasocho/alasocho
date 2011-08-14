@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :check_token, :only => [:show]
-  before_filter :authenticate_user, :except => [:show]
+  before_filter :authenticate_user, :except => [:show, :confirmed, :invited, :waitlisted]
 
   def new
     @event = current_user.hosted_events.new(:city => GeoLocator.city_from_ip(request.remote_addr))
