@@ -16,6 +16,8 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
   attendees_count: 0
 
   initialize: (@event_id) ->
+    _.bindAll this, "end_if_escape"
+    $(document).keyup(this.end_if_escape)
 
   update_limit: (value) ->
     template = _.template $("div[data-template-for='AttendeeQuotaView']").html()
@@ -28,6 +30,10 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     ajax = $.post "/events/#{this.event_id}/invite", invitees: JSON.stringify _.compact(invitations)
     ajax.complete => this.end()
     false
+
+  end_if_escape: (event) ->
+    if event.keyCode is 27 and this.container
+      this.end()
 
   end: ->
     this.container.removeClass "show"
