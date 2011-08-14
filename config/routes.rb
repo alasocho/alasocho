@@ -2,6 +2,7 @@ ALasOcho::Application.routes.draw do
   root to: "pages#home"
 
   get "dashboard", :to => "dashboard#index", :as => :user_root
+  get "terms_and_conditions", :to => "pages#terms_and_conditions", :as => :terms_and_conditions
 
   get "/events/public" => "events#public", :as => "public_events"
   resources :events, :only => [:edit, :new, :create, :show, :update, :destroy, :index] do
