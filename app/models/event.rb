@@ -72,6 +72,10 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def viewable?
+    VIEWABLE_STATES.include? state
+  end
+
   def location
     self[:location].presence || I18n.t("activerecord.defaults.event.location")
   end

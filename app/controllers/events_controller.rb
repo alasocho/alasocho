@@ -107,9 +107,13 @@ class EventsController < ApplicationController
     @waitlisted_invitations = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
     @pending_invitations    = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES)
 
-    respond_to do |format|
-      format.html
-      format.ics { render text: @event.to_ical }
+    if @event.viewable?
+      respond_to do |format|
+        format.html
+        format.ics { render text: @event.to_ical }
+      end
+    else
+      redirect_to event_invite_people_path(@event)
     end
   end
 
