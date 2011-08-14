@@ -1,11 +1,11 @@
 - notifications = current_user.attendances.need_attention.includes(:event)
 = link_to t("notifications.link", :amount => notifications.size), "#", :id => "notifications_link", :class => (notifications.any? ? "has_notifications" : "no_notifications")
+
 #notifications
   .holding_box
     %ol
       - notifications.each do |attendance|
-        %li
-          - if attendance.need_action?
-            = render attendance.event, attendance: attendance
-          - else
-            = render "shared/commented_attendance", :attendance => attendance
+        - if attendance.need_action?
+          = render attendance.event, attendance: attendance
+        - else
+          %li= render "shared/commented_attendance", :attendance => attendance
