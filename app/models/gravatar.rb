@@ -9,7 +9,7 @@ class Gravatar
   end
 
   def default_avatar
-    hash = @email.hash % 5
+    hash = @email.hash % 16
     "http://#{ ALasOcho.config[:canonical_host] }/assets/default_avatars/#{ hash }.jpg"
   end
 end
