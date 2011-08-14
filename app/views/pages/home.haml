@@ -13,4 +13,5 @@
 
   #latest_public_events
     = t("homepage.welcome.latest_public_events")
-    = render @public_events
+    %ol
+      = render @public_events
