@@ -152,6 +152,7 @@ es:
       slots_available: "Voy"
       no_slots_available: "Lista de espera"
     decline: "No voy"
+    need_login_to_confirm: "Necesitas iniciar sesión si quieres asistir al evento"
     host_actions:
       confirm:
         slots_available: "Asiste"

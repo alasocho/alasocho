@@ -20,7 +20,8 @@
       =simple_format @event.description
 
     %section#comments
-      = render 'comments/new'
+      - if signed_in?
+        = render 'comments/new'
       - if @comments.any?
         %ol= render @comments
 
@@ -46,7 +47,10 @@
     = link_to t("events.show.feed.ycal"), "#", :class => "calendar"
 
   %aside#actions
-    = render "attendance_actions", attendance: @attendance, event: @event
+    - if signed_in?
+      = render "attendance_actions", attendance: @attendance, event: @event
+    - else
+      = t("event.need_login_to_confirm")
 
   - if @event.confirmed_invitations.any?
     %aside#confirmed_guests.guests.alternate
@@ -71,7 +75,8 @@
 
   %aside#unconfirmed.guests{ :class => @event.waitlisted_invitations.any? ? "alternate" : "" }
     %h2=t "events.show.invited", count: @event.attendances.size
-    %span= link_to_invite_if_allowed @event
+    - if signed_in?
+      %span= link_to_invite_if_allowed @event
     - if @event.attendances.size > EventsController::MAX_PENDING_ATTENDEES
       = link_to t('event.form.see_all'), event_invited_path(@event)
     = render @invited_invitations

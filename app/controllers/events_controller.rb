@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :check_token, :only => [:show]
-  before_filter :authenticate_user
+  before_filter :authenticate_user, :except => [:show]
 
   def new
     @event = current_user.hosted_events.new(:city => GeoLocator.city_from_ip(request.remote_addr))
@@ -113,7 +113,7 @@ private
   end
 
   def load_event
-    @event = Event.viewable_by(current_user).find(params[:event_id] || params[:id])
+    @event = (signed_in? ? Event.viewable_by(current_user) : Event.public_events).find(params[:event_id] || params[:id])
   end
 
   def load_event_writable
