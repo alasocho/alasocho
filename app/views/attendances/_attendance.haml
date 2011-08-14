@@ -1,9 +1,3 @@
 = content_tag_for "li", attendance do
   = image_tag attendance.owner.picture_url, class: "avatar medium"
   = attendance.owner.name
-  - if current_user == attendance.event.host
-    .actions.host_actions
-      - unless attendance.confirmed?
-        = link_to (attendance.event.slots_available? ? t("event.host_actions.confirm.slots_available") : t("event.host_actions.confirm.no_slots_available")), event_attendance_path(attendance.event, :attendance_id => attendance.id), :method => :post
-      - unless attendance.declined?
-        = link_to t("event.host_actions.decline"), event_attendance_path(attendance.event, :attendance_id => attendance.id), :method => :delete

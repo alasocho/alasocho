@@ -50,6 +50,11 @@ class EventsController < ApplicationController
     @my_events = current_user.hosted_events
   end
 
+  def everyone
+    load_own_event
+    @attendances = @event.attendances
+  end
+
   def invite_people
     load_own_event
   end

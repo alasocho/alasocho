@@ -77,6 +77,8 @@ es:
 
     edit:
       link: "Editar detalles"
+      admin_attendees:
+        link: "Administrar Invitados"
 
     invites:
       title: "Mis invitaciones pendientes"

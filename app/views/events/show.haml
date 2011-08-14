@@ -2,7 +2,10 @@
   %h1
     = @event.name
     - if @event.allow_edits_by(current_user)
+      %span= link_to t('events.edit.admin_attendees.link'), event_everyone_path(@event), class: "edit"
+      |
       %span= link_to t('events.edit.link'), edit_event_path(@event), class: "edit"
+
 
   #info_short
     %address.organizer
