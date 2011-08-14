@@ -76,7 +76,8 @@ class EventsController < ApplicationController
   end
 
   def public
-    @events = Event.public_events_near(@current_city)
+    current_city = GeoLocator.city_from_ip(request.remote_addr)
+    @events = Event.public_events_near(current_city)
   end
 
   def destroy
