@@ -9,7 +9,6 @@ class AccountsController < ApplicationController
       flash[:notice] = t("accounts.edit.message.success")
       redirect_to edit_account_path
     else
-      flash.now[:alert] = t("accounts.edit.message.error")
       render :action => :edit
     end
   end

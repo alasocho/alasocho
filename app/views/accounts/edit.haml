@@ -12,9 +12,11 @@
   .form_field
     = f.label :name
     = f.text_field :name, placeholder: t("accounts.form.placeholders.name")
+    = f.errors :name
   .form_field
     = f.label :email
     = f.text_field :email, placeholder: t("accounts.form.placeholders.email")
+    = f.errors :email
   .form_field
     = f.check_box :wants_comment_notifications
     = f.label :wants_comment_notifications
