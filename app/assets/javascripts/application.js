@@ -12,4 +12,6 @@ window.A8 = {
   "Routers": {},
   "Views": {}
 }
-
+$("#rally_badge").click(function(){
+  window.location = "http://rallyonrails.com/teams/9";
+});

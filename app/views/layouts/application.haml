@@ -10,6 +10,7 @@
       = stylesheet_link_tag "ie"
     %link(rel="home" href="/")
   %body
+    #rally_badge
     .container
       %header
         %h1
@@ -37,6 +38,7 @@
       = render :partial => "shared/notifications"
 
     = javascript_include_tag :application, :a8
+
     = yield :javascript
     :javascript
       $(document).ready(function(){
