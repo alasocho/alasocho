@@ -12,6 +12,6 @@
       %li= t("homepage.welcome.features.public_events")
 
   #latest_public_events
-    = t("homepage.welcome.latest_public_events")
+    = t("homepage.welcome.latest_public_events", :city => @current_city)
     %ol
       = render @public_events
