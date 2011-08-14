@@ -49,6 +49,7 @@ es:
         other: "%{count} confirmados"
       invited: "%{count} sin confirmar"
       waitlisted: "%{count} en la lista de espera"
+      available_seats: "#{count} lugares disponibles."
 
       waitlist: "Lista de espera"
       people_waiting:
