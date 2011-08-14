@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def can_be_linked_further?
-    (Authorization::PROVIDERS & linked_providers).empty?
+    (Authorization::PROVIDERS - linked_providers).any?
   end
 
   def linked_providers
