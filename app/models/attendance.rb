@@ -102,6 +102,14 @@ class Attendance < ActiveRecord::Base
     state_machine.state == "confirmed"
   end
 
+  def waitlisted?
+    state_machine.state == "waitlisted"
+  end
+
+  def tentative?
+    state_machine.state == "tentative"
+  end
+
   def declined?
     state_machine.state == "declined"
   end
