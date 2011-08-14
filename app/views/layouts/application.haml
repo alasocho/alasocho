@@ -2,7 +2,7 @@
 %html(lang="#{current_locale}")
   %head
     %meta(charset="utf-8")
-    %title=t "app.title"
+    %title=[@page_title, t("app.title")].compact.join(' - ')
     = csrf_meta_tags
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Ubuntu:400,700", :application

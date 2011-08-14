@@ -2,6 +2,9 @@ es:
   app:
     title: "A Las Ocho"
 
+  dashboard:
+    title: "Dashboard"
+
   sessions:
     sign_out:
       link: "Cerrar sesión"
