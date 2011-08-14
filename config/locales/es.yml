@@ -163,7 +163,7 @@ es:
         title: "Invitaciones"
         after_attendee_quota: "personas pueden asistir"
         explanation: "¡Puedes invitar a más de %{spots_left} personas! Si más personas confirman quedaran en una lista de espera"
-        no_limit: "¿sin limite?"
+        no_limit: "¿sin límite?"
         submit: "Publicar evento"
         people: "Invitar más gente"
         message:
