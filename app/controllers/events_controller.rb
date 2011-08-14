@@ -79,6 +79,10 @@ class EventsController < ApplicationController
     redirect_to root_path
   end
 
+  def index
+    @events = current_user.events_timeline.order("start_at DESC")
+  end
+
 private
 
   def load_own_event

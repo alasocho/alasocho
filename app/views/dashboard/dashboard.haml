@@ -3,8 +3,12 @@
 
 #left_column
   #my_events
-    = render :partial => "events/my_events"
+    %h2= t('events.my_events.title')
+    = render @my_events
+    = link_to t('events.my_events.see_all'), events_path
 
 #right_column
   #public_events
-    = render :partial => "events/public_events"
+    %h2= t('events.public.title')
+    = render @public_events
+    = link_to t('events.public.see_all'), "#"

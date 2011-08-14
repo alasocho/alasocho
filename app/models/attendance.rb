@@ -8,6 +8,7 @@ class Attendance < ActiveRecord::Base
   STATES_NEEDING_ACTION = %w(invited tentative)
   STATES_INTERESTED     = %w(confirmed tentative waitlisted)
   STATES_CONFIRMED      = %w(confirmed tentative)
+  STATES_RELEVANT       = %w(confirmed waitlisted declined tentative)
 
   before_save :preserve_state_machine
   before_create :attach_to_user, :generate_token

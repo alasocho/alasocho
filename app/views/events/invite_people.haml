@@ -1,5 +1,5 @@
 %h2= t("event.form.invite.title")
-= form_for @event, class: :invite_more_people do |f|
+= form_for @event, html: { class: :invite_more_people } do |f|
 
   = render :partial => :settings, :locals => {:f => f}
 

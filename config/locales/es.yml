@@ -34,6 +34,8 @@ es:
         wants_comment_notifications: "Quiero recibir notificaciones de nuevos comentarios"
 
   events:
+    relevant_events:
+      title: "Todos mis eventos"
     public:
       title: "Eventos públicos"
       see_all: "Ver todos los eventos públicos"

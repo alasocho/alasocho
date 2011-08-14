@@ -11,8 +11,14 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :picture_url, :wants_comment_notifications
 
   scope :want_comment_notifications, where(:wants_comment_notifications => true)
+
   has_many :interesting_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_INTERESTED }
   has_many :interests, :through => :interesting_invitations, :source => :event
+
+  has_many :invitations_timeline, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_RELEVANT }
+  has_many :events_timeline, :through => :invitations_timeline, :source => :event
+
+
 
   def self.create_from_auth!(auth_hash)
     auth_hash = auth_hash.fetch("user_info")
