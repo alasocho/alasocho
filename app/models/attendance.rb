@@ -12,6 +12,7 @@ class Attendance < ActiveRecord::Base
 
   before_save :preserve_state_machine
   before_create :attach_to_user, :generate_token
+  after_create :invite_if_published_event
 
   attr_accessible :email, :user_id, :state
 
@@ -106,4 +107,9 @@ class Attendance < ActiveRecord::Base
     self.token = SimpleUUID::UUID.new.to_guid
   end
 
+  def invite_if_published_event
+    if self.state == "added" && self.event.state == "published"
+      self.invite!
+    end
+  end
 end
