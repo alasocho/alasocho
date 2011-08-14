@@ -56,7 +56,14 @@ class EventsController < ApplicationController
 
   def update
     load_own_event
-    @event.attributes = params[:event]
+    # TODO OMG fix this, my brain stop responding!
+    data = params[:event]
+    start_at = cleanup_date data[:start_at]
+    end_at = cleanup_date data[:end_at]
+    if start_at then data[:start_at] = start_at else data.delete(:start_at) end
+    if end_at then data[:end_at] = end_at else data.delete(:end_at) end
+
+    @event.attributes = data
 
     date_changed = @event.start_at_changed? || @event.end_at_changed?
 
@@ -68,6 +75,7 @@ class EventsController < ApplicationController
 
       redirect_to @event
     else
+      flash[:alert] = t("event.form.invite.message.error")
       render :action => :invite_people
     end
   end

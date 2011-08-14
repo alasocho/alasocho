@@ -8,7 +8,7 @@ class A8.Views.Events.SettingsView extends Backbone.View
     if current_value < 0
       this.attendee_quota().val(0)
       current_value = 0
-    this.watcher.counter_updated current_value
+    this.watcher?.counter_updated current_value
 
   initialize: (@el, @watcher) ->
     this.valid_numbers()
