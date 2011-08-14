@@ -36,7 +36,7 @@ class Attendance < ActiveRecord::Base
   def invite!
     state_machine.trigger(:invite)
     save!(:validate => false)
-    send_invite_email
+    send_invite_email unless !user.nil? && user.email == event.host.email
   end
 
   def confirm!
