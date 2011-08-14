@@ -68,7 +68,7 @@ class EventsController < ApplicationController
 
   def show
     load_event
-    @attendance             = @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? }
+    @attendance             = signed_in? ? @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? } : nil
     @comments               = @event.comments
     @confirmed_invitations  = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
     @waitlisted_invitations = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
