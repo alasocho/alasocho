@@ -3,6 +3,7 @@ ALasOcho::Application.routes.draw do
 
   get "dashboard", :to => "dashboard#index", :as => :user_root
 
+  get "/events/public" => "events#public", :as => "public_events"
   resources :events, :only => [:edit, :new, :create, :show, :update, :destroy, :index] do
     resources :comments, :only => [:create]
     post :invite
@@ -18,7 +19,6 @@ ALasOcho::Application.routes.draw do
     resource :merge, :only => [:new, :create]
   end
 
-  get "/my_events" => "events#my_events"
 
   match "/auth/sign_out" => "sessions#destroy"
   match "/auth/:provider/callback" => "sessions#create"

@@ -19,4 +19,4 @@
     %h2= t('events.public.title')
     = t('events.public.near_you', :current_city => @current_city)
     = render @public_events
-    = link_to t('events.public.see_all'), "#"
+    = link_to t('events.public.see_all'), public_events_path

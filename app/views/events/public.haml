@@ -1,0 +1,6 @@
+#title
+  %h1= t("events.public.title")
+  - @events.each do |event|
+    %h2= link_to event.name, event
+    = tagline(event)
+    #{event.location}, #{event.city}

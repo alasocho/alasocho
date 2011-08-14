@@ -75,6 +75,10 @@ class EventsController < ApplicationController
     @invited             = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES).map(&:owner)
   end
 
+  def public
+    @events = Event.public_events_near(@current_city)
+  end
+
   def destroy
     load_own_event
     @event.cancel!

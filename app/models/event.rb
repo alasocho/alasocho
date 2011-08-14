@@ -25,6 +25,7 @@ class Event < ActiveRecord::Base
   before_create :set_default_last_commented_at
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
+  scope :public_events, where("public = TRUE")
 
   validates :name, :start_at, :presence => true
   validates :attendee_quota, :numericality => {
@@ -75,6 +76,10 @@ class Event < ActiveRecord::Base
 
   def create_invitation(email)
     attendances.create(:email => email.strip) if !email.strip.empty?
+  end
+
+  def self.public_events_near(city)
+    public_events.where("city LIKE '%#{city}%'")
   end
 
   def attendance_for(user)
