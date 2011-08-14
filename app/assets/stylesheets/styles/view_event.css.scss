@@ -1,10 +1,28 @@
-h1 .edit {
+h1 .admin_actions {
   font-size: 16px;
   font-weight: normal;
   text-shadow: none;
   float: right;
-  text-decoration: underline;
   text-transform: lowercase;
+
+  a {
+    text-decoration: underline;
+  }
+
+  span:after {
+    content: "•";
+    padding: 0 3px 0 8px;
+    color: #999;
+    text-decoration: none;
+  }
+
+  span:last-child:after {
+    display: none;
+  }
+
+  &:after {
+    clear: both;
+  }
 }
 
 #info_short, .organizer {
