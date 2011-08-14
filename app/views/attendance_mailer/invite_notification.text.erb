@@ -4,4 +4,4 @@
 
 <%= event_url(@attendance.event, :token => @attendance.token) %>
 
-<%= link_to t("email.attendance.invite.google_calendar", :event_name => @attendance.event.name), @attendance.event.to_gcal %>
+<%= t("email.attendance.invite.google_calendar", :event_name => @attendance.event.name) +  @attendance.event.to_gcal %>
