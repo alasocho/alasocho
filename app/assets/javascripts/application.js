@@ -19,4 +19,5 @@ $("#rally_badge").click(function(){
 $('#notifications_link').click(function(ev) {
   ev.preventDefault();
   $("#notifications").toggle();
+  $(this).blur();
 });
