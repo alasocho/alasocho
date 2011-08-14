@@ -24,6 +24,7 @@ class Attendance < ActiveRecord::Base
   scope :user_wants_comment_notifications, joins(:user).merge(User.want_comment_notifications)
 
   validates :user_id, :uniqueness => { :scope => :event_id, :allow_nil => true }
+  validates :email, :uniqueness => { :scope => :event_id, :allow_nil => true }
 
   def owner
     user || User::Anonymous.new(self)
