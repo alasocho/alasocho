@@ -31,9 +31,10 @@ class Event < ActiveRecord::Base
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
   scope :viewable, where(state: VIEWABLE_STATES)
+  scope :future, where("start_at > ?", 3.hours.ago) #well, sort of
 
   def self.public_events(token=nil)
-    (token.present? ? where("events.public is true or events.token = :token", token: token) : where(public: true)).viewable
+    (token.present? ? where("events.public is true or events.token = :token", token: token) : where(public: true)).viewable.order("start_at")
   end
 
   def self.viewable_by(user, token = nil)
