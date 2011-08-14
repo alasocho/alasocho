@@ -25,11 +25,9 @@ class Event < ActiveRecord::Base
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
 
-  def self.viewable_by
-    lambda do |user|
-      join_attendances.where("events.host_id = :user_id or ((attendances.user_id = :user_id or events.public is true) and events.state in (:states))",
-                             :user_id => user.id), :states => VIEWABLE_STATES }
-    end
+  def self.viewable_by(user)
+    join_attendances.where("events.host_id = :user_id or ((attendances.user_id = :user_id or events.public is true) and events.state in (:states))",
+                           :user_id => user.id, :states => VIEWABLE_STATES)
   end
 
   validates :name, :start_at, :presence => true
