@@ -136,7 +136,7 @@ class EventsController < ApplicationController
 
   def invited
     load_event
-    @attendances = @event.pending_invitations
+    @attendances = @event.pending_invitations.uniq
   end
 
   def waitlisted
