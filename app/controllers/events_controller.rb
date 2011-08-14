@@ -62,9 +62,9 @@ class EventsController < ApplicationController
     end
   end
 
-  MAX_CONFIRMED_ATTENDEES = 8
-  MAX_WAITLISTED_ATTENDEES = 4
-  MAX_PENDING_ATTENDEES = 4
+  MAX_CONFIRMED_ATTENDEES = 10
+  MAX_WAITLISTED_ATTENDEES = 5
+  MAX_PENDING_ATTENDEES = 5
 
   def show
     load_event
