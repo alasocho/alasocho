@@ -1,7 +1,19 @@
+#invite_people h1 {
+  margin-bottom: 12px;
+}
+
+#invite_people p {
+  margin: 12px 0;
+}
+
 #invite_people li {
   list-style-type: none;
 }
 
 #invite_people input {
   width: 515px;
+}
+
+#invite_people .submit_buttons {
+  margin-top: 12px;
 }

@@ -2,8 +2,9 @@
   %h1= t("event.form.invite.people")
   %p.explanation
   %ul.invitees
-  %button#invite= t("event.form.invite.button")
-  %button#close_modal= t("event.form.invite.close")
+  .submit_buttons
+    %button#invite= t("event.form.invite.button")
+    %button#close_modal= t("event.form.invite.close")
 
 %div{"data-template-for" => 'AttendeeQuotaView'}
   = t("event.form.invite.explanation") if @event.attendee_quota.present? && @event.attendee_quota > 0
