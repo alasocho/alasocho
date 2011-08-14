@@ -57,7 +57,7 @@ namespace :bundler do
 end
 
 task :restart_resque do
-  run "cd #{current_path} && RAILS_ENV=#{rails_env} VERBOSE=1 QUEUE=* ./script/resque_worker restart"
+  run "cd #{current_path} && RAILS_ENV=#{rails_env} VVERBOSE=1 QUEUE=* ./script/resque_worker restart"
 end
 
 task :create_various_symlinks do
