@@ -25,17 +25,17 @@
               = link_to t("accounts.edit.link"), edit_account_path
               |
               = link_to t("sessions.sign_out.link"), "/auth/sign_out"
+              |
+              = render :partial => "shared/notifications"
           - else
             - Authorization::PROVIDERS.each do |provider|
               = link_to t("sessions.sign_in.#{provider}"),  "/auth/#{provider}",  class: "sign_in #{provider}"
+
 
       = flash_messages
 
       %section#main
         = yield
-
-    - if signed_in?
-      = render :partial => "shared/notifications"
 
     = javascript_include_tag :application, :a8
 

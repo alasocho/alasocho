@@ -15,3 +15,7 @@ window.A8 = {
 $("#rally_badge").click(function(){
   window.location = "http://rallyonrails.com/teams/9";
 });
+
+$('#notifications_link').click(function() {
+  $("ol#notifications").toggle();
+});

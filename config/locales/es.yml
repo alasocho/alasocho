@@ -13,6 +13,9 @@ es:
       google: "Entrar con Google"
     need_to_sign_in: "Oops, tienes que ingresar al sitio para acceder a esta página"
 
+  notifications:
+    link: "Notificaciones (%{amount})"
+
   activerecord:
     models:
       event: "evento"
