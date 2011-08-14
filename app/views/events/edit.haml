@@ -1,6 +1,6 @@
 %h2= t("event.form.edit.title")
 
-%aside.alternate#cancel
+-# %aside.alternate#cancel
   = link_to t('event.form.edit.cancel_event'), event_path(@event), :method => :delete, :confirm => t('shared.are_you_sure')
 
 = form_for @event do |f|
