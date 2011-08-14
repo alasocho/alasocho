@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   end
 
   def cleanup_date(hash)
+    return nil if hash.blank?
     if hash[:date].present? && hash[:time].present?
       Time.parse("#{hash[:date]} #{hash[:time]} UTC +00:00")
     else
