@@ -12,12 +12,12 @@
   .double_feature
     .form_field
       = f.label :start_at
-      = f.text_field :start_at, type: "datetime", placeholder: placeholder_i18n.t(:start_at)
-      = f.errors :start_at
+      = f.datetime_select :start_at, placeholder: placeholder_i18n.t(:start_at)
+      = f.errors :end_at
 
     .form_field
       = f.label :end_at
-      = f.text_field :end_at, type: "datetime", placeholder: placeholder_i18n.t(:end_at)
+      = f.datetime_select :end_at, placeholder: placeholder_i18n.t(:end_at)
       = f.errors :end_at
 
   .form_field
