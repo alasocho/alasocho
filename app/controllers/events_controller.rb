@@ -141,7 +141,8 @@ private
   end
 
   def load_event
-    @event = (signed_in? ? Event.viewable_by(current_user) : Event.public_events).find(params[:event_id] || params[:id])
+    id, token = (params[:event_id] || params[:id]).split('-')
+    @event = (signed_in? ? Event.viewable_by(current_user, token) : Event.public_events(token)).find(id)
   end
 
   def load_event_writable

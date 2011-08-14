@@ -24,7 +24,8 @@ private
       @event = current_user.hosted_events.find(params[:event_id])
       @attendance = @event.attendances.find(params[:attendance_id])
     else
-      @event = Event.viewable_by(current_user).find(params[:event_id])
+      id, token = (params[:event_id]).split('-')
+      @event = Event.viewable_by(current_user, token).find(params[:event_id])
       @attendance = @event.attendance_for(current_user)
     end
   end

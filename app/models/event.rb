@@ -28,11 +28,15 @@ class Event < ActiveRecord::Base
   after_create :set_token
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
-  scope :public_events, where(public: true, state: %w(cancelled published))
+  scope :viewable, where(state: VIEWABLE_STATES)
 
-  def self.viewable_by(user)
-    join_attendances.where("events.host_id = :user_id or ((attendances.user_id = :user_id or events.public is true) and events.state in (:states))",
-                           :user_id => user.id, :states => VIEWABLE_STATES)
+  def self.public_events(token=nil)
+    (token.present? ? where("events.public is true or events.token = :token", token: token) : where(public: true)).viewable
+  end
+
+  def self.viewable_by(user, token = nil)
+    join_attendances.where("events.host_id = :user_id or ((attendances.user_id = :user_id or events.public is true or events.token = :token)  and events.state in (:states))",
+                           user_id: user.id, states: VIEWABLE_STATES, token: token)
   end
 
   validates :name, :start_at, :presence => true
