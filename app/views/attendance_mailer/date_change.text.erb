@@ -2,6 +2,6 @@
 
 <%= t("email.attendance.date_change.text", :event_name => @attendance.event.name, :host_name => @attendance.event.host.name ) %>
 
-<%= link_to t("email.attendance.invite.google_calendar", :event_name => @attendance.event.name), @attendance.event.to_gcal %>
-
 <%= event_url(@attendance.event) %>
+
+<%= link_to t("email.attendance.invite.google_calendar", :event_name => @attendance.event.name), @attendance.event.to_gcal %>
