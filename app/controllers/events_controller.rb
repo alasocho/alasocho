@@ -97,7 +97,8 @@ class EventsController < ApplicationController
   def show
     load_event
 
-    @page_title = @event.name
+    @page_title       = @event.name
+    @page_description = @event.description
 
     @attendance             = signed_in? ? @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? } : nil
     @comments               = @event.comments
