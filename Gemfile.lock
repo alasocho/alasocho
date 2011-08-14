@@ -193,6 +193,7 @@ PLATFORMS
 
 DEPENDENCIES
   backbone-rails
+  bcrypt-ruby
   coffee-rails (~> 3.1.0.rc)
   daemons
   geoip
