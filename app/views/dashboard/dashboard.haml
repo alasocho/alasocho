@@ -17,6 +17,6 @@
 #right_column
   #public_events
     %h2= t('events.public.title')
-    = t('events.public.near_you')
+    = t('events.public.near_you', :current_city => @current_city)
     = render @public_events
     = link_to t('events.public.see_all'), "#"

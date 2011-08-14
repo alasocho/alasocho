@@ -42,7 +42,7 @@ es:
     public:
       title: "Eventos públicos"
       see_all: "Ver todos los eventos públicos"
-      near_you: "Eventos públicos cerca de ti!"
+      near_you: "Eventos públicos en %{current_city}"
     my_events:
       title: "Mis Eventos"
       see_all: "Ver todos mis eventos"
