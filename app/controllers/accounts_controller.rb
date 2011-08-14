@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
   before_filter :authenticate_user
 
   def edit
+    @page_title = t("accounts.edit.title")
   end
 
   def update

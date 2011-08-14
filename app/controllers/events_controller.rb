@@ -32,10 +32,12 @@ class EventsController < ApplicationController
 
   def edit
     load_own_event
+    @page_title = @event.name
   end
 
   def invite
     load_event_writable
+    @page_title = @event.name
     if @event.allow_invites_from(current_user)
       list = JSON params[:invitees]
       @event.invitee_list = list
@@ -47,16 +49,19 @@ class EventsController < ApplicationController
   end
 
   def my_events
+    @page_title = t("my_events.title")
     @my_events = current_user.hosted_events
   end
 
   def everyone
     load_own_event
+    @page_title = @event.name
     @attendances = @event.attendances
   end
 
   def invite_people
     load_own_event
+    @page_title = @event.name
   end
 
   def update
@@ -107,6 +112,7 @@ class EventsController < ApplicationController
   end
 
   def public
+    @page_title = t("events.public.title")
     current_city = GeoLocator.city_from_ip(request.remote_addr)
     @events = Event.public_events_near(current_city)
   end
