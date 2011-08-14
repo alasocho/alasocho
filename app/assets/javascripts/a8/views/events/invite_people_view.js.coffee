@@ -17,7 +17,7 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     <h1>Invite new users</h1>
     <button id='invite'>Invite</button>
     <button id='close_modal'>close</button>
-      "
+   "
 
   attendees_count: 0
 
@@ -34,14 +34,18 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
 
   invite: (event) ->
     # TODO: Refactor someday
-    invitations = _.map $(this.el).find("input"), (input) -> $(input).val()
-    ajax = $.post "/events/#{this.event_id}/invite", invitees: JSON.stringify invitations
+    invitations = _.map $(this.el).find("input"), (input) => this.validate_email($(input).val())
+    ajax = $.post "/events/#{this.event_id}/invite", invitees: JSON.stringify _.compact(invitations)
     ajax.complete => this.end()
     false
 
   end: ->
     this.container.removeClass "show"
     this.container.html ""
+
+  validate_email: (string) ->
+    filter = /([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+/
+    _.first string.match filter if filter.test(string)
 
   enter_pressed: (event) ->
     if event.keyCode is 13
