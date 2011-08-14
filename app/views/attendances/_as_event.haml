@@ -1,0 +1,4 @@
+= content_tag_for "div", attendance.event do
+  = render attendance.event
+
+  = render :partial => "events/attendance_actions", :locals => { :attendance => attendance }

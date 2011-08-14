@@ -3,5 +3,5 @@
   = event.location
   .date
     = event.start_at
-  - unless event.attendee_quota.nil?
+  - if event.limited?
     %span= "#{ event.confirmed_attendees.size }/#{ event.attendee_quota } " + t('event.occupied_seats')

@@ -6,7 +6,7 @@
     %h2= t('events.invites.title')
     - unless @pending_invites.empty?
       - @pending_invites.each do |invite|
-        = render invite
+        = render :partial => 'attendances/as_event', :locals => { :attendance => invite }
         = link_to t('events.invites.see_all'), "#"
 
   #my_events
