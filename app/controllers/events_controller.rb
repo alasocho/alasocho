@@ -67,9 +67,9 @@ class EventsController < ApplicationController
     load_event
     @attendance = @event.attendance_for(current_user)
     @comments = @event.comments
-    @confirmed_attendees = @event.confirmed_attendees.limit(MAX_CONFIRMED_ATTENDEES)
-    @waitlisted          = @event.waitlisted.limit(MAX_WAITLISTED_ATTENDEES)
-    @invitations         = @event.attendances.limit(MAX_PENDING_ATTENDEES)
+    @confirmed_attendees = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES).map(&:owner)
+    @waitlisted          = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES).map(&:owner)
+    @invited             = @event.attendances.includes(:user).limit(MAX_PENDING_ATTENDEES).map(&:owner)
   end
 
   def destroy
