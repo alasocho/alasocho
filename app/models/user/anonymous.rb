@@ -8,7 +8,7 @@ class User::Anonymous
   delegate :email, :to => :attendance
 
   def name
-    email.gsub(/@(.).*$/, '@\1...')
+    email.try(:gsub, /@(.).*$/, '@\1...') || ""
   end
 
   def picture_url
