@@ -42,7 +42,7 @@ class Event < ActiveRecord::Base
   validates :name, :start_at, :presence => true
   validates :attendee_quota, :numericality => {
     :only_integer => true,
-    :greater_than => lambda{|record| record.confirmed_attendees.size},
+    :greater_or_equal_than => lambda{|record| record.confirmed_attendees.size},
     :allow_nil => true
   }
 
