@@ -94,7 +94,7 @@ class Event < ActiveRecord::Base
   end
 
   def public_attendance_for(user)
-    public? ? attendances.new(:user_id => user.id, :state => "invited") : nil
+    attendances.new(:user_id => user.id, :state => "invited")
   end
 
   def allow_invites_from(user)
