@@ -15,6 +15,7 @@ class A8.Views.Events.SettingsView extends Backbone.View
     this.watcher?.counter_updated current_value
 
   initialize: (@el, @watcher) ->
+    $(".unlimited_attendee_quota").hide()
     this.valid_numbers()
     this.attendee_quota().click this.valid_numbers
     this.public_checkbox().click =>
@@ -30,10 +31,12 @@ class A8.Views.Events.SettingsView extends Backbone.View
           this.attendee_quota().val(null)
           $(this.el).addClass("down")
           $(".attendee_quota_field").hide()
+          $(".unlimited_attendee_quota").show()
       , =>
           this.attendee_quota().val(this.previous_attendee_quota)
           $(this.el).removeClass("down")
           $(".attendee_quota_field").show()
+          $(".unlimited_attendee_quota").hide()
       )
 
     this

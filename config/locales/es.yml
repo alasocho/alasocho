@@ -200,6 +200,7 @@ es:
         close: "Cerrar"
         title: "Invitaciones"
         after_attendee_quota: "personas pueden asistir"
+        unlimited_attendee_quota: "No hay limite, invita a cuantos quieras."
         explanation: "Si bien el evento tiene un máximo de %{spots_left} personas que pueden confirmar, ¡puedes invitar a tantas personas como quieras! Si más de %{spots_left} personas confirman quedaran en una lista de espera"
         no_limit: "¿sin límite?"
         submit: "Publicar evento"

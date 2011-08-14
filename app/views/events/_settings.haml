@@ -6,6 +6,9 @@
   = f.check_box :allow_invites, :disabled => f.object.public?
   = f.label :allow_invites, t("event.attendees_can_invite")
 
+.form_field.unlimited_attendee_quota
+  = t("event.form.invite.unlimited_attendee_quota")
+
 .form_field.attendee_quota_field
   = f.label :attendee_quota
   = f.number_field :attendee_quota, :size => 3, :class => "attendee_quota"
