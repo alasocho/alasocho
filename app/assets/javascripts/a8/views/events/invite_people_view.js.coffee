@@ -1,7 +1,8 @@
 A8.Views.Events ||= {}
 
 class A8.Views.Events.InvitePeopleView extends Backbone.View
-  tagName: 'ul'
+  tagName: 'div'
+  id: 'invite_people'
 
   events: {
     'keypress .add_attendee'  : 'enter_pressed'
@@ -52,12 +53,13 @@ class A8.Views.Events.InvitePeopleView extends Backbone.View
     item = new A8.Views.Events.InvitePeopleView.AddInviteeView({parent: this})
     element = item.render().el
     this.attendees_count++
-    $(this.el).append element
+    $(this.list).append element
     $(element).find("input").focus()
 
   render: ->
     content = _.template(this.template)
     $(this.el).append content()
+    this.list = $(this.el).find(".invitees")
     this.add_one()
     this
 

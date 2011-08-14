@@ -3,13 +3,18 @@
   width: 560px;
   position: absolute;
   top: -400px;
-  left: 370px;
-  border: solid 1px #999;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(255,255,255)), to(rgb(230,230,230)));
+  left: 50%;
+  margin-left: -280px;
+  border: solid 1px #bfbb11;
   padding: 50px;
+  background: #bfbb11 url(/assets/backgrounds/green-aside.png);
+
   -webkit-transition: -webkit-transform 0.25s ease-out;
   -webkit-transform: translateY(0);
+
+  -moz-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
   -webkit-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
 }
 
 #modal_window.show {
@@ -20,4 +25,9 @@
   opacity: 1.0;
   z-index: 100;
   -webkit-transition-duration: 0.25s;
+}
+
+body #modal_window h1 {
+  color: #730046;
+  text-shadow: 1px 1px #9d9900;
 }

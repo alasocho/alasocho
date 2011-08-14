@@ -1,12 +1,13 @@
 %div{"data-template-for" => 'InvitePeopleView'}
   %h1= t("event.form.invite.people")
+  %p.explanation
+  %ul.invitees
   %button#invite= t("event.form.invite.button")
   %button#close_modal= t("event.form.invite.close")
-  .explanation
 
 %div{"data-template-for" => 'AttendeeQuotaView'}
-  = t("event.form.invite.explanation")
+  = t("event.form.invite.explanation") if @event.attendee_quota.present? && @event.attendee_quota > 0
 
 %div{"data-template-for" => 'AddInviteeView'}
-  %input.add_attendee
+  %input.add_attendee(placeholder="#{t "invitations.form.placeholders.email"}")
   %button.remove_attendee -

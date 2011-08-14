@@ -88,7 +88,7 @@
   :javascript
     $(document).ready(function(){
       router = new A8.Routers.EventRouter(#{@event.id});
-      router.counter_updated(#{@event.attendances.size})
+      router.counter_updated(#{@event.attendee_quota})
     });
 
 
