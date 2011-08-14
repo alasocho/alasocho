@@ -7,6 +7,7 @@ ALasOcho::Application.routes.draw do
     resources :comments, :only => [:create]
     post :invite
     get :invite_people
+    get :confirmed, :action => "confirmed", :as => "confirmed"
 
     resource :attendance, :only => [:create, :destroy]
   end
@@ -14,6 +15,7 @@ ALasOcho::Application.routes.draw do
   resource :account, :only => [:edit, :update] do
     resource :merge, :only => [:new, :create]
   end
+
   get "/my_events" => "events#my_events"
 
   match "/auth/sign_out" => "sessions#destroy"

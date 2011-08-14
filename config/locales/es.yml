@@ -86,6 +86,8 @@ es:
       success: "La cuenta %{user_name} ha sido combinada con la tuya"
 
   event:
+    confirmed_users:
+      title: "Usuarios confirmados para el evento"
     available_seats: "lugares disponibles."
     occupied_seats: "cupos llenos."
     invitees: "invitados"

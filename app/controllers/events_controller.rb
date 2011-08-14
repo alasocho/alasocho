@@ -82,6 +82,11 @@ class EventsController < ApplicationController
     @events = current_user.events_timeline.order("start_at DESC")
   end
 
+  def confirmed
+    load_own_event
+    @users =  @event.confirmed_attendees
+  end
+
 private
 
   def load_own_event

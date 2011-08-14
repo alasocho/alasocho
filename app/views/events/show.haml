@@ -43,8 +43,8 @@
       - @confirmed_attendees.each do |confirmed_attendee|
         = image_tag confirmed_attendee.picture_url
         = confirmed_attendee.name
-      - if @event.confirmed_invitations.size > EventsController::MAX_CONFIRMED_ATTENDEES
-        = link_to t('event.form.see_all'), "#"
+        /- if @event.confirmed_invitations.size > EventsController::MAX_CONFIRMED_ATTENDEES
+        = link_to t('event.form.see_all'), event_confirmed_path(@event)
 
 
       - unless @waitlisted.empty?
