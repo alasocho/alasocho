@@ -17,6 +17,6 @@ class GeoLocator
     return "Montevideo, Uruguay" if Rails.env.development?
     info = data(ip)
     return "" if info.blank?
-    [:city_name, :country_name].map { |m| info.send(m) }.join(", ")
+    [:city_name, :country_name].map { |m| info.send(m) }.compact.join(", ")
   end
 end
