@@ -1,5 +1,5 @@
 class DashboardsController < ApplicationController
-  before_filter :authenticate_user, :only => :dashboard
+  before_filter :authenticate_user
 
   def show
     @page_title = t("dashboard.title")
