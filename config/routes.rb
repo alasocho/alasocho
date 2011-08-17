@@ -1,7 +1,7 @@
 ALasOcho::Application.routes.draw do
   root to: "pages#home"
 
-  get "dashboard", :to => "dashboard#index", :as => :user_root
+  resource :dashboard, :only => [:show]
   get "terms_and_conditions", :to => "pages#terms_and_conditions", :as => :terms_and_conditions
 
   get "/events/public" => "events#public", :as => "public_events"
