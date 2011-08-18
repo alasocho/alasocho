@@ -29,6 +29,8 @@ end
 
 group :test do
   gem "turn", :require => false
+  gem "capybara"
+  gem "launchy"
 end
 
 group :development, :test do
