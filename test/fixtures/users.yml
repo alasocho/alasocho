@@ -1,0 +1,3 @@
+event_host:
+  name: "John Doe"
+  email: "john.doe@example.com"

@@ -1,0 +1,4 @@
+event_host_google:
+  user: event_host
+  provider: google
+  key: john.doe@google.com
