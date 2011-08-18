@@ -2,17 +2,38 @@ class EventsController < ApplicationController
   before_filter :check_token, :only => [:show]
   before_filter :authenticate_user, :except => [:show, :confirmed, :invited, :waitlisted]
 
-  def new
-    @event = current_user.hosted_events.new(:city => GeoLocator.city_from_ip(request.remote_addr))
+  MAX_CONFIRMED_ATTENDEES = 10
+  MAX_WAITLISTED_ATTENDEES = 5
+  MAX_PENDING_ATTENDEES = 5
+
+  def index
+    @events = current_user.events_timeline.order("start_at DESC")
   end
 
-  def cleanup_date(hash)
-    return nil if hash.blank?
-    if hash[:date].present? && hash[:time].present?
-      Time.parse("#{hash[:date]} #{hash[:time]} UTC +00:00")
+  def show
+    load_event
+
+    @page_title       = @event.name
+    @page_description = @event.description
+
+    @attendance             = signed_in? ? @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? } : nil
+    @comments               = @event.comments
+    @confirmed_invitations  = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
+    @waitlisted_invitations = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
+    @pending_invitations    = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES)
+
+    if @event.viewable?
+      respond_to do |format|
+        format.html
+        format.ics { render text: @event.to_ical }
+      end
     else
-      nil
+      redirect_to event_invite_people_path(@event)
     end
+  end
+
+  def new
+    @event = current_user.hosted_events.new(:city => GeoLocator.city_from_ip(request.remote_addr))
   end
 
   def create
@@ -31,9 +52,40 @@ class EventsController < ApplicationController
     end
   end
 
+  def invite_people
+    load_own_event
+    @page_title = @event.name
+  end
+
   def edit
     load_own_event
     @page_title = @event.name
+  end
+
+  def update
+    load_own_event
+    # TODO OMG fix this, my brain stop responding!
+    data = params[:event]
+    start_at = cleanup_date data[:start_at]
+    end_at = cleanup_date data[:end_at]
+    if start_at then data[:start_at] = start_at else data.delete(:start_at) end
+    if end_at then data[:end_at] = end_at else data.delete(:start_at) end
+
+    @event.attributes = data
+
+    date_changed = @event.start_at_changed? || @event.end_at_changed?
+
+    if @event.save
+      @event.publish!
+
+      NotifyDateChange.enqueue(@event.id) if date_changed
+      flash[:notice] = t("event.form.invite.message.success")
+
+      redirect_to @event
+    else
+      flash[:alert] = t("event.form.invite.message.error")
+      render :action => :invite_people
+    end
   end
 
   def invite
@@ -60,63 +112,6 @@ class EventsController < ApplicationController
     @attendances = @event.attendances.includes(:event, :user)
   end
 
-  def invite_people
-    load_own_event
-    @page_title = @event.name
-  end
-
-  def update
-    load_own_event
-    # TODO OMG fix this, my brain stop responding!
-    data = params[:event]
-    start_at = cleanup_date data[:start_at]
-    end_at = cleanup_date data[:end_at]
-    if start_at then data[:start_at] = start_at else data.delete(:start_at) end
-    data[:end_at] = end_at
-
-    @event.attributes = data
-
-    date_changed = @event.start_at_changed? || @event.end_at_changed?
-
-    if @event.save
-      @event.publish!
-
-      NotifyDateChange.enqueue(@event.id) if date_changed
-      flash[:notice] = t("event.form.invite.message.success")
-
-      redirect_to @event
-    else
-      flash[:alert] = t("event.form.invite.message.error")
-      render :action => :invite_people
-    end
-  end
-
-  MAX_CONFIRMED_ATTENDEES = 10
-  MAX_WAITLISTED_ATTENDEES = 5
-  MAX_PENDING_ATTENDEES = 5
-
-  def show
-    load_event
-
-    @page_title       = @event.name
-    @page_description = @event.description
-
-    @attendance             = signed_in? ? @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? } : nil
-    @comments               = @event.comments
-    @confirmed_invitations  = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
-    @waitlisted_invitations = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
-    @pending_invitations    = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES)
-
-    if @event.viewable?
-      respond_to do |format|
-        format.html
-        format.ics { render text: @event.to_ical }
-      end
-    else
-      redirect_to event_invite_people_path(@event)
-    end
-  end
-
   def public
     @page_title = t("events.public.title")
     current_city = GeoLocator.city_from_ip(request.remote_addr)
@@ -128,10 +123,6 @@ class EventsController < ApplicationController
     @event.cancel!
     flash[:notice] = t("event.message.cancelled", :event_name => @event.name)
     redirect_to root_path
-  end
-
-  def index
-    @events = current_user.events_timeline.order("start_at DESC")
   end
 
   def confirmed
@@ -155,6 +146,15 @@ class EventsController < ApplicationController
   end
 
 private
+
+  def cleanup_date(hash)
+    return nil if hash.blank?
+    if hash[:date].present? && hash[:time].present?
+      Time.parse("#{hash[:date]} #{hash[:time]} UTC +00:00")
+    else
+      nil
+    end
+  end
 
   def load_own_event
     @event = current_user.hosted_events.find(params[:event_id] || params[:id])
