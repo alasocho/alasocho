@@ -13,18 +13,17 @@ window.A8 = {
   "Routers": {},
   "Views": {}
 }
-var hide_notifications = function(){
-  $("#notifications").hide()
-}
 
-$(document).keyup(function(event){
-  if(event.keyCode == 27){
-    hide_notifications()
-  }
-});
+jQuery(function($) {
+  $(document).keyup(function(event){
+    if (event.keyCode == 27) { // ESC
+      $("#notifications").hide();
+    }
+  });
 
-$('#notifications_link').click(function(ev) {
-  ev.preventDefault();
-  $("#notifications").toggle();
-  $(this).blur();
+  $('#notifications_link').click(function(ev) {
+    $("#notifications").toggle();
+    $(this).blur();
+    return false;
+  });
 });
