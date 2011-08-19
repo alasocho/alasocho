@@ -7,11 +7,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require backbone-rails
+//= require_self
+//= require_tree ./a8
+
 window.A8 = {
   "Models": {},
   "Collections": {},
   "Routers": {},
   "Views": {}
+}
+
+_.templateSettings = {
+  interpolate: /\%\{(.+?)\}/g,
+  evaluate:    /\[\[(.+?)\]\]/g
 }
 
 jQuery(function($) {
