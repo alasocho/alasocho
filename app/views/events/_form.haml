@@ -36,10 +36,10 @@
 - content_for :javascript do
   :javascript
     $(document).ready(function(){
-      var event = new A8.Models.Event(#{@event.to_json})
+      var theEvent = new A8.Models.Event(#{@event.to_json})
 
-      new A8.Views.Events.EndDate({
-        model:    event,
+      new A8.Views.Events.EndDateToggle({
+        model:    theEvent,
         el:       $("#end_at_container"),
         showDate: "#{t(".show_end_date")}",
         hideDate: "#{t(".hide_end_date")}"

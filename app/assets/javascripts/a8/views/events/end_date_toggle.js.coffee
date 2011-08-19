@@ -1,6 +1,6 @@
 A8.Views.Events ||= {}
 
-class A8.Views.Events.EndDate extends Backbone.View
+class A8.Views.Events.EndDateToggle extends Backbone.View
   events:
     "click .toggle": "toggle"
 
