@@ -9,7 +9,6 @@
     = f.text_area :description, placeholder: placeholder_i18n.t(:description)
     = f.errors :description
 
-
   .double_feature
     .form_field
       = f.errors :start_at
@@ -18,7 +17,7 @@
         = start_at.text_field :date, type: "date", value: "#{@event.start_at.to_s(:date) if @event.start_at.present?}"
         = start_at.text_field :time, type: "time", value: "#{@event.start_at.to_s(:time) if @event.start_at.present?}"
 
-    .form_field
+    .form_field#end_at_container
       = f.errors :end_at
       = f.label :end_at
       = f.fields_for :end_at do |end_at|
@@ -38,6 +37,15 @@
 - content_for :javascript do
   :javascript
     $(document).ready(function(){
+      var event = new A8.Models.Event(#{@event.to_json})
+
+      new A8.Views.Events.EndDate({
+        model:    event,
+        el:       $("#end_at_container"),
+        showDate: "#{t(".show_end_date")}",
+        hideDate: "#{t(".hide_end_date")}"
+      }).render();
+
       var custom_range = function(input){
         var min = new Date();
         var dateMin = min;

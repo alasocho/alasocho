@@ -101,6 +101,8 @@ es:
       title: "Quiénes rechazaron la invitación"
     form:
       invite: "Invitar más gente"
+      show_end_date: "Con fecha de fin"
+      hide_end_date: "Sin fecha de fin"
       button:
         new: "Crear un Evento"
       placeholders:
