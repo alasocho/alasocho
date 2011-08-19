@@ -1,38 +1,37 @@
-- with_options :scope => [:events, :form, :placeholders] do |placeholder_i18n|
+.form_field
+  = f.label :name
+  = f.text_field :name, placeholder: t(".placeholders.name")
+  = f.errors :name
+
+.form_field
+  = f.label :description
+  = f.text_area :description, placeholder: t(".placeholders.description")
+  = f.errors :description
+
+.double_feature
   .form_field
-    = f.label :name
-    = f.text_field :name, placeholder: placeholder_i18n.t(:name)
-    = f.errors :name
+    = f.errors :start_at
+    = f.label :start_at
+    = f.fields_for :start_at do |start_at|
+      = start_at.text_field :date, value: "#{@event.start_at.to_s(:date) if @event.start_at.present?}", placeholder: t(".placeholders.date")
+      = start_at.text_field :time, value: "#{@event.start_at.to_s(:time) if @event.start_at.present?}", placeholder: t(".placeholders.time")
 
-  .form_field
-    = f.label :description
-    = f.text_area :description, placeholder: placeholder_i18n.t(:description)
-    = f.errors :description
+  .form_field#end_at_container
+    = f.errors :end_at
+    = f.label :end_at
+    = f.fields_for :end_at do |end_at|
+      = end_at.text_field :date, value: "#{@event.end_at.to_s(:date) if @event.end_at.present?}", placeholder: t(".placeholders.date")
+      = end_at.text_field :time, value: "#{@event.end_at.to_s(:time) if @event.end_at.present?}", placeholder: t(".placeholders.time")
 
-  .double_feature
-    .form_field
-      = f.errors :start_at
-      = f.label :start_at
-      = f.fields_for :start_at do |start_at|
-        = start_at.text_field :date, type: "date", value: "#{@event.start_at.to_s(:date) if @event.start_at.present?}"
-        = start_at.text_field :time, type: "time", value: "#{@event.start_at.to_s(:time) if @event.start_at.present?}"
+.form_field
+  = f.label :location
+  = f.text_field :location, placeholder: t(".placeholders.location")
+  = f.errors :location
 
-    .form_field#end_at_container
-      = f.errors :end_at
-      = f.label :end_at
-      = f.fields_for :end_at do |end_at|
-        = end_at.text_field :date, type: "date", value: "#{@event.end_at.to_s(:date) if @event.end_at.present?}"
-        = end_at.text_field :time, type: "time", value: "#{@event.end_at.to_s(:time) if @event.end_at.present?}"
-
-  .form_field
-    = f.label :location
-    = f.text_field :location, placeholder: placeholder_i18n.t(:location)
-    = f.errors :location
-
-  .form_field
-    = f.label :city
-    = f.text_field :city, placeholder: placeholder_i18n.t(:city)
-    = f.errors :city
+.form_field
+  = f.label :city
+  = f.text_field :city, placeholder: t(".placeholders.city")
+  = f.errors :city
 
 - content_for :javascript do
   :javascript

@@ -112,6 +112,8 @@ es:
         end_at: "20/8/2011 21:00"
         location: "Paraguay 2211"
         city: "Montevideo, Uruguay"
+        date: "Fecha"
+        time: "Hora"
     manage_attendees:
       title: "Administrar miembros"
       link: "Administrar Invitados"
