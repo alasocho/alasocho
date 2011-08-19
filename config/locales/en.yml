@@ -1,5 +1,269 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+es:
+  app:
+    title: "A Las Ocho"
 
-en:
-  hello: "Hello world"
+  dashboard:
+    title: "Dashboard"
+
+  sessions:
+    sign_out:
+      link: "Log Out"
+      success: "See you later!"
+    sign_in:
+      success: "Hi! You just logged in successfully."
+      twitter: "Twitter login"
+      facebook: "Facebook login"
+      google: "Google login"
+    need_to_sign_in: "You need to log into the site to access this page"
+
+  notifications:
+    link: "Notifications (%{amount})"
+
+  activerecord:
+    models:
+      event: "event"
+      user: "user"
+    attributes:
+      event:
+        name: "Name"
+        description: "Description"
+        start_at: "Start"
+        end_at: "End"
+        location: "Logation"
+        city: "City"
+        public: "This is a public event"
+        allow_invites: "Invitees can invite additional people"
+        attendee_quota: "Attendee limit"
+      user:
+        name: "Name"
+        email: "Email"
+        wants_comment_notifications: "I want to receive notifications on new comments"
+    defaults:
+      event:
+        location: "Location to be decided"
+
+  events:
+    show:
+      confirmed: "%{count} confirmed"
+      invited: "%{count} not yet confirmed"
+      waitlisted: "%{count} in waitlist"
+      available_seats: "%{count} available seats."
+
+      waitlist: "Waitlist"
+      people_waiting: "%{count} people waiting"
+
+      declined: "%{count} persons rejected this invitation"
+
+      organizer: "Organizer"
+
+      duration:
+        days:
+          one:   "1 day"
+          other: "%{count} days"
+        hours:
+          one:   "1 hour"
+          other: "%{count}:%{minutes} hours"
+        minutes: "%{minutes} minutes"
+
+      end_time:
+        hours: "Termina a las %{time} (%{duration})"
+        next_day: "Termina al día siguiente a las %{time} (%{duration})"
+        arbitrary: "Ends on %{time}"
+        default: "No end time specified"
+
+      feed:
+        subscribe: "Suscribe!:"
+        ical/outlook: "iCal/Outlook"
+        gcal: "Google Calendar"
+        ycal: "Yahoo! Calendar"
+
+    edit:
+      link: "Edit details"
+
+    invites:
+      title: "Pending invites"
+    relevant_events:
+      title: "All my events"
+    public:
+      title: "Public Events"
+      see_all: "See all public events"
+      near_you: "Events in %{current_city}"
+    my_events:
+      title: "My Events"
+      see_all: "See all my events"
+    declined:
+      title: "Invitees who rejected the invite"
+    form:
+      invite: "Invite more people"
+      show_end_date: "With end date/time"
+      hide_end_date: "Without end date/time"
+      button:
+        new: "Create an Event"
+      placeholders:
+        name: "Example: League's final match"
+        description: "Describe this meeting"
+        start_at: "8/20/2011 19:00"
+        end_at: "8/20/2011 21:00"
+        location: "2nd Street 2211"
+        city: "Montevideo, Uruguay"
+    manage_attendees:
+      title: "Manage Invitees"
+      link: "Manage Invitees"
+
+  invitations:
+    form:
+      placeholders:
+        email: "Add email and press enter"
+
+  comments:
+    form:
+      leave_a_comment:
+        zero:  "Leave a comment"
+        one:   "Join the conversation"
+        other:   "Join the conversation"
+      create: "Your comment was added"
+      error: "Your comment could not be added"
+      submit: "Send comment"
+
+  accounts:
+    form:
+      placeholders:
+        name: "Your Name"
+        email: "Email where you wish"
+    edit:
+      link: "My Account"
+      title: "My Account"
+      message:
+        success: "Your account was updated."
+        error: "An error occoured while updating your account."
+    link_with:
+      twitter: "Merge with Twitter"
+      facebook: "Nerge with Facebook"
+      google: "Merge with Google"
+      why: "If you merge your account with other services you'll have an easier time logging in."
+
+  merges:
+    new:
+      title: "Merge Accounts"
+      explanation: "The service you tried to merge to your account is already associated to user %{user_name}. If you wish you can combine both users in your current user profile. This will transfer all events, comments and authentication methods from %{user_name} to your account. Note that this <b>cannot be rolled back in any way</b>"
+      action: "I'm sure, I want to merge my accounts"
+      cancel: "Cancel, I do not want to do it"
+    create:
+      success: "The account %{user_name} has been merged with yours"
+
+  social:
+    twitter:
+      follow_us: "Follow us on Twitter"
+  shared:
+    terms_and_conditions: "Terms and conditions"
+    nothing_here: "There is nothing here."
+    are_you_sure: "Are you sure?"
+
+  event:
+    attendees_can_invite: "Invitees can invite more people"
+    confirmed_users:
+      title: "Confirmed users for this event"
+    waitlisted_users:
+      title: "Waitlisted users for this event"
+    invited_users:
+      title: "Users invited to this event"
+    available_seats: "Available seats"
+    occupied_seats:
+      one: "%{used}/%{count} seat"
+      other: "%{used}/%{count} seats"
+    waitlist: "Waitlist"
+    people_waiting: "people waiting"
+    end_at: "End"
+    confirm:
+      slots_available: "I'll be there"
+      no_slots_available: "Waitlist"
+    decline: "Not going"
+    need_login_to_confirm: "You need to log in in order to attend this event"
+    host_actions:
+      confirm:
+        slots_available: "Attends"
+        no_slots_available: "Waitlist"
+      decline: "Will not attend"
+
+    form:
+      create:
+        title: "Organize an Event"
+        message:
+          success: "event saved"
+          error: "The event could not be saved, please verify the information and try again"
+          invite:
+        button: "Invite"
+        close: "Close"
+        title: "Invites"
+        after_attendee_quota: "persons can attend this event"
+        unlimited_attendee_quota: "No limit, invite as many people as you want to."
+        explanation: "This event allows a maximum of %{spots_left} people to confirm assistance, you can invite as many people as you want! if more than %{spots_left} peple confirm assitance they will be put on the waitlist"
+        no_limit: "no limit?"
+        submit: "Publish Event"
+        people: "Invite more people"
+        more_people: "Invite more people"
+        message:
+          success: "The event was published"
+          error: "The event could not be published"
+        cancel: "Cancel this event"
+      edit:
+        title: "Edit this event"
+        cancel_event: "Cancel this Event"
+      cancel:
+        message_cancelled: "The event %{event_name} has been cancelled."
+      see_all: "See all"
+
+  attendance:
+    status:
+      has_comment: "You have new comments"
+    message:
+      confirm: "You have confirmed that you will be attending %{event_name}"
+      waitlist: "You are in the waitlist for %{event_name}. We'll let you know if a seat is available"
+      decline: "You have left %{event_name}'s invitee list. Maybe next time?"
+      already_taken: "That invitation is already assigned to another user"
+      status:
+        has_comment: "has new comments"
+
+      as_host:
+        confirm: "You have confirmed %{user_name}'s assistance to %{event_name}"
+        waitlist: "You've put %{user_name} in the waitlist for %{event_name}. We'll let him know if a seat becomes available"
+        decline: "%{user_name} has been removed from %{event_name}'s guest list."
+
+  time:
+    formats:
+      default: "%A %d de %B, %Y, %H:%M"
+      time: "%H:%M"
+
+  email:
+    generic:
+      greeting: "Hello!"
+    attendance:
+      invite:
+        subject: "You've been invited to %{event_name}"
+        invite_text: "%{inviter_name} has invited you %{event_name}. Click the following link to see the event."
+        google_calendar: "Click here to add %{event_name} to your Google Calendar: "
+      tentative:
+        subject: "There's an available seat in %{event_name}!"
+        text: "Someone has cancelled his attendance to %{event_name}, so now there is an open seat for you if you still want it. You only need to visit the event to confirm your attendance. If you don't want to attend please visit the event and cancel your invitation so that we can give the seat to the next in line as soon as possible."
+      event_cancelled:
+        subject: "The event %{event_name} has been cancelled"
+        text: "%{user_name} has cancelled %{event_name}. You can still make comments on it if you want to."
+      date_change:
+        subject: "The date for %{event_name} has been changed!"
+        text: "%{host_name} has changed the date for %{event_name}. Click the following link to see the changes"
+      new_comment:
+        subject: "There is a new comment in %{event_name}"
+        text: "There's a new comment in %{event_name}. You can see it in the event page, you will not receive further notifications until you visit the event"
+  homepage:
+    welcome:
+      message: "Welcome!"
+      description:
+      what_is_it:
+      features:
+        social_logins: "Sign in with any of your favorite accounts. You don't need to register in order to start creating events or find the ones near you"
+        waiting_list: "Automatic Waitlists: Don't be short on invitees ever again! Set an attendee limit and invite all your friends and we will handle their confirmations and the waitlist for the event"
+        private_events: "Private Events: Want to organize a soccer match just for your friends? ? A birthday party?  A board game? Chose your invitees and we will contact them by email while you organize the event as you please."
+        public_events: "Public Events: Organize events on your favorite activities and you will meet oyher people in your city with the same interests!"
+      latest_public_events: "Here are a few of the oncoming public events in %{city}"
+      organize_an_event: "Organize an event"
+      login: "Log in"
