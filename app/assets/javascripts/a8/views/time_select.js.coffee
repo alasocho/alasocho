@@ -2,33 +2,7 @@ class A8.Views.TimeSelect extends Backbone.View
   template: $("[data-template-for='TimeSelect']").html()
 
   events:
-    "change .date": "update_time"
-    "change .time": "update_time"
-
-  before_datepicker_show: ->
-    options = minDate: new Date
-
-    if this.options.limit_min?
-      options.minDate = this.options.limit_min.time
-
-    if this.options.limit_max?
-      options.maxDate = this.options.limit_max.time
-
-    options
-
-  update_time: (event) ->
-    date = $.datepicker.formatDate(
-      "yy-mm-dd",
-      $.datepicker.parseDate(
-        this.dateFormat,
-        this.dateField.val()
-      )
-    )
-    time = this.timeField.val()
-    tz_offset = tz_offset_string(this.options.tz_offset)
-
-    this.datetimeField.val("#{date}T#{time}:00#{tz_offset}")
-    this.time = new Date(this.datetimeField.val())
+    "change .date, .time": "update_time"
 
   render: ->
     this.datetimeField = this.$("input[type^=datetime]").hide()
@@ -44,7 +18,7 @@ class A8.Views.TimeSelect extends Backbone.View
     $(this.datetimeField[0].labels).attr("for", this.dateField.attr("id"))
 
     this.dateField.datepicker(
-      beforeShow: _.bind(this.before_datepicker_show, this)
+      beforeShow: _.bind(this._before_datepicker_show, this)
     )
 
     if this.time.getFullYear() # NaN if an invalid date
@@ -53,11 +27,36 @@ class A8.Views.TimeSelect extends Backbone.View
 
     this
 
+  update_time: (event) ->
+    date = $.datepicker.formatDate(
+      "yy-mm-dd",
+      $.datepicker.parseDate(
+        this.dateFormat,
+        this.dateField.val()
+      )
+    )
+    time = this.timeField.val()
+    tz_offset = tz_offset_string(this.options.tz_offset)
+
+    this.datetimeField.val("#{date}T#{time}:00#{tz_offset}")
+    this.time = new Date(this.datetimeField.val())
+
   to_date_string: ->
     $.datepicker.formatDate(this.dateFormat, this.time)
 
   to_time_string: ->
     "#{zero_pad(this.time.getHours(), 2)}:#{zero_pad(this.time.getMinutes(), 2)}"
+
+  _before_datepicker_show: ->
+    options = minDate: new Date
+
+    if this.options.min?
+      options.minDate = this.options.min.time
+
+    if this.options.max?
+      options.maxDate = this.options.max.time
+
+    options
 
 tz_offset_string = (offset) ->
   negative = if offset < 0 then "-" else ""

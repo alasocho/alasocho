@@ -54,10 +54,10 @@
         model:     the_event,
         field:     "end_at",
         tz_offset: A8.defaultTimezone.offset,
-        limit_min: start_at_selector
+        min:       start_at_selector
       }).render();
 
-      start_at_selector.options.limit_max = end_at_selector;
+      start_at_selector.options.max = end_at_selector;
 
       new A8.Views.Events.EndDateToggle({
         model:      the_event,
