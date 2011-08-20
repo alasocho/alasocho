@@ -51,6 +51,7 @@
         = link_to t('social.twitter.follow_us'), "http://twitter.com/#!/a_las_ocho"
 
     = javascript_include_tag :application, debug: Rails.env.development?
+    = javascript_include_tag calendar_l10n_settings
 
     = yield :javascript
     :javascript

@@ -34,7 +34,6 @@ class A8.Views.TimeSelect extends Backbone.View
 
     this.dateField.datepicker(
       minDate: new Date
-      dateFormat: this.dateFormat
     )
 
     if this.time.getFullYear() # NaN if an invalid date
