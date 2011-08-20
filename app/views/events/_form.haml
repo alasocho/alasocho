@@ -33,23 +33,28 @@
   %input{ id: "%{ prefix }_date", type: "text", placeholder: t(".placeholders.date"), "data-format" => js_date_format  }
   = time_select "%{ prefix }"
 
+%script(data-template-for="TimezoneSelector" type="text/html")
+  = raw t(".timezone_selector", tz: current_location.timezone.to_s)
+
 - content_for :javascript do
   :javascript
     $(document).ready(function() {
+      A8.defaultTimezone = #{current_location.timezone.to_json};
+
       var theEvent = new A8.Models.Event(#{@event.to_json})
 
       new A8.Views.TimeSelect({
         el:        $("#start_at_container"),
         model:     theEvent,
         field:     "start_at",
-        tz_offset: -3
+        tz_offset: A8.defaultTimezone.offset
       }).render();
 
       new A8.Views.TimeSelect({
         el:        $("#end_at_container"),
         model:     theEvent,
         field:     "end_at",
-        tz_offset: -3
+        tz_offset: A8.defaultTimezone.offset
       }).render();
 
       new A8.Views.Events.EndDateToggle({
@@ -58,5 +63,9 @@
         show_date:   "#{t(".show_end_date")}",
         hide_date:   "#{t(".hide_end_date")}",
         always_hide: "[type^=datetime]"
+      }).render();
+
+      new A8.Views.Events.TimezoneSelector({
+        container: ".double_feature"
       }).render();
     });

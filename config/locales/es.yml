@@ -103,6 +103,7 @@ es:
       invite: "Invitar más gente"
       show_end_date: "Con fecha de fin"
       hide_end_date: "Sin fecha de fin"
+      timezone_selector: "La zona horaria de este evento es: <strong>%{tz}</strong>"
       button:
         new: "Crear un Evento"
       placeholders:
