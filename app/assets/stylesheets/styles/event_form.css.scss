@@ -28,12 +28,23 @@
   }
 
   .toggle {
+    font-size: 14px;
     float: right;
+    color: #999;
+
+    &:hover, &:active {
+      color: #666;
+    }
   }
 
   &.hidden .toggle {
     margin-top: 24px;
     width: 100%;
     text-align: center;
+    color: #730046;
+
+    &:hover, &:active {
+      color: #c93c00;
+    }
   }
 }
