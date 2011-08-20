@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.hosted_events.new(:city => GeoLocator.city_from_ip(request.remote_addr))
+    @event = current_user.hosted_events.new(:city => current_location.to_s)
   end
 
   def create

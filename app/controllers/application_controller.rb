@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :current_location
 
   private
 
@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_id(session[:user_id]).tap do |user|
       assign_attendance_to_user(user)
     end
+  end
+
+  def current_location
+    @current_location ||= GeoLocator.new(request.remote_addr)
   end
 
   def assign_attendance_to_user(user)
