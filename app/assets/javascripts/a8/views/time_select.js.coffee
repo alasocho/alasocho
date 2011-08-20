@@ -5,11 +5,16 @@ class A8.Views.TimeSelect extends Backbone.View
     "change .date": "update_time"
     "change .time": "update_time"
 
-  min_date_callback: ->
+  before_datepicker_show: ->
+    options = minDate: new Date
+
     if this.options.limit_min?
-      { minDate: this.options.limit_min.time }
-    else
-      {}
+      options.minDate = this.options.limit_min.time
+
+    if this.options.limit_max?
+      options.maxDate = this.options.limit_max.time
+
+    options
 
   update_time: (event) ->
     date = $.datepicker.formatDate(
@@ -39,8 +44,7 @@ class A8.Views.TimeSelect extends Backbone.View
     this.dateFormat = this.dateField.data("format")
 
     this.dateField.datepicker(
-      minDate: new Date
-      beforeShow: _.bind(this.min_date_callback, this)
+      beforeShow: _.bind(this.before_datepicker_show, this)
     )
 
     if this.time.getFullYear() # NaN if an invalid date

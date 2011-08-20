@@ -58,6 +58,8 @@
         limit_min: start_at_selector
       }).render();
 
+      start_at_selector.options.limit_max = end_at_selector;
+
       new A8.Views.Events.EndDateToggle({
         model:      theEvent,
         el:         $("#end_at_container"),
