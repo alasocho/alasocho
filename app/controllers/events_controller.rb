@@ -104,8 +104,7 @@ class EventsController < ApplicationController
 
   def public
     @page_title = t("events.public.title")
-    current_city = GeoLocator.city_from_ip(request.remote_addr)
-    @events = Event.public_events_near(current_city).future
+    @events = Event.public_events_near(current_location.to_s).future
   end
 
   def destroy
