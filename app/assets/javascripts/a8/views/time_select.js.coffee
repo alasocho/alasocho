@@ -25,8 +25,9 @@ class A8.Views.TimeSelect extends Backbone.View
       )
     )
     time = this.timeField.val()
+    tz_offset = tz_offset_string(this.options.tz_offset)
 
-    this.datetimeField.val("#{date}T#{time}:00#{this._time_zone_offset()}")
+    this.datetimeField.val("#{date}T#{time}:00#{tz_offset}")
     this.time = new Date(this.datetimeField.val())
 
   render: ->
@@ -58,9 +59,9 @@ class A8.Views.TimeSelect extends Backbone.View
   to_time_string: ->
     "#{zero_pad(this.time.getHours(), 2)}:#{zero_pad(this.time.getMinutes(), 2)}"
 
-  _time_zone_offset: ->
-    negative = if this.options.tz_offset < 0 then "-" else ""
-    "#{negative}#{zero_pad(Math.abs(this.options.tz_offset), 2)}00"
+tz_offset_string = (offset) ->
+  negative = if offset < 0 then "-" else ""
+  "#{negative}#{zero_pad(Math.abs(offset), 2)}00"
 
 zero_pad = (number, length) ->
   number = number.toString()
