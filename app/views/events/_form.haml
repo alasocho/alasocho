@@ -43,14 +43,17 @@
 
       var theEvent = new A8.Models.Event(#{@event.to_json})
 
-      new A8.Views.TimeSelect({
+      var start_at_selector = new A8.Views.TimeSelect({
         el:        $("#start_at_container"),
         model:     theEvent,
         field:     "start_at",
-        tz_offset: A8.defaultTimezone.offset
+        tz_offset: A8.defaultTimezone.offset,
+        callback:  function(date) {
+          end_at_selector.set_min_date(date);
+        }
       }).render();
 
-      new A8.Views.TimeSelect({
+      var end_at_selector = new A8.Views.TimeSelect({
         el:        $("#end_at_container"),
         model:     theEvent,
         field:     "end_at",
