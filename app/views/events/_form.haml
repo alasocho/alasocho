@@ -47,17 +47,15 @@
         el:        $("#start_at_container"),
         model:     theEvent,
         field:     "start_at",
-        tz_offset: A8.defaultTimezone.offset,
-        callback:  function(date) {
-          end_at_selector.set_min_date(date);
-        }
+        tz_offset: A8.defaultTimezone.offset
       }).render();
 
       var end_at_selector = new A8.Views.TimeSelect({
         el:        $("#end_at_container"),
         model:     theEvent,
         field:     "end_at",
-        tz_offset: A8.defaultTimezone.offset
+        tz_offset: A8.defaultTimezone.offset,
+        limit_min: start_at_selector
       }).render();
 
       new A8.Views.Events.EndDateToggle({
