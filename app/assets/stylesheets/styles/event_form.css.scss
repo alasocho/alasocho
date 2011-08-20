@@ -24,4 +24,10 @@
   .toggle {
     float: right;
   }
+
+  &.hidden .toggle {
+    margin-top: 24px;
+    width: 100%;
+    text-align: center;
+  }
 }
