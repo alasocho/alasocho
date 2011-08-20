@@ -9,19 +9,15 @@
   = f.errors :description
 
 .double_feature
-  .form_field
+  .form_field#start_at_container
     = f.errors :start_at
     = f.label :start_at
-    = f.fields_for :start_at do |start_at|
-      = start_at.text_field :date, value: "#{@event.start_at.to_s(:date) if @event.start_at.present?}", placeholder: t(".placeholders.date")
-      = start_at.text_field :time, value: "#{@event.start_at.to_s(:time) if @event.start_at.present?}", placeholder: t(".placeholders.time")
+    = f.text_field :start_at, type: "datetime-local", placeholder: t(".placeholders.start_at")
 
   .form_field#end_at_container
     = f.errors :end_at
     = f.label :end_at
-    = f.fields_for :end_at do |end_at|
-      = end_at.text_field :date, value: "#{@event.end_at.to_s(:date) if @event.end_at.present?}", placeholder: t(".placeholders.date")
-      = end_at.text_field :time, value: "#{@event.end_at.to_s(:time) if @event.end_at.present?}", placeholder: t(".placeholders.time")
+    = f.text_field :end_at, type: "datetime-local", placeholder: t(".placeholders.end_at")
 
 .form_field
   = f.label :location
@@ -33,50 +29,34 @@
   = f.text_field :city, placeholder: t(".placeholders.city")
   = f.errors :city
 
+%script(data-template-for="TimeSelect" type="text/html")
+  %input{ id: "%{ prefix }_date", type: "text", placeholder: t(".placeholders.date"), "data-format" => js_date_format  }
+  = time_select "%{ prefix }"
+
 - content_for :javascript do
   :javascript
-    $(document).ready(function(){
+    $(document).ready(function() {
       var theEvent = new A8.Models.Event(#{@event.to_json})
+
+      new A8.Views.TimeSelect({
+        el:        $("#start_at_container"),
+        model:     theEvent,
+        field:     "start_at",
+        tz_offset: -3
+      }).render();
+
+      new A8.Views.TimeSelect({
+        el:        $("#end_at_container"),
+        model:     theEvent,
+        field:     "end_at",
+        tz_offset: -3
+      }).render();
 
       new A8.Views.Events.EndDateToggle({
         model:      theEvent,
         el:         $("#end_at_container"),
         show_date:   "#{t(".show_end_date")}",
-        hide_date:   "#{t(".hide_end_date")}"
+        hide_date:   "#{t(".hide_end_date")}",
+        always_hide: "[type^=datetime]"
       }).render();
-
-      var custom_range = function(input){
-        var min = new Date();
-        var dateMin = min;
-        var dayRange = 365;
-        var dateMax = min + dayRange;
-
-        if (input.id == "event_start_at_date") {
-          if ($("#event_end_at_date").datepicker("getDate") != null) {
-            dateMax = $("#event_end_at_date").datepicker("getDate");
-            dateMin = $("#event_end_at_date").datepicker("getDate");
-            dateMin.setDate(dateMin.getDate() - dayRange);
-            if (dateMin < min) {
-              dateMin = min;
-            }
-          }
-        } else if (input.id == "event_end_at_date") {
-          if ($("#event_start_at_date").datepicker("getDate") != null) {
-            dateMin = $("#event_start_at_date").datepicker("getDate");
-            var rangeMax = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + dayRange);
-            if(rangeMax < dateMax) {
-              dateMax = rangeMax;
-            }
-          }
-        }
-        return {
-          minDate: dateMin,
-          maxDate: dateMax,
-        };
-      };
-      var pickers = $("#event_start_at_date, #event_end_at_date").datepicker({
-        dateFormat: 'yy-mm-dd',
-        beforeShow: custom_range,
-        numberOfMonths: 2
-      });
     });

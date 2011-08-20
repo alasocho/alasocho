@@ -16,9 +16,15 @@
   }
 }
 
-#end_at_container {
+#end_at_container, #start_at_container {
   label {
     width: 50px;
+  }
+
+  .date {
+    width: 85px;
+    margin-right: 5px;
+    float: left;
   }
 
   .toggle {

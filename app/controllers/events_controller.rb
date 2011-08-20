@@ -37,11 +37,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    # TODO nasty workaround
-    data = params[:event]
-    data[:start_at] = cleanup_date data[:start_at]
-    data[:end_at] = cleanup_date data[:end_at]
-    @event = current_user.hosted_events.new(data)
+    @event = current_user.hosted_events.new(params[:event])
 
     if @event.save
       flash[:notice] = t("event.form.create.message.success")
@@ -64,14 +60,8 @@ class EventsController < ApplicationController
 
   def update
     load_own_event
-    # TODO OMG fix this, my brain stop responding!
-    data = params[:event]
-    start_at = cleanup_date data[:start_at]
-    end_at = cleanup_date data[:end_at]
-    if start_at then data[:start_at] = start_at else data.delete(:start_at) end
-    if end_at then data[:end_at] = end_at else data.delete(:start_at) end
 
-    @event.attributes = data
+    @event.attributes = params[:event]
 
     date_changed = @event.start_at_changed? || @event.end_at_changed?
 
@@ -146,15 +136,6 @@ class EventsController < ApplicationController
   end
 
 private
-
-  def cleanup_date(hash)
-    return nil if hash.blank?
-    if hash[:date].present? && hash[:time].present?
-      Time.parse("#{hash[:date]} #{hash[:time]} UTC +00:00")
-    else
-      nil
-    end
-  end
 
   def load_own_event
     @event = current_user.hosted_events.find(params[:event_id] || params[:id])

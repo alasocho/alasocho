@@ -3,7 +3,7 @@
 -# %aside.alternate#cancel
   = link_to t('event.form.edit.cancel_event'), event_path(@event), :method => :delete, :confirm => t('shared.are_you_sure')
 
-= form_for @event do |f|
+= form_for @event, html: { novalidate: true } do |f|
   = render "form", :f => f
   = render "settings", :f => f
   %submit_button
