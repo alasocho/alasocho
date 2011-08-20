@@ -21,6 +21,10 @@ class Location
     @data = data
   end
 
+  def to_s
+    [city, country].compact.join(", ")
+  end
+
   def city
     @data.city_name
   end
@@ -30,10 +34,6 @@ class Location
   end
 
   def timezone
-    @data.timezone
-  end
-
-  def to_s
-    [city, country].compact.join(", ")
+    @timezone ||= Timezone.get(@data.timezone)
   end
 end
