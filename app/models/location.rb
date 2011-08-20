@@ -1,7 +1,7 @@
 require 'geoip'
 require 'ostruct'
 
-class GeoLocator
+class Location
   cattr_accessor :default_source
   self.default_source = GeoIP.new(Rails.root.join("data", "GeoLiteCity.dat"))
 
@@ -9,14 +9,16 @@ class GeoLocator
                           country_name: "Uruguay",
                           timezone: "America/Montevideo")
 
-  def initialize(ip, source=self.class.default_source)
-    @ip = ip
-
-    if @ip == "127.0.0.1"
-      @data = @@mock
+  def self.from_ip(ip, source=self.default_source)
+    if ip == "127.0.0.1"
+      new @@mock
     else
-      @data = source.city(@ip)
+      new source.city(@ip)
     end
+  end
+
+  def initialize(data)
+    @data = data
   end
 
   def city

@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_location
-    @current_location ||= GeoLocator.new(request.remote_addr)
+    @current_location ||= Location.from_ip(request.remote_addr)
   end
 
   def assign_attendance_to_user(user)
