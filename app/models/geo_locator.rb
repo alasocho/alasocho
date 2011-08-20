@@ -2,12 +2,6 @@ require 'geoip'
 require 'ostruct'
 
 class GeoLocator
-  def self.city_from_ip(ip)
-    ActiveSupport::Deprecation.warn("GeoLocator.city_from_ip is deprecated. Use GeoLocator#location instead")
-    return "Montevideo, Uruguay" if Rails.env.development?
-    new(ip).location
-  end
-
   cattr_accessor :default_source
   self.default_source = GeoIP.new(Rails.root.join("data", "GeoLiteCity.dat"))
 
