@@ -39,10 +39,10 @@
       var theEvent = new A8.Models.Event(#{@event.to_json})
 
       new A8.Views.Events.EndDateToggle({
-        model:    theEvent,
-        el:       $("#end_at_container"),
-        showDate: "#{t(".show_end_date")}",
-        hideDate: "#{t(".hide_end_date")}"
+        model:      theEvent,
+        el:         $("#end_at_container"),
+        show_date:   "#{t(".show_end_date")}",
+        hide_date:   "#{t(".hide_end_date")}"
       }).render();
 
       var custom_range = function(input){
