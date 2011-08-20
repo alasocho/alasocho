@@ -40,19 +40,18 @@
   :javascript
     $(document).ready(function() {
       A8.defaultTimezone = #{current_location.timezone.to_json};
-
-      var theEvent = new A8.Models.Event(#{@event.to_json})
+      var the_event = new A8.Models.Event(#{@event.to_json})
 
       var start_at_selector = new A8.Views.TimeSelect({
         el:        $("#start_at_container"),
-        model:     theEvent,
+        model:     the_event,
         field:     "start_at",
         tz_offset: A8.defaultTimezone.offset
       }).render();
 
       var end_at_selector = new A8.Views.TimeSelect({
         el:        $("#end_at_container"),
-        model:     theEvent,
+        model:     the_event,
         field:     "end_at",
         tz_offset: A8.defaultTimezone.offset,
         limit_min: start_at_selector
@@ -61,7 +60,7 @@
       start_at_selector.options.limit_max = end_at_selector;
 
       new A8.Views.Events.EndDateToggle({
-        model:      theEvent,
+        model:      the_event,
         el:         $("#end_at_container"),
         show_date:   "#{t(".show_end_date")}",
         hide_date:   "#{t(".hide_end_date")}",
