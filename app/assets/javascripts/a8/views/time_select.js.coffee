@@ -36,12 +36,11 @@ class A8.Views.TimeSelect extends Backbone.View
     _template = _.template(this.template, prefix: this.options.field)
     $(this.el).append(_template)
 
-    this.dateField = this.$("input[id$=date]").addClass("date")
-    this.timeField = this.$("select[id$=time]").addClass("time")
+    this.dateField  = this.$("input[id$=date]").addClass("date")
+    this.timeField  = this.$("select[id$=time]").addClass("time")
+    this.dateFormat = this.dateField.data("format")
 
     $(this.datetimeField[0].labels).attr("for", this.dateField.attr("id"))
-
-    this.dateFormat = this.dateField.data("format")
 
     this.dateField.datepicker(
       beforeShow: _.bind(this.before_datepicker_show, this)
