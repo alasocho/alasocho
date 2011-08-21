@@ -46,7 +46,9 @@ class A8.Views.TimeSelect extends Backbone.View
     $.datepicker.formatDate(this.dateFormat, this.time)
 
   to_time_string: ->
-    "#{zero_pad(this.time.getHours(), 2)}:#{zero_pad(this.time.getMinutes(), 2)}"
+    hours = zero_pad(this.time.getHours(), 2)
+    minutes = zero_pad(this.time.getMinutes(), 2)
+    "#{hours}:#{minutes}"
 
   _before_datepicker_show: ->
     options = minDate: new Date
