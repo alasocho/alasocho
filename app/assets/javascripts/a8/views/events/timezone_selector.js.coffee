@@ -7,5 +7,5 @@ class A8.Views.Events.TimezoneSelector extends Backbone.View
   template: $("[data-template-for='TimezoneSelector']").html()
 
   render: ->
-    $(this.el).html(_.template(this.template, {}))
-    $(this.options.container).append(this.el)
+    $(@el).html(_.template(@template, {}))
+    $(@options.container).append(@el)

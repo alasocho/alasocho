@@ -6,25 +6,25 @@ class A8.Views.TimeSelect extends Backbone.View
     "change .time": "update_time"
 
   render: ->
-    this.datetime_field = this.$("input[type^=datetime]").hide()
-    this.time = new Date(this.datetime_field.val())
+    @datetime_field = this.$("input[type^=datetime]").hide()
+    @time = new Date(@datetime_field.val())
 
-    _template = _.template(this.template, prefix: this.options.field)
-    $(this.el).append(_template)
+    _template = _.template(@template, prefix: @options.field)
+    $(@el).append(_template)
 
-    this.date_field  = this.$("input[id$=date]").addClass("date")
-    this.time_field  = this.$("select[id$=time]").addClass("time")
-    this.date_format = this.date_field.data("format")
+    @date_field  = this.$("input[id$=date]").addClass("date")
+    @time_field  = this.$("select[id$=time]").addClass("time")
+    @date_format = @date_field.data("format")
 
-    $(this.datetime_field[0].labels).attr("for", this.date_field.attr("id"))
+    $(@datetime_field[0].labels).attr("for", @date_field.attr("id"))
 
-    this.date_field.datepicker(
-      beforeShow: _.bind(this._before_datepicker_show, this)
+    @date_field.datepicker(
+      beforeShow: _.bind(@_before_datepicker_show, this)
     )
 
-    if this.time.getFullYear() # NaN if an invalid date
-      this.date_field.val(this.to_date_string())
-      this.time_field.val(this.to_time_string())
+    if @time.getFullYear() # NaN if an invalid date
+      @date_field.val(this.to_date_string())
+      @time_field.val(this.to_time_string())
 
     this
 
@@ -32,32 +32,32 @@ class A8.Views.TimeSelect extends Backbone.View
     date = $.datepicker.formatDate(
       "yy-mm-dd",
       $.datepicker.parseDate(
-        this.date_format,
-        this.date_field.val()
+        @date_format,
+        @date_field.val()
       )
     )
-    time = this.time_field.val()
-    tz_offset = tz_offset_string(this.options.tz_offset)
+    time = @time_field.val()
+    tz_offset = tz_offset_string(@options.tz_offset)
 
-    this.datetime_field.val("#{date}T#{time}:00#{tz_offset}")
-    this.time = new Date(this.datetime_field.val())
+    @datetime_field.val("#{date}T#{time}:00#{tz_offset}")
+    @time = new Date(@datetime_field.val())
 
   to_date_string: ->
-    $.datepicker.formatDate(this.date_format, this.time)
+    $.datepicker.formatDate(@date_format, @time)
 
   to_time_string: ->
-    hours = zero_pad(this.time.getHours(), 2)
-    minutes = zero_pad(this.time.getMinutes(), 2)
+    hours = zero_pad(@time.getHours(), 2)
+    minutes = zero_pad(@time.getMinutes(), 2)
     "#{hours}:#{minutes}"
 
   _before_datepicker_show: ->
     options = minDate: new Date
 
-    if this.options.min?
-      options.minDate = this.options.min.time
+    if @options.min?
+      options.minDate = @options.min.time
 
-    if this.options.max?
-      options.maxDate = this.options.max.time
+    if @options.max?
+      options.maxDate = @options.max.time
 
     options
 
