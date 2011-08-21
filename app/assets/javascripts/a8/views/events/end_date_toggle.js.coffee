@@ -13,20 +13,13 @@ class A8.Views.Events.EndDateToggle extends Backbone.View
       this.show()
 
   show: ->
-    this.form_field.each ->
-      el = $(this)
-      el.val(el.data("value"))
-
+    this._restore_values()
     this.form_field.show()
     this.$(this.options.always_hide).hide() if this.options.always_hide
     this.toggle_link.html(this.options.hide_date)
 
   hide: ->
-    this.form_field.each ->
-      el = $(this)
-      el.data("value", el.val())
-      el.val("")
-
+    this._store_values()
     this.form_field.hide()
     this.toggle_link.html(this.options.show_date)
 
@@ -43,3 +36,14 @@ class A8.Views.Events.EndDateToggle extends Backbone.View
       this.hide()
 
     this
+
+  _store_values: ->
+    this.form_field.each ->
+      el = $(this)
+      el.data("value", el.val())
+      el.val("")
+
+  _restore_values: ->
+    this.form_field.each ->
+      el = $(this)
+      el.val(el.data("value")) unless el.val().length
