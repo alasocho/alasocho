@@ -2,7 +2,8 @@ class A8.Views.TimeSelect extends Backbone.View
   template: $("[data-template-for='TimeSelect']").html()
 
   events:
-    "change .date, .time": "update_time"
+    "change .date": "update_time"
+    "change .time": "update_time"
 
   render: ->
     this.datetimeField = this.$("input[type^=datetime]").hide()
