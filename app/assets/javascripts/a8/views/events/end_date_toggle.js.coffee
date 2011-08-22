@@ -11,12 +11,12 @@ class A8.Views.Events.EndDateToggle extends Backbone.View
       this.hide()
     else
       this.show()
+      this.$(":input:visible:first").focus()
 
   show: ->
     this._restore_values()
     @form_field.show()
     this.$(@options.always_hide).hide() if @options.always_hide
-    this.$(":input:visible:first").focus()
     @toggle_link.html(@options.hide_date)
 
   hide: ->
