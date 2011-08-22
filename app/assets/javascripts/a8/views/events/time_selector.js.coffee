@@ -1,4 +1,6 @@
-class A8.Views.TimeSelect extends Backbone.View
+A8.Views.Events ||= {}
+
+class A8.Views.Events.TimeSelector extends Backbone.View
   template: $("[data-template-for='TimeSelect']").html()
 
   events:
