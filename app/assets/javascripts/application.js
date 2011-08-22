@@ -17,6 +17,10 @@ _.templateSettings = {
   evaluate:    /\[\[(.+?)\]\]/g
 }
 
+Date.prototype.isValid = function() {
+  return this.getFullYear() || this.getFullYear() === 0;
+}
+
 jQuery(function($) {
   $(document).keyup(function(event){
     if (event.keyCode == 27) { // ESC

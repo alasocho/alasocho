@@ -73,9 +73,6 @@ class A8.Views.Events.TimeSelector extends Backbone.View
     options.maxDate = @max_time if @max_time?
     options
 
-Date::isValid = ->
-  this.getFullYear() or this.getFullYear() is 0
-
 tz_offset_string = (offset) ->
   negative = if offset < 0 then "-" else ""
   "#{negative}#{zero_pad(Math.abs(offset), 2)}00"
