@@ -29,4 +29,13 @@ class A8.Views.Events.Scheduler extends Backbone.View
       container: @el.parent()
     ).render()
 
+    @start.bind("timechange", _.bind(@_start_changed, this))
+    @end.bind("timechange", _.bind(@_end_changed, this))
+
     this
+
+  _start_changed: (time) ->
+    @end.set_min_time(time)
+
+  _end_changed: (time) ->
+    @start.set_max_time(time)
