@@ -16,7 +16,7 @@ class A8.Views.Events.TimeSelector extends Backbone.View
         date
 
   initialize: ->
-    this.options.tz_offset ?= A8.defaultTimezone.offset
+    @options.tz_offset ?= A8.defaultTimezone.offset
 
     times = @defaults.datepicker_options()
     this.set_min_time(times.minDate)
