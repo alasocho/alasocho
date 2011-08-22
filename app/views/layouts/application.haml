@@ -51,13 +51,16 @@
 
     = javascript_include_tag :application, debug: Rails.env.development?
     = javascript_include_tag calendar_l10n_settings
-
-    = yield :javascript
     :javascript
-      $(document).ready(function(){
-        if(Backbone.history){
+      A8.current_user = {
+        time_zone: #{current_location.timezone.to_json}
+      }
+
+      jQuery(function($) {
+        if (Backbone.history) {
           Backbone.history.start();
         }
       });
 
+    = yield :javascript
     = render "google_analytics" if Rails.env.production?

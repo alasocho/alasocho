@@ -38,9 +38,8 @@
 
 - content_for :javascript do
   :javascript
-    $(document).ready(function() {
-      A8.defaultTimezone = #{current_location.timezone.to_json};
-      var the_event = new A8.Models.Event(#{@event.to_json})
+    jQuery(function($) {
+      var the_event = new A8.Models.Event(#{@event.to_json});
 
       new A8.Views.Events.Scheduler({
         el:     $(".double_feature > .form_field"),
