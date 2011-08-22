@@ -18,6 +18,10 @@ class A8.Views.Events.TimeSelector extends Backbone.View
   initialize: ->
     this.options.tz_offset ?= A8.defaultTimezone.offset
 
+    times = @defaults.datepicker_options()
+    this.set_min_time(times.minDate)
+    this.set_max_time(times.maxDate)
+
   render: ->
     @datetime_field = this.$("input[type^=datetime]").hide()
     @time = new Date(@datetime_field.val())
@@ -39,6 +43,13 @@ class A8.Views.Events.TimeSelector extends Backbone.View
       @date_field.val(this.to_date_string())
       @time_field.val(this.to_time_string())
 
+    @hour_selector = new A8.Views.Events.HourSelector(
+      el:       @time_field
+      time:     @time
+      min_time: @min_time
+      max_time: @max_time
+    ).render()
+
     this
 
   update_time: (event) ->
@@ -54,10 +65,16 @@ class A8.Views.Events.TimeSelector extends Backbone.View
 
     @datetime_field.val("#{date}T#{time}:00#{tz_offset}")
     @time = new Date(@datetime_field.val())
+
+    @hour_selector.set_current_time(@time)
+
     this.trigger("timechange", @time)
 
   set_min_time: (@min_time) ->
+    @hour_selector?.set_min_time(@min_time)
+
   set_max_time: (@max_time) ->
+    @hour_selector?.set_max_time(@max_time)
 
   to_date_string: ->
     $.datepicker.formatDate(@date_format, @time)

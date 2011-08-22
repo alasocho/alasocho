@@ -35,7 +35,9 @@ class A8.Views.Events.Scheduler extends Backbone.View
     this
 
   _start_changed: (time) ->
+    @start.set_max_time(@end.time) if @end.time.isValid()
     @end.set_min_time(time)
 
   _end_changed: (time) ->
     @start.set_max_time(time)
+    @end.set_min_time(@start.time) if @start.time.isValid()
