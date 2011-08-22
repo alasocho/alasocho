@@ -5,7 +5,7 @@ class A8.Views.Events.EndDateToggle extends Backbone.View
     "click .toggle": "toggle"
 
   toggle: (event) ->
-    @el.toggleClass("hidden")
+    $(@el).toggleClass("hidden")
 
     if @form_field.is(":visible")
       this.hide()
@@ -27,13 +27,14 @@ class A8.Views.Events.EndDateToggle extends Backbone.View
   render: ->
     @toggle_link = $("<a href='javascript:;' class='toggle'/>")
     @form_field = this.$("*:not(.toggle)")
+    el = $(@el)
 
-    $(@el).prepend(@toggle_link)
+    el.prepend(@toggle_link)
 
     if @model.end_at()
       this.show()
     else
-      @el.addClass("hidden")
+      el.addClass("hidden")
       this.hide()
 
     this

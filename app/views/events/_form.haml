@@ -42,32 +42,12 @@
       A8.defaultTimezone = #{current_location.timezone.to_json};
       var the_event = new A8.Models.Event(#{@event.to_json})
 
-      var start_at_selector = new A8.Views.Events.TimeSelector({
-        el:        $("#start_at_container"),
-        model:     the_event,
-        field:     "start_at",
-        tz_offset: A8.defaultTimezone.offset
-      }).render();
-
-      var end_at_selector = new A8.Views.Events.TimeSelector({
-        el:        $("#end_at_container"),
-        model:     the_event,
-        field:     "end_at",
-        tz_offset: A8.defaultTimezone.offset,
-        min:       start_at_selector
-      }).render();
-
-      start_at_selector.options.max = end_at_selector;
-
-      new A8.Views.Events.EndDateToggle({
-        model:      the_event,
-        el:         $("#end_at_container"),
-        show_date:   "#{t(".show_end_date")}",
-        hide_date:   "#{t(".hide_end_date")}",
-        always_hide: "[type^=datetime]"
-      }).render();
-
-      new A8.Views.Events.TimezoneSelector({
-        container: ".double_feature"
+      new A8.Views.Events.Scheduler({
+        el:     $(".double_feature > .form_field"),
+        model:  the_event,
+        toggle: {
+          show_date:   "#{t(".show_end_date")}",
+          hide_date:   "#{t(".hide_end_date")}"
+        }
       }).render();
     });

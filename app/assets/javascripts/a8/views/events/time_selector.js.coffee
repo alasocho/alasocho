@@ -7,6 +7,9 @@ class A8.Views.Events.TimeSelector extends Backbone.View
     "change .date": "update_time"
     "change .time": "update_time"
 
+  initialize: ->
+    this.options.tz_offset ?= A8.defaultTimezone.offset
+
   render: ->
     @datetime_field = this.$("input[type^=datetime]").hide()
     @time = new Date(@datetime_field.val())
