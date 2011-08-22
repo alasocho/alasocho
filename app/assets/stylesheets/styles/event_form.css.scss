@@ -16,7 +16,7 @@
   }
 }
 
-#end_at_container, #start_at_container {
+.double_feature {
   label {
     width: 50px;
   }
@@ -37,7 +37,7 @@
     }
   }
 
-  &.hidden .toggle {
+  .hidden .toggle {
     margin-top: 24px;
     width: 100%;
     text-align: center;
