@@ -27,7 +27,7 @@ class A8.Views.Events.TimeSelector extends Backbone.View
       beforeShow: _.bind(@_before_datepicker_show, this)
     )
 
-    if @time.getFullYear() # NaN if an invalid date
+    if @time.isValid()
       @date_field.val(this.to_date_string())
       @time_field.val(this.to_time_string())
 
@@ -65,6 +65,9 @@ class A8.Views.Events.TimeSelector extends Backbone.View
       options.maxDate = @options.max.time
 
     options
+
+Date::isValid = ->
+  this.getFullYear() or this.getFullYear() is 0
 
 tz_offset_string = (offset) ->
   negative = if offset < 0 then "-" else ""
