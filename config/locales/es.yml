@@ -118,6 +118,11 @@ es:
     manage_attendees:
       title: "Administrar miembros"
       link: "Administrar Invitados"
+    invitation_box:
+      label: "Invita gente al evento:"
+      delete: "Borrar de la lista"
+      placeholders:
+        invitations: "email@ejemplo.com, email@ejemplo.com"
 
   invitations:
     form:

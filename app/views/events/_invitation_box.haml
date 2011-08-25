@@ -1,0 +1,20 @@
+= fields_for :invitations do |f|
+  .form_field#invitation_box
+    = f.label :invitations, t(".label")
+    = f.text_area :invitations, placeholder: t(".placeholders.invitations")
+
+%script(data-template-for="Invitation" type="text/html")
+  %span %{ email }
+  %button.delete(type="button" title="#{t(".delete")}" tabindex="-1") ×
+  %input(type="hidden" name="invitations[%{ index }][email]" value="%{ raw_email }")
+
+- content_for :javascript do
+  :javascript
+    jQuery(function($) {
+      var the_event = new A8.Models.Event(#{@event.to_json});
+
+      window.box = new A8.Views.Events.EmailBox({
+        el: $("#invitation_box"),
+        collection: the_event.invitations
+      }).render();
+    });
