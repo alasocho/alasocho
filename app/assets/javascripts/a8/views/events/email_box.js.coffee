@@ -9,11 +9,10 @@ class A8.Views.Events.EmailBox extends Backbone.View
     @collection.bind("remove", _.bind(@_remove_invite, this))
 
   render: ->
-    @textarea  = this.$("textarea").wrap("<div/>")
-    @invites   = $("<ul/>")
-    @prev_val  = @textarea.val()
-    wrapper    = @textarea.parent()
-    wrapper.prepend(@invites)
+    @textarea = this.$("textarea")
+    @invites  = $("<ul/>")
+    @textarea.before(@invites)
+    this.tokenize()
 
     this
 

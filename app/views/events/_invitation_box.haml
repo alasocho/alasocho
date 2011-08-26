@@ -1,7 +1,8 @@
-= fields_for :invitations do |f|
+= fields_for invitations do |f|
   .form_field#invitation_box
-    = f.label :invitations, t(".label")
-    = f.text_area :invitations, placeholder: t(".placeholders.invitations")
+    = f.label :leftovers, t(".label")
+    = f.text_area :leftovers, placeholder: t(".placeholders.invitations")
+    = f.errors :leftovers
 
 %script(data-template-for="Invitation" type="text/html")
   %span %{ email }

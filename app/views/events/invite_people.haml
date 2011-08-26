@@ -1,10 +1,10 @@
 #modal_window
 %h2= t("event.form.invite.title")
 
-= form_for @event, class: :invite_more_people do |f|
+= form_for @event, url: event_publish_path(@event), class: :invite_more_people do |f|
   = render "settings", :f => f
 
-  = render "invitation_box", f: f
+  = render "invitation_box", invitations: @invitations, f: f
 
   /= render "invitee_list", :f => f
 

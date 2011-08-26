@@ -58,23 +58,31 @@ class EventsController < ApplicationController
     @page_title = @event.name
   end
 
+  def publish
+    load_own_event
+
+    @event.attributes = params[:event]
+    @invitations = InvitationLoader.new(@event, params[:invitations])
+
+    if @invitations.valid? && @event.save
+      @event.publish!
+      redirect_to @event, notice: t("event.form.invite.message.success")
+    else
+      render :invite_people
+    end
+  end
+
   def update
     load_own_event
 
     @event.attributes = params[:event]
-
     date_changed = @event.start_at_changed? || @event.end_at_changed?
 
     if @event.save
-      @event.publish!
-
       NotifyDateChange.enqueue(@event.id) if date_changed
-      flash[:notice] = t("event.form.invite.message.success")
-
-      redirect_to @event
+      redirect_to @event, notice: t("event.form.invite.message.success")
     else
-      flash[:alert] = t("event.form.invite.message.error")
-      render :action => :invite_people
+      render :edit
     end
   end
 
