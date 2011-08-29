@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", :git => "http://github.com/rails/rails.git", :ref => "3-1-stable"
+gem "rails", "~> 3.1.0"
 gem "mysql2"
 gem "oa-oauth"
 gem 'haml'
@@ -22,8 +22,8 @@ gem "backbone-rails"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem "sass-rails", "  ~> 3.1.0.rc"
-  gem "coffee-rails", "~> 3.1.0.rc"
+  gem "sass-rails",   "~> 3.1.0"
+  gem "coffee-rails", "~> 3.1.0"
   gem "uglifier"
 end
 
