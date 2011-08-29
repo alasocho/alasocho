@@ -1,18 +1,40 @@
-.form_field
-  = f.check_box :public
-  = f.label :public
+%fieldset#event_scope
+  .form_field#public_event
+    = f.check_box :public
+    = f.label :public
 
-.form_field
-  = f.check_box :allow_invites, :disabled => f.object.public?
-  = f.label :allow_invites, t("event.attendees_can_invite")
+  .form_field#guest_invitations_allowed
+    = f.check_box :allow_invites, :disabled => f.object.public?
+    = f.label :allow_invites, t("event.attendees_can_invite")
 
-.form_field.unlimited_attendee_quota
-  = t("event.form.invite.unlimited_attendee_quota")
+%fieldset#guest_limit
+  %legend= t ".guest_limit"
 
-.form_field.attendee_quota_field
-  = f.label :attendee_quota
-  = f.number_field :attendee_quota, :size => 3, :class => "attendee_quota"
-  = t("event.form.invite.after_attendee_quota")
+  .form_field#open_event
+    = f.radio_button :open, true
+    = f.label :open, value: true
 
-.form_field
-  %button#no_limit.toggle_button= t("event.form.invite.no_limit")
+  .form_field#quota
+    = f.radio_button :open, false
+    = f.label :attendee_quota, t(".attendee_quota_prefix")
+    = f.number_field :attendee_quota, min: 1, class: "attendee_quota"
+    = f.label :attendee_quota, t(".attendee_quota_suffix")
+
+- content_for :javascript do
+  :javascript
+    $(function() {
+      new A8.Views.Events.PrivateToggle({
+        el: $("#event_scope"),
+        model: window.current_page.event
+      }).render();
+
+      new A8.Views.Events.QuotaToggle({
+        el: $("#quota"),
+        model: window.current_page.event
+      }).render();
+
+      window.s = new A8.Views.Events.GuestLimitSelector({
+        el: $("#guest_limit"),
+        model: window.current_page.event
+      }).render();
+    });

@@ -56,3 +56,25 @@
   margin-top: 6px;
   font-family: Helvetica, Arial, sans-serif;
 }
+
+#quota {
+  label {
+    display: inline;
+  }
+
+  input[type=number] {
+    width: 40px;
+  }
+}
+
+#event_scope, #guest_limit {
+  margin-top: 24px;
+
+  .form_field {
+    margin-top: 4px;
+  }
+}
+
+#quota input[type=radio] {
+  top: 8px;
+}

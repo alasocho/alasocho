@@ -133,6 +133,15 @@ class Event < ActiveRecord::Base
     attendee_quota.present?
   end
 
+  def open?
+    attendee_quota.blank?
+  end
+  alias_method :open, :open?
+
+  def open=(flag)
+    self.attendee_quota = nil if flag
+  end
+
   def available_slots
     return 1 unless limited?
 

@@ -76,11 +76,19 @@ input, textarea {
   line-height: 20px;
 }
 
-input[type=checkbox] {
+input[type=checkbox], input[type=radio] {
   float: left;
   width: auto;
+  margin-right: 6px;
   position: relative;
   top: 2px;
+  z-index: 2;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 textarea {
@@ -106,4 +114,9 @@ button.toggle_button.down {
   border-left: solid 2px #777;
   border-bottom:solid 2px  #eaeaea;
   border-right: solid 2px #eaeaea;
+}
+
+legend {
+  font-weight: bold;
+  padding-bottom: 4px;
 }
