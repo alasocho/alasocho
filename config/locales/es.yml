@@ -50,18 +50,14 @@ es:
       invited: "%{count} sin confirmar"
       waitlisted: "%{count} en la lista de espera"
       available_seats: "%{count} lugares disponibles."
-
       waitlist: "Lista de espera"
       people_waiting:
         one:   "1 persona esperando"
         other: "%{count} personas esperando"
-
       declined:
         one: "1 persona rechazó la invitación"
         other: "%{count} personas rechazaron la invitación"
-
       organizer: "Organizado por"
-
       duration:
         days:
           one:   "1 día"
@@ -70,13 +66,11 @@ es:
           one:   "1 hora"
           other: "%{count}:%{minutes} horas"
         minutes: "%{minutes} minutos"
-
       end_time:
         hours: "Termina a las %{time} (%{duration})"
         next_day: "Termina al día siguiente a las %{time} (%{duration})"
         arbitrary: "Termina el %{time}"
         default: "Sin hora de finalización"
-
       feed:
         subscribe: "Suscríbete:"
         ical/outlook: "iCal/Outlook"
@@ -88,17 +82,22 @@ es:
 
     invites:
       title: "Invitaciones pendientes"
+
     relevant_events:
       title: "Todos mis eventos"
+
     public:
       title: "Eventos públicos"
       see_all: "Ver todos los eventos públicos"
       near_you: "Mostrando eventos en %{current_city}"
+
     my_events:
       title: "Mis eventos"
       see_all: "Ver todos mis eventos"
+
     declined:
       title: "Quiénes rechazaron la invitación"
+
     form:
       invite: "Invitar más gente"
       show_end_date: "Con fecha de fin"
