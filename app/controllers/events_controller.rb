@@ -50,6 +50,7 @@ class EventsController < ApplicationController
 
   def invite_people
     load_own_event
+    @invitations = InvitationLoader.new(@event, {})
     @page_title = @event.name
   end
 
