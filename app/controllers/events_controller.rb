@@ -33,15 +33,11 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.hosted_events.new(:city => GeoLocator.city_from_ip(request.remote_addr))
+    @event = current_user.hosted_events.new(:city => current_location.to_s)
   end
 
   def create
-    # TODO nasty workaround
-    data = params[:event]
-    data[:start_at] = cleanup_date data[:start_at]
-    data[:end_at] = cleanup_date data[:end_at]
-    @event = current_user.hosted_events.new(data)
+    @event = current_user.hosted_events.new(params[:event])
 
     if @event.save
       flash[:notice] = t("event.form.create.message.success")
@@ -62,29 +58,31 @@ class EventsController < ApplicationController
     @page_title = @event.name
   end
 
+  def publish
+    load_own_event
+
+    @event.attributes = params[:event]
+    @invitations = InvitationLoader.new(@event, params[:invitations])
+
+    if @invitations.valid? && @event.save
+      @event.publish!
+      redirect_to @event, notice: t("event.form.invite.message.success")
+    else
+      render :invite_people
+    end
+  end
+
   def update
     load_own_event
-    # TODO OMG fix this, my brain stop responding!
-    data = params[:event]
-    start_at = cleanup_date data[:start_at]
-    end_at = cleanup_date data[:end_at]
-    if start_at then data[:start_at] = start_at else data.delete(:start_at) end
-    if end_at then data[:end_at] = end_at else data.delete(:start_at) end
 
-    @event.attributes = data
-
+    @event.attributes = params[:event]
     date_changed = @event.start_at_changed? || @event.end_at_changed?
 
     if @event.save
-      @event.publish!
-
       NotifyDateChange.enqueue(@event.id) if date_changed
-      flash[:notice] = t("event.form.invite.message.success")
-
-      redirect_to @event
+      redirect_to @event, notice: t("event.form.invite.message.success")
     else
-      flash[:alert] = t("event.form.invite.message.error")
-      render :action => :invite_people
+      render :edit
     end
   end
 
@@ -114,8 +112,7 @@ class EventsController < ApplicationController
 
   def public
     @page_title = t("events.public.title")
-    current_city = GeoLocator.city_from_ip(request.remote_addr)
-    @events = Event.public_events_near(current_city).future
+    @events = Event.public_events_near(current_location.to_s).future
   end
 
   def destroy
@@ -146,15 +143,6 @@ class EventsController < ApplicationController
   end
 
 private
-
-  def cleanup_date(hash)
-    return nil if hash.blank?
-    if hash[:date].present? && hash[:time].present?
-      Time.parse("#{hash[:date]} #{hash[:time]} UTC +00:00")
-    else
-      nil
-    end
-  end
 
   def load_own_event
     @event = current_user.hosted_events.find(params[:event_id] || params[:id])

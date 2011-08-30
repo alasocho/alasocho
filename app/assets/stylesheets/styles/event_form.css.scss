@@ -16,12 +16,43 @@
   }
 }
 
-#end_at_container {
+.double_feature {
   label {
     width: 50px;
   }
 
-  .toggle {
-    float: right;
+  .date {
+    width: 85px;
+    margin-right: 5px;
+    float: left;
   }
+
+  .toggle {
+    font-size: 14px;
+    float: right;
+    color: #999;
+
+    &:hover, &:active {
+      color: #666;
+    }
+  }
+
+  .hidden .toggle {
+    margin-top: 24px;
+    width: 100%;
+    text-align: center;
+    color: #730046;
+
+    &:hover, &:active {
+      color: #c93c00;
+    }
+  }
+}
+
+.timezone {
+  clear: left;
+  color: #999;
+  font-size: 14px;
+  margin-top: 6px;
+  font-family: Helvetica, Arial, sans-serif;
 }

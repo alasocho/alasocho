@@ -1,83 +1,52 @@
-- with_options :scope => [:events, :form, :placeholders] do |placeholder_i18n|
+.form_field
+  = f.label :name
+  = f.text_field :name, placeholder: t(".placeholders.name")
+  = f.errors :name
+
+.form_field
+  = f.label :description
+  = f.text_area :description, placeholder: t(".placeholders.description")
+  = f.errors :description
+
+.double_feature
   .form_field
-    = f.label :name
-    = f.text_field :name, placeholder: placeholder_i18n.t(:name)
-    = f.errors :name
-
-  .form_field
-    = f.label :description
-    = f.text_area :description, placeholder: placeholder_i18n.t(:description)
-    = f.errors :description
-
-  .double_feature
-    .form_field
-      = f.errors :start_at
-      = f.label :start_at
-      = f.fields_for :start_at do |start_at|
-        = start_at.text_field :date, type: "date", value: "#{@event.start_at.to_s(:date) if @event.start_at.present?}"
-        = start_at.text_field :time, type: "time", value: "#{@event.start_at.to_s(:time) if @event.start_at.present?}"
-
-    .form_field#end_at_container
-      = f.errors :end_at
-      = f.label :end_at
-      = f.fields_for :end_at do |end_at|
-        = end_at.text_field :date, type: "date", value: "#{@event.end_at.to_s(:date) if @event.end_at.present?}"
-        = end_at.text_field :time, type: "time", value: "#{@event.end_at.to_s(:time) if @event.end_at.present?}"
+    = f.errors :start_at
+    = f.label :start_at
+    = f.text_field :start_at, type: "datetime-local", placeholder: t(".placeholders.start_at")
 
   .form_field
-    = f.label :location
-    = f.text_field :location, placeholder: placeholder_i18n.t(:location)
-    = f.errors :location
+    = f.errors :end_at
+    = f.label :end_at
+    = f.text_field :end_at, type: "datetime-local", placeholder: t(".placeholders.end_at")
 
-  .form_field
-    = f.label :city
-    = f.text_field :city, placeholder: placeholder_i18n.t(:city)
-    = f.errors :city
+.form_field
+  = f.label :location
+  = f.text_field :location, placeholder: t(".placeholders.location")
+  = f.errors :location
+
+.form_field
+  = f.label :city
+  = f.text_field :city, placeholder: t(".placeholders.city")
+  = f.errors :city
+
+%script(data-template-for="TimeSelect" type="text/html")
+  %input{ id: "%{ prefix }_date", type: "text", placeholder: t(".placeholders.date"), "data-format" => js_date_format  }
+  = time_select "%{ prefix }"
+
+%script(data-template-for="TimezoneSelector" type="text/html")
+  = raw t(".timezone_selector", tz: current_location.timezone.to_s)
 
 - content_for :javascript do
   :javascript
-    $(document).ready(function(){
-      var event = new A8.Models.Event(#{@event.to_json})
+    jQuery(function($) {
+      var the_event = new A8.Models.Event(#{@event.to_json});
 
-      new A8.Views.Events.EndDate({
-        model:    event,
-        el:       $("#end_at_container"),
-        showDate: "#{t(".show_end_date")}",
-        hideDate: "#{t(".hide_end_date")}"
-      }).render();
-
-      var custom_range = function(input){
-        var min = new Date();
-        var dateMin = min;
-        var dayRange = 365;
-        var dateMax = min + dayRange;
-
-        if (input.id == "event_start_at_date") {
-          if ($("#event_end_at_date").datepicker("getDate") != null) {
-            dateMax = $("#event_end_at_date").datepicker("getDate");
-            dateMin = $("#event_end_at_date").datepicker("getDate");
-            dateMin.setDate(dateMin.getDate() - dayRange);
-            if (dateMin < min) {
-              dateMin = min;
-            }
-          }
-        } else if (input.id == "event_end_at_date") {
-          if ($("#event_start_at_date").datepicker("getDate") != null) {
-            dateMin = $("#event_start_at_date").datepicker("getDate");
-            var rangeMax = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + dayRange);
-            if(rangeMax < dateMax) {
-              dateMax = rangeMax;
-            }
-          }
+      new A8.Views.Events.Scheduler({
+        el:     $(".double_feature > .form_field"),
+        model:  the_event,
+        toggle: {
+          show_date:   "#{t(".show_end_date")}",
+          hide_date:   "#{t(".hide_end_date")}"
         }
-        return {
-          minDate: dateMin,
-          maxDate: dateMax,
-        };
-      };
-      var pickers = $("#event_start_at_date, #event_end_at_date").datepicker({
-        dateFormat: 'yy-mm-dd',
-        beforeShow: custom_range,
-        numberOfMonths: 2
-      });
+      }).render();
     });

@@ -17,7 +17,6 @@
     - if @page_description
       %meta{property: "og:description", content: @page_description}
   %body
-    #rally_badge
     .container
       %header
         %h1
@@ -50,24 +49,18 @@
         = link_to t("shared.terms_and_conditions"), terms_and_conditions_path
         = link_to t('social.twitter.follow_us'), "http://twitter.com/#!/a_las_ocho"
 
-    = javascript_include_tag :application, :a8
-
-    = yield :javascript
+    = javascript_include_tag :application, debug: Rails.env.development?
+    = javascript_include_tag calendar_l10n_settings
     :javascript
-      $(document).ready(function(){
-        if(Backbone.history){
+      A8.current_user = {
+        time_zone: #{current_location.timezone.to_json}
+      }
+
+      jQuery(function($) {
+        if (Backbone.history) {
           Backbone.history.start();
         }
       });
-    - if Rails.env.production?
-      :javascript
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-25135104-1']);
-        _gaq.push(['_trackPageview']);
 
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
+    = yield :javascript
+    = render "google_analytics" if Rails.env.production?

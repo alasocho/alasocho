@@ -13,6 +13,6 @@
 
   -if @public_events.any?
     #latest_public_events
-      %h3= t("homepage.welcome.latest_public_events", :city => @current_city)
+      %h3= t("homepage.welcome.latest_public_events", :city => current_location)
       %ol
         = render @public_events

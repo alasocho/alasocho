@@ -103,6 +103,7 @@ es:
       invite: "Invitar más gente"
       show_end_date: "Con fecha de fin"
       hide_end_date: "Sin fecha de fin"
+      timezone_selector: "La zona horaria de este evento es: <strong>%{tz}</strong>"
       button:
         new: "Crear un Evento"
       placeholders:
@@ -112,9 +113,16 @@ es:
         end_at: "20/8/2011 21:00"
         location: "Paraguay 2211"
         city: "Montevideo, Uruguay"
+        date: "Fecha"
+        time: "Hora"
     manage_attendees:
       title: "Administrar miembros"
       link: "Administrar Invitados"
+    invitation_box:
+      label: "Invita gente al evento:"
+      delete: "Borrar de la lista"
+      placeholders:
+        invitations: "email@ejemplo.com, email@ejemplo.com"
 
   invitations:
     form:

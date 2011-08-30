@@ -17,3 +17,43 @@
 #invite_people .submit_buttons {
   margin-top: 12px;
 }
+
+#invitation_box {
+  position: relative;
+
+  ul {
+    position: absolute;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .invitation {
+    list-style-type: none;
+    margin-left: 1px;
+    padding: 0 4px;
+    width: 400px;
+    border-bottom: 1px solid #ddd;
+
+    button {
+      position: absolute;
+      right: -13px;
+      font-weight: bold;
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+    }
+
+    button:hover {
+      color: #111;
+    }
+
+    &:hover, &:focus {
+      background-color: #ffc;
+    }
+
+    &:first-child {
+      margin-top: 1px;
+    }
+  }
+}
