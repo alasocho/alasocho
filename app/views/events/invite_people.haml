@@ -9,7 +9,5 @@
   = render "settings", f: f
   = render "invitations", event: @event, invitations: @invitations, f: f
 
-  /= render "invitee_list", :f => f
-
   .submit_button
     = f.submit t("event.form.invite.submit"), id: :submit_event
