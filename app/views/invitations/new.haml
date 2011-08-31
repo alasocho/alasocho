@@ -1,0 +1,12 @@
+- content_for :javascript do
+  :javascript
+    window.current_page = window.current_page || {}
+    window.current_page.event = current_page.event || new A8.Models.Event(#{@event.to_json});
+
+%h2= t ".title"
+
+= form_for @event, url: event_invitations_path, html: { method: :post } do |f|
+  = render "events/invitations", event: @event, invitations: @invitations, f: f
+
+  .submit_button
+    = f.submit t(".invite")

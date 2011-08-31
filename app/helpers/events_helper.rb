@@ -14,7 +14,7 @@ module EventsHelper
   # should trigger the invitations modal dialog.
   def link_to_invite_if_allowed(event, user=current_user)
     if event.allow_invites_from(user)
-      link_to t("events.form.invite"), event_invite_people_path(event), class: "invite_more"
+      link_to t("events.form.invite"), new_event_invitation_path(event), class: "invite_more"
     end
   end
 

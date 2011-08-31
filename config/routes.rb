@@ -15,7 +15,7 @@ ALasOcho::Application.routes.draw do
     get :waitlisted, :action => "waitlisted", :as => "waitlisted"
     get :declined, :action => "declined", :as => "declined"
     get :everyone, :action => "everyone", :as => "everyone"
-
+    resources :invitations, :only => [:new, :create]
     resource :attendance, :only => [:create, :destroy]
   end
 

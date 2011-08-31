@@ -139,6 +139,8 @@ es:
         invitations: "email@ejemplo.com, email@ejemplo.com"
 
   invitations:
+    new:
+      invite: "Enviar invitaciones"
     form:
       placeholders:
         email: "Agrega el email y presiona enter"
