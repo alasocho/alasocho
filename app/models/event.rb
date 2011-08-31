@@ -76,6 +76,10 @@ class Event < ActiveRecord::Base
     VIEWABLE_STATES.include? state
   end
 
+  def published?
+    state == "published"
+  end
+
   def location
     self[:location].presence || I18n.t("activerecord.defaults.event.location")
   end

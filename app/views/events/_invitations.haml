@@ -1,12 +1,14 @@
+- description_scope = @event.published? ? "published" : "unpublished"
+
 %section#invitations
   = render "events/invitation_box", invitations: invitations, f: f
-  %p.explanation= t(".explanation", count: @event.attendee_quota)
+  %p.explanation= t(".#{description_scope}.explanation", count: @event.attendee_quota)
 
 - content_for :javascript do
   :javascript
     new A8.Views.Events.InvitationInformation({
       model: current_page.event,
       el: $("#invitations p"),
-      many:  #{t(".explanation", count: "%many%").to_json},
-      one:   #{t(".explanation", count: 1).to_json},
+      many:  #{t(".#{description_scope}.explanation", count: "%many%").to_json},
+      one:   #{t(".#{description_scope}.explanation", count: 1).to_json},
     }).render();

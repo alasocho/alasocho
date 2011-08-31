@@ -128,9 +128,14 @@ es:
       title: "Invita gente y publica el evento"
 
     invitations:
-      explanation:
-        one: Puedes tener más de 1 invitado! Si más personas confirman, quedaran en una lista de espera.
-        other: Puedes tener más de %{count} invitados! Si más personas confirman, quedaran en una lista de espera.
+      unpublished:
+        explanation:
+          one: "Puedes tener más de 1 invitado! Si más personas confirman, quedaran en una lista de espera."
+          other: "Puedes tener más de %{count} invitados! Si más personas confirman, quedaran en una lista de espera."
+      published:
+        explanation:
+          one: "Si bien el evento tiene un máximo de 1 persona que puede confirmar, ¡puedes invitar a tantas personas como quieras! Si más de 1 persona confirma, los demás quedaran en una lista de espera."
+          other: "Si bien el evento tiene un máximo de %{count} personas que pueden confirmar, ¡puedes invitar a tantas personas como quieras! Si más de %{count} personas confirman, los demás quedaran en una lista de espera."
 
     invitation_box:
       label: "Invita gente al evento, escribiendo sus emails:"
@@ -141,6 +146,7 @@ es:
   invitations:
     new:
       invite: "Enviar invitaciones"
+      title:  "Invita gente"
     form:
       placeholders:
         email: "Agrega el email y presiona enter"
