@@ -1,0 +1,10 @@
+board_games_night:
+  name: Gaming Night
+  description: Nos juntamos a jugar juegos
+  start_at: <%= 2.weeks.from_now %>
+  end_at: <%= 2.weeks.from_now + 12.hours %>
+  location: Soriano 1338 / 2
+  city: Montevideo, Uruguay
+  public: true
+  attendee_quota: nil
+  host: event_host

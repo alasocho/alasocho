@@ -1,0 +1,6 @@
+- notifications = Notification.all(current_user)
+= link_to t(".link", :amount => notifications.size), "#", :id => "notifications_link", :class => (notifications.any? ? "has_notifications" : "no_notifications")
+
+#notifications
+  .holding_box
+    %ol= render notifications

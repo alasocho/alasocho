@@ -1,0 +1,4 @@
+board_games_night_by_invited:
+  event: board_games_night
+  user: invited_user
+  text: "What games are y'all bringing? I might drop by"
