@@ -24,8 +24,12 @@ jQuery ($) ->
   $(document).keyup (event) ->
     if event.keyCode is 27
       $("#notifications").hide()
+      $("li.menu.open").removeClass("open")
 
-  $("#notifications_link").click (event) ->
-    $("#notifications").toggle()
-    $(this).blur()
-    false
+  $(document).click (event) ->
+    _.each $("li.menu"), (menu) ->
+      if $(menu).hasClass("open") and not $.contains(menu, event.target)
+        $(menu).removeClass("open")
+
+  $("li.menu a").click (event) ->
+    $(this).parent().toggleClass("open")

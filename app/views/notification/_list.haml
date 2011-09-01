@@ -1,6 +1,7 @@
-- notifications = Notification.all(current_user)
-= link_to t(".link", :amount => notifications.size), "#", :id => "notifications_link", :class => (notifications.any? ? "has_notifications" : "no_notifications")
-
-#notifications
-  .holding_box
-    %ol= render notifications
+%li.menu#notifications
+  = notifications_menu_link
+  %ul.menu-dropdown
+    = render user_notifications
+    - if user_notifications.empty?
+      %li.placeholder
+        %a(href="javascript:;")= t ".placeholder"

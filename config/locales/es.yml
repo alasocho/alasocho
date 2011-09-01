@@ -18,7 +18,7 @@ es:
 
   notification:
     list:
-      link: "Notificaciones (%{amount})"
+      placeholder: "¡No tienes ninguna notificación nueva! :-)"
     invitations:
       invitation:
         open_slots:
@@ -111,7 +111,7 @@ es:
       hide_end_date: "Sin fecha de fin"
       timezone_selector: "La zona horaria de este evento es: <strong>%{tz}</strong>"
       button:
-        new: "Crear un Evento"
+        new: "Organiza un evento"
       placeholders:
         name: "Por ejemplo: Final de la liga"
         description: "Describe esta reunión"

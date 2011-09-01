@@ -17,29 +17,30 @@
     - if @page_description
       %meta{property: "og:description", content: @page_description}
   %body
-    .container
-      %header
-        %h1
-          = link_to t("app.title"), root_path
 
-        #user_area
+    .topbar
+      .fill
+        .container
+          %h3= link_to t("app.title"), root_path, rel: "home"
           - if signed_in?
-            #current_user
-              = link_to t('events.form.button.new'), new_event_path, class: ["awesome", "green", "create_new_event", "right"]
-              = image_tag current_user.picture_url
-              = current_user.name
-              |
-              = link_to t("accounts.edit.link"), edit_account_path
-              |
-              = link_to t("sessions.sign_out.link"), "/auth/sign_out"
-              - if current_user.attendances.need_attention.includes(:event).any?
-                |
+            %ul.nav
+              %li= link_to t("events.form.button.new"), new_event_path
+            %ul.nav.secondary-nav
               = render "notification/list"
+              %li.menu#user_menu
+                %a(href="javascript:;" class="menu")
+                  = image_tag current_user.picture_url, class: "tiny avatar"
+                  = current_user.name
+                %ul.menu-dropdown
+                  %li= link_to t("accounts.edit.link"), edit_account_path
+                  %li.divider
+                  %li= link_to t("sessions.sign_out.link"), "/auth/sign_out"
           - else
-            - Authorization::PROVIDERS.each do |provider|
-              = link_to t("sessions.sign_in.#{provider}"),  "/auth/#{provider}",  class: "sign_in #{provider}"
+            %ul.nav.secondary-nav
+              - Authorization::PROVIDERS.each do |provider|
+                %li= link_to t("sessions.sign_in.#{provider}"), "/auth/#{provider}", class: "sign_in #{provider}"
 
-
+    .container
       = flash_messages
 
       %section#main
