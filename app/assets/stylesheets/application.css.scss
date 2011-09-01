@@ -4,3 +4,96 @@
  *= require      jquery-ui/ui-lightness/jquery-ui
  *= require_tree ./styles
 */
+
+body {
+  background: #f8f8f8 url(/assets/backgrounds/page.png);
+  font-family: "Ubuntu", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.row {
+  width: 960px;
+}
+
+#main {
+  margin-top: 24px;
+  margin-left: 140px;
+}
+
+#main h1 {
+  padding: 10px 0 6px;
+  line-height: 32px;
+  color: #c93c00;
+  text-shadow: 1px 1px #ccc;
+}
+
+#main h2 {
+  padding: 10px 0 6px;
+  line-height: 24px;
+  color: #c93c00;
+  text-shadow: 1px 1px #ccc;
+}
+
+#main aside h2 {
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link, a:visited {
+  color: #730046;
+}
+
+a:hover, a:active {
+  color: #c93c00;
+  text-decoration: underline;
+}
+
+.create_new_event {
+  text-decoration: none !important;
+  color: white !important;
+  padding: 8px;
+  font-size: .8em;
+}
+
+.avatar.tiny {
+  height: 20px;
+  width: 20px;
+  padding: 1px;
+  border: 1px solid #ccc;
+  position: relative;
+  top: 4px;
+}
+
+.avatar.medium {
+  height: 48px;
+  width: 48px;
+  padding: 1px;
+  border: 1px solid #ccc;
+  position: relative;
+  top: 4px;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+  margin-top: 40px;
+  padding: 40px;
+  border-top: 1px solid #ccc;
+}
+
+footer a {
+  margin-right: 10px;
+}
+
+footer a:last-child {
+  margin-right: 0;
+}
