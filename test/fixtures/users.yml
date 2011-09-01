@@ -1,3 +1,7 @@
 event_host:
-  name: "John Doe"
-  email: "john.doe@example.com"
+  name: "John Host"
+  email: "john.host@example.com"
+
+invited_user:
+  name: "John Invited"
+  email: "john.invited@example.com"

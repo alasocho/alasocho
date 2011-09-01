@@ -1,0 +1,12 @@
+board_games_night_host:
+  event: board_games_night
+  user: event_host
+  email: "john.host@example.com"
+  confirmed_at: <%= 2.days.ago %>
+  updated_at: <%= 2.days.ago %>
+
+board_games_night_invitation:
+  event: board_games_night
+  user: invited_user
+  email: "john.invited@example.com"
+  confirmed_at: nil

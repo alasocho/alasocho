@@ -34,7 +34,7 @@
               = link_to t("sessions.sign_out.link"), "/auth/sign_out"
               - if current_user.attendances.need_attention.includes(:event).any?
                 |
-              = render "shared/notifications"
+              = render "notification/list"
           - else
             - Authorization::PROVIDERS.each do |provider|
               = link_to t("sessions.sign_in.#{provider}"),  "/auth/#{provider}",  class: "sign_in #{provider}"

@@ -16,8 +16,15 @@ es:
       google: "Entrar con Google"
     need_to_sign_in: "Tienes que ingresar al sitio para acceder a esta página"
 
-  notifications:
-    link: "Notificaciones (%{amount})"
+  notification:
+    list:
+      link: "Notificaciones (%{amount})"
+    invitations:
+      invitation:
+        open_slots:
+          zero: "Sin lugares"
+          one: "%{count}/%{total} lugar"
+          other: "%{count}/%{total} lugares"
 
   activerecord:
     models:
@@ -204,9 +211,6 @@ es:
     invited_users:
       title: "Usuarios invitados a este evento"
     available_seats: "lugares disponibles."
-    occupied_seats:
-      one: "%{used}/%{count} lugar"
-      other: "%{used}/%{count} lugares"
     waitlist: "Lista de espera"
     people_waiting: "personas esperando"
     end_at: "Fin"
