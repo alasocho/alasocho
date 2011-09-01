@@ -36,7 +36,7 @@
                   %li.divider
                   %li= link_to t("sessions.sign_out.link"), "/auth/sign_out"
           - else
-            %ul.nav.secondary-nav
+            %ul.nav.secondary-nav#sign_in
               - Authorization::PROVIDERS.each do |provider|
                 %li= link_to t("sessions.sign_in.#{provider}"), "/auth/#{provider}", class: "sign_in #{provider}"
 

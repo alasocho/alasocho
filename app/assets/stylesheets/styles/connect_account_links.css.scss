@@ -1,7 +1,6 @@
-header .sign_in {
-  float: right;
-  margin: 0 0 0 10px;
-  text-align: left;
+.topbar .sign_in:link, .topbar .sign_in:visited {
+  padding-left: 36px;
+  background-position: 10px 8px;
 }
 
 aside .sign_in {
@@ -9,15 +8,12 @@ aside .sign_in {
 }
 
 .sign_in:link, .sign_in:visited {
-  background-position: 0 0;
+  background-position: 3px 0;
   background-repeat: no-repeat;
-  padding-left: 26px;
+  padding-left: 29px;
   display: block;
   height: 22px;
   font-size: 14px;
-}
-
-.sign_in:hover {
 }
 
 .twitter {
