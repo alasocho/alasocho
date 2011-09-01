@@ -1,6 +1,10 @@
 class InvitationLoader
   extend ActiveModel::Naming
 
+  def self.model_name
+    ActiveModel::Name.new(self, nil, "Invitations")
+  end
+
   def initialize(event, invitations)
     @event = event
     save_and_sanitize(invitations)

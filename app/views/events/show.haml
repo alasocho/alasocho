@@ -50,7 +50,7 @@
 
   %aside#feeds
     = t("events.show.feed.subscribe")
-    = link_to t("events.show.feed.ical/outlook"), "#{event_path(@event) }.ics", :class => "calendar"
+    = link_to t("events.show.feed.ical/outlook"), event_path(@event, format: :ics), :class => "calendar"
     = link_to t("events.show.feed.gcal"), @event.to_gcal, :class => "calendar"
 
   - if @event.confirmed_invitations.any?
@@ -88,14 +88,7 @@
         %span= t "events.show.declined", count: @event.declined_invitations.size
       = link_to t('event.form.see_all'), event_declined_path(@event)
 
-#modal_window
-
 - content_for :javascript do
   :javascript
-    $(document).ready(function(){
-      var router = new A8.Routers.EventRouter(#{@event.id}, $("#modal_window"));
-      router.counter_updated(#{@event.attendee_quota})
-    });
-
-
-= render "invite_people_template"
+    window.current_page = window.current_page || {}
+    window.current_page.event = current_page.event || new A8.Models.Event(#{@event.to_json});

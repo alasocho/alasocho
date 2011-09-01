@@ -1,4 +1,8 @@
+require "event_finders"
+
 class EventsController < ApplicationController
+  include EventFinders
+
   before_filter :check_token, :only => [:show]
   before_filter :authenticate_user, :except => [:show, :confirmed, :invited, :waitlisted]
 
@@ -50,6 +54,7 @@ class EventsController < ApplicationController
 
   def invite_people
     load_own_event
+    @invitations = InvitationLoader.new(@event, {})
     @page_title = @event.name
   end
 
@@ -142,26 +147,11 @@ class EventsController < ApplicationController
     @attendances = @event.declined_invitations
   end
 
-private
-
-  def load_own_event
-    @event = current_user.hosted_events.find(params[:event_id] || params[:id])
-  end
-
-  def load_event
-    id, token = (params[:event_id] || params[:id]).split('-')
-    @event = (signed_in? ? Event.viewable_by(current_user, token) : Event.public_events(token)).find(id)
-  end
-
-  def load_event_writable
-    load_event
-    @event = Event.find(@event.id)
-  end
+  private
 
   def check_token
     if params[:token].present?
       session[:attendance_id] = Attendance.find_by_token(params[:token]).try(:id)
     end
   end
-
 end

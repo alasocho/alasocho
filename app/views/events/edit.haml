@@ -1,16 +1,15 @@
 %h2= t("event.form.edit.title")
 
+- content_for :javascript do
+  :javascript
+    window.current_page = window.current_page || {}
+    window.current_page.event = current_page.event || new A8.Models.Event(#{@event.to_json});
+
 -# %aside.alternate#cancel
   = link_to t('event.form.edit.cancel_event'), event_path(@event), :method => :delete, :confirm => t('shared.are_you_sure')
 
 = form_for @event, html: { novalidate: true } do |f|
   = render "form", :f => f
   = render "settings", :f => f
-  %submit_button
+  .submit_button
     = f.submit
-
-- content_for :javascript do
-  :javascript
-    $(document).ready(function(){
-      new A8.Views.Events.SettingsView($("#no_limit"));
-    });

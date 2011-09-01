@@ -12,10 +12,8 @@
 - content_for :javascript do
   :javascript
     jQuery(function($) {
-      var the_event = new A8.Models.Event(#{@event.to_json});
-
       window.box = new A8.Views.Events.EmailBox({
         el: $("#invitation_box"),
-        collection: the_event.invitations
+        collection: current_page.event.invitations
       }).render();
     });

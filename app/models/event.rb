@@ -76,6 +76,10 @@ class Event < ActiveRecord::Base
     VIEWABLE_STATES.include? state
   end
 
+  def published?
+    state == "published"
+  end
+
   def location
     self[:location].presence || I18n.t("activerecord.defaults.event.location")
   end
@@ -131,6 +135,15 @@ class Event < ActiveRecord::Base
 
   def limited?
     attendee_quota.present?
+  end
+
+  def open?
+    attendee_quota.blank?
+  end
+  alias_method :open, :open?
+
+  def open=(flag)
+    self.attendee_quota = nil if flag
   end
 
   def available_slots

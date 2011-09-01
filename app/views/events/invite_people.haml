@@ -1,14 +1,13 @@
-#modal_window
-%h2= t("event.form.invite.title")
+%h2= t(".title")
+
+- content_for :javascript do
+  :javascript
+    window.current_page = window.current_page || {}
+    window.current_page.event = current_page.event || new A8.Models.Event(#{@event.to_json});
 
 = form_for @event, url: event_publish_path(@event), class: :invite_more_people do |f|
-  = render "settings", :f => f
-
-  = render "invitation_box", invitations: @invitations, f: f
-
-  /= render "invitee_list", :f => f
+  = render "settings", f: f
+  = render "invitations", event: @event, invitations: @invitations, f: f
 
   .submit_button
     = f.submit t("event.form.invite.submit"), id: :submit_event
-
-= render "invite_people_template"

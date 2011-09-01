@@ -33,7 +33,7 @@ es:
         city: "Ciudad"
         public: "Este evento es público"
         allow_invites: "Los invitados pueden invitar más gente"
-        attendee_quota: "Un límite de"
+        open: "El evento no tiene límite de invitados"
       user:
         name: "Nombre"
         email: "Email"
@@ -50,18 +50,14 @@ es:
       invited: "%{count} sin confirmar"
       waitlisted: "%{count} en la lista de espera"
       available_seats: "%{count} lugares disponibles."
-
       waitlist: "Lista de espera"
       people_waiting:
         one:   "1 persona esperando"
         other: "%{count} personas esperando"
-
       declined:
         one: "1 persona rechazó la invitación"
         other: "%{count} personas rechazaron la invitación"
-
       organizer: "Organizado por"
-
       duration:
         days:
           one:   "1 día"
@@ -70,13 +66,11 @@ es:
           one:   "1 hora"
           other: "%{count}:%{minutes} horas"
         minutes: "%{minutes} minutos"
-
       end_time:
         hours: "Termina a las %{time} (%{duration})"
         next_day: "Termina al día siguiente a las %{time} (%{duration})"
         arbitrary: "Termina el %{time}"
         default: "Sin hora de finalización"
-
       feed:
         subscribe: "Suscríbete:"
         ical/outlook: "iCal/Outlook"
@@ -88,17 +82,22 @@ es:
 
     invites:
       title: "Invitaciones pendientes"
+
     relevant_events:
       title: "Todos mis eventos"
+
     public:
       title: "Eventos públicos"
       see_all: "Ver todos los eventos públicos"
       near_you: "Mostrando eventos en %{current_city}"
+
     my_events:
       title: "Mis eventos"
       see_all: "Ver todos mis eventos"
+
     declined:
       title: "Quiénes rechazaron la invitación"
+
     form:
       invite: "Invitar más gente"
       show_end_date: "Con fecha de fin"
@@ -115,16 +114,39 @@ es:
         city: "Montevideo, Uruguay"
         date: "Fecha"
         time: "Hora"
+
+    settings:
+      guest_limit: "¿Cuánta gente puede asistir?"
+      attendee_quota_prefix: "Un límite de"
+      attendee_quota_suffix: "personas pueden asistir"
+
     manage_attendees:
-      title: "Administrar miembros"
+      title: "Administrar Invitados"
       link: "Administrar Invitados"
+
+    invite_people:
+      title: "Invita gente y publica el evento"
+
+    invitations:
+      unpublished:
+        explanation:
+          one: "Puedes tener más de 1 invitado! Si más personas confirman, quedaran en una lista de espera."
+          other: "Puedes tener más de %{count} invitados! Si más personas confirman, quedaran en una lista de espera."
+      published:
+        explanation:
+          one: "Si bien el evento tiene un máximo de 1 persona que puede confirmar, ¡puedes invitar a tantas personas como quieras! Si más de 1 persona confirma, los demás quedaran en una lista de espera."
+          other: "Si bien el evento tiene un máximo de %{count} personas que pueden confirmar, ¡puedes invitar a tantas personas como quieras! Si más de %{count} personas confirman, los demás quedaran en una lista de espera."
+
     invitation_box:
-      label: "Invita gente al evento:"
+      label: "Invita gente al evento, escribiendo sus emails:"
       delete: "Borrar de la lista"
       placeholders:
         invitations: "email@ejemplo.com, email@ejemplo.com"
 
   invitations:
+    new:
+      invite: "Enviar invitaciones"
+      title:  "Invita gente"
     form:
       placeholders:
         email: "Agrega el email y presiona enter"
@@ -208,7 +230,6 @@ es:
       invite:
         button: "Invitar"
         close: "Cerrar"
-        title: "Invitaciones"
         after_attendee_quota: "personas pueden asistir"
         unlimited_attendee_quota: "No hay limite, invita a cuantos quieras."
         explanation: "Si bien el evento tiene un máximo de %{spots_left} personas que pueden confirmar, ¡puedes invitar a tantas personas como quieras! Si más de %{spots_left} personas confirman quedaran en una lista de espera"
