@@ -10,6 +10,14 @@ body {
   padding-top: 43px;
 }
 
+#logo a {
+  width: 150px;
+  text-indent: -9999em;
+  background-image: url(/assets/logo-header.png);
+  background-repeat: no-repeat;
+  background-position: 20px 50%;
+}
+
 .container {
   width: 960px;
   margin: 0 auto;

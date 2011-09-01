@@ -21,7 +21,7 @@
     .topbar
       .fill
         .container
-          %h3= link_to t("app.title"), root_path, rel: "home"
+          %h3#logo= link_to t("app.title"), root_path, rel: "home"
           - if signed_in?
             %ul.nav
               %li= link_to t("events.form.button.new"), new_event_path
