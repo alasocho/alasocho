@@ -42,9 +42,8 @@
     .container
       = flash_messages
 
-    %section#main
-      .container
-        = yield
+    %section.container#main
+      = yield
 
     %footer
       = mail_to "hola@alasocho.com", "Contacto: hola@alasocho.com"

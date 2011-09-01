@@ -6,7 +6,7 @@ module ALasOcho
     end
 
     def submit(value=nil, options={})
-      super(value, { :class => "awesome medium magenta" }.merge(options))
+      super(value, { :class => ["btn", "primary"] }.merge(options))
     end
   end
 end

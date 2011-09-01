@@ -1,122 +1,30 @@
-.form_field, .submit_button {
-  position: relative;
+fieldset {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.form_field {
+  margin: 18px 0;
+  @extend .clearfix;
+}
+
+.actions {
+  margin-bottom: -18px;
+}
+
+input[type=text], input[type=password], textarea, select, .uneditable-input{
   width: 400px;
-  margin-top: 24px;
-}
-
-.double_feature .form_field {
-  float: left;
-  width: 195px;
-
-  &:first-child {
-    margin-right: 5px;
-  }
-
-  &:last-child {
-    margin-left: 5px;
-  }
-}
-
-.double_feature:after {
-  display: table;
-  content: "";
-  clear: both;
-}
-
-.field_with_errors input {
-  border: 1px solid #b21515;
-  background: #fee;
-}
-
-label {
-  position: relative;
-  display: block;
-  line-height: 24px;
-  height: 24px;
-  width: 100%;
-}
-
-.errors {
-  display: block;
-  position: absolute;
-  left: 70%;
-  bottom: -35px;
-  z-index: 2;
-  background: #b21515;
-  color: #f8f8f8;
-  padding: 2px 8px;
-  border-radius: 5px;
-  border: 1px solid #fff;
-  font-size: 14px;
-}
-
-.errors:first-letter {
-  /* don't want to capitalize every word */
-  text-transform: capitalize;
-}
-
-.errors:after {
-  position: absolute;
-  top: -10px;
-  display: block;
-  content: "";
-  width: 0;
-  height: 0;
-  margin-top: 2px;
-  border-left: 6px solid #fff;
-  border-right: 6px solid #fff;
-  border-bottom: 8px solid #b21515;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 4px 5px 0;
-  font-family: Actor, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-input[type=checkbox], input[type=radio] {
-  float: left;
-  width: auto;
-  margin-right: 6px;
-  position: relative;
-  top: 2px;
-  z-index: 2;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 textarea {
-  height: 72px;
+  max-height: 72px;
 }
 
-button[type=submit] {
-}
+.double_feature {
+  margin-top: -18px;
 
-button.toggle_button {
-  background: #ccc;
-  cursor: pointer;
-  border-top: solid 2px #eaeaea;
-  border-left: solid 2px #eaeaea;
-  border-bottom: solid 2px #777;
-  border-right: solid 2px #777;
-  padding: 5px 5px;
-}
-
-button.toggle_button.down {
-  background: #bbb;
-  border-top: solid 2px #777;
-  border-left: solid 2px #777;
-  border-bottom:solid 2px  #eaeaea;
-  border-right: solid 2px #eaeaea;
-}
-
-legend {
-  font-weight: bold;
-  padding-bottom: 4px;
+  .form_field {
+    float: left;
+    margin-right: 19px;
+  }
 }
