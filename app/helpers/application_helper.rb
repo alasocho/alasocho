@@ -4,11 +4,8 @@ module ApplicationHelper
   end
 
   def flash_messages
-    [:notice, :alert].detect do |key|
-      if flash[key]
-        message = content_tag(:div, flash[key], id: "flash-#{key}")
-        return content_tag(:section, message.html_safe, id: "flash")
-      end
+    { :notice => :success, :alert => :warning }.detect do |key, type|
+      return render("layouts/flash_message", text: flash[key], type: type) if flash[key]
     end
   end
 end

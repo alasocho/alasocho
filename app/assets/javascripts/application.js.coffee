@@ -33,3 +33,11 @@ jQuery ($) ->
 
   $("li.menu a").click (event) ->
     $(this).parent().toggleClass("open")
+
+  $(".alert-message .close").click (event) ->
+    el = $(this).parent()
+    el.animate(
+      marginTop: "-120px",
+      "fast",
+      _.bind(el.remove, el)
+    )
