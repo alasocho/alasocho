@@ -34,6 +34,13 @@ jQuery ($) ->
   $("li.menu a").click (event) ->
     $(this).parent().toggleClass("open")
 
+  # should we care about the performance considerations of this?
+  $("*").focus (event) ->
+    $("li.menu").each ->
+      menu = $(this)
+      if menu.hasClass("open") and not $.contains(this, document.activeElement)
+        menu.removeClass("open")
+
   $(".alert-message .close").click (event) ->
     el = $(this).parent()
     el.animate(
