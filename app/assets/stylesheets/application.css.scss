@@ -122,15 +122,21 @@ body {
 footer {
   clear: both;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 120px;
   padding: 40px;
-  border-top: 1px solid #ccc;
 }
 
-footer a {
-  margin-right: 10px;
+footer li {
+  display: inline;
 }
 
-footer a:last-child {
-  margin-right: 0;
+footer li:after {
+  content: "◈";
+  margin: 0 10px;
+  color: #c93c00;
 }
+
+footer li:last-child:after {
+  display: none;
+}
+

@@ -198,7 +198,9 @@ es:
   social:
     twitter:
       follow_us: "Síguenos en Twitter"
+
   shared:
+    contact_us: "Dínos %{email}"
     terms_and_conditions: "Términos y Condiciones"
     nothing_here: "No hay nada aquí."
     are_you_sure: "¿Estás seguro?"
