@@ -42,10 +42,10 @@
     .container
       = flash_messages
 
-    %section.container#main
+    .container#main
       = yield
 
-    %footer
+    %footer.container
       %ul
         %li= mail_to "hola@alasocho.com", t("shared.contact_us", email: "hola@alasocho.com")
         %li= link_to t("shared.terms_and_conditions"), terms_and_conditions_path
