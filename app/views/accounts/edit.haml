@@ -1,14 +1,14 @@
-%h1=t "accounts.edit.title"
+%h1=t ".title"
 
 - if current_user.can_be_linked_further?
-  %aside.link_accounts
+  %aside.sidebar.alert-message.block-message.warning
     - Authorization::PROVIDERS.each do |service|
       - unless current_user.linked_to?(service)
-        = link_to t("accounts.link_with.#{service}"), "/auth/#{service}", class: "#{service} sign_in"
+        = link_to t(".link_with.#{service}"), "/auth/#{service}", class: "#{service} sign_in"
     %p.explain
-      = t("accounts.link_with.why")
+      = t(".link_with.why")
 
-= form_for current_user, url: account_path do |f|
+= form_for current_user, url: account_path, html: { class: "form-stacked" } do |f|
   .form_field
     = f.label :name
     = f.text_field :name, placeholder: t("accounts.form.placeholders.name")
@@ -18,8 +18,10 @@
     = f.text_field :email, placeholder: t("accounts.form.placeholders.email")
     = f.errors :email
   .form_field
-    = f.check_box :wants_comment_notifications
-    = f.label :wants_comment_notifications
-
-  .submit_button
+    %ul.inputs-list
+      %li
+        %label(for="user_wants_comment_notifications")
+          = f.check_box :wants_comment_notifications
+          %span= t("activerecord.attributes.user.wants_comment_notifications")
+  .actions
     = f.submit

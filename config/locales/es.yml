@@ -180,11 +180,11 @@ es:
       message:
         success: "Tus datos fueron actualizados."
         error: "Ocurrió un error al actualizar tus datos."
-    link_with:
-      twitter: "Vincular con Twitter"
-      facebook: "Vincular con Facebook"
-      google: "Vincular con Google"
-      why: "Si vinculas tu cuenta con otros servicios, te será más fácil recordar cómo entrar."
+      link_with:
+        twitter: "Vincular con Twitter"
+        facebook: "Vincular con Facebook"
+        google: "Vincular con Google"
+        why: "Si vinculas tu cuenta con otros servicios, te será más fácil recordar cómo entrar."
 
   merges:
     new:
