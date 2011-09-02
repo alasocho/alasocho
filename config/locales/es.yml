@@ -124,6 +124,7 @@ es:
 
     settings:
       guest_limit: "¿Cuánta gente puede asistir?"
+      attendees_can_invite: "Los invitados pueden invitar más gente"
       attendee_quota_prefix: "Un límite de"
       attendee_quota_suffix: "personas pueden asistir"
 
@@ -203,7 +204,6 @@ es:
     are_you_sure: "¿Estás seguro?"
 
   event:
-    attendees_can_invite: "Los invitados pueden invitar más gente"
     confirmed_users:
       title: "Usuarios confirmados para el evento"
     waitlisted_users:

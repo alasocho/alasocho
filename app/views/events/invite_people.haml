@@ -5,9 +5,10 @@
     window.current_page = window.current_page || {}
     window.current_page.event = current_page.event || new A8.Models.Event(#{@event.to_json});
 
-= form_for @event, url: event_publish_path(@event), class: :invite_more_people do |f|
-  = render "settings", f: f
-  = render "invitations", event: @event, invitations: @invitations, f: f
+= form_for @event, url: event_publish_path(@event), html: { class: "form-stacked" } do |f|
+  %fieldset
+    = render "settings", f: f
+    = render "invitations", event: @event, invitations: @invitations, f: f
 
-  .submit_button
+  .actions
     = f.submit t("event.form.invite.submit"), id: :submit_event

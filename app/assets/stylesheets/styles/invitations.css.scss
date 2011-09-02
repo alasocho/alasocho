@@ -1,9 +1,9 @@
 #invitations {
   .explanation {
     width: 400px;
-    font-size: 14px;
-    line-height: 21px;
     margin-bottom: 6px;
+    margin-top: -18px;
+    color: #999;
   }
 }
 
@@ -32,8 +32,9 @@
 
   ul {
     position: absolute;
-    width: 100%;
-    font-size: 14px;
+    width: 400px;
+    font-size: 13px;
+    margin: 0;
   }
 
   .invitation {
@@ -45,7 +46,7 @@
 
     button {
       position: absolute;
-      right: -13px;
+      right: -4px;
       font-weight: bold;
       background: none;
       border: none;

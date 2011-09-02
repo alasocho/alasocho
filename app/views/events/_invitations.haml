@@ -2,7 +2,7 @@
 
 %section#invitations
   = render "events/invitation_box", invitations: invitations, f: f
-  %p.explanation= t(".#{description_scope}.explanation", count: @event.attendee_quota)
+  %p.help-block.explanation= t(".#{description_scope}.explanation", count: @event.attendee_quota)
 
 - content_for :javascript do
   :javascript
