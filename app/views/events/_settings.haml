@@ -1,27 +1,20 @@
-.form_field#event_scope
-  %ul.inputs-list
-    %li
-      %label(for="event_public")
-        = f.check_box :public
-        %span= t("activerecord.attributes.event.public")
-    %li
-      %label(for="event_allow_invites")
-        = f.check_box :allow_invites, :disabled => f.object.public?
-        %span= t("events.settings.attendees_can_invite")
+= f.form_stack id: "event_scope" do
+  = f.stack_field :public do
+    = f.check_box :public
+    %span= t("activerecord.attributes.event.public")
+  = f.stack_field :allow_invites do
+    = f.check_box :allow_invites, :disabled => f.object.public?
+    %span= t("events.settings.attendees_can_invite")
 
-.form_field#guest_limit
-  %label=t ".guest_limit"
-  %ul.inputs-list
-    %li
-      %label#open_event(for="event_open_true")
-        = f.radio_button :open, true
-        %span=t "activerecord.attributes.event.open"
-    %li
-      %label#quota(for="event_open_false")
-        = f.radio_button :open, false
-        = f.label :attendee_quota, t(".attendee_quota_prefix")
-        = f.number_field :attendee_quota, min: 1, class: "attendee_quota"
-        = f.label :attendee_quota, t(".attendee_quota_suffix")
+= f.form_stack label: t(".guest_limit"), id: "guest_limit" do
+  = f.stack_field :open, id: "open_event", for: "event_open_true" do
+    = f.radio_button :open, true
+    %span=t "activerecord.attributes.event.open"
+  = f.stack_field :open, id: "quota", for: "event_open_false" do
+    = f.radio_button :open, false
+    = f.label :attendee_quota, t(".attendee_quota_prefix")
+    = f.number_field :attendee_quota, min: 1, class: "attendee_quota"
+    = f.label :attendee_quota, t(".attendee_quota_suffix")
 
 - content_for :javascript do
   :javascript

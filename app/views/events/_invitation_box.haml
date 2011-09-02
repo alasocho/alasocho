@@ -1,5 +1,5 @@
 = fields_for invitations do |f|
-  .form_field#invitation_box
+  = f.form_field :leftovers, id: "invitation_box" do
     = f.label :leftovers, t(".label")
     = f.text_area :leftovers, placeholder: t(".placeholders.invitations")
     = f.errors :leftovers

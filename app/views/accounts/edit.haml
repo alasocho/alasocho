@@ -9,19 +9,18 @@
       = t(".link_with.why")
 
 = form_for current_user, url: account_path, html: { class: "form-stacked" } do |f|
-  .form_field
+  = f.form_field :name do
     = f.label :name
     = f.text_field :name, placeholder: t("accounts.form.placeholders.name")
     = f.errors :name
-  .form_field
+  = f.form_field :email do
     = f.label :email
     = f.text_field :email, placeholder: t("accounts.form.placeholders.email")
     = f.errors :email
-  .form_field
-    %ul.inputs-list
-      %li
-        %label(for="user_wants_comment_notifications")
-          = f.check_box :wants_comment_notifications
-          %span= t("activerecord.attributes.user.wants_comment_notifications")
+  = f.form_stack do
+    = f.stack_field :wants_comment_notifications do
+      = f.check_box :wants_comment_notifications
+      %span= t("activerecord.attributes.user.wants_comment_notifications")
+
   .actions
     = f.submit
