@@ -84,6 +84,12 @@ es:
         gcal: "Google Calendar"
         ycal: "Yahoo! Calendar"
 
+    event:
+      open_slots:
+        zero: "Sin lugares"
+        one: "%{count}/%{total} lugares"
+        other: "%{count}/%{total} lugares"
+
     edit:
       link: "Editar detalles"
 
@@ -96,7 +102,7 @@ es:
     public:
       title: "Eventos públicos"
       see_all: "Ver todos los eventos públicos"
-      near_you: "Mostrando eventos en %{current_city}"
+      near: "en %{current_city}"
 
     my_events:
       title: "Mis eventos"

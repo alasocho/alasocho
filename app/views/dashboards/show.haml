@@ -1,19 +1,13 @@
-#public_events
-  %h2= t('events.public.title')
-  = t('events.public.near_you', :current_city => current_location)
-  %ul= render @public_events
-  = link_to t('events.public.see_all'), public_events_path
+.row
+  %section#invites.columns.span8
+    %h3= t('events.my_events.title')
+    %ol= render @my_events
+    = link_to t('events.my_events.see_all'), events_path, class: "see_all"
 
-#invites
-  %h2= t('events.invites.title')
-  - if @pending_invites.any?
-    %ul
-      - @pending_invites.each do |invite|
-        = render invite.event, attendance: invite
-  - else
-    = t('shared.nothing_here')
+  %section#public_events.columns.span8
+    %h3
+      = t('events.public.title')
+      %span= t("events.public.near", current_city: current_location)
+    %ul= render @public_events
+    = link_to t('events.public.see_all'), public_events_path, class: "see_all"
 
-#my_events
-  %h2= t('events.my_events.title')
-  %ol= render @my_events
-  = link_to t('events.my_events.see_all'), events_path
