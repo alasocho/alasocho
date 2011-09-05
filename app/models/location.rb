@@ -13,7 +13,7 @@ class Location
     if ip == "127.0.0.1"
       new @@mock
     else
-      new source.city(@ip)
+      new source.city(ip)
     end
   end
 
