@@ -164,9 +164,11 @@ es:
         zero:  "Deja un comentario"
         one:   "Únete a la conversación"
         other: "Únete a la conversación"
-      create: "Tu commentario fue creado"
+      create: "Tu comentario fue creado"
       error: "Tu comentario no pudo ser ingresado"
       submit: "Enviar comentario"
+      deleted: "El comentario ha sido borrado"
+      delete: "Borrar comentario"
 
   accounts:
     form:

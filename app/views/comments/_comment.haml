@@ -5,4 +5,6 @@
     hace
     %time(datetime="#{comment.created_at.to_s(:db)}")= time_ago_in_words comment.created_at
   .text
+    - if @event.allow_edits_by(current_user)
+      %span= link_to '×', event_comment_path(@event,comment), :confirm => t('shared.are_you_sure'), :method => "delete", :class => "delete_comment"
     = simple_format comment.text

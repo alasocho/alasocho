@@ -32,10 +32,16 @@
     }
 
     .text {
+      position: relative;
       padding: 5px 12px;
       border-radius: 10px;
       position: relative;
       color: #fff;
+    }
+
+    .delete_comment {
+      position: absolute;
+      right: 15px;
     }
 
     .text:before {

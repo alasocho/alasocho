@@ -6,7 +6,7 @@ ALasOcho::Application.routes.draw do
 
   get "/events/public" => "events#public", :as => "public_events"
   resources :events, :only => [:edit, :new, :create, :show, :update, :destroy, :index] do
-    resources :comments, :only => [:create]
+    resources :comments, :only => [:create, :destroy]
     post :invite
     put :publish
     get :invite_people

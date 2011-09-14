@@ -12,4 +12,12 @@ class CommentsController < ApplicationController
       redirect_to @comment.event, alert: t('comments.form.error')
     end
   end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @event = Event.find(params[:event_id])
+
+    @comment.destroy
+    redirect_to event_path(@event.id), notice: t('comments.form.deleted')
+  end
 end
