@@ -51,6 +51,7 @@ es:
 
   events:
     show:
+      rsvp: "RSVP"
       confirmed:
         one:   "1 confirmado"
         other: "%{count} confirmados"

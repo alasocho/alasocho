@@ -35,13 +35,12 @@
     height: 32px;
   }
 
-  .actions {
+  .attendance_actions {
     margin-top: 6px;
     float: right;
   }
 
-  .actions * {
-    font-weight: normal;
-    font-size: 14px !important;
+  &:last-child {
+    border-bottom: none;
   }
 }

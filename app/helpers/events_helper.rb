@@ -54,4 +54,13 @@ module EventsHelper
       t("events.show.end_time.arbitrary", time: l(event.end_at, format: :default))
     end
   end
+
+  def rsvp_class(attendance)
+    case attendance.state
+    when "invited"; ""
+    when "waitlisted";             "info"
+    when "confirmed", "tentative"; "success"
+    when "declined";               "error"
+    end
+  end
 end

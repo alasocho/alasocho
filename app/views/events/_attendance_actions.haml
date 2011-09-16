@@ -2,11 +2,11 @@
 
 - if attendance.try(:confirmed?) || attendance.try(:waitlisted?)
   - button_text_source = attendance.try(:confirmed?) ? 'confirm.slots_available' : "confirm.no_slots_available"
-  %span.confirm.disabled= t(button_text_source, scope: scope)
+  %span.btn.small.success.disabled.action= t(button_text_source, scope: scope)
 - else
-  = link_to ((attendance.event.slots_available? || attendance.tentative?) ? t('confirm.slots_available', scope: scope) : t("confirm.no_slots_available", scope: scope)), event_attendance_path(attendance.event), :method => :post, :class => "confirm"
+  = link_to ((attendance.event.slots_available? || attendance.tentative?) ? t('confirm.slots_available', scope: scope) : t("confirm.no_slots_available", scope: scope)), event_attendance_path(attendance.event), :method => :post, :class => "small btn success action"
 
 - if attendance.try(:declined?)
-  %span.decline.disabled= t('decline', scope: scope)
+  %span.btn.small.danger.disabled.action= t(:decline, scope: scope)
 - else
-  = link_to t('decline', scope: scope), event_attendance_path(attendance.event), :method => :delete, :class => "decline"
+  = link_to t('decline', scope: scope), event_attendance_path(attendance.event), :method => :delete, :class => "small btn danger action"

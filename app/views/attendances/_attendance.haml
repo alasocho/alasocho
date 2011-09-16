@@ -1,6 +1,5 @@
 = content_tag_for "li", attendance do
+  - if local_assigns.fetch(:management, false)
+    .attendance_actions= render "events/attendance_actions", scope: "event.host_actions", attendance: attendance
   = image_tag attendance.owner.picture_url, class: "avatar medium"
   %span.name= attendance.owner.name
-
-  - if local_assigns.fetch(:management, false)
-    .actions= render "events/attendance_actions", scope: "event.host_actions", attendance: attendance

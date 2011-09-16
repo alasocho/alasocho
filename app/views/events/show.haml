@@ -47,7 +47,8 @@
         - if @event.city.present?
           .city= @event.city
 
-      #attendance_actions
+      #rsvp.alert-message.block-message{ class: rsvp_class(@attendance) }
+        %h3= t(".rsvp")
         - if signed_in?
           = render "attendance_actions", attendance: @attendance
         - else
@@ -60,7 +61,7 @@
 
       - if @event.confirmed_invitations.any?
         #confirmed_guests.alert-message.block-message.guests.clearfix
-          %h2
+          %h3
             = t 'events.show.confirmed', count: @event.confirmed_invitations.size
           - if @event.limited?
             %span= t "events.show.available_seats", count: @event.available_slots
@@ -71,7 +72,7 @@
 
       - if @event.waitlisted_invitations.any?
         #waitlist.alert-message.block-message.guests.clearfix
-          %h2
+          %h3
             = t "events.show.waitlist"
             %span= t "events.show.people_waiting", count: @event.waitlisted_invitations.size
           %ul= render @waitlisted_invitations
@@ -80,7 +81,7 @@
 
 
       #unconfirmed.alert-message.block-message.guests.clearfix
-        %h2=t "events.show.invited", count: @event.pending_invitations.size
+        %h3=t "events.show.invited", count: @event.pending_invitations.size
         %span= link_to_invite_if_allowed @event
         - if @event.pending_invitations.size > EventsController::MAX_PENDING_ATTENDEES
           = link_to t('event.form.see_all'), event_invited_path(@event)
@@ -88,7 +89,7 @@
 
       - if @event.declined_invitations.any?
         #declined.alert-message.block-message.guests.clearfix
-          %h2
+          %h3
             %span= t "events.show.declined", count: @event.declined_invitations.size
           = link_to t('event.form.see_all'), event_declined_path(@event)
 
