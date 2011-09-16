@@ -1,4 +1,4 @@
-= form_for [@event, Comment.new] do |f|
+= form_for [@event, Comment.new], html: { class: "form-stacked" } do |f|
   .form_field
     = f.label :text, t("comments.form.leave_a_comment", count: @event.comments.count)
     = f.text_area :text

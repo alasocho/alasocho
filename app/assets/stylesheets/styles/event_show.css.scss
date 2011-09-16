@@ -1,8 +1,27 @@
-h1 .admin_actions {
-  font-size: 16px;
-  font-weight: normal;
-  text-shadow: none;
-  float: right;
+#event .span8 {
+  width: 440px;
+}
+
+#title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  .tagline {
+    line-height: 24px;
+  }
+}
+
+#event h1 {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.admin_actions {
+  font-size: 13px;
+  line-height: 18px;
+  margin: 17px 0 0;
+  padding: 0;
+  text-align: right;
   text-transform: lowercase;
 
   span:after {
@@ -21,73 +40,64 @@ h1 .admin_actions {
   }
 }
 
-#info_short .tagline {
-  font-size: 14px;
-  color: #999;
-}
-
-#info_short, .organizer {
-  margin-bottom: 12px;
+#description {
+  color: #333;
+  text-shadow: 1px 1px #eee;
 }
 
 .organizer {
-  margin-right: 5px;
-  float: right;
+  margin: 0;
+  text-align: right;
   font-style: normal;
   color: #000;
   font-weight: bold;
-  position: relative;
-  bottom: 6px;
-}
+  line-height: 24px;
 
-.organizer span {
-  font-size: 14px;
-  color: #999;
-  font-weight: normal;
-  text-transform: lowercase;
-}
+  span {
+    color: #999;
+    font-weight: normal;
+    text-transform: lowercase;
+  }
 
-#left_column {
-  float: left;
-  width: 400px;
+  .avatar {
+    top: 5px;
+    margin-left: 4px;
+  }
 }
 
 /****************************************
- *  Time and Date aside                 *
+ *  Time and Date sidebar               *
  ****************************************/
 
 #time_and_space {
-  padding-bottom: 18px;
-}
+  .start_time, .location {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 1px 1px #c6edf9;
+    margin-bottom: 3px;
+  }
 
-.start_time, .location {
-  display: block;
-  font-weight: bold;
-  font-size: 18px;
-  color: #730046;
-  text-shadow: 1px 1px #991;
-}
+  .location {
+    margin-top: 18px;
+    line-height: 16px;
+  }
 
-.end_time, .city {
-  font-size: 13px;
-  position: relative;
-  bottom: 3px;
-}
-
-.location {
-  margin-top: 18px;
+  .city {
+    line-height: 13px;
+  }
 }
 
 /****************************************
- *  Feeds                               *
+ *  Calendar Feeds                      *
  ****************************************/
 
 #feeds {
   background: none;
-  padding: 0 20px;
   text-align: left;
   border-radius: 0;
   color: #999;
+  margin-bottom: 18px;
 }
 
 #feeds a {
@@ -96,4 +106,16 @@ h1 .admin_actions {
 
 #feeds a:first-child {
   margin-left: 5px;
+}
+
+/****************************************
+ *  Guest lists                         *
+ ****************************************/
+
+#event .guests h2 {
+  padding: 0;
+}
+
+#event .guests ul, #event .guests ol {
+  margin: 0;
 }

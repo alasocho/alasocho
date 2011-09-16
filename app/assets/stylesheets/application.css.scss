@@ -57,31 +57,28 @@ body {
   }
 }
 
-.avatar.inline {
-  height: 15px;
-  width:  15px;
-  padding: 1px;
-  border: 1px solid #666;
-  position: relative;
-  top: 2px;
-}
-
-.avatar.tiny {
-  height: 20px;
-  width: 20px;
+.avatar {
   padding: 1px;
   border: 1px solid #ccc;
   position: relative;
-  top: 4px;
-}
 
-.avatar.medium {
-  height: 48px;
-  width: 48px;
-  padding: 1px;
-  border: 1px solid #ccc;
-  position: relative;
-  top: 4px;
+  &.inline {
+    height: 15px;
+    width:  15px;
+    top: 2px;
+  }
+
+  &.tiny {
+    height: 20px;
+    width: 20px;
+    top: 4px;
+  }
+
+  &.medium {
+    height: 48px;
+    width: 48px;
+    top: 4px;
+  }
 }
 
 footer {

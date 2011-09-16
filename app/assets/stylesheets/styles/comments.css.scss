@@ -1,18 +1,17 @@
-#comments {
-  form {
+#new_comment {
+  padding: 0 10px 0 0;
     margin-bottom: 24px;
-  }
 
   textarea {
-    width: 390px;
+    width: 100%;
   }
+}
 
-  label {
-    font-weight: bold;
-  }
-
+#comments {
   ol {
     list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
   }
 
   .comment {
@@ -20,22 +19,27 @@
 
     address {
       font-style: normal;
-      font-size: 14px;
+      font-size: 13px;
       color: #999;
+      padding: 0 4px 3px;
+      margin: 0;
     }
 
     address span {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       color: #000;
-      margin-right: 6px;
     }
 
     .text {
-      padding: 5px 12px;
+      padding: 12px 12px;
       border-radius: 10px;
       position: relative;
       color: #fff;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
     }
 
     .text:before {
