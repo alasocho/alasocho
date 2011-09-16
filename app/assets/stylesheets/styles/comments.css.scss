@@ -32,62 +32,13 @@
     }
 
     .text {
-      padding: 12px 12px;
-      border-radius: 10px;
       position: relative;
-      color: #fff;
+      background-color: #eee;
+      border-color: #ddd;
 
       p:last-child {
         margin-bottom: 0;
       }
     }
-
-    .text:before {
-      width: 0;
-      height: 0;
-      border-bottom: 20px solid transparent;
-      position: absolute;
-      top: -17px;
-      content: "";
-    }
-  }
-
-  .comment:nth-child(even) {
-    address {
-      text-align: right;
-      margin-right: 45px;
-    }
-
-    .text {
-      background: #c93c00;
-    }
-
-    .text:before {
-      right: 20px;
-      border-bottom-color: #c93c00;
-      border-right: 20px solid transparent;
-      -webkit-transform: rotate(-15deg);
-      -moz-transform: rotate(-15deg);
-    }
-  }
-
-  .comment:nth-child(odd) {
-    address {
-      text-align: left;
-      margin-left: 45px;
-    }
-
-    .text {
-      background: #730046;
-    }
-
-    .text:before {
-      left: 20px;
-      border-bottom-color: #730046;
-      border-left: 20px solid transparent;
-      -webkit-transform: rotate(15deg);
-      -moz-transform: rotate(15deg);
-    }
   }
 }
-

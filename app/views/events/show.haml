@@ -56,13 +56,6 @@
         - if @event.city.present?
           .city= @event.city
 
-      #rsvp.alert-message.block-message{ class: rsvp_class(@attendance) }
-        %h3= t(".rsvp")
-        - if signed_in?
-          = render "attendance_actions", attendance: @attendance
-        - else
-          = t("event.need_login_to_confirm")
-
       #feeds
         = t("events.show.feed.subscribe")
         = link_to t("events.show.feed.ical/outlook"), event_path(@event, format: :ics), :class => "calendar"
