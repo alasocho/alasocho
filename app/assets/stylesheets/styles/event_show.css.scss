@@ -101,6 +101,16 @@
     margin-right: 8px;
   }
 
+  h3 + span {
+    position: relative;
+    top: 3px;
+  }
+
+  .attendance_actions {
+    float: right;
+    margin-top: -28px;
+  }
+
   .disabled {
     opacity: 0.2;
   }

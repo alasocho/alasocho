@@ -51,7 +51,12 @@ es:
 
   events:
     show:
-      rsvp: "RSVP"
+      rsvp:
+        label: "RSVP"
+        havent_replied: "No has confirmado aún."
+        waitlisted: "Estás en lista de espera."
+        confirmed: "Tu asistencia está confirmada."
+        declined: "No planeas asistir."
       confirmed:
         one:   "1 confirmado"
         other: "%{count} confirmados"

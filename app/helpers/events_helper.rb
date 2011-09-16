@@ -63,4 +63,13 @@ module EventsHelper
     when "declined";               "error"
     end
   end
+
+  def rsvp_status(attendance)
+    case attendance.state
+    when "invited";                t(".rsvp.havent_replied")
+    when "waitlisted";             t(".rsvp.waitlisted")
+    when "confirmed", "tentative"; t(".rsvp.confirmed")
+    when "declined";               t(".rsvp.declined")
+    end
+  end
 end
