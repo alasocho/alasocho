@@ -99,3 +99,9 @@
     :javascript
       window.current_page = window.current_page || {}
       window.current_page.event = current_page.event || new A8.Models.Event(#{@event.to_json});
+
+      jQuery(function($) {
+        $(".invite_more").each(function() {
+          new A8.Views.ModalDialog({ el: this, mode: "autoclose" });
+        });
+      });

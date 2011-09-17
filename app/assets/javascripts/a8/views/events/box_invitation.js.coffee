@@ -6,12 +6,11 @@ class A8.Views.Events.BoxInvitation extends Backbone.View
   tagName: "li"
   className: "invitation"
 
-  template: $("[data-template-for='Invitation']").html()
-
   events:
     "click .delete": "remove"
 
   initialize: ->
+    @template = $("[data-template-for='Invitation']").html()
     @model.bind("error", _.bind(@_highlight_error, this))
 
   render: ->

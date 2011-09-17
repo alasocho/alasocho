@@ -216,6 +216,7 @@ es:
     terms_and_conditions: "Términos y Condiciones"
     nothing_here: "No hay nada aquí."
     are_you_sure: "¿Estás seguro?"
+    submitting: "Enviando…"
 
   event:
     confirmed_users:

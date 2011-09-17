@@ -12,11 +12,16 @@ class InvitationsController < ApplicationController
     load_event_writable
     @invitations = InvitationLoader.new(@event, params[:invitations])
 
-    if @invitations.valid?
-      @event.save!
-      redirect_to @event
-    else
-      render :new
+    respond_to do |format|
+      if @invitations.valid?
+        @event.save!
+
+        format.html { redirect_to @event }
+        format.js   { render nothing: true, status: :ok }
+      else
+        format.html { render :new }
+        format.js   { render :new, status: :bad_request }
+      end
     end
   end
 end

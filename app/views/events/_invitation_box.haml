@@ -11,9 +11,7 @@
 
 - content_for :javascript do
   :javascript
-    jQuery(function($) {
-      window.box = new A8.Views.Events.EmailBox({
-        el: $("#invitation_box"),
-        collection: current_page.event.invitations
-      }).render();
-    });
+    new A8.Views.Events.EmailBox({
+      el: $("#invitation_box"),
+      collection: current_page.event.invitations
+    }).render();
