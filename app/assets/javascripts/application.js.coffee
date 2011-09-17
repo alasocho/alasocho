@@ -22,7 +22,7 @@ Date::isValid = ->
 jQuery ($) ->
   $(document).keyup (event) ->
     if event.keyCode is 27
-      $("#notifications").hide()
+      $("#notifications").removeClass("open")
       $("li.menu.open").removeClass("open")
 
   $(document).click (event) ->
