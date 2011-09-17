@@ -5,8 +5,8 @@
 
 = form_for @event, url: event_invitations_path, remote: true, html: { method: :post, class: "form-stacked modal" } do |f|
   .modal-header
-    = link_to "×", "javascript:;", class: "close"
     %h3= t ".title"
+    = close_button
   .modal-body
     = render "events/invitations", event: @event, invitations: @invitations, f: f
   .modal-footer
