@@ -2,7 +2,7 @@ A8.Models ||= {}
 
 class A8.Models.Event extends Backbone.Model
   initialize: ->
-    @invitations = new A8.Collections.Invitations(model: this)
+    @invitations = new A8.Collections.Invitations
 
   start_at: ->
     new Date(this.get("start_at"))

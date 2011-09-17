@@ -5,7 +5,7 @@
     = f.errors :leftovers
 
 %script(data-template-for="Invitation" type="text/html")
-  %span %{ email }
+  %span(contenteditable="true") %{ email }
   %button.delete(type="button" title="#{t(".delete")}" tabindex="-1") ×
   %input(type="hidden" name="invitations[%{ index }][email]" value="%{ raw_email }")
 

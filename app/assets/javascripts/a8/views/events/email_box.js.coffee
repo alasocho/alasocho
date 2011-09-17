@@ -31,7 +31,7 @@ class A8.Views.Events.EmailBox extends Backbone.View
     @timeout = setTimeout (=> this.tokenize()), 200
 
   _add_invite: (invitation) ->
-    invite_view = new A8.Views.Events.BoxInvitation(model: invitation)
+    invite_view = new A8.Views.Events.BoxInvitation(model: invitation, textarea: @textarea)
     @invites.append(invite_view.render())
     this._adjust_padding(false)
 
@@ -44,8 +44,8 @@ class A8.Views.Events.EmailBox extends Backbone.View
     @textarea.css(paddingTop: list_padding + @invites.height() - item_height + "px")
 
 class EmailTokenizer
-  regexp: /\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i
   tokens: [",", ";", "\n"]
+  regexp: A8.Models.Invitation.email_regexp
 
   constructor: (@string, @callback) ->
     @valid_indices = []
