@@ -58,11 +58,5 @@
         time_zone: #{current_location.timezone.to_json}
       }
 
-      jQuery(function($) {
-        if (Backbone.history) {
-          Backbone.history.start();
-        }
-      });
-
     = yield :javascript
     = render "google_analytics" if Rails.env.production?

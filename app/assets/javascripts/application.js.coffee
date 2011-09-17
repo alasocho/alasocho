@@ -8,7 +8,6 @@
 @A8 = {
   Models:      {}
   Collections: {}
-  Routers:     {}
   Views:       {}
 }
 
