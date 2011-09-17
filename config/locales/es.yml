@@ -49,6 +49,13 @@ es:
       event:
         location: "Lugar a convenir"
 
+  active_models:
+    errors:
+      invitations:
+        leftovers: "parte del texto que enviaste no parece un email"
+        invalid: "%{email} no es válida"
+        empty: "bebes invitar al menos una persona"
+
   events:
     show:
       rsvp:
