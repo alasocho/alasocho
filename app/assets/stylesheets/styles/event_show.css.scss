@@ -93,6 +93,8 @@
  ****************************************/
 
 #rsvp {
+  position: relative;
+
   h3 {
     display: inline-block;
     position: relative;
@@ -107,8 +109,9 @@
   }
 
   .attendance_actions {
-    float: right;
-    margin-top: -28px;
+    position: absolute;
+    right: 14px;
+    top: 9px;
   }
 
   .disabled {
