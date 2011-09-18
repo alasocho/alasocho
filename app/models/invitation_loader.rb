@@ -36,7 +36,7 @@ class InvitationLoader
       errors[:leftovers] << I18n.t(:invalid, email: invitation.email, scope: scope)
     end
 
-    if @leftovers.blank? && @invitations.empty?
+    if @leftovers.blank? && @invitations.empty? && @event.published?
       errors[:leftovers] << I18n.t(:empty, scope: scope)
     end
   end
