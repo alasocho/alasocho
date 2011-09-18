@@ -56,14 +56,14 @@
         - if @event.city.present?
           .city= @event.city
 
+      #invite= link_to_invite_if_allowed @event, current_user, class: ["btn info"]
+
       #feeds
         = t("events.show.feed.subscribe")
         = link_to t(".feed.ical/outlook"), event_path(@event, format: :ics), :class => "calendar"
         = link_to t(".feed.gcal"), @event.to_gcal, :class => "calendar"
 
       #guests.alert-message.block-message
-        /= link_to_invite_if_allowed @event, current_user, class: ["btn info"]
-
         - if @event.confirmed_invitations.any?
           .confirmed.clearfix
             %h3
