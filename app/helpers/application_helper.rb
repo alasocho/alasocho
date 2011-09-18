@@ -14,4 +14,8 @@ module ApplicationHelper
   def close_button
     link_to "×", "javascript:;", class: "close"
   end
+
+  def see_all_link(url, label=t("shared.see_all"))
+    link_to label, url, class: "see_all"
+  end
 end

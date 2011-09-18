@@ -11,7 +11,7 @@
       - if @event.allow_edits_by(current_user)
         .admin_actions
           %span= link_to t('events.edit.link'), edit_event_path(@event)
-          %span= link_to t('events.manage_attendees.link'), event_everyone_path(@event)
+          %span= link_to t('events.manage_attendees.link'), event_manage_guests_path(@event)
 
       %address.organizer
         %span=t "events.show.organizer"
@@ -58,42 +58,45 @@
 
       #feeds
         = t("events.show.feed.subscribe")
-        = link_to t("events.show.feed.ical/outlook"), event_path(@event, format: :ics), :class => "calendar"
-        = link_to t("events.show.feed.gcal"), @event.to_gcal, :class => "calendar"
+        = link_to t(".feed.ical/outlook"), event_path(@event, format: :ics), :class => "calendar"
+        = link_to t(".feed.gcal"), @event.to_gcal, :class => "calendar"
 
-      - if @event.confirmed_invitations.any?
-        #confirmed_guests.alert-message.block-message.guests.clearfix
-          %h3
-            = t 'events.show.confirmed', count: @event.confirmed_invitations.size
-          - if @event.limited?
-            %span= t "events.show.available_seats", count: @event.available_slots
-          %ul= render @confirmed_invitations
-          - if @event.confirmed_invitations.size > EventsController::MAX_CONFIRMED_ATTENDEES
-            = link_to t('event.form.see_all'), event_confirmed_path(@event)
+      #guests.alert-message.block-message
+        /= link_to_invite_if_allowed @event, current_user, class: ["btn info"]
 
+        - if @event.confirmed_invitations.any?
+          .confirmed.clearfix
+            %h3
+              =t ".confirmed", count: @event.confirmed_invitations.size
+              - if @event.limited? || @event.confirmed_invitations.size > EventsController::MAX_CONFIRMED_ATTENDEES
+                %small
+                  =t ".available_seats", count: @event.available_slots if @event.limited?
+                  - if @event.confirmed_invitations.size > EventsController::MAX_CONFIRMED_ATTENDEES
+                    = see_all_link event_confirmed_guests_path(@event)
+            %ul= render @confirmed_invitations
 
-      - if @event.waitlisted_invitations.any?
-        #waitlist.alert-message.block-message.guests.clearfix
-          %h3
-            = t "events.show.waitlist"
-            %span= t "events.show.people_waiting", count: @event.waitlisted_invitations.size
-          %ul= render @waitlisted_invitations
-          - if @event.waitlisted_invitations.size > EventsController::MAX_WAITLISTED_ATTENDEES
-            = link_to t('event.form.see_all'), event_waitlisted_path(@event)
+        - if @event.waitlisted_invitations.any?
+          .waitlisted.clearfix
+            %h3
+              =t ".waitlist"
+              %small
+                =t ".people_waiting", count: @event.waitlisted_invitations.size
+                - if @event.waitlisted_invitations.size > EventsController::MAX_WAITLISTED_ATTENDEES
+                  = see_all_link event_waitlisted_guests_path(@event)
+            %ul= render @waitlisted_invitations
 
-
-      #unconfirmed.alert-message.block-message.guests.clearfix
-        %h3=t "events.show.invited", count: @event.pending_invitations.size
-        %span= link_to_invite_if_allowed @event
-        - if @event.pending_invitations.size > EventsController::MAX_PENDING_ATTENDEES
-          = link_to t('event.form.see_all'), event_invited_path(@event)
-        %ul= render @pending_invitations
+        - if @event.pending_invitations.any?
+          .pending.clearfix
+            %h3
+              = t ".invited", count: @event.pending_invitations.size
+              - if @event.pending_invitations.size > EventsController::MAX_PENDING_ATTENDEES
+                %small= see_all_link event_invited_guests_path(@event)
+            %ul= render @pending_invitations
 
       - if @event.declined_invitations.any?
-        #declined.alert-message.block-message.guests.clearfix
-          %h3
-            %span= t "events.show.declined", count: @event.declined_invitations.size
-          = link_to t('event.form.see_all'), event_declined_path(@event)
+        #declined
+          %span=t ".declined", count: @event.declined_invitations.size
+          = see_all_link event_declined_guests_path(@event), t(".declined.see_list")
 
   - content_for :javascript do
     :javascript

@@ -73,10 +73,11 @@ es:
       waitlist: "Lista de espera"
       people_waiting:
         one:   "1 persona esperando"
-        other: "%{count} personas esperando"
+        other: "%{count} personas esperando."
       declined:
-        one: "1 persona rechazó la invitación"
-        other: "%{count} personas rechazaron la invitación"
+        one: "1 persona rechazó la invitación:"
+        other: "%{count} personas rechazaron la invitación:"
+        see_list: "ver la lista"
       organizer: "Organizado por"
       duration:
         days:
@@ -224,6 +225,7 @@ es:
     nothing_here: "No hay nada aquí."
     are_you_sure: "¿Estás seguro?"
     submitting: "Enviando…"
+    see_all: "Ver todos"
 
   event:
     confirmed_users:
@@ -234,7 +236,7 @@ es:
       title: "Usuarios invitados a este evento"
     available_seats: "lugares disponibles."
     waitlist: "Lista de espera"
-    people_waiting: "personas esperando"
+    people_waiting: "personas esperando."
     end_at: "Fin"
     confirm:
       slots_available: "Voy"
@@ -272,7 +274,6 @@ es:
         cancel_event: "Cancela este Evento"
       cancel:
         message_cancelled: "El evento %{event_name} ha sido cancelado."
-      see_all: "Ver todos"
 
   attendance:
     status:

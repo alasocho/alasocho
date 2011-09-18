@@ -4,11 +4,11 @@ class EventsController < ApplicationController
   include EventFinders
 
   before_filter :check_token, :only => [:show]
-  before_filter :authenticate_user, :except => [:show, :confirmed, :invited, :waitlisted]
+  before_filter :authenticate_user, :except => [:show, :new, :create, :edit]
 
-  MAX_CONFIRMED_ATTENDEES = 10
-  MAX_WAITLISTED_ATTENDEES = 5
-  MAX_PENDING_ATTENDEES = 5
+  MAX_CONFIRMED_ATTENDEES = 12
+  MAX_WAITLISTED_ATTENDEES = 6
+  MAX_PENDING_ATTENDEES = 6
 
   def index
     @events = current_user.events_timeline.order("start_at DESC")
@@ -109,12 +109,6 @@ class EventsController < ApplicationController
     @my_events = current_user.hosted_events
   end
 
-  def everyone
-    load_own_event
-    @page_title = @event.name
-    @attendances = @event.attendances.includes(:event, :user)
-  end
-
   def public
     @page_title = t("events.public.title")
     @events = Event.public_events_near(current_location.to_s).future
@@ -125,26 +119,6 @@ class EventsController < ApplicationController
     @event.cancel!
     flash[:notice] = t("event.message.cancelled", :event_name => @event.name)
     redirect_to root_path
-  end
-
-  def confirmed
-    load_event
-    @attendances =  @event.confirmed_invitations
-  end
-
-  def invited
-    load_event
-    @attendances = @event.pending_invitations.uniq
-  end
-
-  def waitlisted
-    load_event
-    @attendances = @event.waitlisted_invitations
-  end
-
-  def declined
-    load_event
-    @attendances = @event.declined_invitations
   end
 
   private

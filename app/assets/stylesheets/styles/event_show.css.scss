@@ -140,12 +140,55 @@
  *  Guest lists                         *
  ****************************************/
 
-#event .guests h3 {
-  line-height: 18px;
-  margin-bottom: 6px;
-  padding: 0;
+#guests {
+  padding-left: 0;
+  padding-right: 0;
+  -webkit-box-shadow: inset 0 8px 18px #fceec1;
+  -moz-box-shadow: inset 0 8px 18px #fceec1;
+  box-shadow: inset 0 8px 18px #fceec1;
+
+  .invite_more {
+    float: right;
+    margin-right: 12px;
+  }
+
+  h3 {
+    line-height: 18px;
+    margin-bottom: 10px;
+    padding: 0;
+    vertical-align: baseline;
+
+    small {
+      color: darken(#bfbfbf, 30%);
+    }
+  }
+
+  ul, ol {
+    margin: 0;
+  }
+
+  .clearfix {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .clearfix + .clearfix {
+    border-top: 1px solid #fceec1;
+    padding-top: 14px;
+    margin-top: 14px;
+    -webkit-box-shadow: inset 0 8px 18px #fceec1;
+    -moz-box-shadow: inset 0 8px 18px #fceec1;
+    box-shadow: inset 0 8px 18px #fceec1;
+  }
+
+  .see_all {
+    clear: both;
+  }
 }
 
-#event .guests ul, #event .guests ol {
-  margin: 0;
+#declined {
+  font-size: 14px;
+  color: darken(#bfbfbf, 30%);
+  text-shadow: 1px 1px rgba(255, 255, 255, 0.5);
+  margin: -12px 0 0 14px;
 }
