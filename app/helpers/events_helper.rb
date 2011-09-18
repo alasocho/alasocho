@@ -12,11 +12,12 @@ module EventsHelper
 
   # If the supplied user can invite people to the event, returns a link that
   # should trigger the invitations modal dialog.
-  def link_to_invite_if_allowed(event, user=current_user, options={})
-    options = user if user.is_a? Hash
+  def link_to_invite_if_allowed(event, options={})
+    return unless signed_in?
+
     options[:class] = Array.wrap(options[:class]) << "invite_more"
 
-    if event.allow_invites_from(user)
+    if event.allow_invites_from(current_user)
       link_to t("events.form.invite"), new_event_invitation_path(event), options
     end
   end
