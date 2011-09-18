@@ -54,7 +54,7 @@ es:
       invitations:
         leftovers: "parte del texto que enviaste no parece un email"
         invalid: "%{email} no es válida"
-        empty: "bebes invitar al menos una persona"
+        empty: "debes invitar al menos una persona"
 
   events:
     show:
