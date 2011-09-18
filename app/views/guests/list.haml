@@ -1,0 +1,6 @@
+.modal
+  .modal-header
+    %h3=t "guests.#{action_name}", count: @attendances.count
+    = close_button
+  .modal-body
+    %ul= render @attendances

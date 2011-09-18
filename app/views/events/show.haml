@@ -5,7 +5,7 @@
 
       .tagline
         = tagline(@event)
-        = link_to_invite_if_allowed @event, current_user, "data-modal" => "autoclose"
+        = link_to_invite_if_allowed @event, "data-modal" => "autoclose"
 
     .columns.span8
       - if @event.allow_edits_by(current_user)
@@ -56,7 +56,7 @@
         - if @event.city.present?
           .city= @event.city
 
-      #invite= link_to_invite_if_allowed @event, current_user, class: ["btn info"], "data-modal" => "autoclose"
+      #invite= link_to_invite_if_allowed @event, class: ["btn info"], "data-modal" => "autoclose"
 
       #feeds
         = t("events.show.feed.subscribe")

@@ -15,7 +15,14 @@ module ApplicationHelper
     link_to "×", "javascript:;", class: "close"
   end
 
-  def see_all_link(url, label=t("shared.see_all"))
-    link_to label, url, class: "see_all"
+  def see_all_link(url, label=t("shared.see_all"), options={})
+    options.reverse_merge!(modal: true)
+
+    options[:class] = Array.wrap(options[:class]) << "see_all"
+    if modal = options.delete(:modal)
+      options["data-modal"] = modal
+    end
+
+    link_to label, url, options
   end
 end

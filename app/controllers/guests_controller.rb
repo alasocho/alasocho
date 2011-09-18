@@ -6,21 +6,25 @@ class GuestsController < ApplicationController
   def confirmed
     load_event
     @attendances = @event.confirmed_invitations
+    render :list
   end
 
   def invited
     load_event
     @attendances = @event.pending_invitations.uniq
+    render :list
   end
 
   def waitlisted
     load_event
     @attendances = @event.waitlisted_invitations
+    render :list
   end
 
   def declined
     load_event
     @attendances = @event.declined_invitations
+    render :list
   end
 
   def manage

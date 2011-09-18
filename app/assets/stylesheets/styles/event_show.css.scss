@@ -195,4 +195,8 @@
   color: darken(#bfbfbf, 30%);
   text-shadow: 1px 1px rgba(255, 255, 255, 0.5);
   margin: -12px 0 0 14px;
+
+  span:after {
+    content: ":";
+  }
 }

@@ -19,6 +19,18 @@
   padding-left: 0;
 }
 
+.modal ul {
+  margin-left: 0;
+}
+
+.modal ul .attendance {
+  margin-right: 12px;
+}
+
+.modal ul .attendance:nth-child(7n) {
+  margin-right: 0;
+}
+
 form.modal {
   padding: 0;
   margin-bottom: 0;

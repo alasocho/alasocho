@@ -56,28 +56,31 @@ es:
         invalid: "%{email} no es válida"
         empty: "debes invitar al menos una persona"
 
+  guests: &guests
+    confirmed:
+      one:   "1 confirmado"
+      other: "%{count} confirmados"
+    invited: "%{count} sin confirmar"
+    waitlisted: "%{count} en la lista de espera"
+    available_seats: "%{count} lugares disponibles."
+    waitlist: "Lista de espera"
+    people_waiting:
+      one:   "1 persona esperando"
+      other: "%{count} personas esperando."
+    declined:
+      one: "1 persona rechazó la invitación"
+      other: "%{count} personas rechazaron la invitación"
+      see_list: "ver la lista"
+
   events:
     show:
+      << : *guests
       rsvp:
         label: "RSVP"
         havent_replied: "No has confirmado aún."
         waitlisted: "Estás en lista de espera."
         confirmed: "Tu asistencia está confirmada."
         declined: "No planeas asistir."
-      confirmed:
-        one:   "1 confirmado"
-        other: "%{count} confirmados"
-      invited: "%{count} sin confirmar"
-      waitlisted: "%{count} en la lista de espera"
-      available_seats: "%{count} lugares disponibles."
-      waitlist: "Lista de espera"
-      people_waiting:
-        one:   "1 persona esperando"
-        other: "%{count} personas esperando."
-      declined:
-        one: "1 persona rechazó la invitación:"
-        other: "%{count} personas rechazaron la invitación:"
-        see_list: "ver la lista"
       organizer: "Organizado por"
       duration:
         days:
