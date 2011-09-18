@@ -109,6 +109,7 @@ es:
 
     edit:
       link: "Editar detalles"
+      cancel: "Cancelar edición"
 
     invites:
       title: "Invitaciones pendientes"

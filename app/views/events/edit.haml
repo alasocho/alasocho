@@ -14,3 +14,4 @@
     = render "settings", :f => f
     .actions
       = f.submit
+      = link_to t(".cancel"), @event, class: "btn secondary"
