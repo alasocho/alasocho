@@ -17,22 +17,25 @@ class EventsController < ApplicationController
   def show
     load_event
 
-    @page_title       = @event.name
-    @page_description = @event.description
-
-    @attendance             = signed_in? ? @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? } : nil
-    @comments               = @event.comments
-    @confirmed_invitations  = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
-    @waitlisted_invitations = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
-    @pending_invitations    = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES)
-
     if @event.viewable?
+      @page_title       = @event.name
+      @page_description = @event.description
+
+      @attendance             = signed_in? ? @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? } : nil
+      @comments               = @event.comments.includes(:user)
+      @confirmed_invitations  = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
+      @waitlisted_invitations = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
+      @pending_invitations    = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES)
+
       respond_to do |format|
         format.html
         format.ics { render text: @event.to_ical }
       end
     else
-      redirect_to event_invite_people_path(@event)
+      respond_to do |format|
+        format.html { redirect_to event_invite_people_path(@event) }
+        format.ics  { render nothing: true, status: :forbidden }
+      end
     end
   end
 

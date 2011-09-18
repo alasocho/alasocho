@@ -27,7 +27,7 @@
       #comments
         - if signed_in?
           = render 'comments/new'
-        - if @comments.any?
+        - if @comments.all.size > 0 # any triggers a COUNT but we're selecting them anyway
           %ol= render @comments
 
     .columns.span8
