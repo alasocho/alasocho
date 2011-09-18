@@ -11,7 +11,7 @@
       - if @event.allow_edits_by(current_user)
         .admin_actions
           %span= link_to t('events.edit.link'), edit_event_path(@event)
-          %span= link_to t('events.manage_attendees.link'), event_manage_guests_path(@event)
+          %span= link_to t('events.manage_attendees.link'), event_manage_guests_path(@event), "data-modal" => true
 
       %address.organizer
         %span=t "events.show.organizer"
