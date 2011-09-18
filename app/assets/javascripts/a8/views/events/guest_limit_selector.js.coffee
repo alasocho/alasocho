@@ -9,8 +9,7 @@ class A8.Views.Events.GuestLimitSelector extends Backbone.View
   render: ->
     @unlimited = this.$("#open_event :radio")
     @limited   = this.$("#quota :radio")
-    @quota     = this.$("#event_attendee_quota").val()
-    this.update()
+    @quota     = this._quota()
 
     this
 
@@ -20,8 +19,11 @@ class A8.Views.Events.GuestLimitSelector extends Backbone.View
   set_limited: ->
     @limited.attr("checked", "checked")
     @unlimited.removeAttr("checked")
-    @quota = this.$("#event_attendee_quota").val()
+    @quota = this._quota()
 
   try_limited: ->
-    this.set_limited() if this.$("#event_attendee_quota").val() isnt @quota
-    @quota = this.$("#event_attendee_quota").val()
+    this.set_limited() if this._quota() isnt @quota
+    @quota = this._quota()
+
+  _quota: ->
+    this.$("#event_attendee_quota").val()
