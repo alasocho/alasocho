@@ -12,6 +12,7 @@ class A8.Views.ModalDialog extends Backbone.View
     $(document).keyup (event) =>
       if event.keyCode is 27
         this.close()
+      true
 
     $(document).bind("close.modal", @close)
 
