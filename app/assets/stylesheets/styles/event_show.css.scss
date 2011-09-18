@@ -103,9 +103,9 @@
     margin-right: 8px;
   }
 
-  h3 + span {
-    position: relative;
-    top: 3px;
+  h3 small {
+    margin-left: 2px;
+    color: darken(#bfbfbf, 30%);
   }
 
   .attendance_actions {
