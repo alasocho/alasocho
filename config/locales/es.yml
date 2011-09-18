@@ -229,6 +229,7 @@ es:
     are_you_sure: "¿Estás seguro?"
     submitting: "Enviando…"
     see_all: "Ver todos"
+    close: "Cerrar"
 
   event:
     confirmed_users:

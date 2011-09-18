@@ -3,4 +3,8 @@
     %h3=t "guests.#{action_name}", count: @attendances.count
     = close_button
   .modal-body
-    %ul= render @attendances
+    - threshold = 28 # 4 rows of 7, after that we get a scroll
+    %ul{ class: @attendances.size > threshold ? "dense" : "" }
+      = render @attendances
+  .modal-footer
+    = link_to t("shared.close"), "javascript:;", class: "close btn secondary"

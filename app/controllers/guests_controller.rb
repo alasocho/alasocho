@@ -5,25 +5,25 @@ class GuestsController < ApplicationController
 
   def confirmed
     load_event
-    @attendances = @event.confirmed_invitations
+    @attendances = @event.confirmed_invitations.includes(:user)
     render :list
   end
 
   def invited
     load_event
-    @attendances = @event.pending_invitations.uniq
+    @attendances = @event.pending_invitations.includes(:user)
     render :list
   end
 
   def waitlisted
     load_event
-    @attendances = @event.waitlisted_invitations
+    @attendances = @event.waitlisted_invitations.includes(:user)
     render :list
   end
 
   def declined
     load_event
-    @attendances = @event.declined_invitations
+    @attendances = @event.declined_invitations.includes(:user)
     render :list
   end
 
