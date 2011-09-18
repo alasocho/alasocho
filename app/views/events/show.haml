@@ -5,7 +5,7 @@
 
       .tagline
         = tagline(@event)
-        = link_to_invite_if_allowed @event
+        = link_to_invite_if_allowed @event, current_user, "data-modal" => "autoclose"
 
     .columns.span8
       - if @event.allow_edits_by(current_user)
@@ -56,7 +56,7 @@
         - if @event.city.present?
           .city= @event.city
 
-      #invite= link_to_invite_if_allowed @event, current_user, class: ["btn info"]
+      #invite= link_to_invite_if_allowed @event, current_user, class: ["btn info"], "data-modal" => "autoclose"
 
       #feeds
         = t("events.show.feed.subscribe")
@@ -102,9 +102,3 @@
     :javascript
       window.current_page = window.current_page || {}
       window.current_page.event = current_page.event || new A8.Models.Event(#{@event.to_json});
-
-      jQuery(function($) {
-        $(".invite_more").each(function() {
-          new A8.Views.ModalDialog({ el: this, mode: "autoclose" });
-        });
-      });

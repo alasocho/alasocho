@@ -47,3 +47,7 @@ jQuery ($) ->
       "fast",
       _.bind(el.remove, el)
     )
+
+  $("[data-modal]").each ->
+    link = $(this)
+    new A8.Views.ModalDialog(el: link, mode: link.data("modal"))
