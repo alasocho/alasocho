@@ -58,5 +58,7 @@
         time_zone: #{current_location.timezone.to_json}
       }
 
+      new A8.Views.AjaxLoader({ label: #{t("shared.loading").to_json} }).render();
+
     = yield :javascript
     = render "google_analytics" if Rails.env.production?

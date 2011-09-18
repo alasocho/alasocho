@@ -230,6 +230,7 @@ es:
     submitting: "Enviando…"
     see_all: "Ver todos"
     close: "Cerrar"
+    loading: "Cargando…"
 
   event:
     confirmed_users:
