@@ -7,7 +7,7 @@
   %section#public_events.columns.span8
     %h3
       = t('events.public.title')
-      %span= t("events.public.near", current_city: current_location)
+      %small= t("events.public.near", current_city: current_location)
     %ul= render @public_events
     = link_to t('events.public.see_all'), public_events_path, class: "see_all"
 
