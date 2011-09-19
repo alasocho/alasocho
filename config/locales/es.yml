@@ -245,15 +245,11 @@ es:
     people_waiting: "personas esperando."
     end_at: "Fin"
     confirm:
-      slots_available: "Voy"
-      no_slots_available: "Lista de espera"
+      zero: "Lista de espera"
+      one: "Voy"
+      other: "Voy"
     decline: "No voy"
     need_login_to_confirm: "Necesitas iniciar sesión si quieres asistir al evento"
-    host_actions:
-      confirm:
-        slots_available: "Asiste"
-        no_slots_available: "Lista de espera"
-      decline: "No asiste"
 
     form:
       create:
@@ -286,7 +282,7 @@ es:
       has_comment: "Tiene nuevos comentarios"
     message:
       confirm: "Has confirmado tu asistencia a %{event_name}"
-      waitlist: "Estás en la lista de espera para %{event_name}. Si se libera algún lugar te avisamos."
+      waitlist: "Estás en la lista de espera para %{event_name}. Te avisaremos si se libera algún lugar."
       decline: "Ya no estás en la lista de invitados de %{event_name}. ¿Quizás la próxima?"
       already_taken: "Esa invitación ya fue asignada a otro usuario."
       status:

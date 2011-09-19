@@ -18,6 +18,10 @@ ALasOcho::Application.routes.draw do
       get "guests/manage",     to: :manage,     as: :manage_guests
     end
 
+    # Manage guests
+    post   "guests/:attendance_id", as: :confirm_guest, to: "guests/attendances#confirm"
+    delete "guests/:attendance_id", as: :decline_guest, to: "guests/attendances#decline"
+
     resource :attendance, :only => [:create, :destroy]
 
     resources :comments, :only => [:create]
