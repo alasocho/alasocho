@@ -76,4 +76,19 @@ module EventsHelper
     when "declined";               t(".rsvp.declined")
     end
   end
+
+  def google_calendar_link(event)
+    start_at = event.start_at.utc.to_s(:google_calendar)
+    end_at   = event.end_at_with_default.utc.to_s(:google_calendar)
+
+    parameters = {
+      :text       => event.name,
+      :dates      => "#{start_at}/#{end_at}",
+      :sprop      => "#{event_url(event)}&sprop=name:A Las Ocho",
+      :details    => event.description,
+      :location   => event.location
+    }
+
+    "http://www.google.com/calendar/event?action=TEMPLATE&#{parameters.to_query}"
+  end
 end

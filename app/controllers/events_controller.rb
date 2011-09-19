@@ -1,4 +1,5 @@
 require "event_finders"
+require "ics_utils"
 
 class EventsController < ApplicationController
   include EventFinders
@@ -29,7 +30,7 @@ class EventsController < ApplicationController
 
       respond_to do |format|
         format.html
-        format.ics { render text: @event.to_ical }
+        format.ics { render text: IcsUtils.to_ics(@event) }
       end
     else
       respond_to do |format|

@@ -166,34 +166,8 @@ class Event < ActiveRecord::Base
     [self.location, self.city].compact.join(", ")
   end
 
-  def to_url
-     Rails.application.routes.url_helpers.event_url(self, host: ALasOcho.config[:canonical_host])
-  end
-
-  def to_ical
-    element = self
-    RiCal.Event do
-      summary     element.name
-      url         element.to_url
-      description element.description
-      dtstart     element.start_at
-      dtend       element.end_at.nil? ? element.start_at + 1.hour : element.end_at
-      location    element.full_address
-    end.export
-  end
-
-  def to_gcal
-    dates = [self.start_at, self.end_at || self.start_at + 1.hour].map { |t| t.utc.strftime("%Y%m%dT%H%M%SZ") }.join("/")
-
-    parameters = {
-      :text       => self.name,
-      :dates      => dates,
-      :sprop      => "#{self.to_url}&sprop=name:A Las Ocho",
-      :details    => self.description,
-      :location   => self.location
-    }
-
-    "http://www.google.com/calendar/event?action=TEMPLATE&#{ parameters.to_query }"
+  def end_at_with_default
+    end_at.presence || start_at + 1.hour
   end
 
   def set_token

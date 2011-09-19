@@ -59,7 +59,7 @@
       #feeds
         = t("events.show.feed.subscribe")
         = link_to t(".feed.ical/outlook"), event_path(@event, format: :ics), :class => "calendar"
-        = link_to t(".feed.gcal"), @event.to_gcal, :class => "calendar"
+        = link_to t(".feed.gcal"), google_calendar_link(@event), :class => "calendar"
 
       #guests.alert-message.block-message
         - if @event.confirmed_invitations.any?
