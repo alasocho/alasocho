@@ -224,6 +224,7 @@ DEPENDENCIES
   launchy
   micromachine
   mysql2
+  nokogiri
   oa-oauth
   postmark-rails
   rails (~> 3.1.0)
