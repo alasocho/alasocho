@@ -41,7 +41,7 @@
 
       #time_and_space.alert-message.block-message.info
         %time.start_time(datetime="#{@event.start_at.to_s(:db)}")
-          = l(@event.start_at, format: :default).capitalize
+          = l(@event.start_at.in_time_zone(@event.timezone.source), format: :default).capitalize
 
         - if @event.end_at.present?
           %time.end_time(datetime="#{@event.end_at.to_s(:db)}")

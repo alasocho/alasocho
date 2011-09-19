@@ -48,14 +48,16 @@ module EventsHelper
   # if it ends the next day, it returns the time specifying the day, else it
   # returns the full date.
   def fancy_end_at(event)
+    tz_aware_end_date = event.end_at.in_time_zone(@event.timezone.source)
+
     if event.start_at + 1.day > event.end_at
-      t("events.show.end_time.hours", time: event.end_at.to_s(:time),
+      t("events.show.end_time.hours", time: tz_aware_end_date.to_s(:time),
                                       duration: event_duration(event))
     elsif event.start_at + 2.days > event.end_at
-      t("events.show.end_time.next_day", time: event.end_at.to_s(:time),
+      t("events.show.end_time.next_day", time: tz_aware_end_date.to_s(:time),
                                          duration: event_duration(event))
     else
-      t("events.show.end_time.arbitrary", time: l(event.end_at, format: :default))
+      t("events.show.end_time.arbitrary", time: l(tz_aware_end_date, format: :default))
     end
   end
 

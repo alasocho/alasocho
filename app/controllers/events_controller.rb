@@ -46,6 +46,7 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.hosted_events.new(params[:event])
+    @event.timezone = current_location.timezone
 
     if @event.save
       flash[:notice] = t("event.form.create.message.success")

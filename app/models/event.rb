@@ -84,6 +84,14 @@ class Event < ActiveRecord::Base
     self[:location].presence || I18n.t("activerecord.defaults.event.location")
   end
 
+  def timezone
+    @_timezone ||= Timezone.get(self[:timezone])
+  end
+
+  def timezone=(tz)
+    self[:timezone] = tz.name
+  end
+
   def check_if_public
     self.allow_invites = true if public?
   end
