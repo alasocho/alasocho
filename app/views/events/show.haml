@@ -1,18 +1,13 @@
 #event
   %section#title.row
-    .columns.span8
-      %h1= @event.name
+    %h1= @event.name
 
+    .columns.span8
       .tagline
         = tagline(@event)
         = link_to_invite_if_allowed @event, "data-modal" => "autoclose"
 
     .columns.span8
-      - if @event.allow_edits_by(current_user)
-        .admin_actions
-          %span= link_to t('events.edit.link'), edit_event_path(@event)
-          %span= link_to t('events.manage_attendees.link'), event_manage_guests_path(@event), "data-modal" => true
-
       %address.organizer
         %span=t "events.show.organizer"
         = image_tag @event.host.picture_url, class: "inline avatar"
@@ -21,8 +16,13 @@
 
   %section.row
     .columns.span8
+      - if @event.allow_edits_by(current_user)
+        #admin_actions.alert-message.block-message.silver
+          = link_to t('events.edit.link'), edit_event_path(@event), class: "btn secondary"
+          = link_to t('events.manage_attendees.link'), event_manage_guests_path(@event), "data-modal" => true, class: "btn secondary"
+
       #description
-        =simple_format @event.description
+        = simple_format @event.description
 
       #comments
         - if signed_in?
