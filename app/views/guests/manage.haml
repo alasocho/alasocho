@@ -1,0 +1,10 @@
+.modal
+  .modal-header
+    %h3= t('events.manage_attendees.title')
+    = close_button
+  .modal-body
+    %ul#management
+      - @attendances.each do |attendance|
+        = render attendance, management: true
+  .modal-footer
+    = link_to t("shared.close"), "javascript:;", class: "close btn secondary"

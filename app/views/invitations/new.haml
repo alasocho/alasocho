@@ -3,10 +3,11 @@
     window.current_page = window.current_page || {}
     window.current_page.event = current_page.event || new A8.Models.Event(#{@event.to_json});
 
-%h2= t ".title"
-
-= form_for @event, url: event_invitations_path, html: { method: :post } do |f|
-  = render "events/invitations", event: @event, invitations: @invitations, f: f
-
-  .submit_button
-    = f.submit t(".invite")
+= form_for @event, url: event_invitations_path, remote: true, html: { method: :post, class: "form-stacked modal" } do |f|
+  .modal-header
+    %h3= t ".title"
+    = close_button
+  .modal-body
+    = render "events/invitations", event: @event, invitations: @invitations, f: f
+  .modal-footer
+    = f.submit t(".invite"), class: "btn primary", disable_with: t("shared.submitting")

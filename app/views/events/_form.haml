@@ -1,30 +1,30 @@
-.form_field
+= f.form_field :name do
   = f.label :name
   = f.text_field :name, placeholder: t(".placeholders.name")
   = f.errors :name
 
-.form_field
+= f.form_field :description do
   = f.label :description
   = f.text_area :description, placeholder: t(".placeholders.description")
   = f.errors :description
 
 .double_feature
-  .form_field
-    = f.errors :start_at
+  = f.form_field :start_at do
     = f.label :start_at
     = f.text_field :start_at, type: "datetime-local", placeholder: t(".placeholders.start_at")
+    = f.errors :start_at, block: true
 
-  .form_field
-    = f.errors :end_at
+  = f.form_field :end_at do
     = f.label :end_at
     = f.text_field :end_at, type: "datetime-local", placeholder: t(".placeholders.end_at")
+    = f.errors :end_at, block: true
 
-.form_field
+= f.form_field :location do
   = f.label :location
   = f.text_field :location, placeholder: t(".placeholders.location")
   = f.errors :location
 
-.form_field
+= f.form_field :city do
   = f.label :city
   = f.text_field :city, placeholder: t(".placeholders.city")
   = f.errors :city

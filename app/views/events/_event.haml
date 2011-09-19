@@ -1,13 +1,14 @@
 = content_tag_for "li", event do
-  .title
-    = link_to event.name, event, class: "title"
+  = link_to event do
+    .title= event.name
 
-  %span.where.metadata= event.location
-  %time.metadata(datetime="#{event.start_at.to_s(:db)}")
-    = l(event.start_at, format: :default)
-  - if event.limited?
-    %span.slots
-      = t('event.occupied_seats', used: event.confirmed_attendees.size, count: event.attendee_quota)
+    %div.where.metadata= event.location
+    %time.metadata(datetime="#{event.start_at.to_s(:db)}")
+      = l(event.start_at, format: :short)
+
+    - if event.limited?
+      %span.slots
+        = t('.open_slots', count: event.confirmed_attendees.size, total: event.available_slots)
 
   .attendance_actions
     = render "events/attendance_actions", attendance: attendance if local_assigns.has_key?(:attendance)

@@ -1,20 +1,16 @@
-%fieldset#event_scope
-  .form_field#public_event
+= f.form_stack id: "event_scope" do
+  = f.stack_field :public do
     = f.check_box :public
-    = f.label :public
-
-  .form_field#guest_invitations_allowed
+    %span= t("activerecord.attributes.event.public")
+  = f.stack_field :allow_invites do
     = f.check_box :allow_invites, :disabled => f.object.public?
-    = f.label :allow_invites, t("event.attendees_can_invite")
+    %span= t("events.settings.attendees_can_invite")
 
-%fieldset#guest_limit
-  %legend= t ".guest_limit"
-
-  .form_field#open_event
+= f.form_stack label: t(".guest_limit"), id: "guest_limit" do
+  = f.stack_field :open, id: "open_event", for: "event_open_true" do
     = f.radio_button :open, true
-    = f.label :open, value: true
-
-  .form_field#quota
+    %span=t "activerecord.attributes.event.open"
+  = f.stack_field :open, id: "quota", for: "event_open_false" do
     = f.radio_button :open, false
     = f.label :attendee_quota, t(".attendee_quota_prefix")
     = f.number_field :attendee_quota, min: 1, class: "attendee_quota"

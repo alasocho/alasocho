@@ -1,96 +1,54 @@
-#comments {
-  form {
+#new_comment {
+  padding: 0 10px 0 0;
     margin-bottom: 24px;
-  }
 
   textarea {
-    width: 390px;
+    width: 100%;
   }
+}
 
-  label {
-    font-weight: bold;
-  }
-
+#comments {
   ol {
     list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
   }
 
   .comment {
     margin-bottom: 12px;
+    position: relative;
 
     address {
       font-style: normal;
-      font-size: 14px;
+      font-size: 13px;
       color: #999;
+      padding: 0 4px 3px;
+      margin: 0;
     }
 
     address span {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       color: #000;
-      margin-right: 6px;
     }
 
-    .text {
+    .close {
+      float: right;
       position: relative;
-      padding: 5px 12px;
-      border-radius: 10px;
-      position: relative;
-      color: #fff;
-    }
-
-    .delete_comment {
-      position: absolute;
-      right: 15px;
+      right: 8px;
+      top: 4px;
       color: black;
-    }
-
-    .text:before {
-      width: 0;
-      height: 0;
-      border-bottom: 20px solid transparent;
-      position: absolute;
-      top: -17px;
-      content: "";
-    }
-  }
-
-  .comment:nth-child(even) {
-    address {
-      text-align: right;
-      margin-right: 45px;
+      z-index: 10;
     }
 
     .text {
-      background: #c93c00;
-    }
+      position: relative;
+      background-color: #eee;
+      border-color: #ddd;
 
-    .text:before {
-      right: 20px;
-      border-bottom-color: #c93c00;
-      border-right: 20px solid transparent;
-      -webkit-transform: rotate(-15deg);
-      -moz-transform: rotate(-15deg);
-    }
-  }
-
-  .comment:nth-child(odd) {
-    address {
-      text-align: left;
-      margin-left: 45px;
-    }
-
-    .text {
-      background: #730046;
-    }
-
-    .text:before {
-      left: 20px;
-      border-bottom-color: #730046;
-      border-left: 20px solid transparent;
-      -webkit-transform: rotate(15deg);
-      -moz-transform: rotate(15deg);
+      p:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }
-

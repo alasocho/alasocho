@@ -18,7 +18,7 @@ es:
 
   notification:
     list:
-      link: "Notificaciones (%{amount})"
+      placeholder: "¡No tienes ninguna notificación nueva! :-)"
     invitations:
       invitation:
         open_slots:
@@ -49,21 +49,38 @@ es:
       event:
         location: "Lugar a convenir"
 
+  active_models:
+    errors:
+      invitations:
+        leftovers: "parte del texto que enviaste no parece un email"
+        invalid: "%{email} no es válida"
+        empty: "debes invitar al menos una persona"
+
+  guests: &guests
+    confirmed:
+      one:   "1 confirmado"
+      other: "%{count} confirmados"
+    invited: "%{count} sin confirmar"
+    waitlisted: "%{count} en la lista de espera"
+    available_seats: "%{count} lugares disponibles."
+    waitlist: "Lista de espera"
+    people_waiting:
+      one:   "1 persona esperando"
+      other: "%{count} personas esperando."
+    declined:
+      one: "1 persona rechazó la invitación"
+      other: "%{count} personas rechazaron la invitación"
+      see_list: "ver la lista"
+
   events:
     show:
-      confirmed:
-        one:   "1 confirmado"
-        other: "%{count} confirmados"
-      invited: "%{count} sin confirmar"
-      waitlisted: "%{count} en la lista de espera"
-      available_seats: "%{count} lugares disponibles."
-      waitlist: "Lista de espera"
-      people_waiting:
-        one:   "1 persona esperando"
-        other: "%{count} personas esperando"
-      declined:
-        one: "1 persona rechazó la invitación"
-        other: "%{count} personas rechazaron la invitación"
+      << : *guests
+      rsvp:
+        label: "RSVP"
+        havent_replied: "No has confirmado aún."
+        waitlisted: "Estás en lista de espera."
+        confirmed: "Tu asistencia está confirmada."
+        declined: "No planeas asistir."
       organizer: "Organizado por"
       duration:
         days:
@@ -84,8 +101,15 @@ es:
         gcal: "Google Calendar"
         ycal: "Yahoo! Calendar"
 
+    event:
+      open_slots:
+        zero: "Sin lugares"
+        one: "%{count}/%{total} lugares"
+        other: "%{count}/%{total} lugares"
+
     edit:
       link: "Editar detalles"
+      cancel: "Cancelar edición"
 
     invites:
       title: "Invitaciones pendientes"
@@ -96,7 +120,7 @@ es:
     public:
       title: "Eventos públicos"
       see_all: "Ver todos los eventos públicos"
-      near_you: "Mostrando eventos en %{current_city}"
+      near: "en %{current_city}"
 
     my_events:
       title: "Mis eventos"
@@ -111,7 +135,7 @@ es:
       hide_end_date: "Sin fecha de fin"
       timezone_selector: "La zona horaria de este evento es: <strong>%{tz}</strong>"
       button:
-        new: "Crear un Evento"
+        new: "Organiza un evento"
       placeholders:
         name: "Por ejemplo: Final de la liga"
         description: "Describe esta reunión"
@@ -124,6 +148,7 @@ es:
 
     settings:
       guest_limit: "¿Cuánta gente puede asistir?"
+      attendees_can_invite: "Los invitados pueden invitar más gente"
       attendee_quota_prefix: "Un límite de"
       attendee_quota_suffix: "personas pueden asistir"
 
@@ -181,11 +206,11 @@ es:
       message:
         success: "Tus datos fueron actualizados."
         error: "Ocurrió un error al actualizar tus datos."
-    link_with:
-      twitter: "Vincular con Twitter"
-      facebook: "Vincular con Facebook"
-      google: "Vincular con Google"
-      why: "Si vinculas tu cuenta con otros servicios, te será más fácil recordar cómo entrar."
+      link_with:
+        twitter: "Vincular con Twitter"
+        facebook: "Vincular con Facebook"
+        google: "Vincular con Google"
+        why: "Si vinculas tu cuenta con otros servicios, te será más fácil recordar cómo entrar."
 
   merges:
     new:
@@ -199,13 +224,18 @@ es:
   social:
     twitter:
       follow_us: "Síguenos en Twitter"
+
   shared:
+    contact_us: "Dínos %{email}"
     terms_and_conditions: "Términos y Condiciones"
     nothing_here: "No hay nada aquí."
     are_you_sure: "¿Estás seguro?"
+    submitting: "Enviando…"
+    see_all: "Ver todos"
+    close: "Cerrar"
+    loading: "Cargando…"
 
   event:
-    attendees_can_invite: "Los invitados pueden invitar más gente"
     confirmed_users:
       title: "Usuarios confirmados para el evento"
     waitlisted_users:
@@ -214,18 +244,14 @@ es:
       title: "Usuarios invitados a este evento"
     available_seats: "lugares disponibles."
     waitlist: "Lista de espera"
-    people_waiting: "personas esperando"
+    people_waiting: "personas esperando."
     end_at: "Fin"
     confirm:
-      slots_available: "Voy"
-      no_slots_available: "Lista de espera"
+      zero: "Lista de espera"
+      one: "Voy"
+      other: "Voy"
     decline: "No voy"
     need_login_to_confirm: "Necesitas iniciar sesión si quieres asistir al evento"
-    host_actions:
-      confirm:
-        slots_available: "Asiste"
-        no_slots_available: "Lista de espera"
-      decline: "No asiste"
 
     form:
       create:
@@ -252,14 +278,13 @@ es:
         cancel_event: "Cancela este Evento"
       cancel:
         message_cancelled: "El evento %{event_name} ha sido cancelado."
-      see_all: "Ver todos"
 
   attendance:
     status:
       has_comment: "Tiene nuevos comentarios"
     message:
       confirm: "Has confirmado tu asistencia a %{event_name}"
-      waitlist: "Estás en la lista de espera para %{event_name}. Si se libera algún lugar te avisamos."
+      waitlist: "Estás en la lista de espera para %{event_name}. Te avisaremos si se libera algún lugar."
       decline: "Ya no estás en la lista de invitados de %{event_name}. ¿Quizás la próxima?"
       already_taken: "Esa invitación ya fue asignada a otro usuario."
       status:

@@ -1,0 +1,202 @@
+#event .span8 {
+  width: 440px;
+}
+
+#title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  .tagline {
+    line-height: 24px;
+  }
+}
+
+#event h1 {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.admin_actions {
+  font-size: 13px;
+  line-height: 18px;
+  margin: 17px 0 0;
+  padding: 0;
+  text-align: right;
+  text-transform: lowercase;
+
+  span:after {
+    content: "•";
+    padding: 0 3px 0 8px;
+    color: #999;
+    text-decoration: none;
+  }
+
+  span:last-child:after {
+    display: none;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+#description {
+  color: #333;
+  text-shadow: 1px 1px #eee;
+}
+
+.organizer {
+  margin: 0;
+  text-align: right;
+  font-style: normal;
+  color: #000;
+  font-weight: bold;
+  line-height: 24px;
+
+  span {
+    color: #999;
+    font-weight: normal;
+    text-transform: lowercase;
+  }
+
+  .avatar {
+    top: 5px;
+    margin-left: 4px;
+  }
+}
+
+/****************************************
+ *  Time and Date sidebar               *
+ ****************************************/
+
+#time_and_space {
+  .start_time, .location {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 1px 1px #c6edf9;
+    margin-bottom: 3px;
+  }
+
+  .location {
+    margin-top: 18px;
+    line-height: 16px;
+  }
+
+  .city {
+    line-height: 13px;
+  }
+}
+
+/****************************************
+ *  RSVP                                *
+ ****************************************/
+
+#rsvp {
+  position: relative;
+
+  h3 {
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    line-height: 28px;
+    margin-right: 8px;
+  }
+
+  h3 small {
+    margin-left: 2px;
+    color: darken(#bfbfbf, 30%);
+  }
+
+  .attendance_actions {
+    position: absolute;
+    right: 14px;
+    top: 9px;
+  }
+
+  .disabled {
+    opacity: 0.2;
+  }
+}
+
+#invite {
+  position: relative;
+  top: -5px;
+  float: right;
+}
+
+/****************************************
+ *  Calendar Feeds                      *
+ ****************************************/
+
+#feeds {
+  background: none;
+  text-align: left;
+  border-radius: 0;
+  color: #999;
+  margin-bottom: 18px;
+}
+
+#feeds a {
+  margin-right: 8px;
+}
+
+#feeds a:first-child {
+  margin-left: 5px;
+}
+
+/****************************************
+ *  Guest lists                         *
+ ****************************************/
+
+#guests {
+  padding-left: 0;
+  padding-right: 0;
+  -webkit-box-shadow: inset 0 8px 18px #fceec1;
+  -moz-box-shadow: inset 0 8px 18px #fceec1;
+  box-shadow: inset 0 8px 18px #fceec1;
+
+  h3 {
+    line-height: 18px;
+    margin-bottom: 10px;
+    padding: 0;
+    vertical-align: baseline;
+
+    small {
+      color: darken(#bfbfbf, 30%);
+    }
+  }
+
+  ul, ol {
+    margin: 0;
+  }
+
+  .clearfix {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .clearfix + .clearfix {
+    border-top: 1px solid #fceec1;
+    padding-top: 14px;
+    margin-top: 14px;
+    -webkit-box-shadow: inset 0 8px 18px #fceec1;
+    -moz-box-shadow: inset 0 8px 18px #fceec1;
+    box-shadow: inset 0 8px 18px #fceec1;
+  }
+
+  .see_all {
+    clear: both;
+  }
+}
+
+#declined {
+  font-size: 14px;
+  color: darken(#bfbfbf, 30%);
+  text-shadow: 1px 1px rgba(255, 255, 255, 0.5);
+  margin: -12px 0 0 14px;
+
+  span:after {
+    content: ":";
+  }
+}

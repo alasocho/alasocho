@@ -1,9 +1,8 @@
 #invitations {
   .explanation {
     width: 400px;
-    font-size: 14px;
-    line-height: 21px;
     margin-bottom: 6px;
+    color: #999;
   }
 }
 
@@ -32,20 +31,27 @@
 
   ul {
     position: absolute;
-    width: 100%;
-    font-size: 14px;
+    width: 400px;
+    font-size: 13px;
+    margin: 0;
   }
 
   .invitation {
+    position: relative;
     list-style-type: none;
     margin-left: 1px;
     padding: 0 4px;
     width: 400px;
     border-bottom: 1px solid #ddd;
 
+    span:after {
+      content: " ";
+    }
+
     button {
       position: absolute;
-      right: -13px;
+      top: 0;
+      right: 4px;
       font-weight: bold;
       background: none;
       border: none;
@@ -57,12 +63,17 @@
       color: #111;
     }
 
-    &:hover, &:focus {
+    &:hover:not(.error), &:focus:not(.error) {
       background-color: #ffc;
     }
 
     &:first-child {
       margin-top: 1px;
+    }
+
+    &.error {
+      background-color: #fae5e3;
+      color: #9d261d;
     }
   }
 }

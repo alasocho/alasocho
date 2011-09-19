@@ -12,11 +12,23 @@ class A8.Views.Events.QuotaToggle extends Backbone.View
     this.model_updated()
 
   model_updated: ->
-    @_ignore_dom_events = true
+    return if @_ignore_model_events
+
     try
+      @_ignore_dom_events = true
       @input.val(@model.get("attendee_quota"))
     finally
       @_ignore_dom_events = false
 
+    true
+
   dom_updated: ->
-    @model.set(attendee_quota: parseInt(@input.val()))
+    return if @_ignore_dom_events
+
+    try
+      @_ignore_model_events = true
+      @model.set(attendee_quota: parseInt(@input.val()))
+    finally
+      @_ignore_model_events = false
+
+    true

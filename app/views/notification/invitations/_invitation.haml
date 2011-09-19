@@ -1,11 +1,11 @@
 = content_tag_for "li", invitation do
-  .title
-    = link_to invitation.name, invitation.object, class: "title"
+  = link_to invitation.object do
+    .title= invitation.name
 
-  %span.where.metadata= invitation.location
-  %time.metadata(datetime="#{invitation.time.to_s(:db)}")
-    = l invitation.time, format: :default
+    %div.where.metadata= invitation.location
+    %time.metadata(datetime="#{invitation.time.to_s(:db)}")
+      = l invitation.time, format: :default
 
-  - if invitation.limited?
-    %span.slots
-      = t('.open_slots', count: invitation.available_slots, total: invitation.quota)
+    - if invitation.limited?
+      %span.slots
+        = t('.open_slots', count: invitation.available_slots, total: invitation.quota)

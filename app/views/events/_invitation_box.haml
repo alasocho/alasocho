@@ -1,19 +1,17 @@
 = fields_for invitations do |f|
-  .form_field#invitation_box
+  = f.form_field :leftovers, id: "invitation_box" do
     = f.label :leftovers, t(".label")
     = f.text_area :leftovers, placeholder: t(".placeholders.invitations")
     = f.errors :leftovers
 
 %script(data-template-for="Invitation" type="text/html")
-  %span %{ email }
+  %span(contenteditable="true") %{ email }
   %button.delete(type="button" title="#{t(".delete")}" tabindex="-1") ×
   %input(type="hidden" name="invitations[%{ index }][email]" value="%{ raw_email }")
 
 - content_for :javascript do
   :javascript
-    jQuery(function($) {
-      window.box = new A8.Views.Events.EmailBox({
-        el: $("#invitation_box"),
-        collection: current_page.event.invitations
-      }).render();
-    });
+    new A8.Views.Events.EmailBox({
+      el: $("#invitation_box"),
+      collection: current_page.event.invitations
+    }).render();

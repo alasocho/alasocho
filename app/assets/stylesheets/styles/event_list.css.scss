@@ -1,68 +1,98 @@
-#invites, #my_events {
+.events {
+  margin: 18px 0 0;
+  list-style-type: none;
+}
+
+#invites, #my_events, #public_events {
   width: 400px;
+
+  ol, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .see_all {
+    float: right;
+    @extend .clearfix;
+  }
+
+  .see_all:after {
+    content: " ▸";
+  }
 }
 
 ol .event, ul .event {
-  border-radius: 10px;
-  margin-bottom: 12px;
-  padding: 12px;
-  color: #fff;
   position: relative;
-  list-style-type: none;
+  padding: 9px 10px;
+  margin-bottom: 9px;
+  border: 1px solid #e0e0e0;
+  -webkit-box-shadow: 0 3px 8px #bfbfbf;
+  -moz-box-shadow: 0 3px 8px #bfbfbf;
+  box-shadow: 0 3px 8px #bfbfbf;
+  background: #fff;
 
-  a:link, a:visited {
-    color: #ffc200;
+  &:hover {
+    background: #fdf5d9;
+  }
+
+  a {
+    display: block;
+  }
+
+  a:hover {
+    text-decoration: none;
+
+    .title {
+      text-decoration: underline;
+    }
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 12px;
+  }
+
+  .where:after {
+    content: "•";
+    margin-left: 10px;
+    color: #c93c00;
+    text-shadow: -1px -1px 1px #eb5e22;
+  }
+
+  &:hover .where:after {
+    color: #eb5e22;
+    text-shadow-color: #c93c00;
   }
 
   .metadata {
-    font-size: 13px;
+    display: inline;
     margin-right: 8px;
+    color: #404040;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
   .slots {
     position: absolute;
-    font-size: 13px;
-    margin-right: 0;
-    top: 12px;
-    right: 12px;
+    top: 11px;
+    right: 13px;
+    padding: 4px 8px;
+    cursor: pointer;
+    border: 1px solid #e6e6e6;
+    background: #eee;
+    color: #404040;
+    font-size: 11px;
+    font-weight: bold;
   }
 
-  .confirm, .decline {
-    font-size: 14px !important;
-  }
-
-  .confirm:after, .metadata:after {
-    content: "•";
-    padding: 0 3px 0 8px;
-    text-decoration: none;
-  }
-
-  time.metadata {
-    margin-left: -6px;
-  }
-
-  time.metadata:after {
-    display: none;
+  &:hover .slots {
+    background: #fceec1;
   }
 }
 
 ol .event:nth-child(even), ul .event:nth-child(even) {
-  background: #c93c00;
-
-  .confirm:after, .metadata:after {
-    color: #730046;
-  }
 }
 
 ol .event:nth-child(odd), ul .event:nth-child(odd) {
-  background: #730046;
-
-  .confirm:after, .metadata:after {
-    color: #c93c00;
-  }
-}
-
-#public_events {
-  float: right;
-  width: 400px;
 }

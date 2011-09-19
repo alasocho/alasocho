@@ -20,7 +20,7 @@
   float: none;
   border-bottom: 1px solid #ccc;
   width: 100%;
-  height: 48px;
+  height: 44px;
   text-align: left;
   font-size: 16px;
 
@@ -35,13 +35,12 @@
     height: 32px;
   }
 
-  .actions {
-    margin-top: 6px;
+  .attendance_actions {
+    margin-top: 8px;
     float: right;
   }
 
-  .actions * {
-    font-weight: normal;
-    font-size: 14px !important;
+  &:last-child {
+    border-bottom: none;
   }
 }

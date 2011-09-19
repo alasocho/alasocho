@@ -1,8 +1,8 @@
 A8.Views.Events ||= {}
 
 class A8.Views.Events.TimezoneSelector extends Backbone.View
-  tagName: "p"
-  className: "timezone"
+  tagName: "span"
+  className: "help-block timezone"
 
   template: $("[data-template-for='TimezoneSelector']").html()
 

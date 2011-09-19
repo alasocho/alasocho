@@ -1,33 +1,50 @@
-#modal_window {
+.modal-overlay {
+  background: rgba(25%, 25%, 25%, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10500;
+  display: none;
+}
+
+.modal {
+  z-index: 10600;
+}
+
+.modal .modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.modal .error.help-inline {
   display: block;
-  width: 560px;
-  position: absolute;
-  top: -400px;
-  left: 50%;
-  margin-left: -280px;
-  border: solid 1px #bfbb11;
-  padding: 15px 25px 20px;
-  background: #bfbb11 url(/assets/backgrounds/green-aside.png);
-
-  -webkit-transition: -webkit-transform 0.25s ease-out;
-  -webkit-transform: translateY(0);
-
-  -moz-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
-  -webkit-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
-  box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+  margin-top: 6px;
+  padding-left: 0;
 }
 
-#modal_window.show {
-  -webkit-border-bottom-left-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -webkit-transition: -webkit-transform 0.25s ease-out;
-  -webkit-transform: translateY(400px);
-  opacity: 1.0;
-  z-index: 100;
-  -webkit-transition-duration: 0.25s;
+.modal ul {
+  margin-left: 0;
+
+  .attendance {
+    margin-right: 12px;
+  }
+
+  &.dense .attendance {
+    margin-right: 9px;
+  }
+
+  .attendance:nth-child(7n) {
+    margin-right: 0;
+  }
 }
 
-body #modal_window h1 {
-  color: #730046;
-  text-shadow: 1px 1px #9d9900;
+form.modal {
+  padding: 0;
+  margin-bottom: 0;
+
+  .form_field:first-child {
+    margin-top: 0;
+  }
 }

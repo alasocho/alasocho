@@ -27,10 +27,17 @@ class InvitationLoader
   private
 
   def validate
-    errors[:leftovers] << "No todas las direcciones son validas." if @leftovers.present?
+    scope = [:active_models, :errors, :invitations]
+
+    errors[:leftovers] << I18n.t(:leftovers, scope: scope) if @leftovers.present?
     valid, invalid = @invitations.partition(&:valid?)
+
     invalid.each do |invitation|
-      errors[:leftovers] << "#{invitation.email} no es valida"
+      errors[:leftovers] << I18n.t(:invalid, email: invitation.email, scope: scope)
+    end
+
+    if @leftovers.blank? && @invitations.empty? && @event.published?
+      errors[:leftovers] << I18n.t(:empty, scope: scope)
     end
   end
 

@@ -27,7 +27,7 @@ class A8.Views.Events.TimeSelector extends Backbone.View
     @time = new Date(@datetime_field.val())
 
     _template = _.template(@template, prefix: @options.field)
-    $(@el).append(_template)
+    @datetime_field.after(_template)
 
     @date_field  = this.$("input[id$=date]").addClass("date")
     @time_field  = this.$("select[id$=time]").addClass("time")

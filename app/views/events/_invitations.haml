@@ -1,8 +1,9 @@
-- description_scope = @event.published? ? "published" : "unpublished"
+- description_scope = event.published? ? "published" : "unpublished"
 
-%section#invitations
+#invitations
   = render "events/invitation_box", invitations: invitations, f: f
-  %p.explanation= t(".#{description_scope}.explanation", count: @event.attendee_quota)
+  %p.help-block.explanation
+    = t(".#{description_scope}.explanation", count: event.attendee_quota) unless event.open?
 
 - content_for :javascript do
   :javascript
