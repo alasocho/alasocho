@@ -16,7 +16,7 @@ class Attendance < ActiveRecord::Base
 
   attr_accessible :email, :user_id, :state, :user
 
-  scope :need_attention, joins(:event).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED)
+  scope :need_attention, joins(:event).merge(Event.viewable).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED)
   scope :need_action, where("attendances.state in (?)", STATES_NEEDING_ACTION)
 
   scope :not_visited_after, lambda { |datetime| where("attendances.updated_at < ?", datetime) }
