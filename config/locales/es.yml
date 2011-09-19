@@ -251,6 +251,12 @@ es:
       one: "Voy"
       other: "Voy"
     decline: "No voy"
+    host_actions:
+      confirm:
+        zero: "Lista de espera"
+        one: "Atiende"
+        other: "Atiende"
+      decline: "No atiende"
     need_login_to_confirm: "Necesitas iniciar sesión si quieres asistir al evento"
 
     form:
@@ -289,11 +295,6 @@ es:
       already_taken: "Esa invitación ya fue asignada a otro usuario."
       status:
         has_comment: "Ha recibido un nuevo comentario desde tu última visita."
-
-      as_host:
-        confirm: "Has confirmado la asistencia de %{user_name} a %{event_name}"
-        waitlist: "Has puesto a %{user_name} en la lista de espera para %{event_name}. Si se libera algún lugar le avisaremos."
-        decline: "%{user_name} ya no está en la lista de invitados de %{event_name}."
 
   time:
     formats:
