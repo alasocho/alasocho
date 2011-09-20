@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   after_create :set_token
 
   scope :join_attendances, joins("LEFT JOIN attendances on attendances.event_id = events.id")
-  scope :viewable, where(state: VIEWABLE_STATES)
+  scope :viewable, lambda {  where(state: VIEWABLE_STATES) }
   scope :future, where("start_at > ?", 3.hours.ago) #well, sort of
 
   def self.public_events(token=nil)
