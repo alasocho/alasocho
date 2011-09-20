@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem "rails", "~> 3.1.0"
-gem "mysql2"
+gem "pg"
 gem "oa-oauth"
 gem 'haml'
 gem 'micromachine'

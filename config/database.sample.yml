@@ -1,10 +1,11 @@
 development: &defaults
-  adapter: mysql2
+  adapter: postgresql
   database: alasocho
   encoding: utf8
   username: root
   password:
   host: localhost
+  min_messages: warning
 
 test:
   << : *defaults
