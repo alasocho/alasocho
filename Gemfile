@@ -20,6 +20,10 @@ gem "backbone-rails"
 
 gem "nokogiri"
 
+group :production do
+  gem "unicorn"
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
