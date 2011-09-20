@@ -12,7 +12,6 @@ gem 'daemons'
 gem 'postmark-rails'
 gem 'hoptoad_notifier'
 gem 'simple_uuid'
-gem 'geoip'
 gem 'ri_cal'
 gem 'bcrypt-ruby'
 

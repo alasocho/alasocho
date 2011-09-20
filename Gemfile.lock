@@ -70,7 +70,6 @@ GEM
       rack (< 2, >= 1.1.0)
     ffi (1.0.7)
       rake (>= 0.8.7)
-    geoip (1.1.1)
     haml (3.1.2)
     hike (1.2.1)
     hoptoad_notifier (2.4.11)
@@ -217,7 +216,6 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.1.0)
   daemons
-  geoip
   haml
   hoptoad_notifier
   jquery-rails
