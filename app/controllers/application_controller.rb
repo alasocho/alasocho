@@ -16,7 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_location
-    @current_location ||= Location.from_ip(request.remote_addr)
+    forwarded_ip = request.env["HTTP_X_FORWARDED_FOR"]
+    remote_addr  = forwarded_ip.presence || request.remote_addr
+
+    @current_location ||= Location.from_ip(remote_addr)
   end
 
   def assign_attendance_to_user(user)
