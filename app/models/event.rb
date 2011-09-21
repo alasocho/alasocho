@@ -89,7 +89,7 @@ class Event < ActiveRecord::Base
   end
 
   def timezone=(tz)
-    self[:timezone] = tz.name
+    self[:timezone] = tz.respond_to?(:to_str) ? tz.to_str : tz.identifier
   end
 
   def check_if_public
