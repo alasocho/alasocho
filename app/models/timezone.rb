@@ -20,6 +20,10 @@ class Timezone < Struct.new(:identifier, :name, :code, :offset)
     "#{code} (UTC#{offset_string}:00)"
   end
 
+  def source
+    @source ||= TZInfo::Timezone.get(identifier)
+  end
+
   def to_json
     { name: name, code: code, offset: offset, identifier: identifier }.to_json
   end
