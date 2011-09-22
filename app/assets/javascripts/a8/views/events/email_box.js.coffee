@@ -3,6 +3,7 @@ A8.Views.Events ?= {}
 class A8.Views.Events.EmailBox extends Backbone.View
   events:
     "keyup textarea": "_keyup"
+    "blur textarea": "_blur"
 
   initialize: ->
     @collection.bind("add", _.bind(@_add_invite, this))
@@ -16,12 +17,14 @@ class A8.Views.Events.EmailBox extends Backbone.View
 
     this
 
-  tokenize: ->
+  tokenize: (options) ->
+    options = _.extend(check_remainder: false, options)
+
     @prev_val = @textarea.val()
 
     tokenizer = new EmailTokenizer @prev_val, (email) =>
       @collection.add(new A8.Models.Invitation(email: email))
-    tokenizer.tokenize()
+    tokenizer.tokenize(options.check_remainder)
 
     @textarea.val(tokenizer.leftovers())
 
@@ -29,6 +32,9 @@ class A8.Views.Events.EmailBox extends Backbone.View
     return if @textarea.val() is @prev_val
     clearTimeout(@timeout)
     @timeout = setTimeout (=> this.tokenize()), 200
+
+  _blur: (event) ->
+    this.tokenize(check_remainder: true)
 
   _add_invite: (invitation) ->
     invite_view = new A8.Views.Events.BoxInvitation(model: invitation, textarea: @textarea)
@@ -63,6 +69,8 @@ class EmailTokenizer
         @buffer += @char
 
       @pos++
+
+    this._flush_buffer() if check_remainder
 
   leftovers: ->
     chars = String(@string).split("")
