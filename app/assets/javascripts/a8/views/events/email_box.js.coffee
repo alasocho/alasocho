@@ -56,7 +56,7 @@ class EmailTokenizer
   constructor: (@string, @callback) ->
     @valid_indices = []
 
-  tokenize: () ->
+  tokenize: (check_remainder) ->
     this._rewind()
 
     while @pos < @string.length
