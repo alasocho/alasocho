@@ -50,14 +50,14 @@ class EmailTokenizer
   constructor: (@string, @callback) ->
     @valid_indices = []
 
-  tokenize: (callback) ->
+  tokenize: () ->
     this._rewind()
 
     while @pos < @string.length
       @char = @string[@pos]
 
       if @char in @tokens
-        this._flush_buffer(callback)
+        this._flush_buffer()
         @last_pos = @pos
       else
         @buffer += @char
