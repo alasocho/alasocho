@@ -1,6 +1,8 @@
 class AttendanceMailer < ActionMailer::Base
   default_url_options[:host] = ALasOcho.config[:canonical_host]
 
+  default from: "arturito@alasocho.com"
+
   helper :events
 
   def invite_notification(attendance)
@@ -9,8 +11,7 @@ class AttendanceMailer < ActionMailer::Base
 
     mail(
       :subject => t("attendance_mailer.invite_notification.subject", event_name: attendance.event.name),
-      :to      => attendance.email,
-      :from    => "arturito@alasocho.com",
+      :to      => attendance.email
     )
   end
 
@@ -18,8 +19,7 @@ class AttendanceMailer < ActionMailer::Base
     @attendance = attendance
     mail(
       :subject => t("email.attendance.tentative.subject", :event_name => attendance.event.name),
-      :to      => attendance.user.try(:email) || attendance.email,
-      :from    => "arturito@alasocho.com"
+      :to      => attendance.user.try(:email) || attendance.email
     )
   end
 
@@ -27,8 +27,7 @@ class AttendanceMailer < ActionMailer::Base
     @attendance = attendance
     mail(
       :subject => t("email.event_cancelled.subject", :event_name => attendance.event.name),
-      :to      => attendance.user.try(:email) || attendance.email,
-      :from    => "arturito@alasocho.com"
+      :to      => attendance.user.try(:email) || attendance.email
     )
   end
 
@@ -36,8 +35,7 @@ class AttendanceMailer < ActionMailer::Base
     @attendance = attendance
     mail(
       :subject => t("email.attendance.date_change.subject", :event_name => attendance.event.name),
-      :to      => attendance.user.try(:email) || attendance.email,
-      :from    => "arturito@alasocho.com"
+      :to      => attendance.user.try(:email) || attendance.email
     )
   end
 
@@ -45,8 +43,7 @@ class AttendanceMailer < ActionMailer::Base
     @attendance = attendance
     mail(
       :subject => t("email.attendance.new_comment.subject", :event_name => attendance.event.name),
-      :to      => attendance.user.try(:email) || attendance.email,
-      :from    => "arturito@alasocho.com"
+      :to      => attendance.user.try(:email) || attendance.email
     )
   end
 end
