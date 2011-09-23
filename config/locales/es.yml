@@ -235,6 +235,11 @@ es:
     close: "Cerrar"
     loading: "Cargando…"
 
+  notification:
+    comments:
+      comment:
+        blurb: "Ha recibido un nuevo comentario desde su última visita."
+
   event:
     confirmed_users:
       title: "Usuarios confirmados para el evento"
@@ -293,8 +298,6 @@ es:
       waitlist: "Estás en la lista de espera para %{event_name}. Te avisaremos si se libera algún lugar."
       decline: "Ya no estás en la lista de invitados de %{event_name}. ¿Quizás la próxima?"
       already_taken: "Esa invitación ya fue asignada a otro usuario."
-      status:
-        has_comment: "Ha recibido un nuevo comentario desde tu última visita."
 
   time:
     formats:

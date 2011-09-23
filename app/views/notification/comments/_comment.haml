@@ -1,3 +1,4 @@
 = content_tag_for "li", comment do
-  = link_to comment.name, comment.object
-  %span= t("attendance.message.status.has_comment")
+  = link_to comment.object do
+    .title= comment.name
+    .metadata= t(".blurb")
