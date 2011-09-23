@@ -15,7 +15,6 @@ class Event < ActiveRecord::Base
   has_many :waitlisted_invitations, :class_name => "Attendance", :conditions => { :state => "waitlisted" }
 
   has_many :interested_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_INTERESTED }
-  has_many :interested, :through => :interested_invitations, :source => :user
 
   has_many :declined_invitations, :class_name => "Attendance", :conditions => { :state => "declined" }
 
