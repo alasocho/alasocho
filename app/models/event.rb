@@ -9,10 +9,6 @@ class Event < ActiveRecord::Base
 
 
   # FIXME: These five methods want to be removed. But let's first make sure they're not being used anywhere by inlining them.
-  def interested_invitations
-    attendances.interested
-  end
-
   def declined_invitations
     attendances.declined
   end
@@ -58,7 +54,7 @@ class Event < ActiveRecord::Base
   def cancel!
     state_machine.trigger(:cancel)
     save!(:validate => false)
-    interested_invitations.each(&:send_event_cancelled_email)
+    attendances.interested.each(&:send_event_cancelled_email)
   end
 
   def state_machine

@@ -14,6 +14,6 @@ class Comment < ActiveRecord::Base
   end
 
   def attendances_to_notify
-    event.interested_invitations.not_visited_after(event.last_commented_at).user_wants_comment_notifications
+    event.attendances.interested.not_visited_after(event.last_commented_at).user_wants_comment_notifications
   end
 end
