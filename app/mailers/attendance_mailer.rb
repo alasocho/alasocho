@@ -41,8 +41,10 @@ class AttendanceMailer < ActionMailer::Base
 
   def new_comment_notification(attendance)
     @attendance = attendance
+    @event = attendance.event
+
     mail(
-      :subject => t("email.attendance.new_comment.subject", :event_name => attendance.event.name),
+      :subject => t("attendance_mailer.new_comment_notification.subject", :event_name => @event.name),
       :to      => attendance.user.try(:email) || attendance.email
     )
   end
