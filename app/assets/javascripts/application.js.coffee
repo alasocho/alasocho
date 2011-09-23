@@ -62,5 +62,5 @@ jQuery ($) ->
         current  = parseInt(position.split(" ")[0])
         position = position.replace(/^\d+/, current + 460)
         el.css("background-position", position)
-      ), rotation * 1000
-    ), offset * 1000
+      ), rotation * 4000
+    ), offset * 2000 + 100
