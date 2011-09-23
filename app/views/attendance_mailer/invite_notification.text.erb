@@ -1,7 +1,0 @@
-<%= t("email.generic.greeting") %>
-
-<%= t("email.attendance.invite.invite_text", inviter_name: @attendance.event.host.name, event_name: @attendance.event.name) %>
-
-<%= event_url(@attendance.event, token: @attendance.token) %>
-
-<%= t("email.attendance.invite.google_calendar", event_name: @attendance.event.name, url: google_calendar_link(@attendance.event)) %>

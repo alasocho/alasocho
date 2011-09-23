@@ -1,0 +1,9 @@
+<%= t("email.generic.greeting") %>
+
+<%= @attendance.event.host.name %> te ha invitado a <%= @attendance.event.name %>. Haz click en el siguiente link para ver el evento:
+
+<%= event_url(@attendance.event, token: @attendance.token) %>
+
+Haz click aquí para agregar <%= @attendance.event.name %> a tu Google Calendar:
+
+<%= google_calendar_link(@attendance.event) %>

@@ -1,12 +1,16 @@
 class AttendanceMailer < ActionMailer::Base
   default_url_options[:host] = ALasOcho.config[:canonical_host]
 
+  helper :events
+
   def invite_notification(attendance)
     @attendance = attendance
+    @email = attendance.email
+
     mail(
-      :subject              => t("email.attendance.invite.subject", :event_name => attendance.event.name),
-      :to                   => attendance.email,
-      :from                 => "arturito@alasocho.com",
+      :subject => t("attendance_mailer.invite_notification.subject", event_name: attendance.event.name),
+      :to      => attendance.email,
+      :from    => "arturito@alasocho.com",
     )
   end
 
