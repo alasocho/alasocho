@@ -10,7 +10,6 @@ class Event < ActiveRecord::Base
   has_many :confirmed_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_CONFIRMED }
 
   has_many :pending_invitations, :class_name => "Attendance", :conditions => { :state => "invited" }
-  has_many :invitees, :through => :pending_invitations, :source => :user
 
   has_many :waitlisted_invitations, :class_name => "Attendance", :conditions => { :state => "waitlisted" }
 
