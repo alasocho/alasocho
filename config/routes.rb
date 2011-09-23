@@ -1,5 +1,3 @@
-require "resque"
-
 ALasOcho::Application.routes.draw do
   root to: "pages#home"
 
@@ -38,5 +36,6 @@ ALasOcho::Application.routes.draw do
   match "/auth/sign_out" => "sessions#destroy"
   match "/auth/:provider/callback" => "sessions#create"
 
+  require "resque/server"
   mount Resque::Server.new, at: "/admin/resque"
 end
