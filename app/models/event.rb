@@ -9,10 +9,6 @@ class Event < ActiveRecord::Base
 
 
   # FIXME: These five methods want to be removed. But let's first make sure they're not being used anywhere by inlining them.
-  def pending_invitations
-    attendances.pending
-  end
-
   def waitlisted_invitations
     attendances.waitlisted
   end
