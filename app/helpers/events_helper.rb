@@ -2,9 +2,9 @@ module EventsHelper
   # Tagline describing the different amounts of people involved in an event.
   def tagline(event)
     counts = {
-      "events.show.confirmed"  => event.confirmed_invitations.size,
-      "events.show.waitlisted" => event.waitlisted_invitations.size,
-      "events.show.invited"    => event.pending_invitations.size
+      "events.show.confirmed"  => event.attendances.confirmed.size,
+      "events.show.waitlisted" => event.attendances.waitlisted.size,
+      "events.show.invited"    => event.attendances.pending.size
     }
 
     counts.reject { |key, count| count.zero? }.map { |key, count| t(key, count: count) }.join(", ")
