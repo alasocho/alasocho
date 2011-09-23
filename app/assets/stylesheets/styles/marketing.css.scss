@@ -3,7 +3,9 @@
 }
 
 #marketing .topbar {
-  position: relative;
+  .container {
+    position: relative;
+  }
 
   .fill {
     height: 330px;
@@ -11,13 +13,13 @@
 
   .blurb {
     position: absolute;
+    top: 30px;
+    right: 420px;
     line-height: 36px;
     font-size: 22px;
     font-weight: bold;
     color: #BEBEBE;
     text-shadow: 1px 1px rgba(32, 32, 32, 0.5);
-    right: 665px;
-    top: 30px;
 
     b {
       color: #bfbb11;
@@ -54,7 +56,7 @@
 }
 
 #marketing #features {
-  margin-top: 310px;
+  margin-top: 350px;
 }
 
 #marketing #features aside {
