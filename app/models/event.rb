@@ -137,10 +137,6 @@ class Event < ActiveRecord::Base
     confirmed_invitations.count
   end
 
-  def slots_available_count
-    available_slots # FIXME: Remove this, I just don't want to grep anymore :(
-  end
-
   def limited?
     attendee_quota.present?
   end
