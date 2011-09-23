@@ -1,18 +1,7 @@
-#welcome
-  %h1.greetings= t("homepage.welcome.message")
-
-  #organize_an_event
-    %h2= t("homepage.welcome.organize_an_event")
-
-  #welcome
-    %ul#features
-      %li= t("homepage.welcome.features.social_logins")
-      %li= t("homepage.welcome.features.waiting_list")
-      %li= t("homepage.welcome.features.private_events")
-      %li= t("homepage.welcome.features.public_events")
-
-  -if @public_events.any?
-    #latest_public_events
-      %h3= t("homepage.welcome.latest_public_events", :city => current_location)
-      %ol
-        = render @public_events
+#features.container
+  .row
+    %aside.span8.waiting_list= raw t(".features.waiting_list")
+    %aside.span8.public_events= raw t(".features.public_events")
+  .row
+    %aside.span8.social_logins= raw t(".features.social_logins")
+    %aside.span8.private_events= raw t(".features.private_events")

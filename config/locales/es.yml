@@ -324,16 +324,14 @@ es:
         subject: "¡Se ha cambiado la fecha de %{event_name}!"
         text: "%{host_name} ha cambiado la fecha para %{event_name}. Haz click en el siguiente link para ver los cambios"
 
-  homepage:
-    welcome:
-      message: "¡Bienvenido!"
-      description:
-      what_is_it:
+  layouts:
+    home:
+      blurb: "La forma <b>más simple</b> de organizar eventos"
+
+  pages:
+    home:
       features:
         social_logins: "Ingresa con cualquiera de tus cuentas favoritas. No necesitas registrarte para poder empezar a crear eventos o encontrar eventos cerca tuyo."
-        waiting_list: "Listas de espera automáticas: nunca más te quedes corto de invitados. Marca un cupo e invita a todos tus amigos y nosotros nos encargaremos de manejar las confirmaciones y la lista de espera."
-        private_events: "Eventos privados: ¿Quieres organizar un partido de fútbol sólo con tus amigos? ¿Un cumpleaños? ¿Partidas de juegos de mesa?. Elige tus invitados y nosotros los contactaremos por email mientras tú gestionas el evento como más te guste."
-        public_events: "Eventos públicos: organiza eventos sobre los temas que te gusten y podrás conocer otras personas en tu ciudad con tus mismos intereses."
-      latest_public_events: "Aquí están los próximos eventos públicos en %{city}"
-      organize_an_event: "Organiza un evento"
-      login: "Ingresa"
+        waiting_list: "<strong>Listas de espera automáticas</strong>: nunca más te quedes corto de invitados. Marca un cupo e invita a todos tus amigos y nosotros nos encargaremos de manejar las confirmaciones y la lista de espera."
+        private_events: "<strong>Eventos privados</strong>: ¿Quieres organizar un partido de fútbol sólo con tus amigos? ¿Un cumpleaños? ¿Partidas de juegos de mesa?. Elige tus invitados y gestiona el evento como más te guste."
+        public_events: "<strong>Eventos públicos</strong>: organiza eventos sobre los temas que te gusten y podrás conocer otras personas en tu ciudad con tus mismos intereses."

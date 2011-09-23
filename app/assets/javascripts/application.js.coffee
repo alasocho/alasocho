@@ -51,3 +51,16 @@ jQuery ($) ->
   $("[data-modal]").each ->
     link = $(this)
     new A8.Views.ModalDialog(el: link, mode: link.data("modal"))
+
+  $("#features aside").each (offset) ->
+    el = $(this)
+    rotation = $("#features aside").length
+
+    setTimeout (->
+      setInterval (->
+        position = el.css("background-position")
+        current  = parseInt(position.split(" ")[0])
+        position = position.replace(/^\d+/, current + 460)
+        el.css("background-position", position)
+      ), rotation * 1000
+    ), offset * 1000
