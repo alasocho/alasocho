@@ -8,7 +8,7 @@
 
     - if event.limited?
       %span.slots
-        = t('.open_slots', count: event.confirmed_attendees.size, total: event.available_slots)
+        = t('.open_slots', count: event.confirmed_attendees.size, total: event.attendee_quota)
 
   .attendance_actions
     = render "events/attendance_actions", attendance: attendance if local_assigns.has_key?(:attendance)
