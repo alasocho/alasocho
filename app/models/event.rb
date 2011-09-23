@@ -9,10 +9,6 @@ class Event < ActiveRecord::Base
 
 
   # FIXME: These five methods want to be removed. But let's first make sure they're not being used anywhere by inlining them.
-  def confirmed_invitations
-    attendances.confirmed
-  end
-
   def pending_invitations
     attendances.pending
   end
@@ -53,7 +49,7 @@ class Event < ActiveRecord::Base
   validates :name, :start_at, :presence => true
   validates :attendee_quota, :numericality => {
     :only_integer => true,
-    :greater_or_equal_than => lambda{|record| record.confirmed_invitations.size},
+    :greater_or_equal_than => lambda{|record| record.attendances.confirmed.size},
     :allow_nil => true
   }
 
@@ -142,7 +138,7 @@ class Event < ActiveRecord::Base
   end
 
   def slots_taken
-    confirmed_invitations.count
+    attendances.confirmed.count
   end
 
   def limited?
