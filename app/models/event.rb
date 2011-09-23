@@ -7,12 +7,6 @@ class Event < ActiveRecord::Base
 
   has_many :attendances
 
-
-  # FIXME: These five methods want to be removed. But let's first make sure they're not being used anywhere by inlining them.
-  def declined_invitations
-    attendances.declined
-  end
-
   has_many :comments, :order => "comments.created_at desc"
   belongs_to :host, :class_name => "User"
 
