@@ -9,10 +9,6 @@ class Event < ActiveRecord::Base
 
 
   # FIXME: These five methods want to be removed. But let's first make sure they're not being used anywhere by inlining them.
-  def waitlisted_invitations
-    attendances.waitlisted
-  end
-
   def interested_invitations
     attendances.interested
   end
@@ -157,8 +153,8 @@ class Event < ActiveRecord::Base
   end
 
   def process_waitlist
-    while limited? && available_slots > 0 && waitlisted_invitations.size > 0
-      waitlisted_invitations.first.reserve_slot!
+    while limited? && available_slots > 0 && attendances.waitlisted.size > 0
+      attendances.waitlisted.first.reserve_slot!
     end
   end
 
