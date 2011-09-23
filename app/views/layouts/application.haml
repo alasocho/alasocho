@@ -1,21 +1,6 @@
 !!! 5
 %html{lang: "#{current_locale}", 'xmlns:og' => "http://ogp.me/ns#"}
-  %head
-    %meta(charset="utf-8")
-    %title=[@page_title, t("app.title")].compact.join(' - ')
-    = csrf_meta_tags
-    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Ubuntu:400,700", :application
-    /[if lte IE 9]
-      = stylesheet_link_tag "ie"
-    %link(rel="home" href="/")
-    %meta{property: "og:title",     content: (@page_title || t("app.title"))}
-    %meta{property: "og:type",      content: (@page_type || "article")}
-    %meta{property: "og:image",     content: (@page_image || "http://#{ALasOcho.config[:canonical_host]}/assets/logo-header.png")}
-    %meta{property: "og:url",       content: (@page_url || request.url)}
-    %meta{property: "og:site_name", content: t("app.title")}
-    - if @page_description
-      %meta{property: "og:description", content: @page_description}
+  = render "layouts/head"
   %body
     .topbar
       .fill
@@ -35,9 +20,7 @@
                   %li.divider
                   %li= link_to t("sessions.sign_out.link"), "/auth/sign_out"
           - else
-            %ul.nav.secondary-nav#sign_in
-              - Authorization::PROVIDERS.each do |provider|
-                %li= link_to t("sessions.sign_in.#{provider}"), "/auth/#{provider}", class: "sign_in #{provider}"
+            = render "shared/authentication"
 
     .container
       = flash_messages
@@ -51,14 +34,5 @@
         %li= link_to t("shared.terms_and_conditions"), terms_and_conditions_path
         %li= link_to t('social.twitter.follow_us'), "http://twitter.com/a_las_ocho"
 
-    = javascript_include_tag :application, debug: Rails.env.development?
-    = javascript_include_tag calendar_l10n_settings
-    :javascript
-      A8.current_user = {
-        time_zone: #{current_location.timezone.to_json}
-      }
-
-      new A8.Views.AjaxLoader({ label: #{t("shared.loading").to_json} }).render();
-
-    = yield :javascript
+    = render "layouts/javascript"
     = render "layouts/google_analytics" if Rails.env.production?

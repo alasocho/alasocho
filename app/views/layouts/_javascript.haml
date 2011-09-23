@@ -1,0 +1,10 @@
+= javascript_include_tag :application, debug: Rails.env.development?
+= javascript_include_tag calendar_l10n_settings
+:javascript
+  A8.current_user = {
+    time_zone: #{current_location.timezone.to_json}
+  }
+
+  new A8.Views.AjaxLoader({ label: #{t("shared.loading").to_json} }).render();
+
+= yield :javascript

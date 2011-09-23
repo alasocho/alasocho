@@ -1,0 +1,16 @@
+%head
+  %meta(charset="utf-8")
+  %title=[@page_title, t("app.title")].compact.join(' - ')
+  = csrf_meta_tags
+  %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  = stylesheet_link_tag "//fonts.googleapis.com/css?family=Ubuntu:400,700", :application
+  /[if lte IE 9]
+    = stylesheet_link_tag "ie"
+  %link(rel="home" href="/")
+  %meta{property: "og:title",     content: (@page_title || t("app.title"))}
+  %meta{property: "og:type",      content: (@page_type || "article")}
+  %meta{property: "og:image",     content: (@page_image || "http://#{ALasOcho.config[:canonical_host]}/assets/logo-header.png")}
+  %meta{property: "og:url",       content: (@page_url || request.url)}
+  %meta{property: "og:site_name", content: t("app.title")}
+  - if @page_description
+    %meta{property: "og:description", content: @page_description}
