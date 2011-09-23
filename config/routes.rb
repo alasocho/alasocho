@@ -1,3 +1,5 @@
+require "resque/server"
+
 ALasOcho::Application.routes.draw do
   root to: "pages#home"
 
@@ -33,7 +35,8 @@ ALasOcho::Application.routes.draw do
     resource :merge, :only => [:new, :create]
   end
 
-
   match "/auth/sign_out" => "sessions#destroy"
   match "/auth/:provider/callback" => "sessions#create"
+
+  mount Resque::Server.new, at: "/admin/resque"
 end

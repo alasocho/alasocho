@@ -5,4 +5,8 @@ if Rails.env.production?
 
   uri = URI.parse(ENV["REDISTOGO_URL"])
   Resque.redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password, :thread_safe => true)
+
+  Resque::Server.use Rack::Auth::Basic do |username, password|
+    username == "alasocho" && password == "showmethemoney!"
+  end
 end
