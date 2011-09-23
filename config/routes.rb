@@ -1,4 +1,4 @@
-require "resque/server"
+require "resque"
 
 ALasOcho::Application.routes.draw do
   root to: "pages#home"
