@@ -16,6 +16,12 @@ class Attendance < ActiveRecord::Base
 
   attr_accessible :email, :user_id, :state, :user
 
+  scope :confirmed,  where(state: STATES_CONFIRMED)
+  scope :pending,    where(state: "invited")
+  scope :waitlisted, where(state: "waitlisted")
+  scope :interested, where(state: STATES_INTERESTED)
+  scope :declined,   where(state: "declined")
+
   scope :need_attention, lambda { joins(:event).merge(Event.viewable).where("attendances.state in (?) OR (attendances.state IN (?) AND events.last_commented_at > attendances.updated_at)", STATES_NEEDING_ACTION, STATES_INTERESTED) }
   scope :need_action, where("attendances.state in (?)", STATES_NEEDING_ACTION)
 

@@ -7,15 +7,27 @@ class Event < ActiveRecord::Base
 
   has_many :attendances
 
-  has_many :confirmed_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_CONFIRMED }
 
-  has_many :pending_invitations, :class_name => "Attendance", :conditions => { :state => "invited" }
+  # FIXME: These five methods want to be removed. But let's first make sure they're not being used anywhere by inlining them.
+  def confirmed_invitations
+    attendances.confirmed
+  end
 
-  has_many :waitlisted_invitations, :class_name => "Attendance", :conditions => { :state => "waitlisted" }
+  def pending_invitations
+    attendances.pending
+  end
 
-  has_many :interested_invitations, :class_name => "Attendance", :conditions => { :state => Attendance::STATES_INTERESTED }
+  def waitlisted_invitations
+    attendances.waitlisted
+  end
 
-  has_many :declined_invitations, :class_name => "Attendance", :conditions => { :state => "declined" }
+  def interested_invitations
+    attendances.interested
+  end
+
+  def declined_invitations
+    attendances.declined
+  end
 
   has_many :comments, :order => "comments.created_at desc"
   belongs_to :host, :class_name => "User"
