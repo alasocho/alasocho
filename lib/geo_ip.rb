@@ -16,7 +16,7 @@ class GeoIp
       return MockLocation
     end
 
-    url = "#{@endpoint}#{ip}"
+    url = "#{@endpoint}#{ip.to_s.split(",").first}"
     @logger.info "=> Requesting geolocation from #{ip} at: #{url}"
 
     response = open(url).read
