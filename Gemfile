@@ -33,11 +33,11 @@ group :assets do
 end
 
 group :test do
-  gem "turn", :require => false
   gem "capybara"
   gem "launchy"
 end
 
 group :development, :test do
   gem "ruby-debug19"
+  gem "rspec-rails", "~> 2.6"
 end
