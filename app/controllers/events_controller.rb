@@ -24,9 +24,9 @@ class EventsController < ApplicationController
 
       @attendance             = signed_in? ? @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? } : nil
       @comments               = @event.comments.includes(:user)
-      @confirmed_invitations  = @event.confirmed_invitations.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
-      @waitlisted_invitations = @event.waitlisted_invitations.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
-      @pending_invitations    = @event.pending_invitations.includes(:user).limit(MAX_PENDING_ATTENDEES)
+      @confirmed_invitations  = @event.attendances.confirmed.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
+      @waitlisted_invitations = @event.attendances.waitlisted.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
+      @pending_invitations    = @event.attendances.pending.includes(:user).limit(MAX_PENDING_ATTENDEES)
 
       respond_to do |format|
         format.html
