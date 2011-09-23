@@ -11,7 +11,7 @@ class AttendanceMailer < ActionMailer::Base
 
     mail(
       :subject => t("attendance_mailer.invite_notification.subject", event_name: attendance.event.name),
-      :to      => attendance.email
+      :to      => attendance.recipient
     )
   end
 
@@ -19,7 +19,7 @@ class AttendanceMailer < ActionMailer::Base
     @attendance = attendance
     mail(
       :subject => t("email.attendance.tentative.subject", :event_name => attendance.event.name),
-      :to      => attendance.user.try(:email) || attendance.email
+      :to      => attendance.recipient
     )
   end
 
@@ -27,7 +27,7 @@ class AttendanceMailer < ActionMailer::Base
     @attendance = attendance
     mail(
       :subject => t("email.event_cancelled.subject", :event_name => attendance.event.name),
-      :to      => attendance.user.try(:email) || attendance.email
+      :to      => attendance.recipient
     )
   end
 
@@ -35,7 +35,7 @@ class AttendanceMailer < ActionMailer::Base
     @attendance = attendance
     mail(
       :subject => t("email.attendance.date_change.subject", :event_name => attendance.event.name),
-      :to      => attendance.user.try(:email) || attendance.email
+      :to      => attendance.recipient
     )
   end
 
@@ -45,7 +45,7 @@ class AttendanceMailer < ActionMailer::Base
 
     mail(
       :subject => t("attendance_mailer.new_comment_notification.subject", :event_name => @event.name),
-      :to      => attendance.user.try(:email) || attendance.email
+      :to      => attendance.recipient
     )
   end
 end
