@@ -6,7 +6,6 @@ class Event < ActiveRecord::Base
   VIEWABLE_STATES = %w(published cancelled)
 
   has_many :attendances, extend: ALasOcho::EventProxyExtensions
-
   has_many :comments, :order => "comments.created_at desc"
   belongs_to :host, :class_name => "User"
 
