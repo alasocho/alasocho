@@ -92,7 +92,12 @@ class Attendance < ActiveRecord::Base
   end
 
   def send_new_comment_email
-    NotifyNewComment.enqueue(id)
+    if recipient.present?
+      NotifyNewComment.enqueue(id)
+    else
+      logger.error "Can't deliver comment notification for #{id} because #{user.name} doesn't have an email"
+      return
+    end
   end
 
   def attach_to_user
