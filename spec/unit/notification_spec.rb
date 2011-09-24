@@ -1,4 +1,5 @@
 require "spec_helper"
+require "notification"
 
 describe Notification do
   describe ".all" do
@@ -36,7 +37,7 @@ describe Notification do
          limited?:        true,
          attendee_quota:  5,
          available_slots: 3,
-         start_at:        10.minutes.ago)
+         start_at:        Time.now)
   end
 
   let :attendance do

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_spec_helper"
 
 describe "Inviting users to an event" do
   fixtures :events, :attendances, :users

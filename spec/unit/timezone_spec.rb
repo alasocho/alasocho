@@ -1,4 +1,5 @@
 require "spec_helper"
+require "timezone"
 
 describe Timezone do
   subject { Timezone.get("America/New_York") }

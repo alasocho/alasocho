@@ -1,4 +1,5 @@
 require "spec_helper"
+require "invitation_loader"
 
 describe InvitationLoader do
   let :event do

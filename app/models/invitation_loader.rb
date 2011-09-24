@@ -1,3 +1,6 @@
+require "active_model/errors"
+require "active_model/naming"
+
 class InvitationLoader
   def self.model_name
     ActiveModel::Name.new(self, nil, "Invitations")

@@ -1,4 +1,5 @@
 require "spec_helper"
+require "invitation"
 
 describe Invitation do
   let :email do

@@ -1,3 +1,7 @@
+require "active_model/naming"
+require "active_model/conversion"
+require "active_support/core_ext/module/delegation"
+
 module Notification
   def self.all(user, finder=user.attendances.need_attention.includes(:event))
     finder.map { |notification| new(notification) }
