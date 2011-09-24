@@ -24,4 +24,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  # Treat symbols as metadata (forward compatibility with RSpec 3)
+  config.treat_symbols_as_metadata_keys_with_true_values = true
 end

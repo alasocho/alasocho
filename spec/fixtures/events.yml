@@ -5,6 +5,8 @@ board_games_night:
   end_at: <%= 2.weeks.from_now + 12.hours %>
   location: Soriano 1338 / 2
   city: Montevideo, Uruguay
+  timezone: America/Montevideo
   public: true
-  attendee_quota: nil
+  attendee_quota: NULL
   host: event_host
+  state: published

@@ -30,7 +30,8 @@ class Attendance < ActiveRecord::Base
   scope :user_wants_comment_notifications, joins(:user).merge(User.want_comment_notifications)
 
   validates :user_id, :uniqueness => { :scope => :event_id, :allow_nil => true }
-  validates :email, :uniqueness => { :scope => :event_id, :allow_nil => true }
+  validates :email, :uniqueness => { :scope => :event_id, :allow_nil => true },
+                    :format => { :with => /\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i, :allow_nil => true }
 
   def recipient
     user && user.email || self[:email]

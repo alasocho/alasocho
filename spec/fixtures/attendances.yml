@@ -9,4 +9,4 @@ board_games_night_invitation:
   event: board_games_night
   user: invited_user
   email: "john.invited@example.com"
-  confirmed_at: nil
+  confirmed_at: NULL
