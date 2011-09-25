@@ -1,9 +1,7 @@
-require 'integration_test_helper'
+require "acceptance_spec_helper"
 
-class CreateEventTest < ActionDispatch::IntegrationTest
-  fixtures :all
-
-  test "create an event and publish it" do
+describe "User organizes an event" do
+  it "can organize an event by filling the event form" do
     sign_in :event_host
 
     click_link t("events.form.button.new")
@@ -11,7 +9,8 @@ class CreateEventTest < ActionDispatch::IntegrationTest
     click_button t("event.form.invite.submit") # FIXME: Use a better label
 
     event = Event.find_by_name("My Event")
-    assert_equal "published", event.state
-    assert event.end_at.present?
+
+    event.state.should == "published"
+    event.start_at.should be_present
   end
 end

@@ -2,6 +2,11 @@ require "rspec"
 
 $LOAD_PATH.unshift("./app/models")
 
+module ALasOcho
+  module SpecHelpers
+  end
+end
+
 Dir["./spec/support/unit/**/*.rb"].each {|f| require f }
 
 RSpec.configure do |config|

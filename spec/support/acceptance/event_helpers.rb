@@ -1,24 +1,4 @@
-require "test_helper"
-require "capybara/rails"
-
-OmniAuth.configure do |config|
-  config.test_mode = true
-  config.add_mock(:google, uid: "john.doe@google.com")
-end
-
-class ActionDispatch::IntegrationTest
-  include Capybara
-
-  def sign_in(user)
-    user = User === user ? user : users(user)
-    auth = user.authorizations.first
-    visit "/auth/#{auth.provider}"
-  end
-
-  def sign_out
-    visit "/auth/sign_out"
-  end
-
+module ALasOcho::SpecHelpers::Events
   # Fill in and submit the first step of creating an event.
   def create_event(attrs={})
     attrs.reverse_merge!(
@@ -43,8 +23,8 @@ class ActionDispatch::IntegrationTest
 
     click_button t("helpers.submit.create", model: t("activerecord.models.event"))
   end
+end
 
-  def t(key, options={})
-    I18n.t(key, options)
-  end
+RSpec.configure do |config|
+  config.include ALasOcho::SpecHelpers::Events
 end
