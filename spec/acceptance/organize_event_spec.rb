@@ -1,6 +1,8 @@
 require "acceptance_spec_helper"
 
 describe "User organizes an event" do
+  fixtures :all
+
   it "can organize an event by filling the event form" do
     sign_in :event_host
 
