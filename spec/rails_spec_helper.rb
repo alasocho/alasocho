@@ -3,6 +3,8 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "spec_helper"
 
+Dir["./spec/support/integration/**/*.rb"].each {|f| require f }
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
