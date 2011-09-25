@@ -1,4 +1,4 @@
-require "spec_helper"
+require "unit_spec_helper"
 require "invitation_loader"
 
 describe InvitationLoader do
