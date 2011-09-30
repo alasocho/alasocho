@@ -96,19 +96,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def invite
-    load_event_writable
-    @page_title = @event.name
-    if @event.allow_invites_from(current_user)
-      list = JSON params[:invitees]
-      @event.invitee_list = list
-      @event.save
-      respond_to do |format|
-        format.json { render :json => "OK"}
-      end
-    end
-  end
-
   def my_events
     @page_title = t("my_events.title")
     @my_events = current_user.hosted_events
