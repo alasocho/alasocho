@@ -11,7 +11,7 @@ class GeoIp
   end
 
   def locate(ip)
-    if ip == "127.0.0.1"
+    if %W(127.0.0.1 0.0.0.0).include?(ip)
       @logger.info "=> Requesting geolocation from localhost. Mocked response."
       return MockLocation
     end

@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   include EventFinders
 
   before_filter :check_token, :only => [:show]
-  before_filter :authenticate_user, :except => [:show, :new, :create, :edit]
+  before_filter :authenticate_user, :except => [:show, :public]
 
   MAX_CONFIRMED_ATTENDEES = 12
   MAX_WAITLISTED_ATTENDEES = 6
