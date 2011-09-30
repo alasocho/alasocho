@@ -1,8 +1,6 @@
 require "functional_spec_helper"
 
 describe EventsController, type: :controller do
-  fixtures :users
-
   describe "#create" do
     let :params do
       {
