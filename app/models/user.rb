@@ -21,8 +21,6 @@ class User < ActiveRecord::Base
   has_many :pending_attendances, :class_name => "Attendance", :conditions => { :state => "invited" }
   has_many :pending_events, :through => :pending_attendances, :source => :event
 
-
-
   def self.create_from_auth!(auth_hash)
     auth_hash = auth_hash.fetch("user_info")
 
