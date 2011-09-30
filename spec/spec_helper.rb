@@ -15,27 +15,7 @@ RSpec.configure do |config|
     end
   end
 
-  module IntegrationSpecs
-    def self.included(example_group)
-      example_group.metadata[:type] = :integration
-    end
-  end
-
-  module UnitSpecs
-    def self.included(example_group)
-      example_group.metadata[:type] = :unit
-    end
-  end
-
   config.include AcceptanceSpecs, example_group: {
     file_path: %r(spec/acceptance)
-  }
-
-  config.include IntegrationSpecs, example_group: {
-    file_path: %r(spec/integration)
-  }
-
-  config.include UnitSpecs, example_group: {
-    file_path: %r(spec/unit)
   }
 end

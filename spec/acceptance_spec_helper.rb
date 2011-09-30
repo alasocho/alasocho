@@ -1,3 +1,3 @@
-require "integration_spec_helper"
+require "functional_spec_helper"
 
 Dir["./spec/support/acceptance/**/*.rb"].each {|f| require f }

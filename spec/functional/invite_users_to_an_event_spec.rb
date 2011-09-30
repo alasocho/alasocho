@@ -1,4 +1,4 @@
-require "integration_spec_helper"
+require "functional_spec_helper"
 
 describe "Inviting users to an event" do
   fixtures :events, :attendances, :users
