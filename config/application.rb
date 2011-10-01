@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 require 'haml'
+require 'coffee_script'
 require 'jquery-rails'
 require 'backbone-rails'
 
