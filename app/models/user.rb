@@ -1,4 +1,8 @@
+require "user/event_organizing"
+
 class User < ActiveRecord::Base
+  include ALasOcho::EventOrganizing
+
   has_many :authorizations, dependent: :destroy
   has_many :attendances
 
@@ -45,14 +49,6 @@ class User < ActiveRecord::Base
 
   def linked_providers
     authorizations.map(&:provider)
-  end
-
-  def host_event(event)
-    event.host = self
-    event.attendances.new(email: email, state: "confirmed", user: self)
-    event.save
-  ensure
-    return event
   end
 
   def merge_with(another_user)
