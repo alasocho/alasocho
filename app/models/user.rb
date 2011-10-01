@@ -47,6 +47,14 @@ class User < ActiveRecord::Base
     authorizations.map(&:provider)
   end
 
+  def host_event(event)
+    event.host = self
+    event.attendances.new(email: email, state: "confirmed", user: self)
+    event.save
+  ensure
+    return event
+  end
+
   def merge_with(another_user)
     transaction do
       another_user.hosted_events.update_all(host_id: id)

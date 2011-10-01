@@ -19,6 +19,8 @@
     = f.text_field :end_at, type: "datetime-local", placeholder: t(".placeholders.end_at")
     = f.errors :end_at, block: true
 
+  = f.hidden_field :timezone
+
 = f.form_field :location do
   = f.label :location
   = f.text_field :location, placeholder: t(".placeholders.location")

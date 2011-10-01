@@ -13,9 +13,11 @@ class Location
     @source = source
   end
 
-  def to_s
+  def city_and_country
     [city, country].compact.join(", ")
   end
+
+  alias_method :to_s, :city_and_country
 
   def timezone
     @timezone ||= Timezone.get(source.timezone)

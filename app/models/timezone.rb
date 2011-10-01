@@ -28,6 +28,10 @@ class Timezone < Struct.new(:identifier, :name, :code, :offset)
     { name: name, code: code, offset: offset, identifier: identifier }.to_json
   end
 
+  def ==(other)
+    identifier == other.identifier
+  end
+
   class Unidentified < Timezone
     def initialize
       self.name = nil

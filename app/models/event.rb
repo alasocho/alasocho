@@ -35,9 +35,13 @@ class Event < ActiveRecord::Base
     :allow_nil => true
   }
 
-  attr_accessible :name, :description, :start_at, :end_at, :location, :city, :public, :allow_invites, :attendee_quota, :invitee_list
+  attr_accessible :name, :description, :start_at, :end_at, :location, :city, :public, :allow_invites, :attendee_quota, :invitee_list, :timezone
 
   attr_accessor :invitee_list
+
+  def self.organize_at(location)
+    new(city: location.city_and_country, timezone: location.timezone.identifier)
+  end
 
   def publish!
     state_machine.trigger(:publish)

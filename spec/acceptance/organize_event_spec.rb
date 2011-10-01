@@ -1,13 +1,11 @@
 require "acceptance_spec_helper"
 
 describe "User organizes an event" do
-  fixtures :all
-
   it "can organize an event by filling the event form" do
     sign_in :event_host
 
     click_link t("events.form.button.new")
-    create_event name: "My Event", end_at: 3.hours.from_now
+    create_event name: "My Event"
     click_button t("event.form.invite.submit") # FIXME: Use a better label
 
     event = Event.find_by_name("My Event")
@@ -20,7 +18,7 @@ describe "User organizes an event" do
     sign_in :event_host
 
     click_link t("events.form.button.new")
-    create_event name: "My Event", end_at: 3.hours.from_now
+    create_event name: "My Event"
 
     fill_in t("events.invitation_box.label"), with: "invitee1@example.com, invitee2@example.com"
     click_button t("event.form.invite.submit") # FIXME: Use a better label

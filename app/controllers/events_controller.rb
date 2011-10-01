@@ -41,16 +41,14 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.hosted_events.new(:city => current_location.to_s)
+    @event = Event.organize_at(current_location)
   end
 
   def create
-    @event = current_user.hosted_events.new(params[:event])
-    @event.timezone = current_location.timezone
+    @event = current_user.host_event(Event.new(params[:event]))
 
-    if @event.save
+    if @event.persisted?
       flash[:notice] = t("event.form.create.message.success")
-      @event.attendances.create!(email: current_user.email, state: "confirmed", user: current_user)
       redirect_to event_invite_people_path(@event)
     else
       render :action => :new

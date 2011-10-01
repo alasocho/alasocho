@@ -1,6 +1,26 @@
 require "functional_spec_helper"
 
 describe EventsController, type: :controller do
+  describe "#new" do
+    set_incoming_request_ip
+    sign_in :event_host
+
+    it "assigns an event with its city set" do
+      get :new
+      assigns[:event].city.should == "Montevideo, Uruguay"
+    end
+
+    it "assigns an event with its timezone set" do
+      get :new
+      assigns[:event].timezone.should == Timezone.get("America/Montevideo")
+    end
+
+    it "renders the new form" do
+      get :new
+      response.should render_template(:new)
+    end
+  end
+
   describe "#create" do
     let :params do
       {
@@ -10,7 +30,8 @@ describe EventsController, type: :controller do
           "start_at"    => 2.days.from_now.to_s(:iso),
           "end_at"      => (2.days.from_now + 1.hour).to_s(:iso),
           "location"    => "Some place",
-          "city"        => "Los Angeles, United States"
+          "city"        => "Montevideo, Uruguay",
+          "timezone"    => "America/Montevideo"
         }
       }
     end
