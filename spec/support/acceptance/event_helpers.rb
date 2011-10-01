@@ -10,13 +10,11 @@ module ALasOcho::SpecHelpers::Events
       city: "Montevideo, Uruguay"
     )
 
-    date_format = "%Y-%m-%dT%H:%M:%S%z"
-
     with_options scope: "activerecord.attributes.event" do |label|
       fill_in label.t(:name),        with: attrs.fetch(:name)
       fill_in label.t(:description), with: attrs.fetch(:description)
-      fill_in "event[start_at]",     with: attrs.fetch(:start_at).strftime(date_format)
-      fill_in "event[end_at]",       with: attrs.fetch(:end_at).strftime(date_format)
+      fill_in "event[start_at]",     with: attrs.fetch(:start_at).to_s(:iso)
+      fill_in "event[end_at]",       with: attrs.fetch(:end_at).to_s(:iso)
       fill_in label.t(:location),    with: attrs.fetch(:location)
       fill_in label.t(:city),        with: attrs.fetch(:city)
     end
