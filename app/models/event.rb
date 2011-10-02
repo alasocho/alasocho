@@ -1,4 +1,4 @@
-require 'micromachine'
+require 'micro_machine'
 require 'ri_cal'
 require 'attendance/event_proxy_extensions'
 

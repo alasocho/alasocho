@@ -1,4 +1,4 @@
-require 'micromachine'
+require 'micro_machine'
 require 'simple_uuid'
 
 class Attendance < ActiveRecord::Base
