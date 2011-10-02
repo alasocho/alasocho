@@ -10,3 +10,4 @@ board_games_night_invitation:
   user: invited_user
   email: "john.invited@example.com"
   confirmed_at: NULL
+  state: invited

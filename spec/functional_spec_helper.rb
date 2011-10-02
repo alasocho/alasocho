@@ -6,6 +6,14 @@ require "spec_helper"
 Dir["./spec/support/functional/**/*.rb"].each {|f| require f }
 
 RSpec.configure do |config|
+  module Rails::ApplicationUnderTest
+    def app
+      ::Rails.application
+    end
+  end
+
+  config.include Rails::ApplicationUnderTest
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

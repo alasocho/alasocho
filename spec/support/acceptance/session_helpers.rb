@@ -3,9 +3,11 @@ module ALasOcho::SpecHelpers::Sessions
     example_group.fixtures :users
   end
 
+  attr :current_user
+
   def sign_in(user)
-    user = User === user ? user : users(user)
-    auth = user.authorizations.first
+    @current_user = User === user ? user : users(user)
+    auth = @current_user.authorizations.first
     visit "/auth/#{auth.provider}"
   end
 

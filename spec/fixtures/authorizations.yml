@@ -1,4 +1,9 @@
 event_host_google:
   user: event_host
   provider: google
-  key: john.doe@google.com
+  key: john.host@example.com
+
+invited_user_twitter:
+  user: invited_user
+  provider: google
+  key: john.invited@example.com
