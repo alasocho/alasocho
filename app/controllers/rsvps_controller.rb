@@ -7,22 +7,16 @@ class RsvpsController < ApplicationController
 
   def confirm
     load_event_and_attendance
-
-    if @event.slots_available?
-      flash[:notice] = notice(:confirm)
-      @attendance.confirm!
-    else
-      flash[:notice] = notice(:waitlist)
-      @attendance.waitlist!
-    end
-
-    redirect_to @event
+    rsvp = Rsvp.new(@attendance, @event)
+    rsvp.confirm
+    redirect_to @event, notice: notice(rsvp.status)
   end
 
   def decline
     load_event_and_attendance
-    @attendance.decline!
-    redirect_to @event, notice: notice(:decline)
+    rsvp = Rsvp.new(@attendance, @event)
+    rsvp.decline
+    redirect_to @event, notice: notice(rsvp.status)
   end
 
   private
