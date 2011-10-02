@@ -11,7 +11,6 @@ class Event < ActiveRecord::Base
   belongs_to :host, :class_name => "User"
 
   before_save :preserve_state_machine, :check_if_public
-  after_save :create_invitations
   before_create :set_default_last_commented_at
   after_create :set_token
 
@@ -35,9 +34,7 @@ class Event < ActiveRecord::Base
     :allow_nil => true
   }
 
-  attr_accessible :name, :description, :start_at, :end_at, :location, :city, :public, :allow_invites, :attendee_quota, :invitee_list, :timezone
-
-  attr_accessor :invitee_list
+  attr_accessible :name, :description, :start_at, :end_at, :location, :city, :public, :allow_invites, :attendee_quota, :timezone
 
   def self.organize_at(location)
     new(city: location.city_and_country, timezone: location.timezone.identifier)
@@ -88,14 +85,6 @@ class Event < ActiveRecord::Base
 
   def preserve_state_machine
     self.state = state_machine.state
-  end
-
-  def create_invitations
-    invitee_list.each { |email| create_invitation(email) } if invitee_list.present?
-  end
-
-  def create_invitation(email)
-    attendances.create(:email => email.strip) if !email.strip.empty?
   end
 
   def self.public_events_near(city)
