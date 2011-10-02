@@ -41,10 +41,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Before filter to ensure a user is authenticated
   def authenticate_user
     unless signed_in?
       session[:wants_page] = request.path
-      redirect_to root_path, :alert => I18n.t("sessions.need_to_sign_in")
+      redirect_to unauthenticated_url, alert: I18n.t("sessions.need_to_sign_in")
     end
+  end
+
+  # To which url should the user be redirected when they aren't signed in
+  def unauthenticated_url
+    root_path
   end
 end
