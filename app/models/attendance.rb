@@ -10,7 +10,6 @@ class Attendance < ActiveRecord::Base
   STATES_CONFIRMED      = %w(confirmed tentative)
   STATES_RELEVANT       = %w(confirmed waitlisted declined tentative)
 
-  before_save :preserve_state_machine
   before_create :attach_to_user, :generate_token
   after_create :invite_if_published_event
 
@@ -46,48 +45,45 @@ class Attendance < ActiveRecord::Base
   end
 
   def invite!
-    state_machine.trigger(:invite)
+    state.trigger(:invite)
     save!(:validate => false)
     send_invite_email unless !user.nil? && user.email == event.host.email
   end
 
   def confirm!
-    state_machine.trigger(:confirm)
+    state.trigger(:confirm)
     self.confirmed_at = Time.current
     save!(:validate => false)
   end
 
   def waitlist!
-    state_machine.trigger(:waitlist)
+    state.trigger(:waitlist)
     save!(:validate => false)
   end
 
   def decline!
-    state_machine.trigger(:decline)
+    state.trigger(:decline)
     save!(:validate => false)
 
     event.process_waitlist
   end
 
   def reserve_slot!
-    state_machine.trigger(:reserve_slot)
+    state.trigger(:reserve_slot)
     save(:validate => false)
     NotifyOfTentativeState.enqueue(id)
   end
 
-  def state_machine
-    @state_machine ||= MicroMachine.new(state || "added").tap do |machine|
+  def state
+    @_state ||= MicroMachine.new(self[:state]).tap do |machine|
       machine.transitions_for[:invite]       = { "added" => "invited" }
       machine.transitions_for[:confirm]      = { "invited" => "confirmed", "declined" => "confirmed", "tentative" => "confirmed" }
       machine.transitions_for[:decline]      = { "invited" => "declined", "waitlisted" => "declined", "tentative" => "declined", "confirmed" => "declined" }
       machine.transitions_for[:waitlist]     = { "invited" => "waitlisted", "declined" => "waitlisted" }
       machine.transitions_for[:reserve_slot] = { "waitlisted" => "tentative" }
       machine.on(:invited) { send_invite_email }
+      machine.on(:any) { self[:state] = state.state }
     end
-  end
-
-  def preserve_state_machine
-    self.state = state_machine.state
   end
 
   def send_invite_email
@@ -115,19 +111,19 @@ class Attendance < ActiveRecord::Base
   end
 
   def confirmed?
-    state_machine.state == "confirmed"
+    state == "confirmed"
   end
 
   def waitlisted?
-    state_machine.state == "waitlisted"
+    state == "waitlisted"
   end
 
   def tentative?
-    state_machine.state == "tentative"
+    state == "tentative"
   end
 
   def declined?
-    state_machine.state == "declined"
+    state == "declined"
   end
 
   def generate_token
@@ -135,8 +131,6 @@ class Attendance < ActiveRecord::Base
   end
 
   def invite_if_published_event
-    if self.state == "added" && self.event.state == "published"
-      self.invite!
-    end
+    invite! if state == "added" && event.published?
   end
 end
