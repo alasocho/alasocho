@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   has_many :comments, :order => "comments.created_at desc"
   belongs_to :host, :class_name => "User"
 
-  before_save :preserve_state_machine, :check_if_public
+  before_save :check_if_public
   before_create :set_default_last_commented_at
   after_create :set_token
 
@@ -41,26 +41,27 @@ class Event < ActiveRecord::Base
   end
 
   def publish!
-    state_machine.trigger(:publish)
+    state.trigger(:publish)
     save(:validate => false)
     attendances.each(&:invite!)
   end
 
   def cancel!
-    state_machine.trigger(:cancel)
+    state.trigger(:cancel)
     save!(:validate => false)
     attendances.interested.each(&:send_event_cancelled_email)
   end
 
-  def state_machine
-    @state_machine ||= MicroMachine.new(state || "created").tap do |machine|
+  def state
+    @_state ||= MicroMachine.new(self[:state] || "created").tap do |machine|
       machine.transitions_for[:publish] = { "created" => "published" }
       machine.transitions_for[:cancel]  = { "created" => "cancelled", "published" => "cancelled" }
+      machine.on(:any) { self[:state] = state.state }
     end
   end
 
   def viewable?
-    VIEWABLE_STATES.include? state
+    VIEWABLE_STATES.include? self[:state]
   end
 
   def published?
@@ -81,10 +82,6 @@ class Event < ActiveRecord::Base
 
   def check_if_public
     self.allow_invites = true if public?
-  end
-
-  def preserve_state_machine
-    self.state = state_machine.state
   end
 
   def self.public_events_near(city)
