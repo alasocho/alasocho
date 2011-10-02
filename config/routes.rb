@@ -25,7 +25,8 @@ ALasOcho::Application.routes.draw do
     post   "guests/:attendance_id", as: :confirm_guest, to: "guests/attendances#confirm"
     delete "guests/:attendance_id", as: :decline_guest, to: "guests/attendances#decline"
 
-    resource :attendance, :only => [:create, :destroy]
+    post   :rsvp, as: :confirm, to: "rsvps#confirm"
+    delete :rsvp, as: :decline, to: "rsvps#decline"
 
     resources :comments, :only => [:create, :destroy]
     resources :invitations, :only => [:new, :create]

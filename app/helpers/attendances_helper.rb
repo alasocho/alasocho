@@ -5,7 +5,7 @@ module AttendancesHelper
     url = if manager
       event_confirm_guest_path(event_id: attendance.event.id, attendance_id: attendance.id)
     else
-      event_attendance_path(attendance.event)
+      event_confirm_path(attendance.event)
     end
 
     link_to _confirm_label(available_slots, manager), url,
@@ -23,7 +23,7 @@ module AttendancesHelper
     url = if manager
       event_decline_guest_path(event_id: attendance.event.id, attendance_id: attendance.id)
     else
-      event_attendance_path(attendance.event)
+      event_decline_path(attendance.event)
     end
 
     link_to _decline_label(manager), url,

@@ -1,9 +1,9 @@
 require "event_finders"
 
-class AttendancesController < ApplicationController
+class RsvpsController < ApplicationController
   include EventFinders
 
-  def create
+  def confirm
     load_event_and_attendance
 
     if @event.slots_available?
@@ -17,7 +17,7 @@ class AttendancesController < ApplicationController
     redirect_to @event
   end
 
-  def destroy
+  def decline
     load_event_and_attendance
     @attendance.decline!
     redirect_to @event, notice: notice(:decline)
