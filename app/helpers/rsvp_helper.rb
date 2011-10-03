@@ -1,11 +1,11 @@
-module AttendancesHelper
-  def confirm_button(attendance, manager)
-    available_slots = attendance.event.available_slots
+module RsvpHelper
+  def confirm_button(rsvp, manager)
+    available_slots = rsvp.event.available_slots
 
     url = if manager
-      event_confirm_guest_path(event_id: attendance.event.id, attendance_id: attendance.id)
+      event_confirm_guest_path(event_id: rsvp.event.id, attendance_id: rsvp.attendance.id)
     else
-      event_confirm_path(attendance.event)
+      event_confirm_path(rsvp.event)
     end
 
     link_to _confirm_label(available_slots, manager), url,
@@ -14,16 +14,16 @@ module AttendancesHelper
       remote: manager
   end
 
-  def disabled_confirm_button(attendance, manager)
-    available_slots = attendance.event.available_slots
+  def disabled_confirm_button(rsvp, manager)
+    available_slots = rsvp.event.available_slots
     content_tag(:span, _confirm_label(available_slots, manager), class: "small btn action success disabled")
   end
 
-  def decline_button(attendance, manager)
+  def decline_button(rsvp, manager)
     url = if manager
-      event_decline_guest_path(event_id: attendance.event.id, attendance_id: attendance.id)
+      event_decline_guest_path(event_id: rsvp.event.id, attendance_id: rsvp.attendance.id)
     else
-      event_decline_path(attendance.event)
+      event_decline_path(rsvp.event)
     end
 
     link_to _decline_label(manager), url,
@@ -32,7 +32,7 @@ module AttendancesHelper
       remote: manager
   end
 
-  def disabled_decline_button(attendance, manager)
+  def disabled_decline_button(rsvp, manager)
     content_tag(:span, _decline_label(manager), class: "small btn action danger disabled")
   end
 

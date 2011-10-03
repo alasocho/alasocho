@@ -1,11 +1,11 @@
 - manager = local_assigns.fetch(:manager, false)
 
 - if rsvp.positive?
-  = disabled_confirm_button(rsvp.attendance, manager)
+  = disabled_confirm_button(rsvp, manager)
 - else
-  = confirm_button(rsvp.attendance, manager)
+  = confirm_button(rsvp, manager)
 
 - if rsvp.negative?
-  = disabled_decline_button(rsvp.attendance, manager)
+  = disabled_decline_button(rsvp, manager)
 - else
-  = decline_button(rsvp.attendance, manager)
+  = decline_button(rsvp, manager)
