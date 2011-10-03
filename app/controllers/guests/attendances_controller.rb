@@ -6,22 +6,16 @@ class Guests::AttendancesController < ApplicationController
   def confirm
     load_own_event
     load_attendance
-
-    if @event.slots_available?
-      @attendance.confirm!
-    else
-      @attendance.waitlist!
-    end
-
+    rsvp = Rsvp.new(@attendance)
+    rsvp.confirm
     render partial: "attendances/attendance", object: @attendance, locals: { management: true }
   end
 
   def decline
     load_own_event
     load_attendance
-
-    @attendance.decline!
-
+    rsvp = Rsvp.new(@attendance)
+    rsvp.decline
     render partial: "attendances/attendance", object: @attendance, locals: { management: true }
   end
 
