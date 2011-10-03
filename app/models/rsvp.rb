@@ -23,6 +23,14 @@ class Rsvp
     attendance.state.to_s
   end
 
+  def positive?
+    %w(confirmed waitlisted).include?(status)
+  end
+
+  def negative?
+    %w(declined).include?(status)
+  end
+
   def replied?
     attendance.persisted?
   end

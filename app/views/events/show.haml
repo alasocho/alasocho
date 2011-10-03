@@ -37,7 +37,7 @@
           %h3
             = t(".rsvp.label")
             %small= rsvp_status(@rsvp.status)
-          .attendance_actions= render "attendance_actions", attendance: @rsvp.attendance
+          .attendance_actions= render "attendance_actions", rsvp: @rsvp
 
       #time_and_space.alert-message.block-message.info
         %time.start_time(datetime="#{@event.start_at.to_s(:db)}")
