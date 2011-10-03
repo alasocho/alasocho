@@ -3,21 +3,26 @@ require "rsvp"
 
 describe Rsvp do
   let :attendance do
-    double("attendance", state: nil)
+    double("attendance", event:     event,
+                         state:     nil,
+                         confirm!:  nil,
+                         waitlist!: nil,
+                         decline!:  nil)
   end
 
   let :event do
     double("event")
   end
 
-  subject { described_class.new(event, attendance) }
+  subject do
+    described_class.new(attendance)
+  end
 
   describe "#confirm" do
     context "when the event has room for more guests" do
       before do
         event.stub!(:slots_available?).and_return(true)
         attendance.stub!(:state).and_return("confirmed")
-        attendance.stub!(:confirm!)
       end
 
       it "confirms the attendance" do
@@ -35,7 +40,6 @@ describe Rsvp do
       before do
         event.stub!(:slots_available?).and_return(false)
         attendance.stub!(:state).and_return("waitlisted")
-        attendance.stub!(:waitlist!)
       end
 
       it "waitlists the attendance" do
@@ -53,7 +57,6 @@ describe Rsvp do
   describe "#decline" do
     before do
       attendance.stub!(:state).and_return("declined")
-      attendance.stub!(:decline!)
     end
 
     it "declines the attendance" do

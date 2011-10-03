@@ -1,10 +1,10 @@
 class Rsvp
   attr :attendance
-  attr :event
 
-  def initialize(event, attendance)
+  delegate :event, to: :attendance
+
+  def initialize(attendance)
     @attendance = attendance
-    @event = event
   end
 
   def confirm

@@ -22,7 +22,7 @@ class EventsController < ApplicationController
       @page_title       = @event.name
       @page_description = @event.description
 
-      @rsvp                   = Rsvp.new(@event, Attendance.for(@event, current_user))
+      @rsvp                   = Rsvp.new(Attendance.for(@event, current_user))
       @comments               = @event.comments.includes(:user)
       @confirmed_invitations  = @event.attendances.confirmed.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
       @waitlisted_invitations = @event.attendances.waitlisted.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)

@@ -1,6 +1,6 @@
 = content_tag_for "li", attendance do
   - if local_assigns.fetch(:management, false)
-    .attendance_actions= render "events/rsvp", manager: true, rsvp: Rsvp.new(attendance.event, attendance)
+    .attendance_actions= render "events/rsvp", manager: true, rsvp: Rsvp.new(attendance)
 
   = image_tag attendance.owner.picture_url, class: "avatar medium"
   %span.name= attendance.owner.name

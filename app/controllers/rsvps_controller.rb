@@ -7,14 +7,14 @@ class RsvpsController < ApplicationController
 
   def confirm
     load_event
-    rsvp = Rsvp.new(@event, Attendance.for(@event, current_user))
+    rsvp = Rsvp.new(Attendance.for(@event, current_user))
     rsvp.confirm
     redirect_to @event, notice: notice(rsvp.status)
   end
 
   def decline
     load_event
-    rsvp = Rsvp.new(@event, Attendance.for(@event, current_user))
+    rsvp = Rsvp.new(Attendance.for(@event, current_user))
     rsvp.decline
     redirect_to @event, notice: notice(rsvp.status)
   end
