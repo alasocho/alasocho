@@ -69,4 +69,55 @@ describe Rsvp do
       subject.status.should == "declined"
     end
   end
+
+  describe "#status" do
+    it "returns the string representation of the attendance's state" do
+      attendance.stub!(:state).and_return(double(to_s: "something"))
+      subject.status.should == "something"
+    end
+  end
+
+  describe "#positive?" do
+    it "is true when the user has confirmed" do
+      attendance.stub!(:state).and_return("confirmed")
+      subject.should be_positive
+    end
+
+    it "is true when the user is in the waitlist" do
+      attendance.stub!(:state).and_return("waitlisted")
+      subject.should be_positive
+    end
+
+    it "is false when the user hasn't responded yet" do
+      attendance.stub!(:state).and_return("invited")
+      subject.should_not be_positive
+    end
+
+    it "is false when the user has declined yet" do
+      attendance.stub!(:state).and_return("declined")
+      subject.should_not be_positive
+    end
+  end
+
+  describe "#negative?" do
+    it "is true when the user has declined yet" do
+      attendance.stub!(:state).and_return("declined")
+      subject.should be_negative
+    end
+
+    it "is false when the user hasn't responded yet" do
+      attendance.stub!(:state).and_return("invited")
+      subject.should_not be_negative
+    end
+
+    it "is false when the user has confirmed" do
+      attendance.stub!(:state).and_return("confirmed")
+      subject.should_not be_negative
+    end
+
+    it "is false when the user is in the waitlist" do
+      attendance.stub!(:state).and_return("waitlisted")
+      subject.should_not be_negative
+    end
+  end
 end
