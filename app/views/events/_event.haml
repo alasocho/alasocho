@@ -11,4 +11,4 @@
         = t('.open_slots', count: event.attendances.confirmed.size, total: event.attendee_quota)
 
   .attendance_actions
-    = render "events/attendance_actions", rsvp: Rsvp.new(event, attendance) if local_assigns.has_key?(:attendance)
+    = render "events/rsvp", rsvp: Rsvp.new(event, attendance) if local_assigns.has_key?(:attendance)
