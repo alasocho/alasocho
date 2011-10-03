@@ -14,7 +14,7 @@ describe RsvpsController, type: :controller do
     context "when the event has available slots" do
       it "marks the user as confirmed" do
         post :confirm, event_id: event.to_param
-        event.attendance_for(current_user).should be_confirmed
+        current_user.should be_attending(event)
       end
 
       it "redirects to the event" do
@@ -36,7 +36,7 @@ describe RsvpsController, type: :controller do
 
       it "marks the user as waitlisted" do
         post :confirm, event_id: event.to_param
-        event.attendance_for(current_user).should be_waitlisted
+        current_user.should be_waitlisted_for(event)
       end
 
       it "redirects to the event" do

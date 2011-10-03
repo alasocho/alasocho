@@ -33,11 +33,11 @@
     .columns.span8
 
       - if signed_in?
-        #rsvp.alert-message.block-message{ class: rsvp_class(@attendance) }
+        #rsvp.alert-message.block-message{ class: rsvp_class(@rsvp.status) }
           %h3
             = t(".rsvp.label")
-            %small= rsvp_status(@attendance)
-          .attendance_actions= render "attendance_actions", attendance: @attendance
+            %small= rsvp_status(@rsvp.status)
+          .attendance_actions= render "attendance_actions", attendance: @rsvp.attendance
 
       #time_and_space.alert-message.block-message.info
         %time.start_time(datetime="#{@event.start_at.to_s(:db)}")

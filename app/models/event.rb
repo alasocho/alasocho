@@ -88,14 +88,6 @@ class Event < ActiveRecord::Base
     public_events.where(:city => city)
   end
 
-  def attendance_for(user)
-    attendances.where(:user_id => user.id).first || public_attendance_for(user)
-  end
-
-  def public_attendance_for(user)
-    attendances.new(:user_id => user.id, :state => "invited")
-  end
-
   def allow_invites_from(user)
     public? || allow_invites || host == user
   end

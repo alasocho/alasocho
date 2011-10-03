@@ -22,11 +22,14 @@ class EventsController < ApplicationController
       @page_title       = @event.name
       @page_description = @event.description
 
-      @attendance             = signed_in? ? @event.attendance_for(current_user).tap { |a| a.touch(:updated_at) unless a.new_record? } : nil
+      @rsvp                   = Rsvp.new(@event, Attendance.for(@event, current_user))
       @comments               = @event.comments.includes(:user)
       @confirmed_invitations  = @event.attendances.confirmed.includes(:user).limit(MAX_CONFIRMED_ATTENDEES)
       @waitlisted_invitations = @event.attendances.waitlisted.includes(:user).limit(MAX_WAITLISTED_ATTENDEES)
       @pending_invitations    = @event.attendances.pending.includes(:user).limit(MAX_PENDING_ATTENDEES)
+
+      # TODO: This should be refactored into something prettier :)
+      Attendance.for(@event, current_user).touch(:updated_at) if @rsvp.replied?
 
       respond_to do |format|
         format.html

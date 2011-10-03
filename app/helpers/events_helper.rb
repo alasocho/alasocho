@@ -61,17 +61,17 @@ module EventsHelper
     end
   end
 
-  def rsvp_class(attendance)
-    case attendance[:state]
-    when "invited"; ""
+  def rsvp_class(status)
+    case status
+    when "invited";                ""
     when "waitlisted";             "info"
     when "confirmed", "tentative"; "success"
     when "declined";               "error"
     end
   end
 
-  def rsvp_status(attendance)
-    case attendance[:state]
+  def rsvp_status(status)
+    case status
     when "invited";                t(".rsvp.havent_replied")
     when "waitlisted";             t(".rsvp.waitlisted")
     when "confirmed", "tentative"; t(".rsvp.confirmed")

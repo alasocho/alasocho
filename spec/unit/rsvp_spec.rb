@@ -10,7 +10,7 @@ describe Rsvp do
     double("event")
   end
 
-  subject { described_class.new(attendance, event) }
+  subject { described_class.new(event, attendance) }
 
   describe "#confirm" do
     context "when the event has room for more guests" do

@@ -2,7 +2,7 @@ class Rsvp
   attr :attendance
   attr :event
 
-  def initialize(attendance, event)
+  def initialize(event, attendance)
     @attendance = attendance
     @event = event
   end
@@ -21,5 +21,9 @@ class Rsvp
 
   def status
     attendance.state.to_s
+  end
+
+  def replied?
+    attendance.persisted?
   end
 end
