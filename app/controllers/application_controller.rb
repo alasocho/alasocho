@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_location
-    forwarded_ip = request.env.fetch("HTTP_X_FORWARDED_FOR", "").split(",").last.strip
+    forwarded_ip = request.env.fetch("HTTP_X_FORWARDED_FOR", "").split(",").last.to_s.strip
     remote_addr  = forwarded_ip.presence || request.remote_addr
 
     @current_location ||= Location.from_ip(remote_addr)
