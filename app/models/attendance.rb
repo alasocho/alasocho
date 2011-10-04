@@ -1,7 +1,10 @@
 require 'micro_machine'
 require 'simple_uuid'
+require 'attendance/attendance_finders'
 
 class Attendance < ActiveRecord::Base
+  extend ALasOcho::AttendanceFinders
+
   belongs_to :event
   belongs_to :user
 
@@ -31,11 +34,6 @@ class Attendance < ActiveRecord::Base
   validates :user_id, :uniqueness => { :scope => :event_id, :allow_nil => true }
   validates :email, :uniqueness => { :scope => :event_id, :allow_nil => true },
                     :format => { :with => /\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i, :allow_nil => true }
-
-  def self.for(event, user)
-    event.attendances.find_by_user_id(user.to_param) ||
-      event.attendances.new(user_id: user.to_param, state: "invited")
-  end
 
   def recipient
     user && user.email || self[:email]
