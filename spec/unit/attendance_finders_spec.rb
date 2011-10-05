@@ -16,7 +16,7 @@ describe ALasOcho::AttendanceFinders do
     end
 
     let :user do
-      double()
+      double(to_param: nil)
     end
 
     let :attendance do
@@ -24,10 +24,13 @@ describe ALasOcho::AttendanceFinders do
     end
 
     context "when a relationship between the event and the user exists" do
-      before { attendance_proxy.stub(:find_by_user_id).and_return(attendance) }
+      before do
+        user.stub(:to_param).and_return("1")
+        attendance_proxy.stub(:find_by_user_id).and_return(attendance)
+      end
 
       it "tries to find the attendance by user" do
-        attendance_proxy.should_receive(:find_by_user_id).with(user).and_return(attendance)
+        attendance_proxy.should_receive(:find_by_user_id).with("1").and_return(attendance)
         subject.for(event, user).should be(attendance)
       end
 
@@ -42,7 +45,10 @@ describe ALasOcho::AttendanceFinders do
     end
 
     context "when a relationship between the event and the user doesn't exist yet" do
-      before { attendance_proxy.stub(:new).and_return(attendance) }
+      before do
+        user.stub(:to_param).and_return("1")
+        attendance_proxy.stub(:new).and_return(attendance)
+      end
 
       it "the instantiated attendance is in an invited state" do
         attendance_proxy.should_receive(:new).with(hash_including(state: "invited"))
@@ -50,7 +56,7 @@ describe ALasOcho::AttendanceFinders do
       end
 
       it "the instantiated attendance is linked to the user" do
-        attendance_proxy.should_receive(:new).with(hash_including(user_id: user))
+        attendance_proxy.should_receive(:new).with(hash_including(user_id: "1"))
         subject.for(event, user)
       end
 
