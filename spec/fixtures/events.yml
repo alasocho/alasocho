@@ -1,3 +1,4 @@
+# A public event with no limit on how many people can attend.
 board_games_night:
   name: Gaming Night
   description: Nos juntamos a jugar juegos
@@ -8,5 +9,19 @@ board_games_night:
   timezone: America/Montevideo
   public: true
   attendee_quota: NULL
+  host: event_host
+  state: published
+
+# A public event with an attendance limit of 1. Meant for testing waitlists.
+forever_alone:
+  name: I will be forever alone
+  description: Bugger off!
+  start_at: <%= 1.day.from_now.at_midnight %>
+  end_at: <%= 2.days.from_now.at_midnight %>
+  location: My House
+  city: Montevideo, Uruguay
+  timezone: America/Montevideo
+  public: true
+  attendee_quota: 1
   host: event_host
   state: published

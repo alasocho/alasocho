@@ -49,4 +49,23 @@ describe "Responding to an invitation" do
       end
     end
   end
+
+  context "when I try to join an event that is full" do
+    it "should let me know I'm in the waitlist" do
+      sign_in :invited_user
+
+      visit event_path(events(:forever_alone))
+      within "#rsvp" do
+        click_link t("event.confirm", count: 0)
+      end
+
+      within "#rsvp" do
+        page.should have_content(t("events.show.rsvp.waitlisted"))
+      end
+
+      within "#guests .waitlisted" do
+        page.should have_content(current_user.name)
+      end
+    end
+  end
 end

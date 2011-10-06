@@ -4,6 +4,7 @@ board_games_night_host:
   email: "john.host@example.com"
   confirmed_at: <%= 2.days.ago %>
   updated_at: <%= 2.days.ago %>
+  state: confirmed
 
 board_games_night_invitation:
   event: board_games_night
@@ -11,3 +12,11 @@ board_games_night_invitation:
   email: "john.invited@example.com"
   confirmed_at: NULL
   state: invited
+
+forever_alone_host:
+  event: forever_alone
+  user: event_host
+  email: "john.host@example.com"
+  confirmed_at: <%= 10.minutes.ago %>
+  updated_at: <%= 10.minutes.ago %>
+  state: confirmed
