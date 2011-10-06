@@ -5,5 +5,5 @@
 OmniAuth.configure do |config|
   config.test_mode = true
   config.add_mock(:google, uid: "john.host@example.com")
-  config.add_mock(:google, uid: "john.invited@example.com")
+  config.add_mock(:twitter, uid: "@invited_user")
 end

@@ -5,5 +5,5 @@ event_host_google:
 
 invited_user_twitter:
   user: invited_user
-  provider: google
-  key: john.invited@example.com
+  provider: twitter
+  key: "@invited_user"
