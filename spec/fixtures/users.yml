@@ -6,6 +6,14 @@ invited_user:
   name: "John Invited"
   email: "john.invited@example.com"
 
+confirmed_user:
+  name: "John Confirmed"
+  email: "john.confirmed@example.com"
+
+declined_user:
+  name: "John Declined"
+  email: "john.declined@example.com"
+
 uninvited_user_1:
   name: "John Uninvited 1"
   email: "john.uninvited.1@example.com"

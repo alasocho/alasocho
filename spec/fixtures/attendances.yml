@@ -10,8 +10,21 @@ board_games_night_invitation:
   event: board_games_night
   user: invited_user
   email: "john.invited@example.com"
-  confirmed_at: NULL
   state: invited
+
+board_games_confirmed_invitation:
+  event: board_games_night
+  user: confirmed_user
+  email: "john.confirmed@example.com"
+  confirmed_at: <%= 1.day.ago %>
+  state: confirmed
+
+board_games_declined_invitation:
+  event: board_games_night
+  user: declined_user
+  email: "john.confirmed@example.com"
+  declined_at: <%= 1.day.ago %>
+  state: declined
 
 forever_alone_host:
   event: forever_alone

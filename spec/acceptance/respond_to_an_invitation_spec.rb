@@ -45,7 +45,8 @@ describe "Responding to an invitation" do
       end
 
       within "#declined" do
-        page.should have_content(t("guests.declined", count: 1))
+        # Don't forget about declined_user, he also declined the invitation
+        page.should have_content(t("guests.declined", count: 2))
       end
     end
   end
