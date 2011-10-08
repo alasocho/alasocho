@@ -4,7 +4,7 @@
 
     %div.where.metadata= event.location
     %time.metadata(datetime="#{event.start_at.to_s(:db)}")
-      = l(event.start_at, format: :short)
+      = l(event.start_at.in_time_zone(event.timezone.source), format: :short)
 
     - if event.limited?
       %span.slots
