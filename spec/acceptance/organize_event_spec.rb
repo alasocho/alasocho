@@ -1,4 +1,4 @@
-require "acceptance_spec_helper"
+require "rails_spec_helper"
 
 describe "User organizes an event" do
   it "can organize an event by filling the event form" do

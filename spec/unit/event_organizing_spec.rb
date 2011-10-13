@@ -1,4 +1,4 @@
-require "unit_spec_helper"
+require "no_rails_spec_helper"
 require "user/event_organizing"
 
 describe ALasOcho::EventOrganizing do

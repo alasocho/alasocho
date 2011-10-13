@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 # FIXME: We should move the '×' strings into the locale file.
-require "acceptance_spec_helper"
+require "rails_spec_helper"
 
 Capybara.add_selector :guest_row do
   xpath { |user| XPath.css("#management li:contains('#{user.name}')") }

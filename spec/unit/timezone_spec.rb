@@ -1,4 +1,4 @@
-require "unit_spec_helper"
+require "no_rails_spec_helper"
 require "timezone"
 require "json"
 

@@ -3,7 +3,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "spec_helper"
 
-Dir["./spec/support/functional/**/*.rb"].each {|f| require f }
+Dir["./spec/support/rails/**/*.rb"].each {|f| require f }
 
 RSpec.configure do |config|
   module Rails::ApplicationUnderTest

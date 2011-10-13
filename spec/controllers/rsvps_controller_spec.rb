@@ -1,6 +1,6 @@
-require "functional_spec_helper"
+require "rails_spec_helper"
 
-describe RsvpsController, type: :controller do
+describe RsvpsController do
   fixtures :events, :attendances
 
   describe "#confirm" do

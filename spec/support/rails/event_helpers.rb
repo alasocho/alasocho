@@ -24,5 +24,5 @@ module ALasOcho::SpecHelpers::Events
 end
 
 RSpec.configure do |config|
-  config.include ALasOcho::SpecHelpers::Events
+  config.include ALasOcho::SpecHelpers::Events, type: :acceptance
 end

@@ -1,6 +1,6 @@
-require "functional_spec_helper"
+require "rails_spec_helper"
 
-describe EventsController, type: :controller do
+describe EventsController do
   describe "#new" do
     set_incoming_request_ip
     sign_in :event_host

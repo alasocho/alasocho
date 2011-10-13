@@ -1,4 +1,4 @@
-require "acceptance_spec_helper"
+require "rails_spec_helper"
 
 describe "Responding to an invitation" do
   fixtures :all

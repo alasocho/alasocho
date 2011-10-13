@@ -17,5 +17,5 @@ module ALasOcho::SpecHelpers::Sessions
 end
 
 RSpec.configure do |config|
-  config.include ALasOcho::SpecHelpers::Sessions
+  config.include ALasOcho::SpecHelpers::Sessions, type: :acceptance
 end
