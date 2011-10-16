@@ -61,6 +61,7 @@ class Attendance < ActiveRecord::Base
 
   def waitlist!
     state.trigger(:waitlist)
+    self.waitlisted_at = Time.current
     save!(:validate => false)
   end
 

@@ -33,3 +33,9 @@ forever_alone_host:
   confirmed_at: <%= 10.minutes.ago %>
   updated_at: <%= 10.minutes.ago %>
   state: confirmed
+
+forever_alone_invitation:
+  event: forever_alone
+  user: invited_user
+  email: "john.invited@example.com"
+  state: invited
