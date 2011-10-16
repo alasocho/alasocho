@@ -35,7 +35,19 @@ forever_alone_host:
   state: confirmed
 
 forever_alone_invitation:
+  id: 1 # Default order is based on IDs, and I want to see the spec fail before I fix it.
   event: forever_alone
   user: invited_user
   email: "john.invited@example.com"
   state: invited
+  created_at: <%= 2.hours.ago %>
+  updated_at: <%= 2.hours.ago %>
+
+forever_alone_in_waitlist:
+  id: 2 # Default order is based on IDs, and I want to see the spec fail before I fix it.
+  event: forever_alone
+  user:  confirmed_user
+  email: "john.confirmed@example.com"
+  state: waitlisted
+  waitlisted_at: <%= 10.minutes.ago %>
+  updated_at: <%= 10.minutes.ago %>

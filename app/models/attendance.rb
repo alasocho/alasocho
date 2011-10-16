@@ -20,7 +20,7 @@ class Attendance < ActiveRecord::Base
 
   scope :confirmed,  where(state: STATES_CONFIRMED)
   scope :pending,    where(state: "invited")
-  scope :waitlisted, where(state: "waitlisted")
+  scope :waitlisted, where(state: "waitlisted").order(:waitlisted_at)
   scope :interested, where(state: STATES_INTERESTED)
   scope :declined,   where(state: "declined")
 
