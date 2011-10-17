@@ -238,7 +238,7 @@ es:
   notification:
     comments:
       comment:
-        blurb: "Ha recibido un nuevo comentario desde su última visita."
+        blurb: "Ha recibido un nuevo comentario desde tu última visita."
 
   event:
     confirmed_users:
