@@ -259,9 +259,9 @@ es:
     host_actions:
       confirm:
         zero: "Lista de espera"
-        one: "Atiende"
-        other: "Atiende"
-      decline: "No atiende"
+        one: "Asiste"
+        other: "Asiste"
+      decline: "No asiste"
     need_login_to_confirm: "Necesitas iniciar sesión si quieres asistir al evento"
 
     form:
