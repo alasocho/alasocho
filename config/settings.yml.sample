@@ -1,0 +1,28 @@
+development: &default
+  twitter:
+    consumer_key: key
+    consumer_secret: secret
+  facebook:
+    api_key: key
+    api_secret: secret
+  google:
+    consumer_key: key
+    consumer_secret: secret
+  canonical_host: alasocho.local:3000
+  token_secret: secret
+
+test:
+  << : *default
+
+production:
+  << : *default
+  twitter:
+    consumer_key: key
+    consumer_secret: secret
+  facebook:
+    api_key: key
+    api_secret: secret
+  google:
+    consumer_key: alasocho.com
+    consumer_secret: secret
+  canonical_host: alasocho.com
