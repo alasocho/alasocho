@@ -10,6 +10,7 @@ development: &default
     consumer_secret: secret
   canonical_host: alasocho.local:3000
   token_secret: secret
+  application_config_secret_token: secret
 
 test:
   << : *default
