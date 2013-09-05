@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
       self.current_user = authorization.user
 
-      redirect_to after_login_path, notice: t("sessions.sign_in.success")
+      redirect_to request.env['omniauth.origin'] || '/'
     end
   end
 
@@ -22,11 +22,4 @@ class SessionsController < ApplicationController
 
     redirect_to root_path, notice: t("sessions.sign_out.success")
   end
-
-private
-
-  def after_login_path
-    session.delete(:wants_page) || root_path
-  end
-
 end
