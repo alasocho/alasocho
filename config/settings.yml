@@ -1,0 +1,29 @@
+development: &default
+  twitter:
+    consumer_key: 51603471e12723ea91da5c8a1cd3fc39
+    consumer_secret: 51603471e12723ea91da5c8a1cd3fc39
+  facebook:
+    api_key: 51603471e12723ea91da5c8a1cd3fc39
+    api_secret: 51603471e12723ea91da5c8a1cd3fc39
+  google:
+    consumer_key: anonymous
+    consumer_secret: anonymous
+  canonical_host: alasocho.local:3000
+  token_secret: 51603471e12723ea91da5c8a1cd3fc39
+  application_config_secret_token: 51603471e12723ea91da5c8a1cd3fc39
+
+test:
+  << : *default
+
+production:
+  << : *default
+  twitter:
+    consumer_key: key
+    consumer_secret: secret
+  facebook:
+    api_key: key
+    api_secret: secret
+  google:
+    consumer_key: alasocho.com
+    consumer_secret: secret
+  canonical_host: alasocho.com
