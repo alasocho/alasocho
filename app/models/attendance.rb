@@ -69,6 +69,10 @@ class Attendance < ActiveRecord::Base
     state.trigger(:decline)
     save!(:validate => false)
 
+    event.attendances.confirmed.each do |attendance|
+      attendance.send_someone_declined_email(user)
+    end
+
     event.process_waitlist
   end
 
@@ -96,6 +100,10 @@ class Attendance < ActiveRecord::Base
 
   def send_event_cancelled_email
     NotifyEventCancelled.enqueue(id)
+  end
+
+  def send_someone_declined_email(user)
+    SomeoneDeclined.enqueue(id, user.id)
   end
 
   def send_new_comment_email
