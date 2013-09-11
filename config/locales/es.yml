@@ -309,6 +309,8 @@ es:
       subject: "Te han invitado a %{event_name}"
     new_comment_notification:
       subject: "Hay un nuevo comentario en el evento %{event_name}"
+    someone_declined:
+      subject: "%{traitor} se bajó de %{event_name}!!!"
 
   email:
     generic:
