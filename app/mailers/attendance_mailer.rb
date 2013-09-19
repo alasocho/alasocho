@@ -48,4 +48,15 @@ class AttendanceMailer < ActionMailer::Base
       :to      => attendance.recipient
     )
   end
+
+  def someone_declined_notification(attendance, traitor)
+    @attendance = attendance
+    @traitor = traitor
+    @event = attendance.event
+
+    mail(
+      :subject => t("attendance_mailer.someone_declined.subject", :event_name => @event.name, :traitor => @traitor.name),
+      :to      => attendance.recipient
+    )
+  end
 end

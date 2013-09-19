@@ -38,6 +38,6 @@ group :test do
 end
 
 group :development, :test do
-  gem "ruby-debug19"
+  gem "debugger"
   gem "rspec-rails", "~> 2.6"
 end
